@@ -21,3 +21,6 @@ Staticfile.auth
 
 # Ignore .idea folder
 /.idea
+
+# Ignore .cfignore
+.cfignore
