@@ -1,0 +1,7 @@
+---
+:remote: https://github.com/alphagov/tech-docs-template.git
+:revision: |-
+  fatal: ambiguous argument 'head': unknown revision or path not in the working tree.
+  Use '--' to separate paths from revisions, like this:
+  'git <command> [<revision>...] -- [<file>...]'
+  head
