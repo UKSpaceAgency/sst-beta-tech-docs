@@ -11,7 +11,7 @@ phase: Beta
 header_links:
   About: /
   #Get Started: /get-started
-  Documentation: /documentation
+  #Documentation: /
   #Support: /support
 
 # Enables search functionality. This indexes pages only and is not recommended for single-page sites.
@@ -21,7 +21,7 @@ enable_search: true
 ga_tracking_id:
 
 # Enable multipage navigation in the sidebar
-multipage_nav: true
+multipage_nav: false
 
 # Enable collapsible navigation in the sidebar
 collapsible_nav: false
