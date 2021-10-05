@@ -10,7 +10,7 @@ phase: Beta
 # Links to show on right-hand-side of header
 header_links:
   About: /
-  #Get Started: /get-started
+  Decisions: /decisions
   Design Docs: /designdocs
   #Support: /support
 
