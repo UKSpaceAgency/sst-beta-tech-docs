@@ -5,7 +5,7 @@ name: Deploy Middleman to GOVUK PaaS
 on:
   push:
     branches:
-      - "master"
+      - master
 
 jobs:
   build:
