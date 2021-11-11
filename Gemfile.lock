@@ -39,10 +39,12 @@ GEM
       http_parser.rb (~> 0.6.0)
     erubis (2.7.0)
     eventmachine (1.2.7)
+    eventmachine (1.2.7-x64-mingw32)
     execjs (2.8.1)
     fast_blank (1.0.1)
     fastimage (2.2.5)
     ffi (1.15.4)
+    ffi (1.15.4-x64-mingw32)
     govuk_tech_docs (2.4.3)
       autoprefixer-rails (~> 10.2)
       chronic (~> 0.10.2)
@@ -126,6 +128,8 @@ GEM
       rouge (~> 3.2)
     minitest (5.14.4)
     multi_json (1.15.0)
+    nokogiri (1.12.4-x64-mingw32)
+      racc (~> 1.4)
     nokogiri (1.12.4-x86_64-linux)
       racc (~> 1.4)
     openapi3_parser (0.9.0)
@@ -153,6 +157,8 @@ GEM
     sass (3.4.25)
     sassc (2.4.0)
       ffi (~> 1.9)
+    sassc (2.4.0-x64-mingw32)
+      ffi (~> 1.9)
     servolux (0.13.0)
     sprockets (4.0.2)
       concurrent-ruby (~> 1.0)
@@ -164,12 +170,16 @@ GEM
       parslet (>= 1.8.0, < 3.0.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
+    tzinfo-data (1.2021.5)
+      tzinfo (>= 1.0.0)
     uglifier (3.2.0)
       execjs (>= 0.3.0, < 3)
+    wdm (0.1.1)
     webrick (1.7.0)
     zeitwerk (2.4.2)
 
 PLATFORMS
+  x64-mingw32
   x86_64-linux
 
 DEPENDENCIES
@@ -179,4 +189,4 @@ DEPENDENCIES
   wdm (~> 0.1.0)
 
 BUNDLED WITH
-   2.2.15
+   2.2.22
