@@ -3,7 +3,7 @@ host: https://sst-tech-docs.london.cloudapps.digital
 
 # Header-related options
 show_govuk_logo: true
-service_name: Monitor my Satellite - Tech Docs
+service_name: Monitor my Satellites - Tech Docs
 service_link: https://sst-tech-docs.london.cloudapps.digital/
 phase: Beta
 
@@ -13,6 +13,7 @@ header_links:
   Architecture: /architecture
   Decisions: /decisions
   Design Docs: /designdocs
+  GDS Wiki: /gdswiki
   Environments: /environments
 
 # Enables search functionality. This indexes pages only and is not recommended for single-page sites.
