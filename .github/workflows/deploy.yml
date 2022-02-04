@@ -47,7 +47,7 @@ jobs:
         run: npm install
 
       - name: Build Middleman
-        run: bundle exec middleman build
+        run: bundle exec middleman build --verbose
 
       - name: Deploy to GOVUK PaaS
         uses: citizen-of-planet-earth/cf-cli-action@master
