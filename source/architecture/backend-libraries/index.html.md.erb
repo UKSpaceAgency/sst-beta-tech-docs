@@ -1,0 +1,27 @@
+---
+title: Context
+weight: 4
+parent: /architecture
+last_reviewed_on: 2022-04-19
+review_in: 3 months
+---
+
+# Backend libraries
+### Purpose
+This document describes the libraries used in the backend applications of Monitor my satellites.
+
+### Libraries used
+The backend uses Python 3.9 as a programming language.
+
+The full list of libraries can be found in the `requirements.txt` file. To install all the libraries one needs to run `pip -r requirements.txt`.
+
+The overall list of the most important libraries is as follows:
+
+ * FastAPI - the most important part of the application. FastAPI is the web framework for building APIs or websites. It's a fast, asynchronous and standard based framework. It uses automatic documentation creation using OpenAPI standard.
+ * Alembic - for maintaining database migrations
+ * SQLAlchemy Core - as an ORM solution for Postgres database
+ * Loguru - the logging solution
+ * Databases - for connecting with database
+ * Pydantic - for creating and validating database models
+
+<%= partial 'partials/links' %>
