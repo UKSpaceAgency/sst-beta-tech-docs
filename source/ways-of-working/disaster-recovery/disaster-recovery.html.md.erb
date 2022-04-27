@@ -1,0 +1,77 @@
+---
+title: Disaster Recovery
+weight: 12
+hide_in_navigation: true
+parent: /ways-of-working
+last_reviewed_on: 2022-04-25
+review_in: 3 months
+---
+
+# Disaster Recovery
+
+## Business continuity after loss of service
+A disaster is an event that prevents an application from fulfilling its business function in its primary deployed location.
+
+| Type                 | Disaster                                                         | Response                                                                                                                                                                                                                                        | Notification message & banner                                                                                                                                |
+| -------------------- | ---------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Internal - tech      | Service down due to unknown reason                               | 1. Check Logit.io logs<br><br>2. Check development environment<br><br>3. Check database<br><br>4. Fix on local environment<br><br>5. Test and release to fix issue                                                                              | Important: Sorry, the service is unavailable. You will be able to use the service later.                                                                     |
+| Internal - tech      | Malicious cyber attack on MmS application                        | 1. Logit.io monitors traffic and produces error logs<br><br>2. Tech team assemble and investigate issue<br><br>3. [action]<br><br>4. Inform GOV.UK PaaS that MmS has suffered a security breach                                                 | Important: Sorry, the service is unavailable. You will be able to use the service later.                                                                     |
+| Internal - tech      | OA team upload functionality fails                               | 1. Check Logit.io logs<br><br>2. Identify issue<br><br>3. Fix on local environment<br><br>4. Test and release to fix issue                                                                                                                      | Important: There is a problem with delivering UKSA analysis. You will be able to view this analysis later.                                                   |
+| Internal - tech      | Ephemeris files are lost from database                           | 1. Identify security issue and inform users if their data has been stolen<br><br>2. Restore database from S3 storage                                                                                                                            |                                                                                                                                                              |
+| Internal - tech      | Database lost                                                    | 1. Identify cause and address issue<br><br>2. Restore data (see link by GL)                                                                                                                                                                   | Important: Sorry, the service is unavailable. You will be able to use the service later.                                                                     |
+| Internal - tech      | Server overload                                                  | We do not have autoscaling, our current use doesn't justify it. But if scaling is needed, it is a simple change in the Terraform to either vertically or horizontally scale the service.                                                        | Important: Sorry, the service is unavailable. You will be able to use the service later.                                                                     |
+| External - workforce | OA team is indisposed and cannot provide services                | 1. Confirm the issue with the UKSA SST and OA teams<br><br>2. Upload message to UI<br><br>3. Ensure to monitor email account for any outstanding queries or problems                                                                            | Important: There is a problem with delivering UKSA analysis. There will be delays in the generation of their event analysis.                                 |
+| External - tech      | Space Track goes down (due to errors/difficulties on their side) | 1. Space-Track notifies us about a problem.<br><br>2. We warn users that updates are delayed and let them know how up-to-date the data on there is.<br><br>3. Any missed CDMs will be replenished automatically when Space-Track is back up and running. | Important: There is a problem with our data source. Data was last received from Space-Track at dd/mm/yyyy hh:mm.                                             |
+| External - tech      | GOV.UK Notify stops working                                      | 1. GOV.UK Notify notifies us that there is an issue.<br><br>2. Manually send all users an email with the error message.                                                                                                                         | Important: There is a problem with GOV.UK Notify. You will not be receiving notifications from our service. Continue to check the web interface regularly.   |
+| External - tech      | GOV.UK PaaS stops working (AWS)                                  | 1. GOV.UK PaaS notifies us that there is an issue.<br><br>2. Manually send all users an email with the error message.                                                                                                                           | Important: Sorry, the service is unavailable. You will be able to use the service later.                                                                     |
+| External - non-tech  | Major collision in orbit                                         | 1. Confirm the event with the UKSA OA and SST team<br><br>2. Upload message to UI                                                                                                                                                               | Important: There has been a major event in orbit. There is limited information at this time. The site will be updated as more information becomes available. |
+| External - non-tech  | Limited sensor availability                                      | 1. UKSA to publish message on interface                                                                                                                                                                                                         |
+
+### Plan intiation:
+1. Notify senior management
+2. Contact and set up disaster recovery Team
+3. Determine degree of disaster
+4. Implement proper application recovery plan dependent on extent of Disaster
+5. Monitor progress
+6. Notify users of the disruption of service if required
+
+### Responding to downtime:
+1. What happens if the service goes down for 1 hour
+    * Extremely rare that an event will happen with this lack of notice and in fact Space Track only sends us information every 2 hours. We therefore expect impact to be zero.
+    * ‘Service is unavailable’ page shown if users try to access the service
+2. What happens if the service goes down for 24 hours
+    * Old workflow can be utilised ie OAs contact operators directly.
+    * ‘Service is unavailable’ page shown if users try to access the service
+    * Email sent to users informing them of the issue and an ETA for fix
+3. What happens if the service goes down for 1 week
+    * Old workflow can be utilised ie OAs contact operators directly.
+    * For this period of time we would expect to contact operators directly to warn them of service downtime
+    * When service recovers, the database will take time to ‘refill’ so users must be informed that some CDMs will be missing
+
+## Availability
+Preventing loss of service
+
+### Secure data backups
+* GOV.UK PaaS
+    * Dependent on PaaS back-up for UKSA data, user settings, ephemeris.
+    * PostgreSQL service backups are taken nightly at some time between 22:00 and 06:00 UTC. Data is retained for 7 days. More info on GOV.UK PaaS backups.
+* Space-Track data
+    * If there is a short-term outage of SpaceTrack or a loss of data on our end, the logic will grab missing CDM data and re-pull down all satellite data.
+* Ephemeris files
+    * Stored in S3 -  this is backed-up
+    * If database lost, we can conduct a manual check of the S3 storage to check whether any ephemeris files are stored. The database can then be replenished manually.
+* Ephemeris files
+    * Stored in the database only so if the database was lost, the analysis would also be lost. Therefore, we ask the OAs to always retain a copy of all analysis.
+    * If UKSA analysis data needs to be restored, we would request copies of the data from the OA team.
+
+### Assessing service performance
+
+Mean time will be recorded to assess how resilient the service is:
+
+* Service availability
+* Mean time between failures
+* Mean time to repair
+* Downtime
+
+
+<%= partial "partials/links" %>
