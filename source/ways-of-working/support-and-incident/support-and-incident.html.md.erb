@@ -1,0 +1,92 @@
+---
+title: Support and incident processes
+weight: 12
+hide_in_navigation: true
+parent: /ways-of-working
+last_reviewed_on: 2022-04-26
+review_in: 3 months
+---
+
+# Support and Incident Processes
+
+### Purpose
+This documents the process of how monitor my satellites (MmS) users raise a support query or incident with the service and how it will be resolved.
+
+### Context and Scope
+MmS is expected to run predictably and accurately at all times. However, like all web services, bugs can be introduced and unexpected downtime can occur, at which point support will be necessary.
+
+UKSA requires support for MmS 9-5, Monday to Sunday. This is on the understanding that all events so far have had around 7 days notice and therefore full support 24*7*365 is not necessary and UKSA’s money would be better spent elsewhere.
+
+Note: this means that UKSA and operators will carry risks against unexpected occurrences. This is something which can be monitored throughout public beta and see if more coverage is necessary.
+
+## Support Process
+
+### User raises support email
+Up to this point, UKSA have published an email address of monitormysatellites@ukspaceagency.gov.uk. We propose to continue to use this as the primary support tool in the first instance.
+
+In order for this process to work, UKSA will either need to allow The PSC staff to have access to this mailbox, or automatically forward emails onto a specific support email address (potentially the shared mailbox uksa.support@thepsc.co.uk).
+
+#### The proposed support process is that:
+1. The email is forwarded to a shared mailbox accessible to all support team members.
+2. This provokes a workflow which alerts a Slack channel, and also sends out an automated response, acknowledging the user’s report.
+3. The on-call team member is tasked to always be alert to slack channel inputs.
+4. They analyse the request and follow up as appropriate.
+5. Response time and action determined by classification of the issue identified.
+6. If appropriate, actions taken by on-call team members are determined by runbooks.
+7. If necessary, a JIRA issue is created with the issue and actions taken and/or required.
+8. The user is notified of actions taken to address the issue.
+
+### Support and response expectations and clarifications
+
+| Classification     | Example                                                                                                                                                    | Out of hours Support Available                                                                                                                |
+| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| P1: Critical Issue | Service (API and/or web portal) is unavailable to end users due to a problem with the site<br><br>Serious security breach on platform | Acknowledgment within 30 minutes<br><br>Response/update from an on-call member of the team within 1 hour<br><br>Issue resolved within 4 hours |
+| P2: Major Issue    | Serious degradation of service (API and/or web portal)                                                                                                     | Acknowledgment within 30 minutes<br><br>Response/update from on-call team member within 1 hour<br><br>Resolved within 1 working day           |
+| P3: Minor Issue    | Component failure that is not immediately impacting on service (API and/or web portal)<br><br>Problem uploading Ephemeris or analysis data                 | Acknowledgment within 30 minutes<br><br>Response from on-call team member within 1 hour<br><br>Update within 1 working day                    |
+
+## Incident Process
+In the event of an incident or problem with the service, we will support and respond to issues according to the same classification system to the support process.
+
+Incidents or problems with the service may be detected from a number of different sources, for example, a problem may be raised by a user or we may be alerted to an issue via Sentry or Logit.io.
+
+We propose to continue to use monitormysatellites@ukspaceagency.gov.uk as the primary tool for reporting problems. As such, this must be made to all users when they register.
+
+#### Upon detection of a problem the following process should be followed:
+1. Email is generated and sent to a shared mailbox accessible to all support team members.
+2. This provokes a workflow, which alerts a Slack channel, and also sends out an automated response, acknowledging the user’s report.
+3. The on-call team member (as determined by a rota) is tasked to always be alert to Slack channel inputs.
+4. The issue is investigated and classified and, if necessary, all stakeholders are notified of the issue through the service status page.
+5. Response time and action determined by classification of the issue identified.
+6. If appropriate, actions taken by on-call team members are determined by runbooks.
+7. The components affected by the incident are updated on the service status page and progressed through:
+  * Investigating
+  * Identified
+  * Monitoring
+  * Resolved
+8. If necessary, a JIRA issue is created with the issue and actions taken and/or required.
+9. Incident review is conducted by the team to establish the route cause and possible preventive actions explored.
+
+## Limits to support
+1. In all instances we will attempt to resolve P1 problems as soon as possible; but in the worst case scenario other solutions will be considered, including rolling back to the previous version; and in the worst case making the service inaccessible until all the development team are available.
+2. Code changes/fixes will not be available over weekends but resolution of P1 issues will be attempted (for example, roll back or redeployment).
+3. User management will not be handled out of office hours.
+
+## Alternative support systems considered
+1. A service desk/ticketing system such as Zendesk or Freshdesk. These might be the right solutions in time but were rejected as follows:
+  * Monitoring
+  * Both options would introduce another new system which would need linking into current processes on JIRA and Slack to ensure that tasks were monitored. This was probably overkill for the amount of support calls expected (none in the private beta period)
+2. A telephone number may be added at some stage; in its absence the acknowledgment will need to tell the user about the support level they can expect.
+
+## Goals and non-Goals
+The goal of this design doc is to articulate a design for a predictable and efficient support process.
+
+#### Goals
+* Users need a way of raising queries and knowing that it has been raised successfully
+* Support teams need a way of monitoring issues raised so that they can assist as necessary
+* Support teams need a way of tracking progress of each ticket, resolving what is possible and necessary on weekends and otherwise communicating effectively with operators
+* There should always be an on-call member of the support team during the specified hours, who is prepared and able to deal with the variety of issues that may arise
+
+#### Non-goals
+* A full case management system for Orbital Analysts’ conjunction analysis may be overkill for the scale of system
+
+<%= partial "partials/links" %>
