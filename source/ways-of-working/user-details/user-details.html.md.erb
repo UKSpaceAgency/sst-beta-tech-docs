@@ -1,0 +1,51 @@
+---
+title: User Details
+weight: 12
+hide_in_navigation: true
+parent: /ways-of-working
+last_reviewed_on: 2022-04-29
+review_in: 3 months
+---
+
+# User Details
+
+<div class="govuk-warning-text">
+  <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+  <strong class="govuk-warning-text__text">
+    <span class="govuk-warning-text__assistive">Please note</span>
+     These processes are subject to change/ simplification in the next few weeks
+  </strong>
+</div>
+
+In the next few weeks, we are hoping to introduce self-serving processes in which admins are able to add users to MmS, which will automatically create a user in Auth0. Admins will also be able to change user details and delete users from their MmS account.
+
+### Purpose
+With Monitor my Satellites (MmS) moving into the public beta phase, this will involve the addition of new users and user groups. Therefore, it is essential to have a clear process outlined for the creation of new user accounts and for how users’ details can be amended or deleted.
+
+## Processes
+
+### Adding a new user
+1. Navigate to MmS database users table, where you are able to see all users on the application
+2. Add row to the bottom of the table and fill in required columns
+  * Terms and conditions,gdpr and account_details_confirmed_at columns are left empty (as user needs to accept these when they first access the site)
+  * Enter true into the active column: true is for active users, false is for inactive
+  * Leave the ‘is verified column’ blank until user has verified email address (via Auth0)
+  * Leave settings blank so user can choose own account settings when they enter the site
+2. Then go to Auth0 site
+  * Go to dashboard (need to be an admin in order to do this)
+  * Choose correct tenant (prod)
+  * Go to user management
+  * Go to users
+  * Click create user and fill in necessary information
+  * Have to fill in a password, user will change this when they receive an email from Auth0 asking them to do so
+  * Choose username-password authentication
+
+### Amending user details
+* There are no actions to take in Auth0 as password only needs to be set up on creation of user account
+* Go to database and either create an update query or use GUI to change the user
+
+### Deleting a user
+* Deleting a user on Auth0 would be enough to stop a user having access to the MmS site (make them inactive on the user database)
+* But should also delete the user from the MmS database
+
+<%= partial "partials/links" %>
