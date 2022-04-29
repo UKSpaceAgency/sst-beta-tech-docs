@@ -18,21 +18,21 @@ It may be necessary on occasion to restore the database, for example if the data
 * Access to command line tool
 * Python 3.x installed
 * Copy of Monitor my satellites Python backend from Github (needed for alembic command and for restoring the database schema)
-* Installed all the Python requirements.txt tools (needed for alembic command)
-* Optional: virtual environment created and set via source venv/bin/activate
+* Installed all the Python `requirements.txt` tools (needed for alembic command)
+* Optional: virtual environment created and set via `source venv/bin/activate`
 
-The database is archived using the `Postgres pg_dump` tool. It is archived into a directory in compressed format.
+The database is archived using the Postgres `pg_dump` tool. It is archived into a directory in compressed format.
 
 <%= warning_text('Database was archived with only data (`--data-only` switch in `pg_dump`), not the database schema. It is important to know that limitation.') %>
 
 ### Restore process
 To restore the database into a new location, the following steps need to be completed:
 
-* `run psql` in command prompt
-* setup a clean database “postgres” with command `CREATE DATABASE postgres;` in psql
-* run alembic upgrade head from the main application folder. This will create the database structure
+* run `psql` in command prompt
+* setup a clean database named “postgres” with command `CREATE DATABASE postgres;` in `psql`
+* run `alembic upgrade head` in command line from the main application folder. This will create the database structure
 <%= warning_text('main application folder is the main folder of the cloned Github repository where subfolder `migrations/` resides') %>
-* run `pg_restore -d postgres -p 5444 -F d path_to_folder_with_db_backup`. The port number may be different in your case.
+* run `pg_restore -d postgres -p 5444 -F d path_to_folder_with_db_backup`. The port number (5444) may be different in your case.
 
 The whole process can take up to a few hours to finish, depending on the amount of data in the archived database.
 
