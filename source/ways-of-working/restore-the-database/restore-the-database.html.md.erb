@@ -23,7 +23,7 @@ It may be necessary on occasion to restore the database, for example if the data
 
 The database is archived using the Postgres `pg_dump` tool. It is archived into a directory in compressed format.
 
-<%= warning_text('Database was archived with only data ( `--data-only` switch in `pg_dump` ), not the database schema. It is important to know that limitation.') %>
+<%= warning_text('Database was archived with only data - `--data-only` switch in `pg_dump`, not the database schema. It is important to know that limitation.') %>
 
 ### Restore process
 To restore the database into a new location, the following steps need to be completed:
