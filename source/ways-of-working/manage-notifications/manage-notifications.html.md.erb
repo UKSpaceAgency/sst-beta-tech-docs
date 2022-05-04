@@ -10,3 +10,99 @@ review_in: 3 months
 # How to manage notifications
 
 <%= partial 'partials/_links' %>
+
+
+**Monitor my satellites application** uses Gov.UK Notify service (https://www.notifications.service.gov.uk/) for sending SMS (text) and email notifications. 
+
+Notifications system consist of the following main parts:
+1. Notify access and set up (API Keys)
+2. Users (recipients) database
+3. Templates for various subjects of notifications and different types of notifications
+4. Notification settings 
+5. Notification thresholds
+6. Python API integration (settings, triggers, schedulers)
+
+## Notify access and set up (API Keys)
+To set up notifications using Gov.UK Notify one needs to have access to Notify service first.
+
+Apart from template IDs, when integrating with Notify, API keys are needed. They can be issued in Notify dashboard and can be either test, team or live. Test or team keys are very useful for limiting the number of possible recipients to only the development team.
+
+<img width="400" src="./image1.png"/>
+
+Team and guest list uses team members list and allows sending emails only to these email addresses (or phone numbers). There’s also a guest list (limited to 10 entries) that allows sending notifications to some other addresses.
+
+To send any type of notification, the environment variable `NOTIFY_API_KEY` has to be set. 
+
+## Templates for various subjects of notifications and different types of notifications
+The next step is to create templates according to the message content and subject. 
+The example template looks like this:
+
+<img width="600" src="./image4.png"/>
+
+Yellow marked fields are variable fields, where Notify service puts data provided by the application when sending a notification. Variables can also work as conditional, so some parts of the notification can be shown or hidden (see one_event variable).
+
+Each and every template has an ID (called template ID) provided by the Notify service:
+
+<img width="400" src="./image3.png"/>
+
+**Monitor my satellites** uses these IDs to send different notifications. When creating a new template in Notify, the new Template ID is created and should be put into application in `app/integrations/notify_gov/config.py` file.
+
+Every type of event in Monitor my satellites uses its own template:
+
+<img width="700" src="./image2.png"/>
+
+Notifications are sent only during working hours (8-16), every 2 hour. It can be changed in `app.tasks.send_notifications` method.
+
+## Notification settings 
+The important thing to remember is that users can set which types of notifications they want to receive. This is done by notification_settings column in database which is a JSON object:
+Example object looks like this:
+
+> `{
+  "on_event_created": [
+    "EMAIL"
+  ],
+  "on_event_updated": [
+    "EMAIL"
+  ],
+  "on_event_under_threshold": [],
+  "on_analysis_uploaded": [
+    "EMAIL"
+  ],
+  "on_ephemeris_uploaded": [
+    "EMAIL"
+  ],
+  "on_user_added": [],
+  "on_user_removed": [],
+  "on_user_edited": []
+}`
+
+An array of notification_type is set for every type of notification, currently it can be `EMAIL` or `SMS`. 
+
+## Notification thresholds
+Apart from notification types (EMAIL/SMS) there are few settings that control when some notifications are sent. When a new Event is **created** or **updated**, personal users thresholds are checked and notification is not being sent if the threshold isn’t met. This is controlled by `notification_thresholds` column in users table in database.
+
+Thresholds column is also a JSON object that looks like this:
+>`[
+  {
+    "type": "PROBABILITY_OF_COLLISION",
+    "value": 0.001
+  },
+  {
+    "type": "TOTAL_MISS_DISTANCE",
+    "value": 100
+  },
+  {
+    "type": "MEAN_RADIAL_MISS_DISTANCE",
+    "value": 100
+  },
+  {
+    "type": "TIME_TO_EVENT",
+    "value": 43200
+  }
+]`
+
+All of the conditionals have to be met in order to send a notification.
+Values are in seconds (for time) or meters (for distance).
+
+Other types of notifications are sent automatically (ie users notifications), there are no settings for them.
+
