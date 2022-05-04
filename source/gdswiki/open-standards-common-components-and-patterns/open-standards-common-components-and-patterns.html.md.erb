@@ -1,0 +1,45 @@
+---
+title: Use and contribute to open standards, common components and patterns
+weight: 12
+hide_in_navigation: true
+parent: /ways-of-working
+last_reviewed_on: 2022-05-03
+review_in: 3 months
+---
+
+# 13. Use and contribute to open standards, common components and patterns
+
+Build on open standards and common components and patterns from inside and outside government.
+
+### Use[ open standards](https://www.gov.uk/service-manual/technology/working-with-open-standards), and propose a new open standard if there isn't one that already meets their needs
+
+* [Standards](https://www.gov.uk/government/publications/open-standards-for-government) that apply to our service:
+  * Formatting dates and times in database
+    * User research provided strong evidence against using this standard format and so we used an alternative format that meets our user's needs, ie UTC time
+  * Use consistent country codes
+  * Sharing government documents
+  * Exchange of contact information
+* We did find a strong user need for scientific notation and therefore have tested out how best to present this, eg 
+  * Rejected: 5.755*e-4
+  * Rejected: 5.755*e^-4
+  * Preferred: 5.755e-4
+
+### Use[ standard government technology components](https://www.gov.uk/service-toolkit#gov-uk-services) where possible, for example gov.uk Verify for identity assurance
+
+* GOV.UK patterns and components used throughout
+* GOV.UK Notify service used to send out email and text notifications to users
+
+### Use common components and patterns, and share details of any new components or patterns they create or adapt (for example, by[ contributing to the GOV.UK Design System](https://design-system.service.gov.uk/community/propose-a-component-or-pattern/))
+
+* We have used standard components, styles and patterns from the GOV.UK design service to create our prototype.  
+* Example components: colour labels, details, accordions, tables, breadcrumbs, radios, text areas, checkboxes 
+* Example styles: lists, headings, structures 
+* When necessary components have not been available on the [gov.uk design system](https://design-system.service.gov.uk/) (for example, code for a sortable table, highly requested by our users) we have sourced these from the [MoJ design system](https://moj-design-system.herokuapp.com/components/sortable-table), ensuring a common pattern was used.
+
+### When services create data that's potentially useful to others inside or outside government, they should publish them in an open,[ machine readable format](http://opendatahandbook.org/glossary/en/terms/machine-readable/), under an[ Open Government Licence](http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/)
+
+* A range of Government users will be able to access our service - including the emergency response team, regulators, UKSA SST team
+* However, our service is not quite ready to create any data that can be publicly shared
+  * It probably is within our agreements with SpaceTrack to publish to eg academics and insurers but not the general public. Space-Track itself requires proof that you are in a relevant industry before giving you an account.
+
+<%= partial "partials/links" %>

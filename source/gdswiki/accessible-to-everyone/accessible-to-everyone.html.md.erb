@@ -1,0 +1,42 @@
+---
+title: Make sure everyone can use the service
+weight: 12
+hide_in_navigation: true
+parent: /ways-of-working
+last_reviewed_on: 2022-05-03
+review_in: 3 months
+---
+
+# 05. Make sure everyone can use the service
+
+Provide a service that everyone can use, including disabled people and people with other legally protected characteristics. And people who do not have access to the internet or lack the skills or confidence to use it.
+
+### Meet [accessibility standards](https://www.gov.uk/service-manual/helping-people-to-use-your-service/making-your-service-accessible-an-introduction), including both online and offline parts
+
+* User research at Alpha revealed a range of user needs regarding accessibility:
+  * Ensuring that text was only over a single line in tables to meet the requirements of dyslexic users
+  * Ensuring to use appropriate colour choices to meet the needs of individuals with colour blindness
+* We believe that the service meets AA of the Web Content Accessibility Guidelines. We have done an internal accessibility audit against the guidelines and used a testing tool (WAVE evaluation tool) to identify any gaps. This process highlighted a few minor issues e.g., missing table headers. These issues have been addressed. Our priority now is full compliance with the GDS design system – this is being implemented in the next sprint.
+
+### Avoid [excluding any groups within the audience they're intended to serve](https://www.gov.uk/service-manual/design/making-your-service-more-inclusive)
+
+* Our users will range from very technical to not so technical in the world of satellite operations and so we have ensured our service meets all these needs
+  * E.g. users can access the data via an API or via the web interface
+  * Several interface improvements covered above
+* We are testing the service with university students at Cranfield University to ensure that users with less experience and specialist knowledge in SST are able to use the service
+
+### Carry out research with participants who [represent the potential audience for the service](https://www.gov.uk/service-manual/user-research/find-user-research-participants), including people with access needs
+
+* We interviewed users from 75% of satellite operators which we believe gave us a highly representative sample of future users, however, we will want to go further and complete an accessibility audit, to be confident our service is usable by everyone.
+
+### Make sure that people are not excluded from being able to use the service because they lack digital skills or internet access, providing appropriate [assisted digital support](https://www.gov.uk/service-manual/helping-people-to-use-your-service/designing-assisted-digital) to cover any gaps
+
+* This is a particularly tricky sub-point. MmS is a product for a highly technical environment (orbital analytics) where all other aspects of people’s work rely on large data flows across the internet into digital systems which they use every day. Further, it will be impossible to access MmS without having already accessed other digital services so as to (for example) register your spacecraft. It is therefore reasonable to state that a certain level of digital skills and internet access will be present within all of our potential audience.
+* We have therefore concentrated on ensuring that MmS is accessible to the widest possible level of digital skills. To achieve this we have:
+  * Used the heavily-tested GOV.UK design patterns throughout
+  * Ensured text follows GDS style and content design patterns
+  * Undertaken wide user research and hundreds of iterations as above
+* In general making what is a very data-heavy product as clear as possible has been very highly loved by all users.
+* The site is built with a non-JS core which is progressively enhanced
+
+<%= partial "partials/links" %>
