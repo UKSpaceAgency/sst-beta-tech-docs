@@ -1,0 +1,63 @@
+---
+title: How to manage ephemeris
+weight: 20
+parent: /ways-of-working
+hide_in_navigation: true
+last_reviewed_on: 2022-05-06
+review_in: 3 months
+---
+
+# How to manage ephemeris
+
+<%= partial 'partials/_links' %>
+
+# Uploading/submitting OEM Ephemeris data
+
+**Definition**
+
+*An OEM specifies the position and velocity of a single object at multiple epochs contained within a specified time range. The OEM is suited to exchanges that (1) involve automated interaction (e.g., computer-to-computer communication where frequent, fast automated time interpretation and processing is required), and (2) require higher fidelity or higher precision dynamic modeling than is possible with the OPM.*
+
+Monitor my satellites uses Ephemeris files in .oem format to exchange data from satellite operators to UKSA orbital analysts. 
+
+The format of .oem file can be found here: https://public.ccsds.org/Pubs/502x0b2c1e2.pdf
+
+Because of some differences between the .oem format and the way Monitor my satellites handles satellite data, Ephemeris files have to be constructed with one thing in mind: the proper file name. Due to the fact that .oem files have different satellite names than SpaceTrack can provide, the satellite descriptor - NORAD ID has to be encoded in the .oem file. This is aligned with the SpaceTrack requirements on naming Ephemeris files and described in SpaceTrack Handbook for Operators (page 23):
+
+https://www.space-track.org/documents/Spaceflight_Safety_Handbook_for_Operators.pdf
+
+The format of a filename is as follows:
+
+`<DataType>_<SatelliteNumber#>_<CommonName>_<DayTimeGroup>_<Operational/Special>_<MetaData>_<Classification>.<FileExtension>`
+
+Examples:
+
+- MEME_25544_ISS_1651200_oper__unclassified.txt
+- MEME_25544_ISS(ZARYA)_1651200_operational_nomnvr_UNCLASSIFIED.txt
+- MEME_25544_ISS_1651200_special_mnvr01_Unclassified.txt
+- MEME_UCN01_SPACESAT1_1651200_special_burn01_Unclassified.txt
+- MEME_799500234_Sat1_1651200_special_separation_unclassified.txt
+
+**Monitor my satellites** expects the filename to contain the NORAD ID and when it’s not found either in filename or in the **Monitor my satellites** database, the file cannot be uploaded.
+
+**Monitor my satellites** also checks the contents of the .oem file which has to be in line with the .oem file specification. Fields that are validated against the specification are:
+
+- NORAD ID must be provided in filename (as above explained)
+- NORAD ID must match the current page satellite NORAD ID 
+- Satellite with provided NORAD ID must be in **Monitor my satellites** database
+- META_START/META_STOP tags must be in ephemeris file in header section in proper order (START before STOP)
+
+**Following fields must be present in ephemeris file:**
+
+- ORIGINATOR
+- OBJECT_NAME
+- OBJECT_ID
+- REF_FRAME
+- TIME_SYSTEM
+- START_TIME
+- STOP_TIME
+- CENTER_NAME
+- CCSDS_OEM_VERS
+- CREATION_DATE
+
+Ephemeris files can be uploaded directly in **Monitor my satellites** application in the Satellites section or via API using POST /ephemeris endpoint (when object_id and .oem file must be provided).
+

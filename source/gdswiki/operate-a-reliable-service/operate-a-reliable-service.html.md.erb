@@ -1,0 +1,60 @@
+---
+title: Operate a reliable service
+weight: 12
+hide_in_navigation: true
+parent: /ways-of-working
+last_reviewed_on: 2022-05-03
+review_in: 3 months
+---
+
+# 14. Operate a reliable service
+
+Minimise service downtime and have a plan to deal with it when it does happen.
+
+### [Maximise uptime and speed of response] (https://www.gov.uk/service-manual/technology/uptime-and-availability-keeping-your-service-online) for the online part of the service
+
+* We have and run a fully automated CICD pipeline.
+  * We have set up automatic deployments
+* We have several times edited our Compute power on GOV.UK PaaS to ensure that we have a fast service
+  * typically when a performance issue appears we increase power, then refactor if we can, then decrease power again
+
+### Be able to deploy software changes regularly, without significant downtime (for example, by minimising the effort involved in creating new environments and populating pre-production environments with test data)
+
+* We are working in agile with two-week sprints and a prioritised backlog of features. This enables us to deploy changes regularly and in response to user needs and feedback.
+* We have an fully automated CICD pipeline.
+  * We have set up automatic deployments
+* We will make releases to the production environment regularly after thorough testing in the development and test environments.
+  * Mixture of manual and automated testing
+* When releases are made to the production environments, there will be a short period of downtime (around 10 minutes). During this time the ‘There is a problem with the service’ page will be shown.
+* We have made > 50 releases in private beta across all environments
+
+### Carry out[ quality assurance testing](https://www.gov.uk/service-manual/technology/quality-assurance-testing-your-service-regularly) regularly
+
+* Limited automated testing in place (Unit, front end) - being expanded
+* Browser-driven testing
+* Penetration testing completed on week commencing 14th December & Feb with a third test coming in March/ April
+* All new releases and deployments will be tested in the development environment before release. This will ensure that bugs are identified and fixed prior to production.
+
+### Test the service in an environment that’s as similar to live as possible
+
+* Live private beta phase to run from January to March 2022. This will include a range of future users: operators, UKSA employees and orbital analysts.
+* Feedback will be gathered throughout this phase and used to inform the progressive improvement of the service.
+
+### Have[ appropriate monitoring in place](https://www.gov.uk/service-manual/technology/monitoring-the-status-of-your-service), together with a proportionate, sustainable plan to respond to problems identified by monitoring (given the impact of problems on users and on government)
+
+* We considered 'bad actor’ involvement. The main problem we identified was one in which an analyst submits accidentally or purposefully incorrect analysis that increases the chance of a collision.
+* We have mitigated against this via procuring third-party monitoring services, including:
+  * Logit used to log and monitor errors or system crashes.
+  * Piwik Pro will be used to track front-end analytics
+* Any alerts will be raised to users via a Slack channel and to UKSA administrators via email.
+* There will also be a feedback form linked on the website, allowing users to report back on any issues. The service team will receive this feedback and use it to prioritise additional features, fixing bugs and post-MVP requirements.
+
+### Actively work towards fixing any organisational or contractual issues which make it difficult to maximise availability (for example, by agreeing a common set of languages, tools, and ways of working for technical staff - either informally, or through something more formal like[ the GDS way](https://gds-way.cloudapps.digital/#content))
+
+* GDS service standards used throughout project.
+* Jira used to monitor tickets and tasks to be completed, with regular planning and backlog grooming sessions to prioritise and discuss tasks.
+* GitHub have been used to deploy changes and store code.
+* Tech spikes ran throughout where everyone involved has a joint ‘problem solve’ and agrees an approach. This ensure everyone is on the same page & knows how we plan to address the issue.
+* No known further issues
+
+<%= partial "partials/links" %>
