@@ -1,0 +1,141 @@
+---
+title: User Management
+weight: 12
+hide_in_navigation: true
+parent: /designdocs
+last_reviewed_on: 2022-04-25
+review_in: 3 months
+---
+
+# URL structure
+
+## Purpose
+This design document proposes a design for URLs for Monitor my satellites.
+
+##Context and scope
+URLs will be visible to the users in their address bar and in the notifications they are sent out.
+
+We can expect most users to come in at their homepage in most instances. All notifications will point people to the homepage.
+
+The top level domain is out of scope for this document but is assumed to be GDS-compliant and along the lines of
+
+`https://monitor-your-satellites.service.gov.uk/`
+
+##Goals and non-goals
+
+###Goals
+1. A good URL is one which is unique, permanent, and hackable.
+2. It should be compliant with the [GOV.UK URL standards] (https://www.gov.uk/guidance/content-design/url-standards-for-gov-uk).
+
+Monitor my satellites has a very limited number of URLs which can be structured simply to easily comply with the above principles.
+
+###Non-Goals
+* Avoiding inconsistencies
+
+##The actual design
+
+### Event URLs
+The generic event structure should be in the format:
+
+```/[event ID]/[view]?[modifier]```
+
+Event URLs will be in the format
+
+* `/[event ID]` - event homepage
+
+View level URLs will be in the format:
+
+* `/[event ID]/visualisation-name.ext` - downloadable version of this event
+* `/[event ID]/visualisation-name` - visualisation of this event
+* `/[event ID]/visualisation-name?parameters` - visualisation of this event with set parameters such as dates
+
+#### Example event URLs
+
+| Page                                                 | URL stage 1         | URL stage 2                   | URL stage 3                                | Note                                         |
+| ---------------------------------------------------- | -------------------- | ----------------------------- | ------------------------------------------ | ----                                         |
+| Homepage                                             | `/ `                 |                               |                                            | The vast majority of users will start here   |
+| Event page                                           | `/xxxx-yyyyy-zzzz`   |                               |                                            |                                              |
+| Evolution of miss distance                           | `/xxxx-yyyyy-zzzz`   | `/miss-distance-evolution`    |                                            |                                              |
+| Evolution of probability                             | `/xxxx-yyyyy-zzzz`   | `/probability-evolution`      |                                            |                                              |
+| Evolution of conjunction error ellipsoids            | `/xxxx-yyyyy-zzzz`   | `/error-ellipsoid-evolution`  |                                            |                                              |
+| Covariance visualisation                             | `/xxxx-yyyyy-zzzz`   | `/covariance`                 |                                            |                                              |
+| Predicted location of conjunction event              | `/xxxx-yyyyy-zzzz`   | `/predicted-location`         |                                            |                                              |
+| Upload ephemeris                                     | `/xxxx-yyyyy-zzzz`   | `/upload-ephemeris`           |                                            |                                              |
+| Contact an orbital analyst                           | `/xxxx-yyyyy-zzzz`   | `/contact-an-analyst`         |                                            |                                              |
+| Download data as a csv                               | `/xxxx-yyyyy-zzzz`   | `.csv`                        |                                            | Post MVP?                                    |
+| Download pdf report of this event|`/xxxx-yyyyy-zzzz` | `.pdf`               |                               |                                            | Post MVP?                                    |
+| Evolution of probability  between date x and y       | `/xxxx-yyyyy-zzzz`   | `/probability-evolution`      |`?start-date=2022-11-23&end-date=2022-11-28`| This functionality post MVP, maybe never?    |
+
+###Satellite URLs
+
+The generic satellite structure should be in the format:
+
+`/satellites/[satellite ID].[file extension]`
+
+
+Satellite URLs will therefore be in the format
+
+* `/satellites` - all satellites registered to my organisation
+* `/satellites/[satellite ID]` - satellite homepage
+* `/satellites/[satellite ID].ext` - downloadable satellite information
+
+###Example satellite URLs
+
+| Page                         | URL stage 1   | URL stage 2   | URL stage 3        |Note                                                      |
+| ---------------------------- | ------------- | ------------- | ------------------ |--------------------------------------------------------- |
+| Organisation satellites page | `/satellites` |               |                    |                                                          |
+| Satellite page|`/satellites` | `/1234567890` |               |                    | Assumption is that the satellite ID will be the NORAD ID |
+| Satellite page               | `/satellites` | `/1234567890` | `/edit-thresholds` |                                                          |
+| Download data as a csv       | `/satellites` | `/1234567890` | `.csv`             | Post MVP                                                 |
+
+###Account URLs
+
+The generic account structure should be in the format:
+
+`/[task]-item`
+
+Admin URLs will therefore be in the format
+* `/view-notifications` - view notifications for all satellites
+* `/edit-notifications` - set notifications for all satellites (with the option to clock through to in
+
+####Example admin URLs
+
+| Page                                  | URL stage 1    | URL stage 2                               | URL stage 3 | Note                                                                |
+| ------------------------------------- | -------------- | ----------------------------------------- | ----------- | ------------------------------------------------------------------- |
+| Terms and conditions                  | `/account`     | `/terms-and-conditions`                   |             |                                                                     |
+| View contact details                  | `/account`     | `/contact-and-organisation-information`   |             |                                                                     |
+| Edit contact details                  | `/account`     | `/edit-contact-details`                   |             | POST MVP                                                            |
+| Edit organisation details             | `/account`     | `/edit-organisation`                      |             | POST MVP                                                            |
+| View and edit notification settings   | `/account`     | `/notification-settings`                  |             |                                                                     |
+| View and edit notification thresholds | `/account`     | `/event-notification-thresholds-settings` |             |                                                                     |
+| View users                            | `/account`     | `/view-users`                             |             | POST MVP                                                            |
+| Edit user                             | `/account`     | `/edit-user`                              |             | POST MVP Username not in the URL to avoid it popping up in webstats |
+| View fleets                           | `/account`     | `/view-fleets`                            |             | Post MVP                                                            |
+| Edit fleets                           | `/edit-fleets` |                                           |             | Post MVP                                                            |
+
+##Sign in URLs
+
+The generic <b>sign in</b> structure should be in the format:
+
+`/sign-in`
+
+###Example log in URLs
+
+| Page                                                  | URL stage 1   | URL stage 2      | URL stage 3 | Note |
+| ----------------------------------------------------- | ------------- | ---------------- | ----------- | ---- |
+| Email sign in page                                    | `/sign-in`    |                  |             |      |
+| Magic link takes you to “Proceed to my homepage” page | `/sign-in`    | `?token={token}` |             |      |
+
+##Alternatives considered
+
+* <b>Events:</b> Contact and upload pages being top level pages eg `/contact/[event ID]` rather than vice versa.
+  * Rejected to ensure that the URL remained hackable and that contacts to orbital analysts were always related to a specific event.
+* <b>Satellites:</b> Satellite IDs not being in their own directory, ie a Satellite URL would be just `[satellite ID]`
+  * Rejected to ensure that the URL remained hackable and that all satellites connected to an organisation could be collected at `/satellites`
+* Many different UUIDs for events were considered as part of the UID design paper.
+
+##Cross-cutting concerns
+URLs are themselves dependent on the UUID structure for an event. The unity between UUID and URLs allows for strong human-readable debugging and analysis.
+
+
+<%= partial "partials/links" %>

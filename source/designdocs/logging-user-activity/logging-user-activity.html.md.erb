@@ -1,0 +1,188 @@
+---
+title: User Management
+weight: 12
+hide_in_navigation: true
+parent: /designdocs
+last_reviewed_on: 2022-04-25
+review_in: 3 months
+---
+# Logging and Auditing User Activity
+
+##Purpose
+This document describes the design for logging user activity data for the Monitor my Satellite service. It aims to be the central design artefact to coalesce thinking on logging user activity data.
+
+##Context and scope
+Discussions regarding how to mitigate the threat of bad actors highlighted the need for logging and monitoring OA analysis. More broadly, these discussions highlighted the need for logging and monitoring all user data to mitigate against potential attacks.
+
+Logging user activity will be a helpful form of user research in the private beta stage and beyond. It will also allow any problems with the service to be investigated fully.
+
+The design doc’s scope includes both front-end and back-end data storage and monitoring. However, it is focused on MVP requirements, which mainly centre on third-party front-end services.
+
+##Goals and non-goals
+
+###MVP Goals
+
+<i>To log the following data:</i>
+
+* OA analysis uploads
+* Ephemeris data uploads by satellite operators
+* All users logging into the service
+* Notifications sent out to all users
+
+<i> To fulfil the GDS requirements of:</i>
+
+“You must track user-related metrics, as well as technical metrics. For example, track the percentage of users that can complete a task as well as available disk space, application programming interface (API) performance and memory usage.”
+
+<i>To monitor logs for the following:</i>
+
+* Errors or crashes in the system
+* Bad actors attempting to gain access to MmS
+* Problems with notifications being sent to users
+
+To store data so that in the event of a bad actor attack, logged data can be analysed.
+
+To store data so that in the event of any system failures, the problems can be analysed.
+
+To store data so that user activity can be monitored to improve the service post-MVP.
+
+To identify what want to audit, and who should be able to see this.
+
+###Post-MVP Goals
+
+<i>To log:</i>
+
+* UKSA and organisation administrators making changes to user information (creation of new users, editing user information, deleting users)
+* Operators editing their satellite information (especially active/inactive and manoeuvrability data)
+* Orbital analysts editing satellite information (especially active/inactive and manoeuvrability data)
+* OA uploading analysis
+* User notification settings
+
+To create the functionality to audit data via UI.
+
+##The actual design
+###Front end data storage and monitoring
+
+Check if captured by Sentry/Logit/Piwik?
+Pingdom will be used to log and monitor the system’s performance metrics and databases, and any downtime. It will log technical metrics.
+
+Time for each page to load - Pingdom
+MTTR/MTBF/MTTF/MTTA - Pingdom
+MTTR (mean time to repair)
+MTBF (mean time between failures)
+MTTF (mean time to failure)
+MTTA (mean time to acknowledge)
+Downtime - Pingdom
+Time from API request to response - Pingdom
+Service availability (hours/day) - Pingdom
+
+<b>Piwik Pro</b> will be used to track front-end analytics.
+* It tracks and reports website traffic, and will track user-related metrics.
+
+<b>Notify</b> will track notifications sent to users.
+* The status of sent notifications can be checked through Notify’s free dashboard. For security, this information is only available for 7 days after a message has been sent. A report can be downloaded, including a list of sent messages, for MmS’s records, during this period. These will be stored in S3.
+* Notify cannot track if your users open an email or click on the links in an email. They do not track open rates and click-throughs because there are privacy issues. Tracking emails without asking permission from users could breach General Data Protection Regulations (GDPR).
+
+###Back end data storage and monitoring
+MmS will use a combination of PostgreSQL and Amazon S3 as backing services to store data. Both are supported by GOV.UK PaaS.
+
+The following will be logged and stored:
+
+* Object data
+* Event data
+* User data
+* OA analysis uploads
+* Ephemeris data uploads by satellite operators
+* All users logging into the service
+* UKSA and organisation administrators making changes to user information (creation of new users, editing user information, deleting users)
+
+####SQL
+
+MmS databases are stored in PostgreSQL. PostgreSQL is a free and open-source relational database management system (RDBMS) emphasizing extensibility and SQL compliance.
+####Amazon Web Services S3
+
+Amazon Web Service S3 provides data object storage through a web service interface. It is one of the available backing services for GOV.UK PaaS. AWS encrypts S3 buckets using Amazon S3-managed encryption keys. This is what Monitor my Satellites will use.
+
+It is possible to download an object, upload an object, delete an object, list objects and get the AWS region of S3 buckets. It is also possible to upload and download a CORS policy.
+####Data storage schema
+
+MmS storage of ephemeris data has already been discussed. It is summarised below. This method of data storage will be used for all data storage.
+
+The proposal is to only store the smallest data set in tables, whilst the original file will persist on a shared file-system and have checksums calculated and stored to assure data integrity.
+
+The following schema is a draft proposal:
+
+![proposed-data-storage-schema](/designdocs/logging-user-activity/data-storage-schema.png "proposed-data-storage-schema")
+
+The definitions below were used in dbdiagram.io to generate the above diagram:
+
+```
+Table ephemeris as E {
+  id integer [pk, unique]
+  ccsds_oem_vers float //from OEM header
+  comment string //from OEM header
+  creation_date datetime //UTC - from OEM header
+  originator string //from OEM header
+  satellite_id integer //from OEM metadata
+  file_location string //S3 file
+  file_checksum string //S3 file checksum
+}
+
+Table satellite as S {
+  id integer [pk, unique] //NORAD_id
+  common_name string
+  cospar_id string [unique]
+}
+
+Ref: E.satellite_id - S.id
+```
+Ephemeris data will be deleted one week after TCA (time of closest approach), but the fact that it came into the system will continue to be stored.
+
+However, for other forms of data it will be important to retain the data itself as it will need to be monitored regularly, and if an incident does occur, will need to be checked retrospectively. NCSC recommends storing important logs for at least 6 months. As a large amount of data will therefore need to be stored, plans for storage to roll-over, avoiding disks filling and the service failing, will need to be made.
+###Logging notifications
+
+We will prepare a notification by creating a single entry in our database. The status of the notification is now NEW.
+
+Once every 10 minutes or so, we will run an application which gets every notification of status NEW and sends it using Notify. It gets a single notification, sets its status to PENDING and triggers Notify. When a request is serviced by the Notification service, the status of the notification is set to SENT (in our database) and the Notification service message ID is written along with SENT status.
+
+Once every notification is sent, the application asks Notify for the status of every notification with status SENT in our database. This can be done in bulk request. It goes through every returned by Notify message and sets appropriate status in our database: DELIVERED or FAILED (or sets nothing, if the message is still being processed by Notify)
+
+Post-MVP we will also do the following:
+
+* Every message with DELIVERED or FAILED status is considered archived
+* An API endpoint should be created to return messages with filtering by: user, notification type (SMS/email), organization, status, creation date, send date or any combination of them.
+* Messages are kept forever, if users need to delete the messages, they can be archived with the special status (separate field) that hides it from the user, but the message is still accessible to super admins.
+
+####Auditing logged data - post-MVP
+
+Using Logit.io, MmS servers and databases will be monitored and any errors or system crashes identified.
+
+However, it is still important to be able to create a human-readable audit trail to allow administrators to audit data uploads and monitor for any bad actor activity on the part of users. Therefore, creating a UI for administrators to be able to audit is post-MVP functionality. There will also need to be a route to flag up any issues discovered.
+
+There will be a level of audit information accessible to users, to see what the history of the record they are looking at is.
+
+* A good example is for orbital analysis, only another orbital analyst and user of MMS is suitable to identify data that may be inaccurate or malicious, and they won't want to be going into any 3rd party tooling (which is primarily aimed at system administrator type needs).
+
+
+|What to audit?|For what?|Information or event?|Who has access to audit trail?|How is the audit trail presented?|
+|-|-|-|-|-|
+|Orbital analyst uploads|Incorrect analysis|Event|Super admin + OAs + operators|UI displaying historical orbital analysis. Will store different version of the analysis against the event. Admins and OAs can update trail wth new analysis, and view previous analysis.|
+|Ephemeris data upload|||Satellite operators who own the data + Admin + OA|UI displaying list of ephemeris data uploads|
+|Orbital analyst ephemeris data downloads|Not downloading relevant data|Event|Super admin + OAs + operators|UI displaying list of historical downloads|
+|Admins changing user settings and access|Admins adding suspicious users, or modifying or deleting current users in suspicious ways|Event|Super admin|UI displaying list of admin changes|
+
+##Observability
+
+- Graphana
+- Kibana
+- Prometheus metrics
+- Sentry- notify a slack channel when there is a log with the word error in it.
+- Monitor performance of database and load times?
+
+##Alternatives considered
+Google Analytics (GA) and Matomo were considered in place of Piwik Pro. However, Piwik Pro is cheaper and is more secure.
+
+##Cross-cutting concerns
+As mentioned earlier, the issue of both bad actors and incorrect data affects the entire service.
+
+
+<%= partial "partials/links" %>

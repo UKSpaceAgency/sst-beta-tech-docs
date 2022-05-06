@@ -1,0 +1,107 @@
+---
+title: User Management
+weight: 12
+hide_in_navigation: true
+parent: /designdocs
+last_reviewed_on: 2022-04-25
+review_in: 3 months
+---
+
+# Conjunction Event ID
+
+## Purpose
+This design document will propose a design for Conjunction Event Identifiers.
+
+##Context and scope
+One of the key responsibilities identified for Monitor my Satellites (MmS) is to take a feed of Conjunction Data Messages (CDMs). It will filter down to CDMs that relate to satellites that are the responsibility of the UK licensed Satellite Operators and therefore require the co-ordination of communication about Conjunction Events and associated Orbital Analysis. Therefore MmS will group together CDMs and raise a Conjunction Event ID based on the following formula:<br>
+
+Time of Closest Approach (TCA) +/- 1 sec with matching primary and secondary objects<br>
+
+The Conjunction Event ID will be inserted by MmS into the COMMENT field on the related CDMs and then make this available to the Orbital Analysts. After the Orbital Analysis has taken place off-system it will be posted back to MmS with the associated Conjunction Event ID for data matching.
+
+##Goals and non-goals
+The goal of this design doc is to articulate a design for the structure of the Conjunction Event Id, not the data flow.
+
+###Goals
+
+* Have a unique conjunction event identifier that can be independently generated from multiple systems (MmS, Aurora etc) without collision.
+* Have the ID time sortable (so conjunction events naturally sort by most recent)
+* IDs should fit into 64-bits for smaller indexes and better storage
+* Generation of the IDs should be easily implemented without involving additional infrastructure or components.
+* A human readable form of ID or unique label is highly desired for interpersonal communication.
+
+##The actual design
+
+The proposal is to adopt an approach like that used by [Instagram] (https://instagram-engineering.com/sharding-ids-at-instagram-1cf5a71e5a5c), which is in turn based on the Snowflake ID used at [Twitter] (https://blog.twitter.com/engineering/en_us/a/2010/announcing-snowflake). Indeed many big tech companies are using a similar approach since it works well for distributed systems.<br>
+
+The proposal is for each ID to consist of:
+* 41 bits for time in milliseconds (which gives over 41 years of IDs with a custom epoch (to be agreed))
+* 10 bits that represent the generating system, or machine ID,  (that is a lot of generating systems, (2^10) 1024 to be precise).
+* 13 bits that represent an auto-incrementing sequence, modulus 8192 (this means 8192 IDs can be generated per generating system per millisecond, which means lots of scaling headroom).
+
+
+For human readable identifiers the generation of short unique ids from the integer generated is recommended. Something like [hashids] (https://hashids.org/) look like good candidate routines, and even has something to avoid generating the most common English swear words.
+
+An example will help explain this, so here goes:<br>
+
+The first 41 bits as calculated from 12 January 2022 12:00:00.000 (UTC) with an epoch of 01 October 2021 00:00:00.000 (UTC) =  1641988800000 - 1633046400000 = 8942400000 (decimal) =<span style="background-color: #00FF00">1000010101000000100011001000000000</span>  (binary)
+
+The next 10 bits are fixed based on the generating system, e.g. MmS = 1, Aurora = 2 and so on until 1024, so <span style="background-color: #FFFF00">0000000001</span>  (binary)<br>
+
+The final 13 bits are an auto-incrementing sequence, and for the sake of argument let’s say this is the 2345 event in that millisecond, i.e. <span style="background-color: #FF0000">00100100101001</span> (binary)
+
+This gives a binary number of <span style="background-color: #00FF00">1000010101000000100011001000000000</span><span style="background-color: #FFFF00"> 0000000001</span><span style="background-color: #FF0000">00100100101001</span>  or 150028576358418729 in decimal.<br><br>
+
+So far so good for a machine calculation, but how does a human read and disclose this?<br>
+
+
+Well the hashid for this number is <span style="background-color: #FFA500">5p6G1oyZd7ZE</span> as calculated by [this demo code](https://codesandbox.io/s/rmk16j6q8m?file=/src/index.ts:0-163) with salt “MmS” and encoding “150028576358418729”. We can vary the alphabet used, so it is only one case (upper or lower) and it returns with a hyphen every n-many characters along. Let’s research with users which works best.<br>
+
+<b>Note:</b> There is a requirement for time to synchronise across machines and systems generating event IDs, the NTP and associated services will solve this problem for us.
+
+###APIs
+No public API for Conjunction Event IDs is to be exposed. Each generating system is expected to implement its own algorithm with an agreed upon generating system number.
+
+###Data Storage
+The MmS database will use a 64-bit integer to store the Conjunction Event ID. This will be inserted in the COMMENTS field for CDMs that are grouped as related to one Conjunction Event. The hashids can be decoded so it is debatable whether they need to be stored in the database, or just coded and decoded on the fly as needed.
+
+###Code and pseudocode
+This is untested but based on the Instagram implementation it is envisaged that something like the following PL/PGSQL will work:
+
+```
+CREATE OR REPLACE FUNCTION mms.next_id(OUT result bigint) AS $$
+DECLARE
+    our_epoch bigint := 1633046400000; #replaced with our epoch
+    seq_id bigint;
+    now_millis bigint;
+    system_id int := 1;
+BEGIN
+    SELECT nextval('mms.table_id_seq') %% 8192 INTO seq_id;
+    SELECT FLOOR(EXTRACT(EPOCH FROM clock_timestamp()) * 1000) INTO now_millis;
+    result := (now_millis - our_epoch) << 23;
+    result := result | (system_id <<10);
+    result := result | (seq_id);
+END;
+    $$ LANGUAGE PLPGSQL;
+
+And when creating the table:
+
+CREATE TABLE mms.our_table (
+    "id" bigint NOT NULL DEFAULT mms.next_id(),
+    ...rest of table schema...
+  )
+```
+
+### Degrees of constraint
+The main constraint on this design is the ability to implement in multiple systems and co-ordinate the system ids. Given the ease that this is implemented in PL/PGSQL it is considered to be readily implemented in other databases and languages once the logic of generation is understood.
+
+##Alternatives considered
+
+* Time in milliseconds + primary object id + secondary object id - this is a valid approach and readily implemented. Gives a far higher chance of collision and doesn’t provide detail of which system generated the identifier.
+* UUIDs provide a good answer if all that was desired was uniqueness. An example UUID is “23042946-af93-4812-80e7-02a765082c95” (generated using this tool). Although it does a form of hashing to make it human readable, it is long at 128-bits, and doesn’t provide any natural sort order based on time. Which is an advantage for queries such as “give me the last 10 conjunction events”.
+
+##Cross-cutting concerns
+The design will conform with the cross-cutting concerns, such as observability, privacy and security, decided and documented elsewhere for MmS.
+
+
+<%= partial "partials/links" %>

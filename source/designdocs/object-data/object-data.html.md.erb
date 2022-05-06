@@ -1,0 +1,254 @@
+---
+title: User Management
+weight: 12
+hide_in_navigation: true
+parent: /designdocs
+last_reviewed_on: 2022-04-25
+review_in: 3 months
+---
+
+# Object Data Ingestion
+
+## Purpose
+‘Monitor my Satellites’ needs to ingest object data to meet the user's needs. MmS requires data on both UK and non-UK objects involved in events. There are a range of sources available to retrieve data from and, therefore, we must evaluate how best to ingest object data to ensure we provide accurate and up-to-date information to our users.
+
+##Context and scope
+
+##Goals and non-goals
+
+###Goals
+*  To accurately, efficiently and securely provide satellite information to MmS users.
+* Data fields required include:
+  * Common Name
+  * NORAD ID
+  * International Designator
+  * Object Type
+  * Licensed by
+  * Launching State
+  * Launching Year
+  * Active/inactive (post-MVP only)
+    * Status (post-MVP only)
+    * Source of activeness information (post-MVP only)
+  * Maneuverability
+    * Status
+    * Source of manoeuvrability information (post-MVP only SATCAT/CDM for MVP)
+  * Decay date (post-MVP)
+  * Mass (kg) (post-MVP)
+  * Source of mass data
+  * Size (and/or hard body radius) (post-MVP)
+  * Source of mass data
+  * Operator
+  * Inclination
+  * Apogee
+  * Perigee
+  * Period
+  * Comment field for Orbital Analysts (post-MVP)
+* UK satellite data will need to be ingested when a satellite is licensed, and stored indefinitely
+* All objects in US catalogue will be retrieved from SATCAT as often as possible and stored in MmS database indefinitely
+* Post-MVP goals include:
+  * Add comments fields in object data for OAs (POST MVP)
+  * Allowing operators to edit their own object data (POST MVP)
+  * Allowing OAs to update foreign objects in the event database (POST MVP)
+  * Allowing OAs can search event database for objects (POST MVP)
+  * PDF report generation (POST POST MVP)
+
+##The actual design
+
+###Ingesting current satellites and objects
+1. Monitor my satellites’ Space Track permission is only to ingest UK objects, so there is no need to filter ingestion - all available CDMs and satellites can be ingested.
+  a) NOTE do not use the COUNTRY field as inaccurate
+  b) CDMs and satellites will be retrieved every ~2 hours
+2. Outdated object data should be retained to ensure we have object data history
+
+###Adding new satellites
+
+As we only receive CDMs for satellites that are a) registered in Space-Track and b) linked to UKSpOC, there is no value in adding satellites to MmS before this happens. Therefore, we will retrieve satellite information every 2 hours. If there is a new satellite added, super admin users will see this straight away, without delay. However, a manual process will be required for operators to see this:
+
+1. New satellite in MMS database from Space-Track
+2. Super users see all CDMs for any satellite linked to UKSPoC’s Space-Track account
+3. Use CAA’s spreadsheet to:
+  1. Confirm this is a satellite that the UKSA monitors
+  2. Associate the new satellite to the correct organisation
+4. Once satellite record exists in MmS database, retrieve size and mass data from ESA DISCOS API & store this object data indefinitely
+5. POST MVP enable operator admin or OA to edit/update data fields
+
+Note, to keep our MmS database up-to-date, we are updating our satellite database every two hours. If we need to further check for updates we can query SATCAT for changes to their records.
+
+1. Request class: satcat_change
+  1. This enables you to retrieve ~60 days of history showing changes for objects with changes in one of these values: INTLDES, NORAD_CAT_ID, SATNAME, COUNTRY, LAUNCH, or DECAY
+  2. We will likely need to do this everyday to ensure that we do not have inaccurate NORAD IDs etc.
+
+<i>Note: NORAD ID only changes for 'unidentified' objects (e.g. debris) which are initially given an 80,000 number ID but when identified will be given an official normal ID. NORAD ID would never change for a satellite, for example.</i>
+
+To confirm and validate which satellites are connected to our Space-Track account we can use the CAR API. This will inform us for which satellites, we are getting CDMs. Current list of UK satellites in use is [CAA’s spreadsheet from Dec 2021] (https://docs.google.com/spreadsheets/d/1INpkHA8cWPJukoAhq6lKhf5V-Qt9E8h3/edit?usp=sharing&ouid=109540726810959790990&rtpof=true&sd=true).
+
+##Sourcing data for object information:
+|Ingest satellite data into MmS database|                        |
+| ------------------------ |------------------------------------ |
+| Common Name              | SATCAT: SATNAME                     |
+| NORAD ID (primary key)   | SATCAT: NORAD_CAT_ID                |
+| International Designator | SATCAT: INTLDES (N/A for debris)    |
+| Object Type              | SATCAT: OBJECT_TYPE                 |
+| Country                  | SATCAT: COUNTRY                     |
+| Launching State          | SATCAT: SITE                        |
+| Launching Year           | SATCAT: LAUNCH                      |
+| Active/inactive          |                                     |
+| Manoeuvrability status   | SATCAT: MANEUVERABLE                |
+| Manoeuvrability source   | “Space-Track” at MVP                |
+| Mass (kg)                | ESA DISCOS: MASS                    |
+| Size                     | ESA DISCOS: LENGTH x HEIGHT x DEPTH |
+| Operator                 | ESA DISCOS                          |
+| Inclination              | SATCAT: INCLINATION                 |
+| Apogee                   | SATCAT: APOGEE                      |
+| Perigee                  | SATCAT: PERIGEE                     |
+| Period                   | SATCAT: PERIOD                      |
+| Comment field            | [OA free text]                      |
+
+The MMS database will contain input from Space-Track and ESA DISCOS. OAs will also be able to update/overwrite object data further down the line. We should display the source of the data when multiple data sources are integrated. In fact, terms and conditions of use of ESA DISCOS data means that the data source must be displayed. Information on where object and event data is sourced should be contained in the standard text pages at the bottom of the event information page too.
+###Launching site
+
+See data catalogue. Convert abbreviation from SATCAT to full name and country.
+
+####Post-MVP developments
+* At MVP -
+  * all fields of data will be sourced from SATCAT
+* At post-MVP -
+  * ESA DISCOS used for object size, mass and operator?
+  * OAs can write in a comment field
+* At post-post-MVP -
+  * Operators can overwrite fields on their own object
+  * Allow OAs to overwrite certain data fields (inc. mass, size, activeness, manoeuvrability)
+  * Include a link to source of information
+  * Create OA pdf file
+* Note - monitoring required for all edits
+
+At post-MVP, OAs and operator admins will be able to overwrite this field and the source field would then state "UKSA OAs". Post-post MVP we could provide a link to the source and give a date that manoeuvrability was last observed.
+
+###Data sources
+There will be three sources of object data required:Civil Aviation Authority (CAA) spreadsheet, ESA-DISCOS, and SpaceTrack.
+
+1. <b> Space-Track </b> - API
+2. <b>  CAA Excel file </b> - manual handling
+3. <b> ESA DISCOS </b> - Object size (l*W*H), mass and operator; API integration
+4. <b> Orbital Analyst comment </b> - Adam White has advised that certain data fields in CDMs are incredibly useful when accurate, but are often out of date. We will ensure that active/inactive data and manoeuvrability data is displayed next to their source, and when orbital analysts conduct their own analysis they will be able to overwrite Space Track data in these fields. This information will be uploaded to MmS via manual uploads (JSON files) by OAs.OA will be able to add comments in the JSON files - this is free text but may include size/mass data if they have used different values.
+
+###What the Satellite Information table will look like to the user:
+
+####Object data MVP:
+
+| Common Name                | Starlink-182 | “Space Track” |
+|-|-|-|
+| International designator   | 2020-088AD   | “Space Track” |
+| NORAD ID                   | 47149        | “Space Track” |
+| Object type | Payload | “Space Track” |
+| Size | Pending | (will be ESA-DISCOS) |
+| Mass | Pending | (will be ESA-DISCOS) |
+| Operator | SpaceX | “ESA DISCOS”? |
+| Manoeuvrability status | Likely manoeuvrable |  “Space Track”|
+| Licence information |||
+|   Country |   UK |   “Space Track” |
+|   Launching site | |  “Space Track” |
+|   Launch date | 2020 | “Space Track” |
+| Orbital information |||
+| Apogee|  45 |  “Space Track”|
+|  Perigee |  179 |  “Space Track” |
+|  Inclination |  37 |  “Space Track”|
+| Period (hours) |  38| “Space Track”|
+
+####  Event summary MVP
+
+||  UKSA |  Space-Track CDM |
+|-|-|-|
+| Probability of collision (%) |||
+| Time of closest approach (UTC)|||
+| Total miss distance|||
+|  Mean radial miss distance | ||
+|  In-track miss distance|||
+| Cross-track miss distance |||
+| Data upload |||
+
+## Alternatives considered
+### Alternative sources of data
+
+The Orbital Analyst workbench was considered as an alternative source of data. However, AW informed us that most workbench data is taken from Space-Track and SatCat anyway, so MmS should just take data straight from the source, and to try and pull from a single source as much as possible.
+
+###Alternative data fields
+
+We also considered providing the following information, but discussions with Adam showed that these data fields were often inaccurate or not useful:
+
+* Power is rarely used in analysis and changes throughout a mission's life cycle
+* The expected lifetime of a satellite varies and operators can infer this from object altitude. It is also not very relevant for conjunctions. Decay date will be used instead.
+* Contractor details are very useful but details are incorrect frequently as email addresses change, people leave, satellites change hands.
+* Fleet numbers will not impact decision-making and are often difficult to find.
+
+### Alternative methods of ingesting data
+
+### Asking operators for HBR data when they register for the service
+<i>Questions</i>
+
+1. Will the terms and conditions / data privacy agreements need to be updated?
+2. How do we validate / confirm operator’s data?
+  1. Who has the permission to submit this data?
+3. Organisation admins
+  1.  How do they submit this data?
+4. Easiest for them is likely a csv file, easiest for us would be an online form
+5. What is the MVP of this feature?
+  Upload a CSV that the OAs can use manually?
+
+Stages
+1. Data privacy considerations
+
+## Cross-cutting concerns
+*  What are the liability concerns regarding sharing activeness and manoeuvrability data?
+
+##Limits
+
+###ESA DISCOS terms of use:
+In order to receive data or software from the European Space Agency (ESA), henceforth called 'service', all interested recipients must register and abide with the following terms and conditions.
+
+A requesting body, henceforth called 'the User', shall for the purpose of registration be identified by the name of a physical person, physical address and telephone number, and e-mail address. This data will be stored by ESA and serve as the point of contact for receiving the data. Upon successful registration, data transfer to the User will be electronic. The User is informed that complementary and tailored terms and conditions can apply to individual services depending on the data transferred. The User is informed that complementary licence conditions can apply depending on the software transferred.
+
+The following terms and conditions apply to the data and software delivery and interaction between ESA and the User in frame of the service:
+
+1. The User accepts that the service data may be used for peaceful purposes only.
+2. The User accepts that all his queries and other activities will be logged.
+3. The User acknowledges that he/she is using his/her own private account and account sharing is not allowed.
+4. The User accepts that the service data are provided on an "as is" basis, with no direct or implied warranties.
+5. The User accepts that ESA does not take any responsibility for the completeness or correctness of the data and shall not be held liable for direct or indirect consequences or damages resulting from the use of the data in whatever form.
+6. The User accepts that improper use of the data may lead to the revocation of the access to the service.
+7. ESA reserves the right to permanently or temporarily revoke the User access to the service at its sole discretion.
+8. ESA reserves the right to change or modify these terms and conditions at any time, and without prior notification.
+9. ESA reserves the right to change or modify the complementary and tailored terms and conditions applicable to the individual services at any time, and without prior notification.
+10. The User consents to its personal data being stored by ESA in frame of the service.
+11. The User consents to being contacted by ESA, solely in frame of the service, to validate the accuracy of the provided personal data.
+12. ESA confirms that no personal data of the User will be transferred to a third party.
+13. The User can request to revoke or remove the account, or request access to the associated personal data stored, by contacting space.debris.support@esa.int with either of those three requests.
+
+Personal data is any data with which the User could be personally identified. Detailed information on the subject of data protection can be found in ESA's privacy policy. Any related enquiry can be addressed to dpo@esa.int.
+
+The personal data collected for access the service are processed by ESA. The personal information provided by the user is collected and stored on ESA's IT systems. This personal information is used to in the frame of validating the acceptance of the condition associated with the services delivered. Additionally personal data of technical nature such as IP's are collected when the user accesses the service. This personal is collected automatically for security purposes. The personal data is not used for analytics and not transmitted to third-parties.
+
+The user always has the right to request information about your stored personal information, its origin, its recipients, and the purpose of its collection. The user has the right to request that it be corrected, blocked, or deleted. This can be done through the account management of the service or by contacting dpo@esa.int (Data Protection Officer).
+The collected personal data is stored as long as the service request by the user remains active. The accuracy of the personal data can be verified by ESA in frame of the service. In case of invalid personal data, the service will be revoked and a data retention period of at most one year is applied. In case of withdraw of consent by the user, ESA will remove all personal data stored after a retention period of at most one month.
+
+#### Terms and conditions
+
+The [General Terms and Conditions] (https://account.sdo.esoc.esa.int/terms) associated with the use of a user account for requesting this service apply.
+
+The following complementary terms and conditions apply to the data delivery and interaction between ESA and the User in frame of the service:
+
+1. The User accepts that all queries and other DISCOS activities will be logged.
+2. The User acknowledges that DISCOS is freely available to registered users only, with a proven “need to know”, within prescribed, user-specific data quota.
+3. The User accepts responsibility for monitoring his/her individual retrieval quota for DISCOS data. Exhausted quotas will only be restored after expiration of a prescribed reference time period.
+4. The User accepts that improper use of DISCOS (e.g. systematic data copies, or automated, repetitive data queries with the aim to export significant parts of data tables) may lead to a revocation of user privileges by ESA. In such a case ESA reserves the right to terminate the user account with immediate effect.
+5. The User needs to describe for which purpose(s) he/she shall use the retrieved DISCOS data during the registration procedure and accepts that this will determine the user-specific data quota.
+6. The User accepts that forwarding and/or distributing retrieved DISCOS data, other than those indicated at user registration and accepted by ESA when granting access, is only allowed after prior written approval/consent by ESA.
+7. The Users is obliged to include the source reference when using retrieved DISCOS data in derived works.
+8. The User accepts that ESA reserves the right to temporarily or permanently adjust user-specific access privileges for DISCOS data tables at any time.
+9. The User accepts that DISCOS data are provided on an “as is” basis, with no direct or implied warranties. ESA does not take any responsibility for the completeness or correctness of DISCOS data and shall not be held liable for direct or indirect consequences or damages resulting from the use of the data in whatever form.
+10. the User accepts that ESA reserves the right to change and modify these terms and conditions at any time, and without prior notification.
+11. ESA confirms that no personal data of the User will be transferred to a third party.
+12. The User can request to revoke or remove the account, or request access to the associated personal data stored, by contacting space.debris.support@esa.int with either of those three requests.
+
+
+<%= partial "partials/links" %>

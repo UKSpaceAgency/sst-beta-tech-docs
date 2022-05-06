@@ -1,0 +1,183 @@
+---
+title: User Management
+weight: 12
+hide_in_navigation: true
+parent: /designdocs
+last_reviewed_on: 2022-04-25
+review_in: 3 months
+---
+# UKSA Orbital Analyst analysis ingestion
+
+## Purpose
+This design document will propose a design for UKSA OA (orbital analyst) analysis ingestion.
+
+##Context and scope
+UKSA orbital analysts complete event analysis on conjunction events that crossed certain predefined thresholds (set by UKSA). OAs will need to submit their analysis when an event crosses these thresholds and/or if they receive ephemeris files from operators and decide to conduct additional analysis.
+
+##Goals and non-goals
+
+The goal of this design doc is to articulate a design for the ingestion of UKSA OA analysis into MmS.
+
+### Goals
+
+* OAs need to be able to share their analysis with users of MmS
+* OA analysis must be uploaded and stored securely
+* Validation mechanisms must be in place to ensure file is safe & valid
+* OA analysis must be stored in a way that allows it to be monitored and audited
+* Users of MmS need to know when the data that they are seeing is from OA analysis (and how and when this analysis was conducted - at MVP, MmS will provide standard text & at post-MVP OAs can add comments or operators can contact an analyst for more information)
+
+### Non-Goals
+
+* Case management system for OA conjunction analysis
+
+##The actual design
+
+###Data schema
+The table below contains the data required from the OAs:
+
+| Table in UI                  | Data field                                        | Units                    | Entity        |
+|------------------------------|---------------------------------------------------|--------------------------|---------------|
+| Event ID                     | Event ID                                          | String                   | 13 characters |
+| N/A                          | Primary object                                    | String                   | NORAD ID      |
+|                              | Secondary object                                  | String                   | NORAD ID      |
+| Event summary                | Probability of collision                          |                          | Number        |
+|                              | TCA                                               | UTC                      | Time and date |
+|                              | Total miss distance                               | m                        | Number        |
+|                              | Mean radial miss distance                         | m                        | Number        |
+|                              | In-track miss distance                            | m                        | Number        |
+|                              | Cross-track miss distance                         | m                        | Number        |
+|                              | Time of update                                    | UTC                      | Time and date |
+| Additional event information | Altitude                                          | AGL (above ground level) | Number        |
+|                              | Latitude                                          |                          | Number        |
+|                              | Longitude                                         | +/-                      | Number        |
+|                              | Relative velocity                                 | m/s                      | Number        |
+|                              | Estimated combined mass of objects                | kg                       | Number        |
+|                              | Estimated number of fragments if collision occurs |                          | Number        |
+| Data sources                 | Primary object: data received                     | UTC                      | Time and date |
+|                              | Primary object: data source                       | Free text                | Text          |
+|                              | Primary object: number of observations            |                          | Number        |
+|                              | Primary object: timespan of observations          | hours                    | Number        |
+|                              | Secondary object: data received                   | UTC                      | Time and date |
+|                              | Secondary object: data source                     | Free text                | Text          |
+|                              | Secondary object: number of observations          |                          | Number        |
+|                              | Secondary object: timespan of observations        | hours                    | Number        |
+|                              | Method for generating PofC                        |                          | Free text     |
+
+####Post-MVP data fields
+- Miss distance uncertainties
+- Comments field for OAs to add free text
+- Ability to overwrite manoeuvrability and other object fields
+- Ability to add sources of activeness and manoeuvrability data
+
+###File upload
+1. <b>OA will be able to upload a JSON file into MmS</b>
+Via manual log-in or API (post-MVP)
+
+* At MVP, this will involve a manual file upload via the web interface
+* Post-MVP, we will integrate with the OA workbench tools via API
+
+Constraints on file upload:
+* File size
+* Meets the defined schema
+* Post MVP: when API integration, limit number of uploads per day
+
+The file must have the following to be accepted:
+* The file must have a JSON extension.
+* The file must not exceed 12 MB.
+* The file must match the defined schema for analysis.
+
+The data schema for JSON files is as follows:
+
+```
+{
+"event_id": " ",
+"cdm_id": " ",
+"collision_probability": ,
+"tca": " ",
+"miss_distance":
+{
+"total_value":,
+"total_uncertainty":,
+"mean_radial_value":,
+"mean_radial_uncertainty":,
+"in_track_value":,
+"in_track_uncertainty": ,
+"cross_track_value": ,
+"cross_track_uncertainty":
+},
+"update_time": " ",
+"altitude": ,
+"latitude":,
+"longitude":,
+"relative_velocity": ,
+"estimated_combined_mass": ,
+"estimated_fragments": ,
+"primary_object":
+{
+"norad_id": " ",
+"data_received": " ",
+"data_source": " ",
+"HBR": ,
+"observations_number": ,
+"observations_available": ,
+"observations_timespan": ,
+"OD_Quality":
+},
+"secondary_object":
+{
+"norad_id": " ",
+"data_received": " ",
+"data_source": " ",
+"HBR": ,
+"observations_number": ,
+"observations_available": ,
+"observations_timespan": ,
+"OD_Quality":
+},
+"collision_probability_method": " "
+}
+```
+
+2.<b> OA receives instant validation that the file has been accepted & saved to database</b>
+Operator and Government users receive an email from GOV.UK Notify saying the event has been updated.
+
+Note, users will receive notifications for any analysis that is submitted by the UKSA OAs irrelevant of their thresholds.
+
+3.<b> Contents of the file are extracted and integrated into MmS database event table.</b>
+
+Analysis is input into the UKSA columns in the event summary table, the additional event information table & data sources table, for example:
+
+![OA analysis ingestion](/designdocs/oa-analysis-ingestion/oa-analysis-ingestion.png "")
+
+The generic sources of each table and field will be explained in the ‘data sources information’ page.
+
+<b>Post-MVP:</b> users will be able to generate a .pdf report from the event information page or download the event data as a .csv file.<br>
+<b>POST MVP:</b> A table of historic JSON file uploads will be shown. OAs will have the ability to delete a file using this table.
+
+###Data Storage
+
+OA analysis will be stored indefinitely against an event. Each update will be stored and shown in the event history table.
+###Security considerations
+1. Ensuring analysis file does not contain any viruses
+  a. Virus checks
+2. Ensuring analysis is valid
+  a. File structure and schema is as expected/defined
+3. Monitoring and logging OA activity
+  a. OA activity will be logged to provide an audit trail
+4. Analysis is classified as OFFICIAL
+  a. User will see a warning message saying “do not share outside of your organisation”
+
+###Degrees of constraint
+
+##Alternatives considered
+* API - direct API integration with OA workbench
+  * Too difficult to implement in this time-frame
+  * Integration with OA workbench is not future-proof as these tools may change in time
+* Email - allow OAs to attach file to an email to MmS
+
+
+##Cross-cutting concerns
+
+* Bad actor concerns - a record needs to be kept of all JSON uploads.
+
+<%= partial "partials/links" %>
