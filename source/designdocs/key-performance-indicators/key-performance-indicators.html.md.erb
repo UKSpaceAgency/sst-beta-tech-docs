@@ -1,0 +1,125 @@
+---
+title: Key performance indicators
+weight: 12
+hide_in_navigation: true
+parent: /designdocs
+last_reviewed_on: 2022-05-03
+review_in: 3 months
+---
+
+# 009. Key performance indicators
+
+## Purpose
+In order to assess the performance of the service and user satisfaction, we must measure and assess a range of Key Performance Indicators (KPIs).
+
+## Context and scope
+This aligns with the requirements of GDS Service standard 10:"Work out what success looks like for your service and identify metrics which will tell you what’s working and what can be improved, combined with user research."
+
+### Goals of this design documentation include:
+* To briefly outline what success looks like for Monitor my Satellites
+* To document the KPIs that MmS has chosen to focus on and how these will be measured
+* To assess the benefits of the service to users, linking back to user needs
+* To consider the addition of new KPIs as the service develops (post-MVP KPIs)
+
+## What does success look like for Monitor my Satellites?
+
+Through the creation of Monitor my Satellites, the UKSA hopes to develop a central UK system that will notify users about upcoming high probability collision events, collating information into one place and sharing additional analysis conducted by UK orbital analysts. The UKSA aims to create an easy-to-understand but high quality service.
+
+We have identified a number of metrics that will help us determine the performance of the service and what can be improved, that will be outlined below.
+
+## Mandatory KPIs
+
+According to the GDS, it is mandatory to publish data on 4 main key performance indicators; cost per transaction, completion rate, user satisfaction and digital take up.
+
+As MmS is not a transactional service, we will not report on [Cost per transaction](https://www.gov.uk/service-manual/measuring-success/measuring-cost-per-transaction) and [Completion rate](https://www.gov.uk/service-manual/measuring-success/measuring-completion-rate).
+
+#### [User satisfaction](https://www.gov.uk/service-manual/measuring-success/measuring-user-satisfaction):
+  * Whilst being an essential performance metric to all services, user satisfaction is a more challenging metric to quantify and largely relies on interacting with our users (through the feedback banner on site, users being invited to stand-ups after releases or incidents, and surveys throughout private beta) and asking them to explain:
+    * Satisfaction levels with the service
+    * How MmS changed user behaviour/ informed decision making
+    * Whether the information was easy to understand and use
+    * How long it took to study and understand the information provided by the service
+
+Here is a prototype of the current feedback form for all users, based on GDS examples. The feedback form is accessible by users from the beta banner that displays at the top of all pages:
+
+![Prototype of feedback form](designdocs/key-performance-indicators/feedback-form-prototype.png "Prototype of feedback form")
+
+#### [Digital take-up](https://www.gov.uk/service-manual/measuring-success/measuring-digital-take-up)
+* As Monitor my satellites is not replacing an existing service/non-digital channel and we have selected a user base at private beta, digital take up will be monitored by measuring:
+  * The ratio of number of notifications sent to the number of log-ins and event information views per user (will be monitored through Notify and piwik pro). The correlation between these variables can also be monitored graphically over the course of private beta.
+  * This metric will enable us to understand how often the operators use the service when there is an event that meets their thresholds and hence they are interested in.
+
+## Additional KPIs specific to monitoring the success of MmS
+
+During the private beta, key outputs to be assessed have been split into 3 categories; user satisfaction (already discussed above), service performance and user activity.
+
+#### Service performance will be monitored by looking at:
+* Mean time to repair, mean time between failures, mean time to acknowledge, mean time to fix
+* Service availability (hours/day)
+* Time for each page to load
+* Time from API request to response
+* Service downtime
+
+#### User activity:
+* Number of sign ins per user (Auth0)
+* Number of notifications sent and delivered (monitored via Notify)
+* Number of visits to different pages on the site and time spent there (piwik pro)
+* Ephemeris uploads using the confirmation of successful ephemeris data as a proxy for this (piwik pro)
+* Event Analysis uplaods using the confirmation of successful analysis data as a proxy for this (piwik pro)
+* Where users come from (are they prompted by email notifications or sporadically visit the site to check in - referrels on piwik pro)
+
+## Assessing the benefits of the service
+
+Below are some of the key user needs with the most evidence & how we will measure the benefit of each:
+
+| User need | UID 192: As a Satellite Operator (All) I need email notifications containing a summary when there is a new event AND when there is new data in order to Understand when new events are identified and how existing events are progressing                                 |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Benefit   | Operator is made aware when there is a high-risk event that could affect their satellite                                                                                                                                                                                  |
+| KPIs      | Number of notifications sent to each user each day/week<br><br>Number of notifications delivered to each user each day/week<br><br>Number of times the user visits the site and event pages<br><br>Number of times the user changes their notification threshold settings  |
+
+| User need | UID 132: As a Satellite Operator (All) I need to know the sources of the data (TLE, SP, ephemeris etc.) and what analysis was used in the product (and the number of observations) in order to trust and validate the data as well as understand why there may be differences in analysis from different organisations |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Benefit   | Operators are able to access more comprehensive and reliable data on conjunction events and in turn make better decisions on how to respond                                                                                                                                                                                     |
+| KPIs      | Number of times information pages are visited<br><br>Feedback form questions:<br><br>1. Did you use this data to inform your decision?<br><br>2. How has it changed your decision making? Time to action?                                                                                                                                |
+
+| User need | UID 143: As a Satellite Operator (All) I need to have access to the event history (including updates from all CDMs and UKSA analysis) in order to assess evolution of PofC and other metrics |
+| --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Benefit   | Operators are able to access more comprehensive and reliable data on conjunction events and in turn make better decisions on how to respond                                                  |
+| KPIs      | Number of times accordion opened to view event history                                                                                                                                       |
+
+| User need | UID 186: As a Satellite Operator (All) I need to submit ephemeris data (in .oem format) and receive updated analysis in order to share information on planned manoeuvres                                                                                                                                           |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Benefit   | Operators receive up-to-date and accurate analysis                                                                                                                                                                                                                                                                 |
+| KPIs      | Number of times operators upload ephemeris files<br><br>Number of times analysts download and use ephemeris files<br><br>Number of times analysis is uploaded<br><br>Time between ephemeris upload and analysis being generated and uploaded<br><br>Time between analysis being completed and the TCA              |
+
+| User need | UID 254: As a Satellite Operator (All) I need event information including probability of collision, miss distances (total, radial, cross-track and in-track), TCA and objects involved in order to understand the risk of collision and decide on my response                                                                                                                                                                                                             |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Benefit   | Operators are able to access more comprehensive and reliable data on conjunction events and in turn make better decisions on how to respond                                                                                                                                                                                                                                                                                                                               |
+| KPIs      | Number of times event pages are visited<br><br>Number of collisions over time<br><br>Number of times analysis is completed by UKSA<br><br>Questions in feedback form following key events<br><br>1. Have you used the information to help inform your decision?<br><br>2. Did you find the information easy to understand?<br><br>3. What other services did you use to help inform your decision?<br><br>4. Time taken to study and understand the data on MmS           |
+
+| User need | UID 255: As a Satellite Operator (All) I need additional event information including relative velocity, altitude, longitude, latitude, estimated combined mass and number of fragments that could be generated in order to understand the risk of collision and decide on my response |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Benefit   | Operators are able to access more comprehensive and reliable data on conjunction events and in turn make better decisions on how to respond                                                                                                                                           |
+| KPIs      | Number of times event pages are visited<br><br>Number of collisions over <time></time>                                                                                                                                                                                                |
+
+| User need | UID 218: As a Satellite Operator (All) I need the tool to be easy to use and navigate in order to save time and understand the data that is shown                                                                                                                                                                                                         |
+| --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Benefit   | Users can easily access data and respond faster                                                                                                                                                                                                                                                                                                           |
+| KPIs      | Number of times website is visited vs. API used<br><br>Percentage of times logging in leads to user viewing event information, submitting ephemeris or viewing satellite information<br><br>Time between user submitting email in interface and then logging in?<br><br>Question on feedback form:<br><br>1. How easy is the service to use and navigate? |
+
+| User need | UID 217: As a Satellite Operator (All) I need event data visualizations including: evolution of PofC, evolution of miss distances, evolution of error ellipsoids, covariance and location  in order to understand the changing likelihood of a collision and to further understand the data provided |
+| --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Benefit   | Users can easily understand the data when visualised                                                                                                                                                                                                                                                 |
+| KPIs      | Number of times the visualisation pages are visited (vs. event page visited)<br><br>Questions on feedback form:<br><br>Did you find the visualisations of events easy to understand?                                                                                                                 |
+
+## The future of capturing and publishing KPIs for MmS
+As mentioned previously, we will need to monitor and track a range of KPIs during the private beta. However, we also should prepare for what metrics we should track in later stages of the project.
+
+#### Post-MVP KPIs will include:
+* Number of times event history accordion opened - if more than (x%) of time, should it be an accordion?
+* Time between ephemeris upload and analysis being generated and uploaded
+* Time between analysis being completed and the Time of Closest Approach (TCA)
+* The number of API requests
+* User journeys (heat maps)
+
+<%= partial "partials/links" %>
