@@ -35,6 +35,7 @@ The goal of this design doc is to articulate a design for the structure of the C
 The proposal is to adopt an approach like that used by [Instagram] (https://instagram-engineering.com/sharding-ids-at-instagram-1cf5a71e5a5c), which is in turn based on the Snowflake ID used at [Twitter] (https://blog.twitter.com/engineering/en_us/a/2010/announcing-snowflake). Indeed many big tech companies are using a similar approach since it works well for distributed systems.<br>
 
 The proposal is for each ID to consist of:
+
 * 41 bits for time in milliseconds (which gives over 41 years of IDs with a custom epoch (to be agreed))
 * 10 bits that represent the generating system, or machine ID,  (that is a lot of generating systems, (2^10) 1024 to be precise).
 * 13 bits that represent an auto-incrementing sequence, modulus 8192 (this means 8192 IDs can be generated per generating system per millisecond, which means lots of scaling headroom).
