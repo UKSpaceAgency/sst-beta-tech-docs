@@ -44,6 +44,6 @@ To restore the database into a new location, the following steps need to be comp
 <%= warning_text('main application folder is the main folder of the cloned Github repository where subfolder `migrations/` resides') %>
 * run `pg_restore -d postgres -p 5444 -F d path_to_folder_with_db_backup`. The port number (5444) may be different in your case.
 
-The whole process can take a a couple of hours to finish, depending on the amount of data in the archived database.
+The whole process can take a couple of hours to finish, depending on the amount of data in the archived database.
 
 <%= partial "partials/links" %>
