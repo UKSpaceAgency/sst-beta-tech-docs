@@ -13,9 +13,9 @@ review_in: 3 months
 It may be necessary on occasion to restore the database, for example if the database has become corrupted or following an incident. This document outlines the steps needed to perform a database restore.
 
 ### Restore a database using RDS instance snapshot
-It's also possible to use quite different method to restore a copy of the database without need of creating a dump. This is more convienient way of fast restore after an incident. The detailed description is covered in Gov.UK Paas Documentation:
+It's also possible to use quite different method to restore a copy of the database without need of creating a dump. This is more convienient way of fast restore after an incident. The detailed description is covered in PaaS Documentation:
 https://docs.cloud.service.gov.uk/deploying_services/postgresql/#restoring-a-postgresql-service-from-a-point-in-time
-It's been tested on MMS database/environment and the whole restore process takes about 15 minutes instead of hours when dumping the database using `pg_dump`. Restoring the database using snapshots has some limitations (cited from PaaS documentation):
+It's been tested on MMS database/environment and the whole restore process takes about 15 minutes instead of hours when dumping the database using `pg_dump`. Restoring the database using snapshots has some limitations (cited from GOV.UK PaaS documentation):
 * Can only restore the most recent snapshot from the latest nightly backup
 * Cannot restore from a service instance that has been deleted
 * Must use the same service plan for the copy as for the original service instance
@@ -33,7 +33,7 @@ It's been tested on MMS database/environment and the whole restore process takes
 
 The database is archived using the Postgres `pg_dump` tool. It is archived into a directory in compressed format.
 
-<%= warning_text('Database was archived with only data (`--data-only` switch in `pg_dump`), not the database schema. It is important to know that limitation.') %>
+<%= warning_text(The database is archived with data only (`--data-only` switch in `pg_dump`). It is not archived with the database schema as we are using the Alembic migration tool which builds and modifies the schema prior to the restore.) %>
 
 ### Restore process
 To restore the database into a new location, the following steps need to be completed:
@@ -44,6 +44,6 @@ To restore the database into a new location, the following steps need to be comp
 <%= warning_text('main application folder is the main folder of the cloned Github repository where subfolder `migrations/` resides') %>
 * run `pg_restore -d postgres -p 5444 -F d path_to_folder_with_db_backup`. The port number (5444) may be different in your case.
 
-The whole process can take up to a few hours to finish, depending on the amount of data in the archived database.
+The whole process can take a a couple of hours to finish, depending on the amount of data in the archived database.
 
 <%= partial "partials/links" %>
