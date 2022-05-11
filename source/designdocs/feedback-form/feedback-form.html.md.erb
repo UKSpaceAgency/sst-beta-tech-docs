@@ -1,0 +1,61 @@
+---
+title: Feedback form
+weight: 12
+hide_in_navigation: true
+parent: /designdocs
+last_reviewed_on: 2022-05-09
+review_in: 3 months
+---
+
+# 010. Feedback form
+
+## Purpose
+* Users must be able to provide feedback to the delivery team about their satisfaction with the service and their comments about improvements and bugs.
+* Users must be able to complete a feedback form via the beta banner on the website. This feedback must then be made available to the delivery team to review and action.
+* This is important for assessing the mandatory KPIs (primarily around user satisfaction), assessing whether the service meets user needs (particularly the user needs detail in the [KPI design documentation](https://sst-tech-docs.london.cloudapps.digital/designdocs/key-performance-indicators/key-performance-indicators.html)), and the continued improvement of the service.
+
+## Feedback form requirements
+* During alpha and private beta, you are able to create your own feedback page. We decided to use getform.io to store the feedback form data. 
+* Then for public beta, as part of [getting your service on GOV.UK](https://www.gov.uk/service-manual/service-assessments/get-your-service-on-govuk), it is necessary to have a gov.uk feedback form. We are in the process of attaining this form, which involves asking the GDS content team at least 1 month before your public beta assessment.
+
+## Front end design
+* The feedback form will be linked in the beta banner, as suggested by [the GOV.UK service manual](https://www.gov.uk/service-manual/measuring-success/measuring-user-satisfaction).
+* There is no formal guidance on what questions you must ask. However, according to [GDS design requirements](https://www.gov.uk/service-manual/service-assessments/get-feedback-page), the feedback form should have at least one open-ended question about how to improve the service, similar to the one on the GOV.UK feedback page.
+
+### Questions:
+
+#### 1. Satisfaction rating: “How satisfied were you with the service you received today?”
+Rating ‘Very unsatisfied’,’Dissatisfied’, ‘neither satisfied or dissatisfied’, ‘Satisfied’ or ‘Very satisfied’. Users can only choose one option using the radio component.
+
+#### 2. Free text comments: “Can you provide more detail?”
+Up to [2000 characters]
+
+The design of the MmS feedback form (see screenshot below) is based on GDS advice on how to collect user's feedback.
+
+![Design of MmS feedback form](designdocs/feedback-form/image-of-feedback-form-design.png "Design of MmS feedback form")
+
+## Back end design
+
+### Data required to be saved
+
+| Data type         | Data structure                                                             |
+| ------------------| ---------------------------------------------------------------------------|
+| User name         | [first name][surname]                                                      |
+| User type         | Admin/Operator etc                                                         |
+| User organisation | [organisation ID]                                                          |
+| Rating            | Number - 1 to 5 (where 5 is ‘Very satisfied’ and 1 is ‘Very dissatsified’) |
+| Comments          | Free text up to [2000] characters                                          |
+| Time submitted    | Timestamp dd/mm/yyyy hh:mm                                                 |
+
+We chose to use the third party service **getform.io** to store the feedback form data, during alpha and the private beta. This was chosen because it is much quicker than waiting for a GOV.UK feedback form (so we can begin to collect feedback as soon as possible from operators), and it will allow the business analysts to access the data more easily than if the MMS developers built their own form back-end. The costs ($10 a month for the 2-3 months the form will run) are minimal. We chose the $10 a month version because the free version did not give access to enough API endpoints and only allowed the form to be filled out 50 times per month.
+
+Contact the team from The PSC for log-in details.
+
+### Back-end options appraisal
+
+| Method | Appraisal |
+|--------|-----------|
+|[Get a GOV.UK feedback form](https://www.gov.uk/service-manual/service-assessments/get-feedback-page)|**Benefits:**<br><br>We will need to get one for public beta anyway<br><br>They handle the back end which would minimise the work involved our side<br><br>**Disadvantages:**<br><br>Set up time is a month (must ask GDS content team 1 month in advance of public beta assessment)<br><br>Potential difficulty accessing the data from the form. GOV.UK service manual states that “You can download the data for your service from the Feedback Explorer app. If you do not have access, contact the team in your organisation that publishes to GOV.UK, if you have one. They will be able to share this information with you.”|
+|Use a third party provide (for example, getform.io)|**Benefits:**<br><br>They handle the back end which would minimise the work involved our side<br><br>Quick to implement<br><br>Allows the business team to view analytics easily<br><br>**Disadvantages:**<br><br>Could result in a monthly cost/subscription|
+|Build our own from scratch|**Benefits:**<br><br>Reduce dependencies on third party services<br><br>**Disadvantages:**<br><br>Slower to implement<br><br>Hosted on our own servers so some associated costs<br><br>Constant task to provide information to business team (but business team could learn to access, or an API endpoint could be set up)|
+<%= partial "partials/links" %>
