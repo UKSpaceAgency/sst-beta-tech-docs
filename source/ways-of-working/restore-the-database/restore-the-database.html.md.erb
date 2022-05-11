@@ -13,9 +13,10 @@ review_in: 3 months
 It may be necessary on occasion to restore the database, for example if the database has become corrupted or following an incident. This document outlines the steps needed to perform a database restore.
 
 ### Restore a database using RDS instance snapshot
-It's also possible to use quite different method to restore a copy of the database without need of creating a dump. This is more convienient way of fast restore after an incident. The detailed description is covered in PaaS Documentation:
-https://docs.cloud.service.gov.uk/deploying_services/postgresql/#restoring-a-postgresql-service-from-a-point-in-time
-It's been tested on MMS database/environment and the whole restore process takes about 15 minutes instead of hours when dumping the database using `pg_dump`. Restoring the database using snapshots has some limitations (cited from GOV.UK PaaS documentation):
+It's also possible to use a different method to restore a copy of the database without need of creating a dump. This is more convienient way to restore after an incident. The detailed description is covered in [GOV.UK PaaS Documentation](https://docs.cloud.service.gov.uk/deploying_services/postgresql/#restoring-a-postgresql-service-from-a-point-in-time).
+
+It's been tested on MMS database/environment and the whole restore process takes about 15 minutes instead of hours, when dumping the database using `pg_dump`. Restoring the database using snapshots has some limitations (cited from GOV.UK PaaS documentation):
+
 * Can only restore the most recent snapshot from the latest nightly backup
 * Cannot restore from a service instance that has been deleted
 * Must use the same service plan for the copy as for the original service instance
