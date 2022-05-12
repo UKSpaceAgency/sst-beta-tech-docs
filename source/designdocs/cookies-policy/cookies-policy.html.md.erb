@@ -1,0 +1,94 @@
+---
+title: Cookies policy
+weight: 12
+hide_in_navigation: true
+parent: /designdocs
+last_reviewed_on: 2022-05-09
+review_in: 3 months
+---
+
+# 008. Cookies policy
+
+## Purpose
+* Cookies are small data files that a website sends to a user’s computer. They’re used to store information about how users browse a website. The service manual tells us to keep use of cookies to a minimum, and be transparent about the ones you do use.
+  * Cookies must only apply to your originating domain name. For example, www.servicename.service.gov.uk not .gov.uk.
+  * Do not use cookies on domains that host only static assets like images or JavaScript - they slow response times for users without providing any benefit.
+  * You should only send cookies with the Secure attribute and, when appropriate, the HttpOnly attribute. These flags provide additional assurances about how browsers should handle cookies.
+
+## Goals
+* Decide which cookies to use and how to use them - essential and non-essential
+* Define our cookie policy
+
+## Essential cookies
+
+These cookies are required to make the service work.We do not need to ask permission to use these cookies.
+
+| Name                         | Purpose                            | Category  | Time to expiry          | Set (server or client)                        |
+| ---------------------------- | ---------------------------------- | --------- | ----------------------- | --------------------------------------------- |
+| mms_session                 | Used to keep you signed in         | Essential | 12 hours after activity | Client but with httponly attribute and secure |
+| mms_cookie_policy_consent | Saves your cookie consent settings | Essential | 1 year                  | Client without httponly                       |
+
+## Non-essential cookies
+
+### Functional cookies
+
+The service will work without them, but the user will not be able to take advantage of some functionality. The user must give us permission to use these cookies.
+
+### Analytics cookies
+
+With the user’s permission, we will use Piwik Pro to collect data about how they use the service. This information will enable us to improve our service and assess our KPIs. All the data will be stored and processed on Piwik Pro’s servers.
+
+| Name                           | Purpose                                                                                                                    | Expires        |
+| ------------------------------ | -------------------------------------------------------------------------------------------------------------------------- | -------------- |
+| _pk_ses.appID.domainHash     | Session activity                                                                                                           | 30 minutes     |
+| _pk_id.appID.domainHash      | Used to recognise users                                                                                                    | 13 months      |
+| app_id                        | Used to pass a site or app ID between Piwik PRO’s modules                                                                  | 1 year         |
+| ppms_privacy_appID           | Stores visitor’s consent to data collection and usage                                                                      | 1 year         |
+| _stg_debug                   | Determines if the Tag Manager’s debugger should be displayed. A cookie is removed after you close the debugger.            | 14 days        |
+| stg_traffic_source_priority | Stores the type of traffic source that explains how the visitor reached your website.                                      | 30 minutes     |
+| stg_last_interaction         | Determines whether the last visitor’s session is still in progress or a new session has started.                           | 1 year         |
+| stg_returning_visitor        | Determines if the visitor has already been to your website — they are returning visitors.                                  | 1 year         |
+| stg_fired__appID            | Determines if the combination of a tag and trigger was fired during the current visitor’s session.                         | End of session |
+| stg_utm_campaign             | Stores a name of the campaign that directed the visitor to your website.                                                   | End of session |
+| stg_pk_campaign              | Stores a name of the campaign that directed the visitor to your website.                                                   | End of session |
+| stg_externalReferrer          | Stores an URL of a website that referred a visitor to your website.                                                        | End of session |
+| _stg_opt_out_simulate      | Used to simulate the behavior of the opt-out snippet in the debugger. It turns off all tracking tags in the tested domain. | 1 year         |
+| _stg_optout                  | Used to turn off all tracking tags in the tested domain.                                                                   | 1 year         |
+| csrftoken                      | This cookie is set only for Piwik PRO’s users. It stores a CSRF token for securing Piwik PRO’s forms.                      | 8 hours        |
+| sessionid                      | This cookie is set only for Piwik PRO’s users. It stores the session ID of the currently logged-in user.                   | 8 hours        |
+
+### Using piwik pro
+Piwik Pro will be used to track front-end analytics. It tracks and reports website traffic. It will track user-related metrics.
+
+#### Things to consider to meet GDS standards:
+* What you need to do - for example, whether you need to do A/B or multivariate testing
+* How much it will cost
+  * Piwik Pro is free up to 100k actions a month.
+* Where the data is stored and how you’ll access it
+  * Piwik Pro allows MMS to have full ownership of its data, stored either on our servers or Piwik Pro’s private cloud
+  * Piwik Pro uses mechanisms that help you respect the privacy of your visitors and stay compliant with the GDPR regulations.
+* What the quality of the data is
+  * Piwik Pro has a range of functionality to choose from including: reports, activity log, users flow, heatmap & session recording, A/B testing
+* What you can do with the data
+  * Data will be used to generate service KPIs & understand how our users are interacting with the website. This knowledge will enable us to iterate and improve the service.
+* What support is available to help you use the tool
+  * Support subscription is available if required
+
+### Logit.io
+We will also use logit.io to log and monitor the system’s performance metrics and databases.
+
+## Setting user preferences for cookies
+
+A cookie banner will be added to interface when a user first logs in:
+
+**1. User selects their preferences in the banner**
+
+![Cookie banner](designdocs/cookies-policy/cookies-banner.png "Cookie banner")
+
+**2. A confirmation message is shown**
+
+![Cookies policy confirmation banner](designdocs/cookies-policy/cookies-confirmation-banner.png "Cookies policy confirmation banner")
+
+All information regarding our cookies policy will be accessible to the user on the [cookies information](https://www.monitor-my-satellites.space/page/cookies) page which will show users what cookies are being used. Users should be able to visit the cookies information page at any time to amend their preferences.
+
+<%= partial "partials/links" %>
