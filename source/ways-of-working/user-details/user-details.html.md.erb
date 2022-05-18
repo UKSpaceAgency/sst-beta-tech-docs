@@ -1,51 +1,147 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Presentations in Markdown</title>
+    <link href="favicon.png" rel="icon" type="image/png"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Playfair+Display:400,600,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Murecho:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Murecho'; }
+      h1, h2, h3 {
+        font-family: 'Playfair Display';
+        font-weight: bold;
+        color: #1b1e56
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; font-size: 12}
+
+      .inverse h1 {
+        text-align: bottom;
+        color: white;
+      }
+
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+class: center
+background-image: url("https://raw.githubusercontent.com/the-psc/fedup-markdown/main/assets/The%20PSC%20-%20Graphics%2004.png?token=GHSAT0AAAAAABS772DA2LIT4VQ3OYLYUTIIYUFDROQQ")
+background-position: center
+background-size: contain
+
+# Using Markdown
+
+???
+
+Notes for the _first_ slide! These are hidden because of the ??? before it
+
 ---
-title: How to create and amend user details
-weight: 12
-hide_in_navigation: true
-parent: /ways-of-working
-last_reviewed_on: 2022-04-29
-review_in: 3 months
+# What is Markdown?
+
+Markdown is a lightweight markup language for creating formatted text using a plain-text editor such as Atom or Sublime.
+
+It enables source code written with easily readable notation to be rendered in HTML. Like using 'styles' and formatting options in Excel, Word etc.
+
+It's easy to use and you may have come across it in various places on the web or used it in Slack. Even WhatsApp uses some Markdown now.
+
 ---
 
-# How to create and amend user details
+# Why do we use it?
 
-<div class="govuk-warning-text">
-  <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-  <strong class="govuk-warning-text__text">
-    <span class="govuk-warning-text__assistive">Please note</span>
-     These processes are subject to change/ simplification in the next few weeks
-  </strong>
-</div>
+* It's quick and easy to get the hang of
+* You can incorporate other styles into it through HTML and CSS
+* GitHub allows you host websites for free using static website generators - and Markdown is great for that
+* GOV.UK has made extensive use of Markup and the service Tech Docs is mostly written in Markdown
 
-In the next few weeks, we are hoping to introduce self-serving processes in which admins are able to add users to MmS, which will automatically create a user in Auth0. Admins will also be able to change user details and delete users from their MmS account.
+---
 
-### Purpose
-With Monitor my Satellites (MmS) moving into the public beta phase, this will involve the addition of new users and user groups. Therefore, it is essential to have a clear process outlined for the creation of new user accounts and for how users’ details can be amended or deleted.
+# How does it work?
 
-## Processes
+You can visit [The Markdown Guide](https://www.markdownguide.org/) to learn the ins and outs
 
-### Adding a new user
-1. Navigate to MmS database users table, where you are able to see all users on the application
-2. Add row to the bottom of the table and fill in required columns
-  * Terms and conditions, gdpr and account_details_confirmed_at columns are left empty (as user needs to accept these when they first access the site)
-  * Enter true into the active column: true is for active users, false is for inactive
-  * Leave the ‘is verified column’ blank until user has verified email address (via Auth0)
-  * Leave settings blank so user can choose own account settings when they enter the site
-2. Then go to Auth0 site
-  * Go to dashboard (need to be an admin in order to do this)
-  * Choose correct tenant (prod)
-  * Go to user management
-  * Go to users
-  * Click create user and fill in necessary information
-  * Have to fill in a password, user will change this when they receive an email from Auth0 asking them to do so
-  * Choose username-password authentication
+There's a basic syntax
+```js
+These are the elements outlined in John Gruber’s original design document.
+All Markdown applications support these elements.
 
-### Amending user details
-* There are no actions to take in Auth0 as password only needs to be set up on creation of user account
-* Go to database and either create an update query or use GUI to change the user
+# H1 headings
+## H2 headings
+### H3 headings
 
-### Deleting a user
-* Deleting a user on Auth0 would be enough to stop a user having access to the MmS site (make them inactive on the user database)
-* But should also delete the user from the MmS database
+Bold
+**bold text**
 
-<%= partial "partials/links" %>
+Italic
+*italicized text*
+
+Ordered List
+1. First item
+1. Second item
+1. Third item
+
+```
+---
+These are the elements outlined in John Gruber’s original design document.
+All Markdown applications support these elements.
+
+# H1 headings
+## H2 headings
+### H3 headings
+
+Bold
+**bold text**
+
+Italic
+*italicized text*
+
+Ordered List
+1. First item
+1. Second item
+1. Third item
+
+---
+# Your turn
+
+1. Using the user needs developed yesterday we need to turn these into stories to work on
+1. Open your 'boilerplate.html' in a Text Editor (such as Atom) and open it in your browser
+1. Create user stories for presentation or have a play in a Markdown editor like [HackMD](https://hackmd.io/)
+
+### Use the following user story structure:
+
+As a <span style="background-color: #fdde7aff">space analyst</span><P>
+I need to <span style="background-color: #fdde7aff">know what upcoming launches are scheduled</span><p>
+So that <span style="background-color: #fdde7aff">I can take action with my existing satellites</span><p>
+
+???
+|As a         |I need to                    |so that                              |
+|-------------|-----------------------------|-------------------------------------|
+|Space analyst|Know about upcoming launches |I can move my satellites if necessary|
+|Operator     |Register myself for a launch |I can legally launch my satellite    |
+
+---
+class: bottom, inverse
+background-image: url("https://thepsc.co.uk/images/uploads/_main/antonio_book_.jpg")
+background-position: center
+background-size: contain
+
+# What about this story writing?
+
+---
+class: center
+
+# Let's go to Jira!
+
+[<img src="https://raw.githubusercontent.com/the-psc/fedup-markdown/main/assets/rocket-emoji.png">](https://thepsc.atlassian.net/jira/software/c/projects/RYL/boards/11?selectedIssue=RYL-3)
+
+
+    </textarea>
+    <script src="https://remarkjs.com/downloads/remark-latest.min.js" type="text/javascript">
+    </script>
+    <script type="text/javascript">
+      var slideshow = remark.create();
+    </script>
+  </body>
+</html>
