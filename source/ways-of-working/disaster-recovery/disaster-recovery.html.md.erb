@@ -16,7 +16,7 @@ A disaster is an event that prevents an application from fulfilling its business
   <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
   <strong class="govuk-warning-text__text">
     <span class="govuk-warning-text__assistive">Please note</span>
-     Login details to applicable services will be provided to UKSA and/or suppliers offline as required on a principle of least priviledge basis.
+     Login details to applicable services will be provided to UKSA and/or suppliers offline as required on a principle of least privilege basis.
   </strong>
 </div>
 
@@ -67,7 +67,7 @@ Preventing loss of service
 * Space-Track data
     * If there is a short-term outage of SpaceTrack or a loss of data on our end, the logic will grab missing CDM data and re-pull down all satellite data.
 * Ephemeris files
-    * Stored in S3 -  this is backed-up
+    * Stored in S3 - this is backed-up
     * If database lost, we can conduct a manual check of the S3 storage to check whether any ephemeris files are stored. The database can then be replenished manually.
 * Ephemeris files
     * Stored in the database only so if the database was lost, the analysis would also be lost. Therefore, we ask the OAs to always retain a copy of all analysis.
