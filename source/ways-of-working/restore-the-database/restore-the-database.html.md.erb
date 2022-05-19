@@ -34,7 +34,13 @@ It's been tested on MMS database/environment and the whole restore process takes
 
 The database is archived using the Postgres `pg_dump` tool. It is archived into a directory in compressed format.
 
-<%= warning_text('The database is archived with data only (`--data-only` switch in `pg_dump`). It is not archived with the database schema as we are using the Alembic migration tool which builds and modifies the schema prior to the restore.') %>
+<div class="govuk-warning-text">
+  <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+  <strong class="govuk-warning-text__text">
+    <span class="govuk-warning-text__assistive">Please note</span>
+     The database is archived with data only (`--data-only` switch in `pg_dump`). It is not archived with the database schema as we are using the Alembic migration tool which builds and modifies the schema prior to the restore.
+  </strong>
+</div>
 
 ### Restore process
 To restore the database into a new location, the following steps need to be completed:
