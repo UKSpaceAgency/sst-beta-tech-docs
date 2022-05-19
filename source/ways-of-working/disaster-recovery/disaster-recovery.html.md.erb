@@ -12,6 +12,14 @@ review_in: 3 months
 ## Business continuity after loss of service
 A disaster is an event that prevents an application from fulfilling its business function in its primary deployed location.
 
+<div class="govuk-warning-text">
+  <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+  <strong class="govuk-warning-text__text">
+    <span class="govuk-warning-text__assistive">Please note</span>
+     Login details to applicable services will be provided to UKSA and/or suppliers offline as required on a principle of least priviledge basis.
+  </strong>
+</div>
+
 | Type                 | Disaster                                                         | Response                                                                                                                                                                                                                                        | Notification message & banner                                                                                                                                |
 | -------------------- | ---------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Internal - tech      | Service down due to unknown reason                               | 1. Check Logit.io logs<br><br>2. Check development environment<br><br>3. Check database<br><br>4. Fix on local environment<br><br>5. Test and release to fix issue                                                                              | Important: Sorry, the service is unavailable. You will be able to use the service later.                                                                     |
@@ -55,6 +63,7 @@ Preventing loss of service
 * GOV.UK PaaS
     * Dependent on PaaS back-up for UKSA data, user settings, ephemeris.
     * PostgreSQL service backups are taken nightly at some time between 22:00 and 06:00 UTC. Data is retained for 7 days. More info on GOV.UK PaaS backups.
+   * We would aim to resolve service from database backups within 4 hours (as per a P1 incident response).
 * Space-Track data
     * If there is a short-term outage of SpaceTrack or a loss of data on our end, the logic will grab missing CDM data and re-pull down all satellite data.
 * Ephemeris files
