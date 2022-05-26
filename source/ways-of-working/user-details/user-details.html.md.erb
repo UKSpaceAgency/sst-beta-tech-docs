@@ -3,7 +3,7 @@ title: How to create and amend user details
 weight: 12
 hide_in_navigation: true
 parent: /ways-of-working
-last_reviewed_on: 2022-04-29
+last_reviewed_on: 2022-05-26
 review_in: 3 months
 ---
 
@@ -20,18 +20,21 @@ review_in: 3 months
 In the next few weeks, we are hoping to introduce self-serving processes in which admins are able to add users to MmS, which will automatically create a user in Auth0. Admins will also be able to change user details and delete users from their MmS account.
 
 ### Purpose
-With Monitor my Satellites (MmS) moving into the public beta phase, this will involve the addition of new users and user groups. Therefore, it is essential to have a clear process outlined for the creation of new user accounts and for how users’ details can be amended or deleted.
+With Monitor your satellites (MyS) moving into the public beta phase, this will involve the addition of new users and user groups. Therefore, it is essential to have a clear process outlined for the creation of new user accounts and for how users’ details can be amended or deleted.
 
 ## Processes
 
 ### Adding a new user
-1. Navigate to MmS database users table, where you are able to see all users on the application
-2. Add row to the bottom of the table and fill in required columns
-  * Terms and conditions, gdpr and account_details_confirmed_at columns are left empty (as user needs to accept these when they first access the site)
+1.  Access the database using GOV.UK PaaS and your GOV.UK PaaS credentials
+1.  Run `cf env mms-db-dev`​ (change app name as appropriate) to output the environment variables
+1.  From `VCAP_SERVICES` read the Postgres​ section for `"credentials"`​and use to access the database
+1. Navigate to Monitor your satellites database users table, where you are able to see all users on the application
+1. Add row to the bottom of the table and fill in required columns
+  * Terms and conditions, gdpr and `account_details_confirmed_at` columns are left empty (as user needs to accept these when they first access the site)
   * Enter true into the active column: true is for active users, false is for inactive
   * Leave the ‘is verified column’ blank until user has verified email address (via Auth0)
   * Leave settings blank so user can choose own account settings when they enter the site
-2. Then go to Auth0 site
+1. Access Auth0 console using your credentials
   * Go to dashboard (need to be an admin in order to do this)
   * Choose correct tenant (prod)
   * Go to user management
@@ -40,6 +43,14 @@ With Monitor my Satellites (MmS) moving into the public beta phase, this will in
   * Have to fill in a password, user will change this when they receive an email from Auth0 asking them to do so
   * Choose username-password authentication
 
+  <div class="govuk-warning-text">
+    <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+    <strong class="govuk-warning-text__text">
+      <span class="govuk-warning-text__assistive">Please note</span>
+       Database access will be provided to UKSA and/or suppliers offline as required on a principle of least privilege basis.
+    </strong>
+  </div>
+
 ### Amending user details
 * There are no actions to take in Auth0 as password only needs to be set up on creation of user account
 * Go to database and either create an update query or use GUI to change the user
@@ -47,5 +58,29 @@ With Monitor my Satellites (MmS) moving into the public beta phase, this will in
 ### Deleting a user
 * Deleting a user on Auth0 would be enough to stop a user having access to the MmS site (make them inactive on the user database)
 * But should also delete the user from the MmS database
+
+### User permissions
+* The different user types will have the following permissions granted (to interact with the API)
+
+| Endpoints  |          |                   |                  |Org Role          |            |           |
+|------------|----------|-------------------|------------------|------------------|------------|-----------|
+| Task       | Action   | USER              | OPERATOR         | ADMIN            | ANALYST    | SUPERUSER |
+| Analysis   | list     | no                | no               | no               | yes        | yes       |
+|            | retrieve | no                | no               | no               | yes        | yes       |
+|            | delete   | no                | no               | no               | yes        | yes       |
+|            | create   | no                | no               | no               | yes        | yes       |
+| Ephemeris  | list     | no                | yes              | no               | yes        | yes       |
+|            | retrieve | no                | yes              | no               | yes        | yes       |
+|            | create   | no                | yes              | no               | yes        | yes       |
+| Events     | list     | yes (their org.)  | yes (their org.) | yes (their org.) | yes        | yes       |
+|            | get      | yes (their org.)  | yes (their org.) | yes (their org.) | yes        | yes       |
+| Satellites | list     | yes (their org.)  | yes (their org.) | yes (their org.) | yes        | yes       |
+|            | get      | yes               | yes              | yes              | yes        | yes       |
+|            | update   | no                | no               | no               | no         | yes       |
+| Users      | get      | themselves        | themselves       | themselves       | themselves | yes       |
+|            | update   | themselves        | themselves       | yes (their org.) | themselves | yes       |
+|            | delete   | no                | no               | yes (their org.) | no         | yes       |
+|            | create   | no                | no               | yes (their org.) | no         | yes       |
+
 
 <%= partial "partials/links" %>
