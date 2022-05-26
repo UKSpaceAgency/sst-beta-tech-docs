@@ -12,6 +12,19 @@ review_in: 3 months
 ### Introduction
 It may be necessary on occasion to restore the database, for example if the database has become corrupted or following an incident. This document outlines the steps needed to perform a database restore.
 
+### Accessing the database
+<div class="govuk-warning-text">
+  <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+  <strong class="govuk-warning-text__text">
+    <span class="govuk-warning-text__assistive">Please note</span>
+     Database access will be provided to UKSA and/or suppliers offline as required on a principle of least privilege basis.
+  </strong>
+</div>
+
+* Access the database using GOV.UK PaaS and your GOV.UK PaaS credentials
+* Run `cf env mms-spacetrack-dev`​ (change app name as appropriate) to output the environment variables
+* From `VCAP_SERVICES` read the Postgres​ section for `"credentials"`​and use to access the database
+
 ### Restore a database using RDS instance snapshot
 It's also possible to use a different method to restore a copy of the database without need of creating a dump. This is more convienient way to restore after an incident. The detailed description is covered in [GOV.UK PaaS Documentation](https://docs.cloud.service.gov.uk/deploying_services/postgresql/#restoring-a-postgresql-service-from-a-point-in-time).
 
