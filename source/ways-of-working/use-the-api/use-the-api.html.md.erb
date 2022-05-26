@@ -11,30 +11,44 @@ review_in: 3 months
 
 ##Purpose
 
-Monitor my satellites exposes the REST API for gathering all the data available via the application frontend. The same content can be fetched via API (with the same data restrictions).
-REST API is intended to be used for integrating with other web applications, but can also be used directly. JSON format is used by the API as the output format.
+Monitor your satellites exposes the REST API for gathering all the data available via the application frontend. The same content can be fetched via API (with the same data restrictions).
+The REST API is intended to be used for integrating with other web applications, but can also be used directly. JSON format is used by the API as the output format.
 
 ##API URL and interactive documentation
 
 To access the API, the API Key is needed. Users can also use the API with their Monitor my satellites credentials.
-API can be accessed in Swagger/OpenAPI tool: https://api.monitor-my-satellites.space/docs
+API can be accessed in Swagger/OpenAPI tool: [https://api.monitor-my-satellites.space/docs](https://api.monitor-my-satellites.space/docs)
 
-There’s also a ReDOC version of the documentation (easier to read but not interactive):
-https://api.monitor-my-satellites.space/redoc
+There’s also a ReDOC version of the documentation (easier to read but not interactive): [https://api.monitor-my-satellites.space/redoc](https://api.monitor-my-satellites.space/redoc)
 
 ##Authentication
-Users can authenticate using a simple cURL script:
+<div class="govuk-warning-text">
+  <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+  <strong class="govuk-warning-text__text">
+    <span class="govuk-warning-text__assistive">Please note</span>
+     Generating the `client_id` and `client_secret` will be integrated in coming weeks. Until then contactmonitormysatellites@ukspaceagency.gov.uk for access.
+  </strong>
+</div>
+
+After generating `client_id` and `client_secret` you can get the Bearer token sending following request:
 
 ```
 curl --request POST \
-  --url 'https://monitor-your-satellites-dev.eu.auth0.com/oauth/token' \
+  --url https://monitor-your-satellites.eu.auth0.com/oauth/token \
   --header 'content-type: application/json' \
-  --data '{"grant_type":"password", "client_id":"z5NUc3MYN12niRPwMDXmjkELiwuJGQ1u", "client_secret":"SlRPKWBPYpOuDS5GmwHAqDe9IEuUJq1nvzHKrBiJPZhqG8qOQyS-QKHNf-1U8yGo",
-"password":"xxxxxxxxxxxxx",
-"username":"xxxxx@xxxxx", "audience":"dev.monitor-your-satellites.service.gov.uk/api", "scope":"openid email profile"}'
+  --data '{"client_id":"...","client_secret":"...","audience":"monitor-your-satellites.service.gov.uk/api","grant_type":"client_credentials"}'
 ```
 
-This script should produce a JSON output, where access_token value should be used to authorize (“Authorize” in OpenAPI web interface).
+This request will return response in following format:
+
+```
+{
+      "access_token": "eyJ…qWZdPAc80Q",
+      "token_type": "Bearer"
+}
+```
+
+The `access_token` value should be used to authorize requests to protected endpoints.
 
 ##API methods
 
