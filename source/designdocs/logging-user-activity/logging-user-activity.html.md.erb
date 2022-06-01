@@ -83,7 +83,7 @@ Service availability (hours/day) - Pingdom
 * Notify cannot track if your users open an email or click on the links in an email. They do not track open rates and click-throughs because there are privacy issues. Tracking emails without asking permission from users could breach General Data Protection Regulations (GDPR).
 
 ###Back end data storage and monitoring
-MmS will use a combination of PostgreSQL and Amazon S3 as backing services to store data. Both are supported by GOV.UK PaaS.
+Myswill use a combination of PostgreSQL and Amazon S3 as backing services to store data. Both are supported by GOV.UK PaaS.
 
 The following will be logged and stored:
 
@@ -97,15 +97,15 @@ The following will be logged and stored:
 
 ####SQL
 
-MmS databases are stored in PostgreSQL. PostgreSQL is a free and open-source relational database management system (RDBMS) emphasizing extensibility and SQL compliance.
+Mysdatabases are stored in PostgreSQL. PostgreSQL is a free and open-source relational database management system (RDBMS) emphasizing extensibility and SQL compliance.
 ####Amazon Web Services S3
 
-Amazon Web Service S3 provides data object storage through a web service interface. It is one of the available backing services for GOV.UK PaaS. AWS encrypts S3 buckets using Amazon S3-managed encryption keys. This is what Monitor my Satellites will use.
+Amazon Web Service S3 provides data object storage through a web service interface. It is one of the available backing services for GOV.UK PaaS. AWS encrypts S3 buckets using Amazon S3-managed encryption keys. This is what Monitor your satellites will use.
 
 It is possible to download an object, upload an object, delete an object, list objects and get the AWS region of S3 buckets. It is also possible to upload and download a CORS policy.
 ####Data storage schema
 
-MmS storage of ephemeris data has already been discussed. It is summarised below. This method of data storage will be used for all data storage.
+Mysstorage of ephemeris data has already been discussed. It is summarised below. This method of data storage will be used for all data storage.
 
 The proposal is to only store the smallest data set in tables, whilst the original file will persist on a shared file-system and have checksums calculated and stored to assure data integrity.
 
@@ -154,13 +154,13 @@ Post-MVP we will also do the following:
 
 ####Auditing logged data - post-MVP
 
-Using Logit.io, MmS servers and databases will be monitored and any errors or system crashes identified.
+Using Logit.io, Mysservers and databases will be monitored and any errors or system crashes identified.
 
 However, it is still important to be able to create a human-readable audit trail to allow administrators to audit data uploads and monitor for any bad actor activity on the part of users. Therefore, creating a UI for administrators to be able to audit is post-MVP functionality. There will also need to be a route to flag up any issues discovered.
 
 There will be a level of audit information accessible to users, to see what the history of the record they are looking at is.
 
-* A good example is for orbital analysis, only another orbital analyst and user of MMS is suitable to identify data that may be inaccurate or malicious, and they won't want to be going into any 3rd party tooling (which is primarily aimed at system administrator type needs).
+* A good example is for orbital analysis, only another orbital analyst and user of Mysis suitable to identify data that may be inaccurate or malicious, and they won't want to be going into any 3rd party tooling (which is primarily aimed at system administrator type needs).
 
 
 |What to audit?|For what?|Information or event?|Who has access to audit trail?|How is the audit trail presented?|

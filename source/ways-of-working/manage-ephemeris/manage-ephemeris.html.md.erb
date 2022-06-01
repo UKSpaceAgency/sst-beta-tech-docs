@@ -17,11 +17,11 @@ review_in: 3 months
 
 *An OEM specifies the position and velocity of a single object at multiple epochs contained within a specified time range. The OEM is suited to exchanges that (1) involve automated interaction (e.g., computer-to-computer communication where frequent, fast automated time interpretation and processing is required), and (2) require higher fidelity or higher precision dynamic modeling than is possible with the OPM.*
 
-Monitor my satellites uses Ephemeris files in .oem format to exchange data from satellite operators to UKSA orbital analysts. 
+Monitor your satellites uses Ephemeris files in .oem format to exchange data from satellite operators to UKSA orbital analysts. 
 
 The format of .oem file can be found here: https://public.ccsds.org/Pubs/502x0b2c1e2.pdf
 
-Because of some differences between the .oem format and the way Monitor my satellites handles satellite data, Ephemeris files have to be constructed with one thing in mind: the proper file name. Due to the fact that .oem files have different satellite names than SpaceTrack can provide, the satellite descriptor - NORAD ID has to be encoded in the .oem file. This is aligned with the SpaceTrack requirements on naming Ephemeris files and described in SpaceTrack Handbook for Operators (page 23):
+Because of some differences between the .oem format and the way Monitor your satellites handles satellite data, Ephemeris files have to be constructed with one thing in mind: the proper file name. Due to the fact that .oem files have different satellite names than SpaceTrack can provide, the satellite descriptor - NORAD ID has to be encoded in the .oem file. This is aligned with the SpaceTrack requirements on naming Ephemeris files and described in SpaceTrack Handbook for Operators (page 23):
 
 https://www.space-track.org/documents/Spaceflight_Safety_Handbook_for_Operators.pdf
 
@@ -37,13 +37,13 @@ Examples:
 - MEME_UCN01_SPACESAT1_1651200_special_burn01_Unclassified.txt
 - MEME_799500234_Sat1_1651200_special_separation_unclassified.txt
 
-**Monitor my satellites** expects the filename to contain the NORAD ID and when it’s not found either in filename or in the **Monitor my satellites** database, the file cannot be uploaded.
+**Monitor your satellites** expects the filename to contain the NORAD ID and when it’s not found either in filename or in the **Monitor your satellites** database, the file cannot be uploaded.
 
-**Monitor my satellites** also checks the contents of the .oem file which has to be in line with the .oem file specification. Fields that are validated against the specification are:
+**Monitor your satellites** also checks the contents of the .oem file which has to be in line with the .oem file specification. Fields that are validated against the specification are:
 
 - NORAD ID must be provided in filename (as above explained)
 - NORAD ID must match the current page satellite NORAD ID 
-- Satellite with provided NORAD ID must be in **Monitor my satellites** database
+- Satellite with provided NORAD ID must be in **Monitor your satellites** database
 - META_START/META_STOP tags must be in ephemeris file in header section in proper order (START before STOP)
 
 **Following fields must be present in ephemeris file:**
@@ -59,5 +59,5 @@ Examples:
 - CCSDS_OEM_VERS
 - CREATION_DATE
 
-Ephemeris files can be uploaded directly in **Monitor my satellites** application in the Satellites section or via API using POST /ephemeris endpoint (when object_id and .oem file must be provided).
+Ephemeris files can be uploaded directly in **Monitor your satellites** application in the Satellites section or via API using POST /ephemeris endpoint (when object_id and .oem file must be provided).
 

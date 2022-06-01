@@ -10,7 +10,7 @@ review_in: 3 months
 # Ephemeris Data
 
 ## Purpose
-This document tackles the problem of ephemeris data in the Monitor my Satellites service.
+This document tackles the problem of ephemeris data in the Monitor your satellites service.
 
 ##Context and scope
 A lot of the context for this paper is provided in the [Ephemeris tech spike presentation] (https://docs.google.com/presentation/d/1sew3YtP3EdK4Y8L6L54xQ4cEb8ax1FHm/edit).
@@ -41,7 +41,7 @@ There are two starting points in the user journey for this design.
 
 The proposal is for each ID to consist of:
 1. Firstly, there is the Satellite Operator wanting to upload an OEM against one of their satellites. In this scenario they will be presented with a file upload component as per the GDS Design System.
-2. Secondly, we will ingest CDMs based on ephemeris data from Space-Track. The data source will be shown in the data source table. MMS can also make an outbound request to Space Track for the latest ephemeris data it holds against satellites monitored in MmS if the operator permits us to do so.
+2. Secondly, we will ingest CDMs based on ephemeris data from Space-Track. The data source will be shown in the data source table. Myscan also make an outbound request to Space Track for the latest ephemeris data it holds against satellites monitored in Mysif the operator permits us to do so.
 
 Regardless of which route the ephemeris data comes via, the following will be enforced:
 
@@ -53,9 +53,9 @@ Regardless of which route the ephemeris data comes via, the following will be en
 
 "Is it safe to assume we are only accepting KVN (keyword = value notation) OEMs?"<br>
 
-  Why no anti-virus check? If the above validations and hygiene checks have passed then the ability to upload a viral payload is mitigated, we are assured that the file is a well-formed OEM (in plain text ASCII) which will now be loaded into our service, and any downstream system will benefit from our validation and hygiene checks. The runtime environment of MmS will ensure no ephemeris data is executed in anything other than a controlled manner, e.g. we will not be allowing “.oem.exe” and allowing remote shell trojan like access.
+  Why no anti-virus check? If the above validations and hygiene checks have passed then the ability to upload a viral payload is mitigated, we are assured that the file is a well-formed OEM (in plain text ASCII) which will now be loaded into our service, and any downstream system will benefit from our validation and hygiene checks. The runtime environment of Myswill ensure no ephemeris data is executed in anything other than a controlled manner, e.g. we will not be allowing “.oem.exe” and allowing remote shell trojan like access.
 
-  For MVP we believe that the main responsibility for MmS is to act as an ephemeris message conduit, allowing the appropriate parties to upload and disclose their ephemeris data to each other. This is somewhat akin to the notion of a [message broker] (https://en.wikipedia.org/wiki/Message_broker), but with much reduced functionality. Given this, the proposition for MVP is to extract and load into structured tables the minimal data required, for this it is the OEM header part (see [5.2.2] (https://public.ccsds.org/Pubs/502x0b2c1e2.pdf)) and the object_id from the metadata. Outside this, a unique ID will be needed for each message, a pointer to the location for the message stored on a shared file-system (AWS S3 backing service) and file [checksum] (https://en.wikipedia.org/wiki/Checksum) to assure data integrity.
+  For MVP we believe that the main responsibility for Mysis to act as an ephemeris message conduit, allowing the appropriate parties to upload and disclose their ephemeris data to each other. This is somewhat akin to the notion of a [message broker] (https://en.wikipedia.org/wiki/Message_broker), but with much reduced functionality. Given this, the proposition for MVP is to extract and load into structured tables the minimal data required, for this it is the OEM header part (see [5.2.2] (https://public.ccsds.org/Pubs/502x0b2c1e2.pdf)) and the object_id from the metadata. Outside this, a unique ID will be needed for each message, a pointer to the location for the message stored on a shared file-system (AWS S3 backing service) and file [checksum] (https://en.wikipedia.org/wiki/Checksum) to assure data integrity.
 
   For MVP the minimal feature for exporting this data is to provide a download / export button for each satellite entity. This will be available to orbital analysts. When there is ephemeris data to download for a satellite/event, a green button will be clickable for orbital analysts. If the analyst chooses to click on the ephemeris data button but not download it to perform analysis, they will be prompted to explain why. whWhen there is no such data available, the button will not appear.
 
@@ -75,7 +75,7 @@ Regardless of which route the ephemeris data comes via, the following will be en
 As discussed above, initially no API will be offered, but one will be developed and implemented post MVP.
 
 ###Data Storage
-The MmS database will use a 64-bit integer to store the Conjunction Event ID. This will be inserted in the COMMENTS field for CDMs that are grouped as related to one Conjunction Event. The hashids can be decoded so it is debatable whether they need to be stored in the database, or just coded and decoded on the fly as needed.
+The Mysdatabase will use a 64-bit integer to store the Conjunction Event ID. This will be inserted in the COMMENTS field for CDMs that are grouped as related to one Conjunction Event. The hashids can be decoded so it is debatable whether they need to be stored in the database, or just coded and decoded on the fly as needed.
 
 ```
 Table ephemeris as E {
@@ -102,13 +102,13 @@ Ref: E.satellite_id - S.id
 There are no novel algorithms to describe in code or pseudocode for this design.
 
 ### Degrees of constraint
-MmS is a greenfield development so is relatively free of constraint.<br>
+Mysis a greenfield development so is relatively free of constraint.<br>
 OEM files must not be shared outside of Government & not stored for longer than 30 days (without reason).
 
 ##Alternatives considered
 The main alternatives considered were:
 
-* Loading the entire OEM into structured data tables. This was discounted because of the substantially increased complexity, with little benefit since downstream systems are already handling the variations in OEM provision already and that data analysis is also taking place downstream. This is where MmS responsibilities are limited to message validation, routing and integrity, akin to a message broker, were validated.
+* Loading the entire OEM into structured data tables. This was discounted because of the substantially increased complexity, with little benefit since downstream systems are already handling the variations in OEM provision already and that data analysis is also taking place downstream. This is where Mysresponsibilities are limited to message validation, routing and integrity, akin to a message broker, were validated.
 * An API first approach was considered, but for the sake of protecting the MVP a manual download is thought to be a viable first-step. The provision of an API thereafter will be a backlog item to prioritise based on needs.
 
 ##Cross-cutting concerns

@@ -13,11 +13,11 @@ review_in: 3 months
 This design document will propose a design for Conjunction Event Identifiers.
 
 ##Context and scope
-One of the key responsibilities identified for Monitor my Satellites (MmS) is to take a feed of Conjunction Data Messages (CDMs). It will filter down to CDMs that relate to satellites that are the responsibility of the UK licensed Satellite Operators and therefore require the co-ordination of communication about Conjunction Events and associated Orbital Analysis. Therefore MmS will group together CDMs and raise a Conjunction Event ID based on the following formula:<br>
+One of the key responsibilities identified for Monitor your satellites (MmS) is to take a feed of Conjunction Data Messages (CDMs). It will filter down to CDMs that relate to satellites that are the responsibility of the UK licensed Satellite Operators and therefore require the co-ordination of communication about Conjunction Events and associated Orbital Analysis. Therefore Myswill group together CDMs and raise a Conjunction Event ID based on the following formula:<br>
 
 Time of Closest Approach (TCA) +/- 1 sec with matching primary and secondary objects<br>
 
-The Conjunction Event ID will be inserted by MmS into the COMMENT field on the related CDMs and then make this available to the Orbital Analysts. After the Orbital Analysis has taken place off-system it will be posted back to MmS with the associated Conjunction Event ID for data matching.
+The Conjunction Event ID will be inserted by Mysinto the COMMENT field on the related CDMs and then make this available to the Orbital Analysts. After the Orbital Analysis has taken place off-system it will be posted back to Myswith the associated Conjunction Event ID for data matching.
 
 ##Goals and non-goals
 The goal of this design doc is to articulate a design for the structure of the Conjunction Event Id, not the data flow.
@@ -47,7 +47,7 @@ An example will help explain this, so here goes:<br>
 
 The first 41 bits as calculated from 12 January 2022 12:00:00.000 (UTC) with an epoch of 01 October 2021 00:00:00.000 (UTC) =  1641988800000 - 1633046400000 = 8942400000 (decimal) =<span style="background-color: #00FF00">1000010101000000100011001000000000</span>  (binary)
 
-The next 10 bits are fixed based on the generating system, e.g. MmS = 1, Aurora = 2 and so on until 1024, so <span style="background-color: #FFFF00">0000000001</span>  (binary)<br>
+The next 10 bits are fixed based on the generating system, e.g. Mys= 1, Aurora = 2 and so on until 1024, so <span style="background-color: #FFFF00">0000000001</span>  (binary)<br>
 
 The final 13 bits are an auto-incrementing sequence, and for the sake of argument let’s say this is the 2345 event in that millisecond, i.e. <span style="background-color: #FF0000">00100100101001</span> (binary)
 
@@ -64,7 +64,7 @@ Well the hashid for this number is <span style="background-color: #FFA500">5p6G1
 No public API for Conjunction Event IDs is to be exposed. Each generating system is expected to implement its own algorithm with an agreed upon generating system number.
 
 ###Data Storage
-The MmS database will use a 64-bit integer to store the Conjunction Event ID. This will be inserted in the COMMENTS field for CDMs that are grouped as related to one Conjunction Event. The hashids can be decoded so it is debatable whether they need to be stored in the database, or just coded and decoded on the fly as needed.
+The Mysdatabase will use a 64-bit integer to store the Conjunction Event ID. This will be inserted in the COMMENTS field for CDMs that are grouped as related to one Conjunction Event. The hashids can be decoded so it is debatable whether they need to be stored in the database, or just coded and decoded on the fly as needed.
 
 ###Code and pseudocode
 This is untested but based on the Instagram implementation it is envisaged that something like the following PL/PGSQL will work:
