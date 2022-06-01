@@ -3,7 +3,7 @@ host: https://sst-tech-docs.london.cloudapps.digital
 
 # Header-related options
 show_govuk_logo: true
-service_name: Monitor my Satellites - Tech Docs
+service_name: Monitor your Satellites - Tech Docs
 service_link: https://sst-tech-docs.london.cloudapps.digital/
 phase: Beta
 

@@ -14,7 +14,7 @@ This document describes the design for notifications in the Monitor my Satellite
 
 ## Context and scope
 
-One of the key benefits of Monitor my Satellites is that it provides a system of engagement between Satellite operators, Orbital Analysts, Emergency Response Teams, Regulators and the UK Space Agency on conjunction events, ephemeris data and so on. A key means of doing this is via notifications (mainly email, but also possibly SMS) and during Alpha it was decided to offload this to the central Gov.UK Notify service. The rationale behind this is that Notify has already done the heavy lifting in implementing a GDS compliant email and SMS service with several clients that make integration simple.
+One of the key benefits of Monitor your satellites is that it provides a system of engagement between Satellite operators, Orbital Analysts, Emergency Response Teams, Regulators and the UK Space Agency on conjunction events, ephemeris data and so on. A key means of doing this is via notifications (mainly email, but also possibly SMS) and during Alpha it was decided to offload this to the central Gov.UK Notify service. The rationale behind this is that Notify has already done the heavy lifting in implementing a GDS compliant email and SMS service with several clients that make integration simple.
 
 ## Goals and Non-Goals
 
@@ -25,7 +25,7 @@ One of the key benefits of Monitor my Satellites is that it provides a system of
 * Ensure satellite operators receive notifications that new analysis for an event is available based on their uploaded ephemeris data.
 * Ensure that satellite operators receive notifications when no new events meet their thresholds daily (if they select this in their settings)
 * Ensure that organisation admins receive notifications when a new member is added/removed or when a user’s permissions are changed. Ensure members receive notifications when they are added/removed.
-* Ensure all users could be notified if Space-Track or MMS goes down for a certain length of time [time TBD based on user research].
+* Ensure all users could be notified if Space-Track or Mysgoes down for a certain length of time [time TBD based on user research].
 * Ensure UKSA admins receive notifications when a new organisation is added
 * Ensure notifications sent comply with the Notify guidance.
 * Provide magic links for user authentication.
@@ -68,7 +68,7 @@ The notifications will be sent to the registered email accounts of the users and
 The email notifications will be sent using GOV.UK Notify. The service includes unlimited free emails and the ability to track how many messages are sent and find out which ones are not being delivered. There is also a performance SLA for 95% of emails and text messages to be sent within 10 seconds. It is supported by the Government Digital Service 24 hours a day, 7 days a week. This gives us confidence that email notifications will not go down suddenly for an extended period of time, which could increase the risk of a collision.
 
 ### Types of notifications
-An important mechanism that Notify uses is templates and the MmS service team have produced a template for each event that triggers a notification. The current list of events to trigger a notification is:
+An important mechanism that Notify uses is templates and the Mysservice team have produced a template for each event that triggers a notification. The current list of events to trigger a notification is:
 
 * Notifications relating to events:
   * A conjunction event is created or updated which crosses the notification thresholds for a user.
@@ -91,13 +91,13 @@ Emails to users warning of upcoming conjunction events passing user thresholds w
 ### User journey for setting notification thresholds and choices
 For operators, the journey differs between the first time they log in and subsequent times.
 
-First time logging in to Monitor my Satellites:
+First time logging in to Monitor your satellites:
 
   * Sign in via magic link</li>
   * Page where users choose whether to receive email or text notifications for various communications
   * Page where users view/update their default notification thresholds
 
-Subsequent uses of Monitor my Satellites (to adjust <b>default</b> notification settings):
+Subsequent uses of Monitor your satellites (to adjust <b>default</b> notification settings):
 
   * Log in via magic link
   * Homepage
@@ -111,7 +111,7 @@ Templates can be found in GOV.UK Notify.
 Notify’s guidance says: “You cannot convert text into a link. Research shows that people like to check a URL looks genuine before clicking the link in an email. This is hard to do if the URL is hidden behind clickable link text.”
 
 ## Alternatives considered
-Given the eligibility of the MmS service to use Notify, and its default position for eligible services, no alternatives were considered. If the choice of Notify proves to be a problem, then the exit-costs of leaving are considered low given the low investment in initial integration (via the clients available) and ongoing billing (all emails are free and SMS upto 150k annually.
+Given the eligibility of the Mysservice to use Notify, and its default position for eligible services, no alternatives were considered. If the choice of Notify proves to be a problem, then the exit-costs of leaving are considered low given the low investment in initial integration (via the clients available) and ongoing billing (all emails are free and SMS upto 150k annually.
 
 IE no native app
 ## Cross-cutting concerns
@@ -128,7 +128,7 @@ There’s an hourly limit of:
 ## Document history:
 Update: we are no longer allowing users to set thresholds per satellite. User journey would have looked like:
 
-Subsequent uses of Monitor my Satellites (to adjust individual satellite notification settings):
+Subsequent uses of Monitor your satellites (to adjust individual satellite notification settings):
 
   1. Log in via magic link
   2. Homepage
