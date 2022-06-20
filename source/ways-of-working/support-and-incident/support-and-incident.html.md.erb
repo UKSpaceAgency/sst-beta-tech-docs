@@ -27,13 +27,13 @@ Up to this point, UKSA have published an email address of monitoryoursatellites@
 In order for this process to work, UKSA will either need to allow The PSC staff to have access to this mailbox, or automatically forward emails onto a specific support email address (potentially the shared mailbox uksa.support@thepsc.co.uk).
 
 #### The proposed support process is that:
-1. The email is forwarded to a shared mailbox accessible to all support team members.
-2. This provokes a workflow which alerts a Slack channel, and also sends out an automated response, acknowledging the user’s report.
-3. The on-call team member is tasked to always be alert to slack channel inputs.
+1. The email is forwarded from monitoryoursatellites@ukspaceagency.gov.uk to a shared mailbox accessible to all support team members.
+2. This provokes a workflow which includes updating the #uksa-sst-beta-alerts-prod Slack channel and acknowledging the user’s report via email.
+3. The on-call team member is tasked to always be alert to Slack channel inputs especially on: #uksa-sst-beta-alerts-prod on The PSC Slack workspace 
 4. They analyse the request and follow up as appropriate.
 5. Response time and action determined by classification of the issue identified.
 6. If appropriate, actions taken by on-call team members are determined by runbooks.
-7. If necessary, a JIRA issue is created with the issue and actions taken and/or required.
+7. If necessary, a Jira issue is created with the issue and actions taken and/or required.
 8. The user is notified of actions taken to address the issue.
 
 ### Support and response expectations and clarifications
@@ -52,10 +52,10 @@ Incidents or problems with the service may be detected from a number of differen
 We propose to continue to use monitoryoursatellites@ukspaceagency.gov.uk as the primary tool for reporting problems. As such, this must be made to all users when they register.
 
 #### Upon detection of a problem the following process should be followed:
-1. Email is generated and sent to a shared mailbox accessible to all support team members.
-2. This provokes a workflow, which alerts a Slack channel, and also sends out an automated response, acknowledging the user’s report.
-3. The on-call team member (as determined by a rota) is tasked to always be alert to Slack channel inputs.
-4. The issue is investigated and classified and, if necessary, all stakeholders are notified of the issue through the service status page.
+1. Email is generated and sent to a shared mailbox accessible to all support team members - either by on support team member if detected first or by user.
+2. This provokes a workflow which includes updating the #uksa-sst-beta-alerts-prod Slack channel and acknowledging the user’s report via email.
+3. The on-call team member (as determined by a rota) is tasked to always be alert to Slack channel inputs, especially on: #uksa-sst-beta-alerts-prod on The PSC Slack workspace
+4. The issue is investigated and classified and, if necessary, all stakeholders are notified of the issue.
 5. Response time and action determined by classification of the issue identified.
 6. If appropriate, actions taken by on-call team members are determined by runbooks.
 7. The components affected by the incident are updated on the service status page and progressed through:
@@ -63,11 +63,11 @@ We propose to continue to use monitoryoursatellites@ukspaceagency.gov.uk as the 
   * Identified
   * Monitoring
   * Resolved
-8. If necessary, a JIRA issue is created with the issue and actions taken and/or required.
+8. If necessary, a Jira issue is created with the issue and actions taken and/or required.
 9. Incident review is conducted by the team to establish the route cause and possible preventive actions explored.
 
 ## Limits to support
-1. In all instances we will attempt to resolve P1 problems as soon as possible; but in the worst case scenario other solutions will be considered, including rolling back to the previous version; and in the worst case making the service inaccessible until all the development team are available.
+1. In all instances we will attempt to resolve P1 problems as soon as possible; but in the worst case scenario other solutions will be considered, including rolling back to the previous version; and in the worst case making the service inaccessible until appropriate development team members are available.
 2. Code changes/fixes will not be available over weekends but resolution of P1 issues will be attempted (for example, roll back or redeployment).
 3. User management will not be handled out of office hours.
 
