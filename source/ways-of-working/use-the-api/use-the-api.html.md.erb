@@ -22,15 +22,7 @@ API can be accessed in Swagger/OpenAPI tool: [https://api.monitor-your-satellite
 There’s also a ReDOC version of the documentation (easier to read but not interactive): [https://api.monitor-your-satellites.space/redoc](https://api.monitor-your-satellites.space/redoc)
 
 ##Authentication
-<div class="govuk-warning-text">
-  <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-  <strong class="govuk-warning-text__text">
-    <span class="govuk-warning-text__assistive">Please note</span>
-     Generating the `client_id` and `client_secret` will be integrated in coming weeks. Until then contactmonitoryoursatellites@ukspaceagency.gov.uk for access.
-  </strong>
-</div>
-
-After generating `client_id` and `client_secret` you can get the Bearer token sending following request:
+Go to https://www-dev.monitor-my-satellites.space/account/credentials to generate your user credentials (`client_id` and `client_secret`) which you can exchange for the Bearer token by sending following request:
 
 ```
 curl --request POST \
