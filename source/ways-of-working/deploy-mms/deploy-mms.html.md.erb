@@ -3,10 +3,62 @@ title: How to deploy Monitor your satellites
 weight: 20
 parent: /ways-of-working
 hide_in_navigation: true
-last_reviewed_on: 2022-04-06
+last_reviewed_on: 2022-07-02
 review_in: 3 months
 ---
 
-# How to deploy Monitor your satellites
+# How to deploy Monitor Your Satellites
+
+Monitor Your Satellites (MYS) manages most of its resources through Terraform, this is the repo
+[UKSpaceAgency/sst-beta-infra](https://github.com/UKSpaceAgency/sst-beta-infra).
+
+Everything that is automated comes through executing the GitHub Workflow
+[Deploy to PaaS](https://github.com/UKSpaceAgency/sst-beta-infra/blob/main/.github/workflows/deploy-to-paas.yml).
+
+The sequence for starting the deployment is to:
+
+1. Navigate to the Actions tab
+2. Select the Deploy to Paas workflow
+3. Run the workflow
+
+![GitHub Action Image](deploy-to-paas-1.png)
+
+The workflow accepts two inputs:
+
+1. Invoker - enter the command to execute, valid values are:
+  * `plan` - executes a `terraform plan`, which creates an execution plan and facilitates previewing of changes.
+  * `apply` - executes a `terraform apply`, which generates a new Terraform plan and executes it. There are
+    aliases `front-end` and `back-end` which indicate if this is invoked from workflows in those respective repos.
+2. Environment - enter the environment to execute against, valid values are:
+  * `dev` - Development
+  * `demo` - Demonstration / Staging / Test
+  * `prod` - Production
+
+**Note:** Don't forget to hit the "Run Workflow" button
+
+![Run Workflow](deploy-to-paas-2.png)
+
+This now brings you to the job summary page, where the job's execution and completion status are given. The image
+below shows a successfully completed job:
+
+![Successful job](deploy-to-paas-3.png)
+
+It is possible to click-through to the defined jobs.
+
+1. Objective - this is the first job and provides an output of the inputs for the workflow execution.
+![Objective job](deploy-to-paas-4.png)
+2. Deploy - this is the second job and outputs the log from the terraform execution.
+![Deploy job](deploy-to-paas-5.png)
+
+If all is successful then the following is seen:
+
+![Successful execution](deploy-to-paas-6.png)
+
+But if the job fails then this is seen:
+
+![Failed execution](deploy-to-paas-7.png)
+
+In this case, logs need to be read and the reason for failure fixed. It's probably time to contact the Service Team.
+
 
 <%= partial 'partials/_links' %>
