@@ -2,7 +2,7 @@
 title: Containers
 weight: 2
 parent: /architecture
-last_reviewed_on: 2021-10-15
+last_reviewed_on: 2022-07-03
 review_in: 3 months
 ---
 
@@ -13,5 +13,13 @@ Once the fit of the system in the overall landscape is understood it useful to z
 ![Containers](images/Containers.png)
 
 Although this diagram isn't particularly interesting in it's own right, it does highlight a separation of concerns.
+
+Some things to note are:
+
+* The API and SpaceTrack Applications are the only ones that write to the persistence tier (database and filesystem).
+* The Web Application is an API client written for MYS users to browse, but they can directly integrate with the API with
+their own client if preferred.
+* The SpaceTrack Application has one concern, to synchronize data in MYS with SpaceTrack.
+* Only the Web and API applications are routed and available over the Internet.
 
 <%= partial 'partials/links' %>

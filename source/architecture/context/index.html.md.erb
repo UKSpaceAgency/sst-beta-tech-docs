@@ -2,7 +2,7 @@
 title: Context
 weight: 1
 parent: /architecture
-last_reviewed_on: 2021-10-15
+last_reviewed_on: 2022-07-03
 review_in: 3 months
 ---
 
@@ -11,5 +11,13 @@ review_in: 3 months
 This context diagrams is a good starting point by visualising the big picture of the context the service operates in.
 
 ![System Context](images/SystemContext.png)
+
+This is technically a Landscape diagram, since it shows the CAA regulatory role, but that is the only difference from
+the Context diagram so has be used for brevity.
+
+It is noteworthy that the MYS software system consumes third-party SaaS services for commodity / utility features such as,
+web analytics ([Piwik Pro](https://piwik.pro/)), logging ([Logit.io](https://logit.io/)), security alerting
+([Sentry](https://sentry.io/)), authentication ([Auth0](https://auth0.com/)), source code versioning
+and CI/CD pipelines ([GitHub](https://github.com/)).
 
 <%= partial 'partials/links' %>

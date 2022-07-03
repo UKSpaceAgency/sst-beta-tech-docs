@@ -1,0 +1,398 @@
+{
+  "id" : 1,
+  "name" : "MYS",
+  "description" : "Monitor Your Satellites",
+  "revision" : 0,
+  "lastModifiedDate" : "2022-07-03T18:02:25Z",
+  "lastModifiedAgent" : "structurizr-web/2755/diagram",
+  "properties" : {
+    "structurizr.dsl" : "d29ya3NwYWNlICJNWVMiICJNb25pdG9yIFlvdXIgU2F0ZWxsaXRlcyIgewoKICAgICFpZGVudGlmaWVycyBoaWVyYXJjaGljYWwKCiAgICBtb2RlbCB7CiAgICAgICAgc3BhY2VUcmFjayA9IHBlcnNvbiAiU3BhY2VUcmFjayIKICAgICAgICBjYWEgPSBwZXJzb24gIkNpdmlsaWFuIEF2aWF0aW9uIEF1dGhvcml0eSIKICAgICAgICBzYXRlbGxpdGVPcGVyYXRvcnMgPSBwZXJzb24gIlNhdGVsbGl0ZSBPcGVyYXRvcnMiCiAgICAgICAgb3JiaXRhbEFuYWx5c3RzID0gcGVyc29uICJPcmJpdGFsIEFuYWx5c3RzIgogICAgICAgIHVrU0EgPSBwZXJzb24gIlVLIFNwYWNlIEFnZW5jeSIKCiAgICAgICAgZW50ZXJwcmlzZSAiR292LlVLIFBhYVMiIHsKCiAgICAgICAgICAgIG15cyA9IHNvZnR3YXJlU3lzdGVtICJNb25pdG9yIFlvdXIgU2F0ZWxsaXRlcyIgewoKICAgICAgICAgICAgICAgIHdlYiA9IGNvbnRhaW5lciAiV2ViIEFwcGxpY2F0aW9uIiAibm9kZUpTIGluIE54IEZyYW1ld29yayIKICAgICAgICAgICAgICAgIGFwaSA9IGNvbnRhaW5lciAiQVBJIEFwcGxpY2F0aW9uIiAiUHl0aG9uIGluIEZhc3RBUEkgRnJhbWV3b3JrIgogICAgICAgICAgICAgICAgc3BhY2VUcmFjayA9IGNvbnRhaW5lciAiU3BhY2VUcmFjayBBcHBsaWNhdGlvbiIgIlB5dGhvbiBpbiBGYXN0QVBJIEZyYW1ld29yayIKICAgICAgICAgICAgICAgIGRiID0gY29udGFpbmVyICJEYXRhYmFzZSIgIlBvc3RncmVzIDEzIGluIFJEUyIKICAgICAgICAgICAgICAgIHMzID0gY29udGFpbmVyICJGaWxlc3RvcmUiICJzMyBCdWNrZXQiCgogICAgICAgICAgICAgICAgLy9Db250YWluZXIgcmVsYXRpb25zaGlwcwogICAgICAgICAgICAgICAgd2ViIC0+IGFwaSAiQ2FsbHMiCiAgICAgICAgICAgICAgICBteXMuc3BhY2VUcmFjayAtPiBkYiAiVXNlcyBmb3Igc3RydWN0dXJlZCBkYXRhIgogICAgICAgICAgICAgICAgbXlzLnNwYWNlVHJhY2sgLT4gczMgIlVzZXMgZm9yIHVuc3RydWN0dXJlZCBkYXRhIgogICAgICAgICAgICAgICAgYXBpIC0+IGRiICJVc2VzIGZvciBzdHJ1Y3R1cmVkIGRhdGEiCiAgICAgICAgICAgICAgICBhcGkgLT4gczMgIlVzZXMgZm9yIHVuc3RydWN0dXJlZCBkYXRhIgoKICAgICAgICAgICAgfQogICAgICAgIH0KCiAgICAgICAgYXV0aDAgPSBzb2Z0d2FyZVN5c3RlbSAiQXV0aDAiCiAgICAgICAgcGl3aWtQcm8gPSBzb2Z0d2FyZVN5c3RlbSAiUGl3aWsgUHJvIgogICAgICAgIGxvZ2l0SU8gPSBzb2Z0d2FyZVN5c3RlbSAiTG9naXRJTyIKICAgICAgICBzZW50cnkgPSBzb2Z0d2FyZVN5c3RlbSAiU2VudHJ5IgogICAgICAgIGdpdEh1YiA9IHNvZnR3YXJlU3lzdGVtICJHaXRIdWIiCgogICAgICAgIC8vU29mdHdhcmUgUmVsYXRpb25zaGlwcwogICAgICAgIG15cyAtPiBhdXRoMCAiVXNlcyBmb3IgQXV0aGVudGljYXRpb24iCiAgICAgICAgbXlzIC0+IHBpd2lrUHJvICJVc2VzIGZvciBXZWIgQW5hbHl0aWNzIgogICAgICAgIG15cyAtPiBsb2dpdElPICJVc2VzIGZvciBMb2dnaW5nIgogICAgICAgIG15cyAtPiBzZW50cnkgIlVzZXMgZm9yIFNlY3VyaXR5IExvZ2dpbmcgYW5kIEFsZXJ0aW5nIgogICAgICAgIG15cyAtPiBnaXRIdWIgIlVzZXMgZm9yIENvZGUgVmVyc2lvbmluZyBhbmQgQ0kvQ0QiCgogICAgICAgIC8vUGVvcGxlIFJlbGF0aW9uc2hpcHMKICAgICAgICBzcGFjZVRyYWNrIC0+IG15cyAiRmVlZHMgQ29uanVuY3Rpb24gTWVzc2FnZXMiCiAgICAgICAgY2FhIC0+IHVrU0EgIlJlZ3VsYXRlcyIKICAgICAgICBjYWEgLT4gc2F0ZWxsaXRlT3BlcmF0b3JzICJSZWd1bGF0ZXMiCiAgICAgICAgc2F0ZWxsaXRlT3BlcmF0b3JzIC0+IG15cyAiRmVlZHMgU2F0ZWxsaXRlIEVwaGVtZXJpcyIKICAgICAgICBteXMgLT4gc2F0ZWxsaXRlT3BlcmF0b3JzICJOb3RpZmllcyBmb3IgQ29uanVuY3Rpb24gRXZlbnRzIgogICAgICAgIHVrU0EgLT4gbXlzICJPcGVyYXRlcyIKICAgICAgICBvcmJpdGFsQW5hbHlzdHMgLT4gbXlzICJGZWVkcyByZWZpbmVkIENvbmp1bmN0aW9uIEV2ZW50IGFuYWx5c2lzIgogICAgICAgIG15cyAtPiBvcmJpdGFsQW5hbHlzdHMgIk5vdGlmaWVzIGZvciBDb25qdW5jdGlvbiBFdmVudHMiCiAgICAgICAgb3JiaXRhbEFuYWx5c3RzIC0+IHVrU0EgIldvcmsgZm9yIgogICAgfQogICAgdmlld3MgewogICAgICAgIHRoZW1lIGRlZmF1bHQKCiAgICAgICAgc3lzdGVtTGFuZHNjYXBlICJTeXN0ZW1MYW5kc2NhcGUiIHsKICAgICAgICAgICAgaW5jbHVkZSAqCiAgICAgICAgfQoKICAgICAgICBjb250YWluZXIgbXlzICJNb25pdG9yWW91clNhdGVsbGl0ZXMiIHsKICAgICAgICAgICAgaW5jbHVkZSAqCiAgICAgICAgfQoKICAgIH0KfQo="
+  },
+  "configuration" : { },
+  "model" : {
+    "enterprise" : {
+      "name" : "Gov.UK PaaS"
+    },
+    "people" : [ {
+      "id" : "2",
+      "tags" : "Element,Person",
+      "name" : "Civilian Aviation Authority",
+      "relationships" : [ {
+        "id" : "29",
+        "tags" : "Relationship",
+        "sourceId" : "2",
+        "destinationId" : "3",
+        "description" : "Regulates"
+      }, {
+        "id" : "28",
+        "tags" : "Relationship",
+        "sourceId" : "2",
+        "destinationId" : "5",
+        "description" : "Regulates"
+      } ],
+      "location" : "External"
+    }, {
+      "id" : "4",
+      "tags" : "Element,Person",
+      "name" : "Orbital Analysts",
+      "relationships" : [ {
+        "id" : "33",
+        "tags" : "Relationship",
+        "sourceId" : "4",
+        "destinationId" : "6",
+        "description" : "Feeds refined Conjunction Event analysis"
+      }, {
+        "id" : "35",
+        "tags" : "Relationship",
+        "sourceId" : "4",
+        "destinationId" : "5",
+        "description" : "Work for"
+      } ],
+      "location" : "External"
+    }, {
+      "id" : "1",
+      "tags" : "Element,Person",
+      "name" : "SpaceTrack",
+      "relationships" : [ {
+        "id" : "27",
+        "tags" : "Relationship",
+        "sourceId" : "1",
+        "destinationId" : "6",
+        "description" : "Feeds Conjunction Messages"
+      } ],
+      "location" : "External"
+    }, {
+      "id" : "5",
+      "tags" : "Element,Person",
+      "name" : "UK Space Agency",
+      "relationships" : [ {
+        "id" : "32",
+        "tags" : "Relationship",
+        "sourceId" : "5",
+        "destinationId" : "6",
+        "description" : "Operates"
+      } ],
+      "location" : "External"
+    }, {
+      "id" : "3",
+      "tags" : "Element,Person",
+      "name" : "Satellite Operators",
+      "relationships" : [ {
+        "id" : "30",
+        "tags" : "Relationship",
+        "sourceId" : "3",
+        "destinationId" : "6",
+        "description" : "Feeds Satellite Ephemeris"
+      } ],
+      "location" : "External"
+    } ],
+    "softwareSystems" : [ {
+      "id" : "20",
+      "tags" : "Element,Software System",
+      "name" : "Sentry",
+      "location" : "External",
+      "documentation" : { }
+    }, {
+      "id" : "6",
+      "tags" : "Element,Software System",
+      "name" : "Monitor Your Satellites",
+      "relationships" : [ {
+        "id" : "22",
+        "tags" : "Relationship",
+        "sourceId" : "6",
+        "destinationId" : "17",
+        "description" : "Uses for Authentication"
+      }, {
+        "id" : "25",
+        "tags" : "Relationship",
+        "sourceId" : "6",
+        "destinationId" : "20",
+        "description" : "Uses for Security Logging and Alerting"
+      }, {
+        "id" : "31",
+        "tags" : "Relationship",
+        "sourceId" : "6",
+        "destinationId" : "3",
+        "description" : "Notifies for Conjunction Events"
+      }, {
+        "id" : "34",
+        "tags" : "Relationship",
+        "sourceId" : "6",
+        "destinationId" : "4",
+        "description" : "Notifies for Conjunction Events"
+      }, {
+        "id" : "26",
+        "tags" : "Relationship",
+        "sourceId" : "6",
+        "destinationId" : "21",
+        "description" : "Uses for Code Versioning and CI/CD"
+      }, {
+        "id" : "23",
+        "tags" : "Relationship",
+        "sourceId" : "6",
+        "destinationId" : "18",
+        "description" : "Uses for Web Analytics"
+      }, {
+        "id" : "24",
+        "tags" : "Relationship",
+        "sourceId" : "6",
+        "destinationId" : "19",
+        "description" : "Uses for Logging"
+      } ],
+      "location" : "Internal",
+      "containers" : [ {
+        "id" : "7",
+        "tags" : "Element,Container",
+        "name" : "Web Application",
+        "description" : "nodeJS in Nx Framework",
+        "relationships" : [ {
+          "id" : "12",
+          "tags" : "Relationship",
+          "sourceId" : "7",
+          "destinationId" : "8",
+          "description" : "Calls"
+        } ]
+      }, {
+        "id" : "10",
+        "tags" : "Element,Container",
+        "name" : "Database",
+        "description" : "Postgres 13 in RDS"
+      }, {
+        "id" : "11",
+        "tags" : "Element,Container",
+        "name" : "Filestore",
+        "description" : "s3 Bucket"
+      }, {
+        "id" : "9",
+        "tags" : "Element,Container",
+        "name" : "SpaceTrack Application",
+        "description" : "Python in FastAPI Framework",
+        "relationships" : [ {
+          "id" : "14",
+          "tags" : "Relationship",
+          "sourceId" : "9",
+          "destinationId" : "11",
+          "description" : "Uses for unstructured data"
+        }, {
+          "id" : "13",
+          "tags" : "Relationship",
+          "sourceId" : "9",
+          "destinationId" : "10",
+          "description" : "Uses for structured data"
+        } ]
+      }, {
+        "id" : "8",
+        "tags" : "Element,Container",
+        "name" : "API Application",
+        "description" : "Python in FastAPI Framework",
+        "relationships" : [ {
+          "id" : "16",
+          "tags" : "Relationship",
+          "sourceId" : "8",
+          "destinationId" : "11",
+          "description" : "Uses for unstructured data"
+        }, {
+          "id" : "15",
+          "tags" : "Relationship",
+          "sourceId" : "8",
+          "destinationId" : "10",
+          "description" : "Uses for structured data"
+        } ]
+      } ],
+      "documentation" : { }
+    }, {
+      "id" : "19",
+      "tags" : "Element,Software System",
+      "name" : "LogitIO",
+      "location" : "External",
+      "documentation" : { }
+    }, {
+      "id" : "21",
+      "tags" : "Element,Software System",
+      "name" : "GitHub",
+      "location" : "External",
+      "documentation" : { }
+    }, {
+      "id" : "18",
+      "tags" : "Element,Software System",
+      "name" : "Piwik Pro",
+      "location" : "External",
+      "documentation" : { }
+    }, {
+      "id" : "17",
+      "tags" : "Element,Software System",
+      "name" : "Auth0",
+      "location" : "External",
+      "documentation" : { }
+    } ]
+  },
+  "documentation" : { },
+  "views" : {
+    "systemLandscapeViews" : [ {
+      "key" : "SystemLandscape",
+      "order" : 1,
+      "paperSize" : "A3_Landscape",
+      "dimensions" : {
+        "width" : 4566,
+        "height" : 2216
+      },
+      "enterpriseBoundaryVisible" : true,
+      "elements" : [ {
+        "id" : "1",
+        "x" : 600,
+        "y" : 875
+      }, {
+        "id" : "2",
+        "x" : 2017,
+        "y" : 115
+      }, {
+        "id" : "3",
+        "x" : 600,
+        "y" : 115
+      }, {
+        "id" : "4",
+        "x" : 3435,
+        "y" : 885
+      }, {
+        "id" : "5",
+        "x" : 3435,
+        "y" : 115
+      }, {
+        "id" : "6",
+        "x" : 1980,
+        "y" : 957
+      }, {
+        "id" : "17",
+        "x" : 575,
+        "y" : 1670
+      }, {
+        "id" : "18",
+        "x" : 1277,
+        "y" : 1670
+      }, {
+        "id" : "19",
+        "x" : 1979,
+        "y" : 1670
+      }, {
+        "id" : "20",
+        "x" : 2681,
+        "y" : 1670
+      }, {
+        "id" : "21",
+        "x" : 3385,
+        "y" : 1670
+      } ],
+      "relationships" : [ {
+        "id" : "32"
+      }, {
+        "id" : "31",
+        "vertices" : [ {
+          "x" : 1295,
+          "y" : 775
+        } ]
+      }, {
+        "id" : "30",
+        "vertices" : [ {
+          "x" : 1735,
+          "y" : 610
+        } ]
+      }, {
+        "id" : "29"
+      }, {
+        "id" : "28"
+      }, {
+        "id" : "27"
+      }, {
+        "id" : "26",
+        "vertices" : [ {
+          "x" : 3385,
+          "y" : 1635
+        } ]
+      }, {
+        "id" : "25",
+        "vertices" : [ {
+          "x" : 2575,
+          "y" : 1430
+        } ]
+      }, {
+        "id" : "24"
+      }, {
+        "id" : "35"
+      }, {
+        "id" : "23"
+      }, {
+        "id" : "34",
+        "vertices" : [ {
+          "x" : 2915,
+          "y" : 925
+        } ]
+      }, {
+        "id" : "22"
+      }, {
+        "id" : "33",
+        "vertices" : [ {
+          "x" : 2910,
+          "y" : 1220
+        } ]
+      } ]
+    } ],
+    "containerViews" : [ {
+      "softwareSystemId" : "6",
+      "key" : "MonitorYourSatellites",
+      "order" : 2,
+      "paperSize" : "A4_Portrait",
+      "dimensions" : {
+        "width" : 1858,
+        "height" : 2158
+      },
+      "externalSoftwareSystemBoundariesVisible" : true,
+      "elements" : [ {
+        "id" : "11",
+        "x" : 328,
+        "y" : 1492
+      }, {
+        "id" : "7",
+        "x" : 1078,
+        "y" : 292
+      }, {
+        "id" : "8",
+        "x" : 1078,
+        "y" : 892
+      }, {
+        "id" : "9",
+        "x" : 328,
+        "y" : 892
+      }, {
+        "id" : "10",
+        "x" : 1078,
+        "y" : 1492
+      } ],
+      "relationships" : [ {
+        "id" : "16",
+        "vertices" : [ {
+          "x" : 705,
+          "y" : 1320
+        } ]
+      }, {
+        "id" : "15"
+      }, {
+        "id" : "14"
+      }, {
+        "id" : "13",
+        "vertices" : [ {
+          "x" : 1105,
+          "y" : 1295
+        } ]
+      }, {
+        "id" : "12"
+      } ]
+    } ],
+    "configuration" : {
+      "branding" : { },
+      "styles" : { },
+      "themes" : [ "https://static.structurizr.com/themes/default/theme.json" ],
+      "terminology" : { },
+      "lastSavedView" : "MonitorYourSatellites"
+    }
+  }
+}
