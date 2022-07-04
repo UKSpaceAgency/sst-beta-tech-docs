@@ -124,8 +124,12 @@ GEM
     middleman-syntax (3.2.0)
       middleman-core (>= 3.2)
       rouge (~> 3.2)
+    mini_portile2 (2.6.1)
     minitest (5.14.4)
     multi_json (1.15.0)
+    nokogiri (1.12.4)
+      mini_portile2 (~> 2.6.1)
+      racc (~> 1.4)
     nokogiri (1.12.4-arm64-darwin)
       racc (~> 1.4)
     openapi3_parser (0.9.0)
@@ -164,13 +168,17 @@ GEM
       parslet (>= 1.8.0, < 3.0.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
+    tzinfo-data (1.2021.5)
+      tzinfo (>= 1.0.0)
     uglifier (3.2.0)
       execjs (>= 0.3.0, < 3)
+    wdm (0.1.1)
     webrick (1.7.0)
     zeitwerk (2.4.2)
 
 PLATFORMS
   universal-darwin-21
+  x64-mingw-ucrt
   x64-mingw32
   x86_64-linux
 
@@ -181,4 +189,4 @@ DEPENDENCIES
   wdm (~> 0.1.0)
 
 BUNDLED WITH
-   2.2.30
+   2.3.14
