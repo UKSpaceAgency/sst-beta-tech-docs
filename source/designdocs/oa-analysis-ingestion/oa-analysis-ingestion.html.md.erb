@@ -16,15 +16,15 @@ UKSA orbital analysts complete event analysis on conjunction events that crossed
 
 ##Goals and non-goals
 
-The goal of this design doc is to articulate a design for the ingestion of UKSA OA analysis into MmS.
+The goal of this design doc is to articulate a design for the ingestion of UKSA OA analysis into Mys.
 
 ### Goals
 
-* OAs need to be able to share their analysis with users of MmS
+* OAs need to be able to share their analysis with users of Mys
 * OA analysis must be uploaded and stored securely
 * Validation mechanisms must be in place to ensure file is safe & valid
 * OA analysis must be stored in a way that allows it to be monitored and audited
-* Users of Mysneed to know when the data that they are seeing is from OA analysis (and how and when this analysis was conducted - at MVP, Myswill provide standard text & at post-MVP OAs can add comments or operators can contact an analyst for more information)
+* Users of Mys need to know when the data that they are seeing is from OA analysis (and how and when this analysis was conducted - at MVP, Mys will provide standard text & at post-MVP OAs can add comments or operators can contact an analyst for more information)
 
 ### Non-Goals
 
@@ -70,7 +70,7 @@ The table below contains the data required from the OAs:
 - Ability to add sources of activeness and manoeuvrability data
 
 ###File upload
-1. <b>OA will be able to upload a JSON file into MmS</b>
+1. <b>OA will be able to upload a JSON file into Mys</b>
 Via manual log-in or API (post-MVP)
 
 * At MVP, this will involve a manual file upload via the web interface
@@ -143,7 +143,7 @@ Operator and Government users receive an email from GOV.UK Notify saying the eve
 
 Note, users will receive notifications for any analysis that is submitted by the UKSA OAs irrelevant of their thresholds.
 
-3.<b> Contents of the file are extracted and integrated into Mysdatabase event table.</b>
+3.<b> Contents of the file are extracted and integrated into Mys database event table.</b>
 
 Analysis is input into the UKSA columns in the event summary table, the additional event information table & data sources table, for example:
 
@@ -173,7 +173,7 @@ OA analysis will be stored indefinitely against an event. Each update will be st
 * API - direct API integration with OA workbench
   * Too difficult to implement in this time-frame
   * Integration with OA workbench is not future-proof as these tools may change in time
-* Email - allow OAs to attach file to an email to MmS
+* Email - allow OAs to attach file to an email to Mys
 
 
 ##Cross-cutting concerns

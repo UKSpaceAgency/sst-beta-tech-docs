@@ -25,14 +25,14 @@ review_in: 3 months
 ### Questions:
 
 #### 1. Satisfaction rating: “How satisfied were you with the service you received today?”
-Rating ‘Very unsatisfied’,’Dissatisfied’, ‘neither satisfied or dissatisfied’, ‘Satisfied’ or ‘Very satisfied’. Users can only choose one option using the radio component.
+Rating ‘Very dissatisfied’,’Dissatisfied’, ‘neither satisfied or dissatisfied’, ‘Satisfied’ or ‘Very satisfied’. Users can only choose one option using the radio component.
 
 #### 2. Free text comments: “Can you provide more detail?”
 Up to [2000 characters]
 
-The design of the Mysfeedback form (see screenshot below) is based on GDS advice on how to collect user's feedback.
+The design of the Mys feedback form (see screenshot below) is based on GDS advice on how to collect user's feedback.
 
-![Design of Mysfeedback form](designdocs/feedback-form/image-of-feedback-form-design.png "Design of Mysfeedback form")
+![Design of Mys feedback form](designdocs/feedback-form/feedbackform.png "Design of Mys feedback form")
 
 ## Back end design
 
@@ -47,7 +47,7 @@ The design of the Mysfeedback form (see screenshot below) is based on GDS advice
 | Comments          | Free text up to [2000] characters                                          |
 | Time submitted    | Timestamp dd/mm/yyyy hh:mm                                                 |
 
-We chose to use the third party service **getform.io** to store the feedback form data, during alpha and the private beta. This was chosen because it is much quicker than waiting for a GOV.UK feedback form (so we can begin to collect feedback as soon as possible from operators), and it will allow the business analysts to access the data more easily than if the Mysdevelopers built their own form back-end. The costs ($10 a month for the 2-3 months the form will run) are minimal. We chose the $10 a month version because the free version did not give access to enough API endpoints and only allowed the form to be filled out 50 times per month.
+We chose to use the third party service **getform.io** to store the feedback form data, during alpha and the private beta. This was chosen because it is much quicker than waiting for a GOV.UK feedback form (so we can begin to collect feedback as soon as possible from operators), and it will allow the business analysts to access the data more easily than if the Mys developers built their own form back-end. The costs ($10 a month for the 2-3 months the form will run) are minimal. We chose the $10 a month version because the free version did not give access to enough API endpoints and only allowed the form to be filled out 50 times per month.
 
 Contact the team from The PSC for log-in details.
 

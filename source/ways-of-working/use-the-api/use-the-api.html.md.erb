@@ -17,20 +17,12 @@ The REST API is intended to be used for integrating with other web applications,
 ##API URL and interactive documentation
 
 To access the API, the API Key is needed. Users can also use the API with their Monitor your satellites credentials.
-API can be accessed in Swagger/OpenAPI tool: [https://api.monitor-my-satellites.space/docs](https://api.monitor-my-satellites.space/docs)
+API can be accessed in Swagger/OpenAPI tool: [https://api.monitor-your-satellites.space/docs](https://api.monitor-your-satellites.space/docs)
 
-There’s also a ReDOC version of the documentation (easier to read but not interactive): [https://api.monitor-my-satellites.space/redoc](https://api.monitor-my-satellites.space/redoc)
+There’s also a ReDOC version of the documentation (easier to read but not interactive): [https://api.monitor-your-satellites.space/redoc](https://api.monitor-your-satellites.space/redoc)
 
 ##Authentication
-<div class="govuk-warning-text">
-  <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-  <strong class="govuk-warning-text__text">
-    <span class="govuk-warning-text__assistive">Please note</span>
-     Generating the `client_id` and `client_secret` will be integrated in coming weeks. Until then contactmonitormysatellites@ukspaceagency.gov.uk for access.
-  </strong>
-</div>
-
-After generating `client_id` and `client_secret` you can get the Bearer token sending following request:
+Go to https://www-dev.monitor-my-satellites.space/account/credentials to generate your user credentials (`client_id` and `client_secret`) which you can exchange for the Bearer token by sending following request:
 
 ```
 curl --request POST \
@@ -39,7 +31,7 @@ curl --request POST \
   --data '{"client_id":"...","client_secret":"...","audience":"monitor-your-satellites.service.gov.uk/api","grant_type":"client_credentials"}'
 ```
 
-This request will return response in following format:
+This request will return a response in the following format:
 
 ```
 {
@@ -48,7 +40,7 @@ This request will return response in following format:
 }
 ```
 
-The `access_token` value should be used to authorize requests to protected endpoints.
+The `access_token` value should be used to authorise requests to protected endpoints.
 
 ##API methods
 
@@ -71,7 +63,7 @@ Provides a list of events with metadata (userInterest column). Basically it’s 
 
 `GET /v1/events/{event_id}/summary`
 
-Gets basic information about the event with provided short ID (in the format of bmqvgb-kkjodz-pgnnc). It’s useful when a user searches for SpaceTrack’s CDM ID.
+Gets basic information about the event with provided short ID (in the format of bmqvgb-kkjod-pgnnc). It’s useful when a user searches for SpaceTrack’s CDM ID.
 
 `GET /v1/events/{event_id}/data-sources`
 
