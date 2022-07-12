@@ -1,0 +1,36 @@
+---
+title: Components
+weight: 3
+parent: /architecture
+last_reviewed_on: 2022-07-12
+review_in: 3 months
+---
+
+# Components
+
+In this view the components for the API Application are in focus. This is due to it being the core container for the
+logic in the service, other containers such as the Web Application mirror its components, or in the case of the
+SpaceTrack Application are a subset.
+
+[OpenApi](https://swagger.io/specification/) documentation is available directly on the [API server](https://api.monitor-my-satellites.space/docs#/).
+
+![Components](images/Components.png)
+
+The components for Monitor Your Satellites are:
+
+* **Satellite** - this component allows the retrieval of Satellites information from MyS. It can also trigger data
+import from SpaceTrack and ESA Discos.
+* **Satellite Conjunction Event** - this component allows the retrieval of conjunctions events raised by MyS for Satellites
+that it is monitoring. Additional details of data sources for the event and the associated SpaceTrack CDM ID are also
+available.
+* **CDMS** - this component manages the SpaceTrack integration. It can trigger a new synchronisation and return the latest
+CDM ID imported.
+* **Analyses** - this component can retrieve analyses from Orbital Analysis, and allows them to be uploaded (if the user has
+appropriate permissions).
+* **Users** - this component manages the users of the service. It allows for their creation, updates and deletion.
+* **Ephemeris** - this component allows the upload and download of ephemeris data by Orbital Analysts and Satellite Operators.
+* **Health-Check** - this component provides a health-check function for the application.
+* **Statistics** - this component returns key statistical information on data within MyS.
+* **External Data Performance** - this component returns performance data for external datasources.
+
+<%= partial 'partials/links' %>

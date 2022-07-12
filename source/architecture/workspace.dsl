@@ -14,7 +14,17 @@ workspace "MYS" "Monitor Your Satellites" {
             mys = softwareSystem "Monitor Your Satellites" {
 
                 web = container "Web Application" "nodeJS in Nx Framework"
-                api = container "API Application" "Python in FastAPI Framework"
+                api = container "API Application" "Python in FastAPI Framework" {
+                    events = component "Satellite Conjunction Event Component"
+                    satellites = component "Satellite Component"
+                    cdms = component "Conjunction Data Message Component"
+                    analyses = component "Orbital Analyses Component"
+                    users = component "User Management Component"
+                    ephemeris = component "Ephemeris Component"
+                    healthCheck = component "Health Check Component"
+                    statistics = component "Statistics Component"
+                    externalDataPerformance = component "External Datasource Performance Component"
+                }
                 spaceTrack = container "SpaceTrack Application" "Python in FastAPI Framework"
                 db = container "Database" "Postgres 13 in RDS"
                 s3 = container "Filestore" "s3 Bucket"
@@ -61,6 +71,10 @@ workspace "MYS" "Monitor Your Satellites" {
         }
 
         container mys "MonitorYourSatellites" {
+            include *
+        }
+
+        component mys.api "ApiComponents" {
             include *
         }
 

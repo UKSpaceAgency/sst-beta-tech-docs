@@ -3,10 +3,10 @@
   "name" : "MYS",
   "description" : "Monitor Your Satellites",
   "revision" : 0,
-  "lastModifiedDate" : "2022-07-03T18:02:25Z",
+  "lastModifiedDate" : "2022-07-12T15:09:28Z",
   "lastModifiedAgent" : "structurizr-web/2755/diagram",
   "properties" : {
-    "structurizr.dsl" : "d29ya3NwYWNlICJNWVMiICJNb25pdG9yIFlvdXIgU2F0ZWxsaXRlcyIgewoKICAgICFpZGVudGlmaWVycyBoaWVyYXJjaGljYWwKCiAgICBtb2RlbCB7CiAgICAgICAgc3BhY2VUcmFjayA9IHBlcnNvbiAiU3BhY2VUcmFjayIKICAgICAgICBjYWEgPSBwZXJzb24gIkNpdmlsaWFuIEF2aWF0aW9uIEF1dGhvcml0eSIKICAgICAgICBzYXRlbGxpdGVPcGVyYXRvcnMgPSBwZXJzb24gIlNhdGVsbGl0ZSBPcGVyYXRvcnMiCiAgICAgICAgb3JiaXRhbEFuYWx5c3RzID0gcGVyc29uICJPcmJpdGFsIEFuYWx5c3RzIgogICAgICAgIHVrU0EgPSBwZXJzb24gIlVLIFNwYWNlIEFnZW5jeSIKCiAgICAgICAgZW50ZXJwcmlzZSAiR292LlVLIFBhYVMiIHsKCiAgICAgICAgICAgIG15cyA9IHNvZnR3YXJlU3lzdGVtICJNb25pdG9yIFlvdXIgU2F0ZWxsaXRlcyIgewoKICAgICAgICAgICAgICAgIHdlYiA9IGNvbnRhaW5lciAiV2ViIEFwcGxpY2F0aW9uIiAibm9kZUpTIGluIE54IEZyYW1ld29yayIKICAgICAgICAgICAgICAgIGFwaSA9IGNvbnRhaW5lciAiQVBJIEFwcGxpY2F0aW9uIiAiUHl0aG9uIGluIEZhc3RBUEkgRnJhbWV3b3JrIgogICAgICAgICAgICAgICAgc3BhY2VUcmFjayA9IGNvbnRhaW5lciAiU3BhY2VUcmFjayBBcHBsaWNhdGlvbiIgIlB5dGhvbiBpbiBGYXN0QVBJIEZyYW1ld29yayIKICAgICAgICAgICAgICAgIGRiID0gY29udGFpbmVyICJEYXRhYmFzZSIgIlBvc3RncmVzIDEzIGluIFJEUyIKICAgICAgICAgICAgICAgIHMzID0gY29udGFpbmVyICJGaWxlc3RvcmUiICJzMyBCdWNrZXQiCgogICAgICAgICAgICAgICAgLy9Db250YWluZXIgcmVsYXRpb25zaGlwcwogICAgICAgICAgICAgICAgd2ViIC0+IGFwaSAiQ2FsbHMiCiAgICAgICAgICAgICAgICBteXMuc3BhY2VUcmFjayAtPiBkYiAiVXNlcyBmb3Igc3RydWN0dXJlZCBkYXRhIgogICAgICAgICAgICAgICAgbXlzLnNwYWNlVHJhY2sgLT4gczMgIlVzZXMgZm9yIHVuc3RydWN0dXJlZCBkYXRhIgogICAgICAgICAgICAgICAgYXBpIC0+IGRiICJVc2VzIGZvciBzdHJ1Y3R1cmVkIGRhdGEiCiAgICAgICAgICAgICAgICBhcGkgLT4gczMgIlVzZXMgZm9yIHVuc3RydWN0dXJlZCBkYXRhIgoKICAgICAgICAgICAgfQogICAgICAgIH0KCiAgICAgICAgYXV0aDAgPSBzb2Z0d2FyZVN5c3RlbSAiQXV0aDAiCiAgICAgICAgcGl3aWtQcm8gPSBzb2Z0d2FyZVN5c3RlbSAiUGl3aWsgUHJvIgogICAgICAgIGxvZ2l0SU8gPSBzb2Z0d2FyZVN5c3RlbSAiTG9naXRJTyIKICAgICAgICBzZW50cnkgPSBzb2Z0d2FyZVN5c3RlbSAiU2VudHJ5IgogICAgICAgIGdpdEh1YiA9IHNvZnR3YXJlU3lzdGVtICJHaXRIdWIiCgogICAgICAgIC8vU29mdHdhcmUgUmVsYXRpb25zaGlwcwogICAgICAgIG15cyAtPiBhdXRoMCAiVXNlcyBmb3IgQXV0aGVudGljYXRpb24iCiAgICAgICAgbXlzIC0+IHBpd2lrUHJvICJVc2VzIGZvciBXZWIgQW5hbHl0aWNzIgogICAgICAgIG15cyAtPiBsb2dpdElPICJVc2VzIGZvciBMb2dnaW5nIgogICAgICAgIG15cyAtPiBzZW50cnkgIlVzZXMgZm9yIFNlY3VyaXR5IExvZ2dpbmcgYW5kIEFsZXJ0aW5nIgogICAgICAgIG15cyAtPiBnaXRIdWIgIlVzZXMgZm9yIENvZGUgVmVyc2lvbmluZyBhbmQgQ0kvQ0QiCgogICAgICAgIC8vUGVvcGxlIFJlbGF0aW9uc2hpcHMKICAgICAgICBzcGFjZVRyYWNrIC0+IG15cyAiRmVlZHMgQ29uanVuY3Rpb24gTWVzc2FnZXMiCiAgICAgICAgY2FhIC0+IHVrU0EgIlJlZ3VsYXRlcyIKICAgICAgICBjYWEgLT4gc2F0ZWxsaXRlT3BlcmF0b3JzICJSZWd1bGF0ZXMiCiAgICAgICAgc2F0ZWxsaXRlT3BlcmF0b3JzIC0+IG15cyAiRmVlZHMgU2F0ZWxsaXRlIEVwaGVtZXJpcyIKICAgICAgICBteXMgLT4gc2F0ZWxsaXRlT3BlcmF0b3JzICJOb3RpZmllcyBmb3IgQ29uanVuY3Rpb24gRXZlbnRzIgogICAgICAgIHVrU0EgLT4gbXlzICJPcGVyYXRlcyIKICAgICAgICBvcmJpdGFsQW5hbHlzdHMgLT4gbXlzICJGZWVkcyByZWZpbmVkIENvbmp1bmN0aW9uIEV2ZW50IGFuYWx5c2lzIgogICAgICAgIG15cyAtPiBvcmJpdGFsQW5hbHlzdHMgIk5vdGlmaWVzIGZvciBDb25qdW5jdGlvbiBFdmVudHMiCiAgICAgICAgb3JiaXRhbEFuYWx5c3RzIC0+IHVrU0EgIldvcmsgZm9yIgogICAgfQogICAgdmlld3MgewogICAgICAgIHRoZW1lIGRlZmF1bHQKCiAgICAgICAgc3lzdGVtTGFuZHNjYXBlICJTeXN0ZW1MYW5kc2NhcGUiIHsKICAgICAgICAgICAgaW5jbHVkZSAqCiAgICAgICAgfQoKICAgICAgICBjb250YWluZXIgbXlzICJNb25pdG9yWW91clNhdGVsbGl0ZXMiIHsKICAgICAgICAgICAgaW5jbHVkZSAqCiAgICAgICAgfQoKICAgIH0KfQo="
+    "structurizr.dsl" : "d29ya3NwYWNlICJNWVMiICJNb25pdG9yIFlvdXIgU2F0ZWxsaXRlcyIgewoKICAgICFpZGVudGlmaWVycyBoaWVyYXJjaGljYWwKCiAgICBtb2RlbCB7CiAgICAgICAgc3BhY2VUcmFjayA9IHBlcnNvbiAiU3BhY2VUcmFjayIKICAgICAgICBjYWEgPSBwZXJzb24gIkNpdmlsaWFuIEF2aWF0aW9uIEF1dGhvcml0eSIKICAgICAgICBzYXRlbGxpdGVPcGVyYXRvcnMgPSBwZXJzb24gIlNhdGVsbGl0ZSBPcGVyYXRvcnMiCiAgICAgICAgb3JiaXRhbEFuYWx5c3RzID0gcGVyc29uICJPcmJpdGFsIEFuYWx5c3RzIgogICAgICAgIHVrU0EgPSBwZXJzb24gIlVLIFNwYWNlIEFnZW5jeSIKCiAgICAgICAgZW50ZXJwcmlzZSAiR292LlVLIFBhYVMiIHsKCiAgICAgICAgICAgIG15cyA9IHNvZnR3YXJlU3lzdGVtICJNb25pdG9yIFlvdXIgU2F0ZWxsaXRlcyIgewoKICAgICAgICAgICAgICAgIHdlYiA9IGNvbnRhaW5lciAiV2ViIEFwcGxpY2F0aW9uIiAibm9kZUpTIGluIE54IEZyYW1ld29yayIKICAgICAgICAgICAgICAgIGFwaSA9IGNvbnRhaW5lciAiQVBJIEFwcGxpY2F0aW9uIiAiUHl0aG9uIGluIEZhc3RBUEkgRnJhbWV3b3JrIiB7CiAgICAgICAgICAgICAgICAgICAgZXZlbnRzID0gY29tcG9uZW50ICJTYXRlbGxpdGUgQ29uanVuY3Rpb24gRXZlbnQgQ29tcG9uZW50IgogICAgICAgICAgICAgICAgICAgIHNhdGVsbGl0ZXMgPSBjb21wb25lbnQgIlNhdGVsbGl0ZSBDb21wb25lbnQiCiAgICAgICAgICAgICAgICAgICAgY2RtcyA9IGNvbXBvbmVudCAiQ29uanVuY3Rpb24gRGF0YSBNZXNzYWdlIENvbXBvbmVudCIKICAgICAgICAgICAgICAgICAgICBhbmFseXNlcyA9IGNvbXBvbmVudCAiT3JiaXRhbCBBbmFseXNlcyBDb21wb25lbnQiCiAgICAgICAgICAgICAgICAgICAgdXNlcnMgPSBjb21wb25lbnQgIlVzZXIgTWFuYWdlbWVudCBDb21wb25lbnQiCiAgICAgICAgICAgICAgICAgICAgZXBoZW1lcmlzID0gY29tcG9uZW50ICJFcGhlbWVyaXMgQ29tcG9uZW50IgogICAgICAgICAgICAgICAgICAgIGhlYWx0aENoZWNrID0gY29tcG9uZW50ICJIZWFsdGggQ2hlY2sgQ29tcG9uZW50IgogICAgICAgICAgICAgICAgICAgIHN0YXRpc3RpY3MgPSBjb21wb25lbnQgIlN0YXRpc3RpY3MgQ29tcG9uZW50IgogICAgICAgICAgICAgICAgICAgIGV4dGVybmFsRGF0YVBlcmZvcm1hbmNlID0gY29tcG9uZW50ICJFeHRlcm5hbCBEYXRhc291cmNlIFBlcmZvcm1hbmNlIENvbXBvbmVudCIKICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgIHNwYWNlVHJhY2sgPSBjb250YWluZXIgIlNwYWNlVHJhY2sgQXBwbGljYXRpb24iICJQeXRob24gaW4gRmFzdEFQSSBGcmFtZXdvcmsiCiAgICAgICAgICAgICAgICBkYiA9IGNvbnRhaW5lciAiRGF0YWJhc2UiICJQb3N0Z3JlcyAxMyBpbiBSRFMiCiAgICAgICAgICAgICAgICBzMyA9IGNvbnRhaW5lciAiRmlsZXN0b3JlIiAiczMgQnVja2V0IgoKICAgICAgICAgICAgICAgIC8vQ29udGFpbmVyIHJlbGF0aW9uc2hpcHMKICAgICAgICAgICAgICAgIHdlYiAtPiBhcGkgIkNhbGxzIgogICAgICAgICAgICAgICAgbXlzLnNwYWNlVHJhY2sgLT4gZGIgIlVzZXMgZm9yIHN0cnVjdHVyZWQgZGF0YSIKICAgICAgICAgICAgICAgIG15cy5zcGFjZVRyYWNrIC0+IHMzICJVc2VzIGZvciB1bnN0cnVjdHVyZWQgZGF0YSIKICAgICAgICAgICAgICAgIGFwaSAtPiBkYiAiVXNlcyBmb3Igc3RydWN0dXJlZCBkYXRhIgogICAgICAgICAgICAgICAgYXBpIC0+IHMzICJVc2VzIGZvciB1bnN0cnVjdHVyZWQgZGF0YSIKCiAgICAgICAgICAgIH0KICAgICAgICB9CgogICAgICAgIGF1dGgwID0gc29mdHdhcmVTeXN0ZW0gIkF1dGgwIgogICAgICAgIHBpd2lrUHJvID0gc29mdHdhcmVTeXN0ZW0gIlBpd2lrIFBybyIKICAgICAgICBsb2dpdElPID0gc29mdHdhcmVTeXN0ZW0gIkxvZ2l0SU8iCiAgICAgICAgc2VudHJ5ID0gc29mdHdhcmVTeXN0ZW0gIlNlbnRyeSIKICAgICAgICBnaXRIdWIgPSBzb2Z0d2FyZVN5c3RlbSAiR2l0SHViIgoKICAgICAgICAvL1NvZnR3YXJlIFJlbGF0aW9uc2hpcHMKICAgICAgICBteXMgLT4gYXV0aDAgIlVzZXMgZm9yIEF1dGhlbnRpY2F0aW9uIgogICAgICAgIG15cyAtPiBwaXdpa1BybyAiVXNlcyBmb3IgV2ViIEFuYWx5dGljcyIKICAgICAgICBteXMgLT4gbG9naXRJTyAiVXNlcyBmb3IgTG9nZ2luZyIKICAgICAgICBteXMgLT4gc2VudHJ5ICJVc2VzIGZvciBTZWN1cml0eSBMb2dnaW5nIGFuZCBBbGVydGluZyIKICAgICAgICBteXMgLT4gZ2l0SHViICJVc2VzIGZvciBDb2RlIFZlcnNpb25pbmcgYW5kIENJL0NEIgoKICAgICAgICAvL1Blb3BsZSBSZWxhdGlvbnNoaXBzCiAgICAgICAgc3BhY2VUcmFjayAtPiBteXMgIkZlZWRzIENvbmp1bmN0aW9uIE1lc3NhZ2VzIgogICAgICAgIGNhYSAtPiB1a1NBICJSZWd1bGF0ZXMiCiAgICAgICAgY2FhIC0+IHNhdGVsbGl0ZU9wZXJhdG9ycyAiUmVndWxhdGVzIgogICAgICAgIHNhdGVsbGl0ZU9wZXJhdG9ycyAtPiBteXMgIkZlZWRzIFNhdGVsbGl0ZSBFcGhlbWVyaXMiCiAgICAgICAgbXlzIC0+IHNhdGVsbGl0ZU9wZXJhdG9ycyAiTm90aWZpZXMgZm9yIENvbmp1bmN0aW9uIEV2ZW50cyIKICAgICAgICB1a1NBIC0+IG15cyAiT3BlcmF0ZXMiCiAgICAgICAgb3JiaXRhbEFuYWx5c3RzIC0+IG15cyAiRmVlZHMgcmVmaW5lZCBDb25qdW5jdGlvbiBFdmVudCBhbmFseXNpcyIKICAgICAgICBteXMgLT4gb3JiaXRhbEFuYWx5c3RzICJOb3RpZmllcyBmb3IgQ29uanVuY3Rpb24gRXZlbnRzIgogICAgICAgIG9yYml0YWxBbmFseXN0cyAtPiB1a1NBICJXb3JrIGZvciIKICAgIH0KICAgIHZpZXdzIHsKICAgICAgICB0aGVtZSBkZWZhdWx0CgogICAgICAgIHN5c3RlbUxhbmRzY2FwZSAiU3lzdGVtTGFuZHNjYXBlIiB7CiAgICAgICAgICAgIGluY2x1ZGUgKgogICAgICAgIH0KCiAgICAgICAgY29udGFpbmVyIG15cyAiTW9uaXRvcllvdXJTYXRlbGxpdGVzIiB7CiAgICAgICAgICAgIGluY2x1ZGUgKgogICAgICAgIH0KCiAgICAgICAgY29tcG9uZW50IG15cy5hcGkgIkFwaUNvbXBvbmVudHMiIHsKICAgICAgICAgICAgaW5jbHVkZSAqCiAgICAgICAgfQoKICAgIH0KfQo="
   },
   "configuration" : { },
   "model" : {
@@ -14,47 +14,11 @@
       "name" : "Gov.UK PaaS"
     },
     "people" : [ {
-      "id" : "2",
-      "tags" : "Element,Person",
-      "name" : "Civilian Aviation Authority",
-      "relationships" : [ {
-        "id" : "29",
-        "tags" : "Relationship",
-        "sourceId" : "2",
-        "destinationId" : "3",
-        "description" : "Regulates"
-      }, {
-        "id" : "28",
-        "tags" : "Relationship",
-        "sourceId" : "2",
-        "destinationId" : "5",
-        "description" : "Regulates"
-      } ],
-      "location" : "External"
-    }, {
-      "id" : "4",
-      "tags" : "Element,Person",
-      "name" : "Orbital Analysts",
-      "relationships" : [ {
-        "id" : "33",
-        "tags" : "Relationship",
-        "sourceId" : "4",
-        "destinationId" : "6",
-        "description" : "Feeds refined Conjunction Event analysis"
-      }, {
-        "id" : "35",
-        "tags" : "Relationship",
-        "sourceId" : "4",
-        "destinationId" : "5",
-        "description" : "Work for"
-      } ],
-      "location" : "External"
-    }, {
       "id" : "1",
       "tags" : "Element,Person",
       "name" : "SpaceTrack",
       "relationships" : [ {
-        "id" : "27",
+        "id" : "36",
         "tags" : "Relationship",
         "sourceId" : "1",
         "destinationId" : "6",
@@ -62,11 +26,29 @@
       } ],
       "location" : "External"
     }, {
+      "id" : "2",
+      "tags" : "Element,Person",
+      "name" : "Civilian Aviation Authority",
+      "relationships" : [ {
+        "id" : "37",
+        "tags" : "Relationship",
+        "sourceId" : "2",
+        "destinationId" : "5",
+        "description" : "Regulates"
+      }, {
+        "id" : "38",
+        "tags" : "Relationship",
+        "sourceId" : "2",
+        "destinationId" : "3",
+        "description" : "Regulates"
+      } ],
+      "location" : "External"
+    }, {
       "id" : "5",
       "tags" : "Element,Person",
       "name" : "UK Space Agency",
       "relationships" : [ {
-        "id" : "32",
+        "id" : "41",
         "tags" : "Relationship",
         "sourceId" : "5",
         "destinationId" : "6",
@@ -78,18 +60,48 @@
       "tags" : "Element,Person",
       "name" : "Satellite Operators",
       "relationships" : [ {
-        "id" : "30",
+        "id" : "39",
         "tags" : "Relationship",
         "sourceId" : "3",
         "destinationId" : "6",
         "description" : "Feeds Satellite Ephemeris"
       } ],
       "location" : "External"
+    }, {
+      "id" : "4",
+      "tags" : "Element,Person",
+      "name" : "Orbital Analysts",
+      "relationships" : [ {
+        "id" : "42",
+        "tags" : "Relationship",
+        "sourceId" : "4",
+        "destinationId" : "6",
+        "description" : "Feeds refined Conjunction Event analysis"
+      }, {
+        "id" : "44",
+        "tags" : "Relationship",
+        "sourceId" : "4",
+        "destinationId" : "5",
+        "description" : "Work for"
+      } ],
+      "location" : "External"
     } ],
     "softwareSystems" : [ {
-      "id" : "20",
+      "id" : "30",
       "tags" : "Element,Software System",
-      "name" : "Sentry",
+      "name" : "GitHub",
+      "location" : "External",
+      "documentation" : { }
+    }, {
+      "id" : "26",
+      "tags" : "Element,Software System",
+      "name" : "Auth0",
+      "location" : "External",
+      "documentation" : { }
+    }, {
+      "id" : "28",
+      "tags" : "Element,Software System",
+      "name" : "LogitIO",
       "location" : "External",
       "documentation" : { }
     }, {
@@ -97,88 +109,65 @@
       "tags" : "Element,Software System",
       "name" : "Monitor Your Satellites",
       "relationships" : [ {
-        "id" : "22",
+        "id" : "34",
         "tags" : "Relationship",
         "sourceId" : "6",
-        "destinationId" : "17",
-        "description" : "Uses for Authentication"
-      }, {
-        "id" : "25",
-        "tags" : "Relationship",
-        "sourceId" : "6",
-        "destinationId" : "20",
+        "destinationId" : "29",
         "description" : "Uses for Security Logging and Alerting"
       }, {
-        "id" : "31",
+        "id" : "35",
+        "tags" : "Relationship",
+        "sourceId" : "6",
+        "destinationId" : "30",
+        "description" : "Uses for Code Versioning and CI/CD"
+      }, {
+        "id" : "40",
         "tags" : "Relationship",
         "sourceId" : "6",
         "destinationId" : "3",
         "description" : "Notifies for Conjunction Events"
       }, {
-        "id" : "34",
+        "id" : "31",
+        "tags" : "Relationship",
+        "sourceId" : "6",
+        "destinationId" : "26",
+        "description" : "Uses for Authentication"
+      }, {
+        "id" : "33",
+        "tags" : "Relationship",
+        "sourceId" : "6",
+        "destinationId" : "28",
+        "description" : "Uses for Logging"
+      }, {
+        "id" : "32",
+        "tags" : "Relationship",
+        "sourceId" : "6",
+        "destinationId" : "27",
+        "description" : "Uses for Web Analytics"
+      }, {
+        "id" : "43",
         "tags" : "Relationship",
         "sourceId" : "6",
         "destinationId" : "4",
         "description" : "Notifies for Conjunction Events"
-      }, {
-        "id" : "26",
-        "tags" : "Relationship",
-        "sourceId" : "6",
-        "destinationId" : "21",
-        "description" : "Uses for Code Versioning and CI/CD"
-      }, {
-        "id" : "23",
-        "tags" : "Relationship",
-        "sourceId" : "6",
-        "destinationId" : "18",
-        "description" : "Uses for Web Analytics"
-      }, {
-        "id" : "24",
-        "tags" : "Relationship",
-        "sourceId" : "6",
-        "destinationId" : "19",
-        "description" : "Uses for Logging"
       } ],
       "location" : "Internal",
       "containers" : [ {
+        "id" : "19",
+        "tags" : "Element,Container",
+        "name" : "Database",
+        "description" : "Postgres 13 in RDS"
+      }, {
         "id" : "7",
         "tags" : "Element,Container",
         "name" : "Web Application",
         "description" : "nodeJS in Nx Framework",
         "relationships" : [ {
-          "id" : "12",
+          "id" : "21",
           "tags" : "Relationship",
           "sourceId" : "7",
           "destinationId" : "8",
           "description" : "Calls"
-        } ]
-      }, {
-        "id" : "10",
-        "tags" : "Element,Container",
-        "name" : "Database",
-        "description" : "Postgres 13 in RDS"
-      }, {
-        "id" : "11",
-        "tags" : "Element,Container",
-        "name" : "Filestore",
-        "description" : "s3 Bucket"
-      }, {
-        "id" : "9",
-        "tags" : "Element,Container",
-        "name" : "SpaceTrack Application",
-        "description" : "Python in FastAPI Framework",
-        "relationships" : [ {
-          "id" : "14",
-          "tags" : "Relationship",
-          "sourceId" : "9",
-          "destinationId" : "11",
-          "description" : "Uses for unstructured data"
-        }, {
-          "id" : "13",
-          "tags" : "Relationship",
-          "sourceId" : "9",
-          "destinationId" : "10",
-          "description" : "Uses for structured data"
         } ]
       }, {
         "id" : "8",
@@ -186,42 +175,99 @@
         "name" : "API Application",
         "description" : "Python in FastAPI Framework",
         "relationships" : [ {
-          "id" : "16",
+          "id" : "25",
           "tags" : "Relationship",
           "sourceId" : "8",
-          "destinationId" : "11",
+          "destinationId" : "20",
           "description" : "Uses for unstructured data"
         }, {
-          "id" : "15",
+          "id" : "24",
           "tags" : "Relationship",
           "sourceId" : "8",
-          "destinationId" : "10",
+          "destinationId" : "19",
           "description" : "Uses for structured data"
+        } ],
+        "components" : [ {
+          "id" : "9",
+          "tags" : "Element,Component",
+          "name" : "Satellite Conjunction Event Component",
+          "size" : 0
+        }, {
+          "id" : "10",
+          "tags" : "Element,Component",
+          "name" : "Satellite Component",
+          "size" : 0
+        }, {
+          "id" : "14",
+          "tags" : "Element,Component",
+          "name" : "Ephemeris Component",
+          "size" : 0
+        }, {
+          "id" : "13",
+          "tags" : "Element,Component",
+          "name" : "User Management Component",
+          "size" : 0
+        }, {
+          "id" : "17",
+          "tags" : "Element,Component",
+          "name" : "External Datasource Performance Component",
+          "size" : 0
+        }, {
+          "id" : "12",
+          "tags" : "Element,Component",
+          "name" : "Orbital Analyses Component",
+          "size" : 0
+        }, {
+          "id" : "15",
+          "tags" : "Element,Component",
+          "name" : "Health Check Component",
+          "size" : 0
+        }, {
+          "id" : "11",
+          "tags" : "Element,Component",
+          "name" : "Conjunction Data Message Component",
+          "size" : 0
+        }, {
+          "id" : "16",
+          "tags" : "Element,Component",
+          "name" : "Statistics Component",
+          "size" : 0
+        } ]
+      }, {
+        "id" : "20",
+        "tags" : "Element,Container",
+        "name" : "Filestore",
+        "description" : "s3 Bucket"
+      }, {
+        "id" : "18",
+        "tags" : "Element,Container",
+        "name" : "SpaceTrack Application",
+        "description" : "Python in FastAPI Framework",
+        "relationships" : [ {
+          "id" : "22",
+          "tags" : "Relationship",
+          "sourceId" : "18",
+          "destinationId" : "19",
+          "description" : "Uses for structured data"
+        }, {
+          "id" : "23",
+          "tags" : "Relationship",
+          "sourceId" : "18",
+          "destinationId" : "20",
+          "description" : "Uses for unstructured data"
         } ]
       } ],
       "documentation" : { }
     }, {
-      "id" : "19",
+      "id" : "29",
       "tags" : "Element,Software System",
-      "name" : "LogitIO",
+      "name" : "Sentry",
       "location" : "External",
       "documentation" : { }
     }, {
-      "id" : "21",
-      "tags" : "Element,Software System",
-      "name" : "GitHub",
-      "location" : "External",
-      "documentation" : { }
-    }, {
-      "id" : "18",
+      "id" : "27",
       "tags" : "Element,Software System",
       "name" : "Piwik Pro",
-      "location" : "External",
-      "documentation" : { }
-    }, {
-      "id" : "17",
-      "tags" : "Element,Software System",
-      "name" : "Auth0",
       "location" : "External",
       "documentation" : { }
     } ]
@@ -250,9 +296,17 @@
         "x" : 600,
         "y" : 115
       }, {
+        "id" : "26",
+        "x" : 575,
+        "y" : 1670
+      }, {
         "id" : "4",
         "x" : 3435,
         "y" : 885
+      }, {
+        "id" : "27",
+        "x" : 1277,
+        "y" : 1670
       }, {
         "id" : "5",
         "x" : 3435,
@@ -262,77 +316,69 @@
         "x" : 1980,
         "y" : 957
       }, {
-        "id" : "17",
-        "x" : 575,
-        "y" : 1670
-      }, {
-        "id" : "18",
-        "x" : 1277,
-        "y" : 1670
-      }, {
-        "id" : "19",
+        "id" : "28",
         "x" : 1979,
         "y" : 1670
       }, {
-        "id" : "20",
+        "id" : "29",
         "x" : 2681,
         "y" : 1670
       }, {
-        "id" : "21",
+        "id" : "30",
         "x" : 3385,
         "y" : 1670
       } ],
       "relationships" : [ {
-        "id" : "32"
-      }, {
-        "id" : "31",
+        "id" : "40",
         "vertices" : [ {
           "x" : 1295,
           "y" : 775
         } ]
       }, {
-        "id" : "30",
+        "id" : "41"
+      }, {
+        "id" : "42",
         "vertices" : [ {
-          "x" : 1735,
-          "y" : 610
+          "x" : 2910,
+          "y" : 1220
         } ]
       }, {
-        "id" : "29"
-      }, {
-        "id" : "28"
-      }, {
-        "id" : "27"
-      }, {
-        "id" : "26",
-        "vertices" : [ {
-          "x" : 3385,
-          "y" : 1635
-        } ]
-      }, {
-        "id" : "25",
-        "vertices" : [ {
-          "x" : 2575,
-          "y" : 1430
-        } ]
-      }, {
-        "id" : "24"
-      }, {
-        "id" : "35"
-      }, {
-        "id" : "23"
-      }, {
-        "id" : "34",
+        "id" : "43",
         "vertices" : [ {
           "x" : 2915,
           "y" : 925
         } ]
       }, {
-        "id" : "22"
+        "id" : "32"
       }, {
-        "id" : "33",
+        "id" : "31"
+      }, {
+        "id" : "37"
+      }, {
+        "id" : "36"
+      }, {
+        "id" : "35",
         "vertices" : [ {
-          "x" : 2910,
-          "y" : 1220
+          "x" : 3385,
+          "y" : 1635
+        } ]
+      }, {
+        "id" : "34",
+        "vertices" : [ {
+          "x" : 2575,
+          "y" : 1430
+        } ]
+      }, {
+        "id" : "33"
+      }, {
+        "id" : "44"
+      }, {
+        "id" : "38"
+      }, {
+        "id" : "39",
+        "vertices" : [ {
+          "x" : 1735,
+          "y" : 610
         } ]
       } ]
     } ],
@@ -347,9 +393,9 @@
       },
       "externalSoftwareSystemBoundariesVisible" : true,
       "elements" : [ {
-        "id" : "11",
+        "id" : "18",
         "x" : 328,
-        "y" : 1492
+        "y" : 892
       }, {
         "id" : "7",
         "x" : 1078,
@@ -359,32 +405,80 @@
         "x" : 1078,
         "y" : 892
       }, {
-        "id" : "9",
-        "x" : 328,
-        "y" : 892
-      }, {
-        "id" : "10",
+        "id" : "19",
         "x" : 1078,
+        "y" : 1492
+      }, {
+        "id" : "20",
+        "x" : 328,
         "y" : 1492
       } ],
       "relationships" : [ {
-        "id" : "16",
+        "id" : "25",
         "vertices" : [ {
           "x" : 705,
           "y" : 1320
         } ]
       }, {
-        "id" : "15"
+        "id" : "24"
       }, {
-        "id" : "14"
+        "id" : "23"
       }, {
-        "id" : "13",
+        "id" : "22",
         "vertices" : [ {
           "x" : 1105,
           "y" : 1295
         } ]
       }, {
-        "id" : "12"
+        "id" : "21"
+      } ]
+    } ],
+    "componentViews" : [ {
+      "key" : "ApiComponents",
+      "order" : 3,
+      "paperSize" : "A5_Landscape",
+      "dimensions" : {
+        "width" : 2480,
+        "height" : 1748
+      },
+      "containerId" : "8",
+      "externalContainerBoundariesVisible" : true,
+      "elements" : [ {
+        "id" : "11",
+        "x" : 1725,
+        "y" : 1130
+      }, {
+        "id" : "12",
+        "x" : 985,
+        "y" : 1140
+      }, {
+        "id" : "13",
+        "x" : 235,
+        "y" : 1155
+      }, {
+        "id" : "14",
+        "x" : 1730,
+        "y" : 600
+      }, {
+        "id" : "15",
+        "x" : 990,
+        "y" : 610
+      }, {
+        "id" : "16",
+        "x" : 235,
+        "y" : 610
+      }, {
+        "id" : "17",
+        "x" : 1734,
+        "y" : 140
+      }, {
+        "id" : "9",
+        "x" : 985,
+        "y" : 140
+      }, {
+        "id" : "10",
+        "x" : 235,
+        "y" : 140
       } ]
     } ],
     "configuration" : {
@@ -392,7 +486,7 @@
       "styles" : { },
       "themes" : [ "https://static.structurizr.com/themes/default/theme.json" ],
       "terminology" : { },
-      "lastSavedView" : "MonitorYourSatellites"
+      "lastSavedView" : "ApiComponents"
     }
   }
 }
