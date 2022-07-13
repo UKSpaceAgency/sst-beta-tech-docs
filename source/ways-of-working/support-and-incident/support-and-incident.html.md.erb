@@ -78,6 +78,14 @@ We will use ukspaceagency.support@thepsc.co.uk as the primary tool for reporting
   * Both options would introduce another new system which would need linking into current processes on JIRA and Slack to ensure that tasks were monitored. This was probably overkill for the amount of support calls expected (none in the private beta period)
 2. A telephone number may be added at some stage; in its absence the acknowledgment will need to tell the user about the support level they can expect.
 
+## Monitoring while on support
+We use [Sentry](sentry.io) to alert us to any anomalies in our 3 environments. Sentry alert manager is linked to Slack and provides alerts to following channels:
+* #uksa-sst-beta-alerts-dev
+* #uksa-sst-beta-alerts-staging 
+* #uksa-sst-beta-alerts-prod
+
+We monitor these channels during support hours to respond to any issues that come to our attention.
+
 ## Goals and non-Goals
 The goal of this design doc is to articulate a design for a predictable and efficient support process.
 
