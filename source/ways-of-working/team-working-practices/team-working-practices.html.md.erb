@@ -1,0 +1,129 @@
+---
+title: Team working practices
+weight: 20
+hide_in_navigation: true
+parent: /ways-of-working
+last_reviewed_on: 2022-07-13
+review_in: 3 months
+---
+
+# Team working practices
+
+# Purpose
+
+These working practices are how the monitor my satellite team should aim to work on stories and development tasks. They are open to discussion and change. If something doesn't seem to be working for you, it's OK to challenge that and ask for things to improve.
+
+# Development process
+
+The development process consists of the following steps:
+1. The Product Manager makes decisions on which work (for example, features or bugs) to prioritise.
+2. The team make the necessary changes in their own development environments on branches or on local versions in the case of prototyping.
+3. An appropriate team member reviews the changes in a pull request on GitHub.
+4. The reviewer merges the changes into the master branch of the repository.
+5. The test suite automatically tests the latest revision of the code in the test environment to make sure that basic user functions still work.
+6. The changes are deployed to the production environment.
+7. The team move the card to the 'Done' column in Jira.
+
+# Release process
+
+The release process consists of the following steps:
+1. Developers commit code to a development branch on a git repository.
+2. When the development is complete, a developer raises a pull request against the main branch of the git repository for review.
+3. Another team member reviews the pull request and if there are no problems, merges the changes into the main branch. Alternatively, they may provide feedback to the developers and request corrections and/or additional work.
+4. A new commit to the main branch triggers an automated deployment to the testing environment.
+5. The testing environment runs automated tests.
+  - 5 a. If the deployment or tests fail, the automated release process is halted and the team is notified.
+  - 5 b. If the deployment is successful and all tests pass, the main branch commit is tagged for release to production.
+6. A new release tag triggers an automated deployment to the production environment.
+
+N.B. manual releases to Production must always be done during working hours and when there are suitable people available unless it has been agreed in advance. No one should make a manual release to Production after working hours without prior approval.
+
+## Commit messages
+
+Commit messages are very useful as documentation, so please take time to
+detail what you are changing and more importantly why. 
+
+If something is worth detailing in a pull request description then it is also worth detailing in a commit message. Commit messages will live with the repository forever, whereas over time a project may move from GitHub or Jira. You can often copy/paste well written commit messages to form the pull request description.
+
+## Pull requests
+
+We peer review all code to ensure that it works as expected and is clear for
+the team to understand. All work, no matter how small, should use git
+branches and GitHub pull requests.
+
+When you create a pull request please put the pull request URL into the Jira issue story so that people can find it and understand the progress of a story before it is merged
+
+Reviewing outstanding pull requests should be a priority over picking up new work. As the author of a pull request you may still need to chase this and you need to watch your email for comments on your pull request. Pull requests should be reviewed by somebody that hasn't already worked on the story. 
+
+When reviewing a pull request please "assign" yourself on GitHub, so that someone else doesn't duplicate effort.
+
+## Merging Pull requests
+
+Once review is complete, and all status checks have passed, a pull request can be merged.
+
+# Stories
+
+## Using Jira
+
+We use [Jira](https://thepsc.atlassian.net/jira/software/projects/SS/boards/7) to track what’s being worked on. Stories without a name assigned to them are available for you to work on. You should remove your name when moving a story to the next step (e.g. "In progress" to "tech peer review" and again at “ready to test”). Always remember to assign someone/remove yourself at each step.
+
+## Writing stories
+
+Within Jira you should add a descriptive title for the story and the following subheadings within the story description:
+* What - a description of the work being undertaken, this can be written as a user need if helpful (e.g. As an operator, I need to be able to sort events relating to my satellite by time so that I can understand the time of closest approach) or as a statement
+* Why - a description of why we need to do this work
+* It’s done when - a list of success criteria that the work needs to achieve in order to fulfil the initial rationale for the story this should include technical documentation if necessary
+
+## Assigning labels to stories
+
+Jira gives the option to tag the story with epic labels and story type. We use these labels to filter the stories in various different ways. You should apply an ‘epic label' to any work that belongs to a category of work or change the story type to ‘Bug fixes’ or ‘Tasks’ if the story is remedial or a chore.
+
+## Story kick-off
+
+Kick-offs are an opportunity to clarify the scope of a story and raise any technical suggestions or concerns before work starts. They should include a check if the story being kicked off will likely conflict with any of the stories already in progress and therefore likely cause conflicts.
+
+If the story is a spike, it should be made clear what the questions we want to answer are, and what specific outputs we need to cover in the summary at the end of the spike. Any spike should be reviewed after 2 days.
+
+When a new story is started, whoever picks it up should arrange a kick-off with appropriate team members (i.e. researchers, front-end/back-end, product) and anyone else from the team that is interested. Slack is a good way to let people know.
+
+## Story summary
+
+When you've finished a story please take a few minutes to summarise your work in a comment on the Jira story. Summarising the story will help other people in the team review it, either against the acceptance criteria or for future reference, which can otherwise be difficult if comments are sparse or inconsistent.
+
+### Spike summary
+
+The summary is particularly important if the story was a spike. If applicable
+it must indicate follow up work that is required. Listing options uncovered during
+the spike is good. Indicate which option is preferable. Where possible follow up stories
+should be noted. Doing this allows the Product Manager to prioritise the follow up work.
+
+## Tech Peer Review
+
+Tech Peer Review is the step in our process where the pull requests relating to a story are code-reviewed. This is typically done by someone who hasn't worked on the story, however if a story has been paired on throughout, the pair can merge their own PRs, and push the story straight through to approval. Remember to include the pull request as a comment in the Jira story.
+
+For a story that hasn't been paired on throughout, the review and merging must be done by someone who hasn't worked on it. This is to ensure that all code has been read by at least 2 people before being released to prod.
+
+## Dev: Ready to Test
+
+The Dev: Ready to Test step in the process is where we verify that the story is fully complete according to the success criteria in the story description ‘it’s done when’. 
+
+### Defining done
+
+- the work on a story is completed
+- it met the need that motivated the story
+- any changes merged to master
+- the work is deployed to production
+- acceptance criteria have been met
+- new stories are written for any follow-up work or technical debt
+- we have updated the documentation if relevant (ADRs, how tos etc.)
+- we have notified our users (before we make the change if necessary)
+
+## Technical Documentation Changes
+
+Technical Documentation changes follow the same overall process as code changes and should be done as part of the development story - a story isn’t done until it’s been documented.
+
+## Epics
+
+When defining the roadmap we should break the features and functionality down into ‘epics’ so that stories relating to a bigger overarching challenge are grouped together. This will mean a move away from the current epic labels that are more aligned with ‘function’ or ‘category’ (e.g. front-end, user research). New epics will be organised around roadmap items such as ‘ESA DISCOS data improvements’ or ‘Deployment pipelines and automation’ for instance.
+
+<%= partial 'partials/_links' %>
