@@ -3,11 +3,11 @@ title: 002. Use i18Nexus for internationalization
 weight: 3
 hide_in_navigation: true
 parent: /decisions
-last_reviewed_on: 2021-10-01
+last_reviewed_on: 2021-07-10
 review_in: 3 months
 ---
 
-# 001. Use i18Nexus for internationalization
+# 001. Use i18Nexus for string editing and international translation versioning
 
 Date: 2022-07-05
 
@@ -17,15 +17,15 @@ Accepted
 
 ## Context
 
-Solution to avoid hardcoded strings in application.
+Solution to avoid hardcoded strings in application that will vary dependent on language.
 
 ## Decision
 
-Internationalization framework [i18next](https://www.i18next.com/) give us control over string in whole application.
-We can change it, translate it (in future) and adding new text. Strings are splited by pages.
+Internationalisation framework [i18next](https://www.i18next.com/) gives us control over strings across the whole application.
+We can easily edit strings, translate them (in future - e.g. Welsh) and add new text. Strings are organised by page.
 
 ## Consequences
 
-Full control over application texts without touching code.
+Full control over application text without touching code.
 
 <%= partial 'partials/links' %>
