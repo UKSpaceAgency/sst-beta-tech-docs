@@ -2,34 +2,27 @@
 title: Environments
 weight: 25
 parent: /environments
-last_reviewed_on: 2022-01-18
+last_reviewed_on: 2022-07-13
 review_in: 3 months
 ---
 
 # Environments
 
-The following environment have been defined for the needs of the service during Alpha.
-
-## Prototype
-
-__URL__: [Prototype Environment]
-
-__Repo__: [Prototype Repository]
-
-This environment is used for rapid user feedback loops on high-fidelity clickable prototype.
+The following environment have been defined for the needs of the service during Beta.
 
 ## Development
 
-__URL__: [Development Environment]
+The [Development environment](https://www-dev.monitor-my-satellites.space/) is where Monitor your Satellites is built.
+It is where the majority time is spent by our Developers.
 
-__Frontend Repo__: [Frontend Repository]
+## Demo
 
-__Backend Repo__: [Backend Repository]
+The [Demo environment](https://www-demo.monitor-my-satellites.space/) is used as a staging environment between
+Development and Production. It is used to Demonstrate upcoming functionality and during periods of intense development it
+provides a test environment, which isn't subject to the downtime with every merge to the main branch by developers.
 
-This environment is yet to be built, but the expected deployment diagram follows.
+## Production
 
-![Development](images/Sample.png)
-
-
+The [Production environment](https://www.monitor-my-satellites.space/) is where the Monitor your Satellites users live.
 
 <%= partial "partials/links" %>
