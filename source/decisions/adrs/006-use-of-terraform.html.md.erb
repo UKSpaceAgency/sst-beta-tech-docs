@@ -1,0 +1,36 @@
+---
+title: 006. Use of Terraform
+weight: 6
+hide_in_navigation: true
+parent: /decisions
+last_reviewed_on: 2022-07-18
+review_in: 12 months
+---
+
+# 006. Use of Terraform
+
+Date: 2022-07-18
+
+## Status
+
+Accepted
+
+## Context
+
+[HashiCorp Terraform](https://content.hashicorp.com/api/assets?product=terraform&version=v1.2.5&asset=website%2Fintro%2Findex.html)
+is an Infrastructure as Code (IaC) tool that defines infrastructure resources in human-readable configuration files
+that are open for version control, re-use and sharing. It allows a consistent workflow for safely and efficiently provisioning
+and managing infrastructure throughout the entire lifecycle.
+
+## Decision
+
+Not many alternatives were considered, since Terraform is dominant for IaC in the UK Public Sector, so there is a healthy
+marketplace of people with these skills. The Infrastructure for MyS has been defined [here](https://github.com/UKSpaceAgency/sst-beta-infra)
+in Terraform.
+
+## Consequences
+
+One useful consequence is that with the decommissioning of Gov.UK PaaS announcement, dated [12th July 2022](https://gds.blog.gov.uk/2022/07/12/why-weve-decided-to-decommission-gov-uk-paas-platform-as-a-service/)
+then the new hosting environment will be defined in Terraform also, allowing seamless migration and continuity of skills.
+
+<%= partial 'partials/links' %>

@@ -1,0 +1,38 @@
+---
+title: 007. Use of GOV.UK PaaS
+weight: 7
+hide_in_navigation: true
+parent: /decisions
+last_reviewed_on: 2022-07-18
+review_in: 12 months
+---
+
+# 006. Use of GOV.UK PaaS
+
+Date: 2022-07-18
+
+## Status
+
+Accepted
+
+## Context
+
+GOV.UK Platform as a Service (PaaS) is a cloud-hosting platform built by the Government Digital Services (GDS). GOV.UK
+PaaS manages the deployment of MyS, the backing services it relies on (such as the filesystem and database) and
+background tasks, such that people with specialised cloud skills aren't needed.
+
+GOV.UK PaaS uses the open source [Cloud Foundry](https://www.cloudfoundry.org/) project, and runs on [Amazon Web Services](https://aws.amazon.com/).
+
+## Decision
+
+The decision to use GOV.UK PaaS was taken in the alpha phase of the service lifecycle. It was only used in earnest during
+private beta, and along with the decision to use Terraform for IaC, has provided good utility. However as time has
+progressed and service needs have matured, then breaking out and consuming AWS native services has become more of a concern.
+
+
+## Consequences
+
+On the [12th July 2022](https://gds.blog.gov.uk/2022/07/12/why-weve-decided-to-decommission-gov-uk-paas-platform-as-a-service/)
+decommissioning of Gov.UK PaaS was announced, so the Service Team will start to investigate a new hosting platform now.
+
+<%= partial 'partials/links' %>
