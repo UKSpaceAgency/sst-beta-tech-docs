@@ -3,7 +3,7 @@ title: How to deploy Monitor your satellites
 weight: 20
 parent: /ways-of-working
 hide_in_navigation: true
-last_reviewed_on: 2022-07-02
+last_reviewed_on: 2022-08-31
 review_in: 3 months
 ---
 
@@ -27,8 +27,9 @@ The workflow accepts two inputs:
 
 1. Invoker - enter the command to execute, valid values are:
   * `plan` - executes a `terraform plan`, which creates an execution plan and facilitates previewing of changes.
-  * `apply` - executes a `terraform apply`, which generates a new Terraform plan and executes it. There are
-    aliases `front-end` and `back-end` which indicate if this is invoked from workflows in those respective repos.
+  * `apply` - executes a `terraform apply`, which generates a new Terraform plan and executes it.
+  * In addition to apply there are targeted invokers, namely `front-end` and `back-end`. They execute a Terraform
+    `apply` but with the `-target` option set to `module.front-end` or `module.back-end` respectively.
 2. Environment - enter the environment to execute against, valid values are:
   * `dev` - Development
   * `demo` - Demonstration / Staging / Test
