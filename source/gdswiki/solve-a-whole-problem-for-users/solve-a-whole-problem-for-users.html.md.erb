@@ -3,8 +3,8 @@ title: Solve a whole problem for users
 weight: 12
 hide_in_navigation: true
 parent: /gdswiki
-last_reviewed_on: 2022-05-03
-review_in: 3 months
+last_reviewed_on: 2022-12-07
+review_in: 6 months
 ---
 
 # 02. Solve a whole problem for users
@@ -13,20 +13,21 @@ Work towards creating a service that solves a whole problem for users, working w
 
 ### Understand any genuine constraints that affect the service - for example, legislative constraints - and work with policy professionals to solve any problems those constraints are causing
 
-* An initial assumption was that monitoring every object in space forever was an insuperable constraint. This has turned out to be less than 100% true and for now we are keeping the history of any piece of debris which comes near a UK licensed object
-* We further discovered that a constraint of UK-licenced satellites was not quite as useful as we thought. For example, 1 operator builds and operates 2 satellites for Nigeria- we have also included this for now
-* There is a constraint about what we can do with the aggregated data for now but UKSA staff are looking into it
-* In general the software has been developed relatively cheaply and should provide a unique selling point to the UK licensing authority
+* An initial assumption was that monitoring every object in space forever was an insuperable constraint. This has turned out to be less than 100% true and for now we are keeping the history of any piece of debris which comes near a UK licensed object.
+* We further discovered that a constraint of UK-licenced satellites was not quite as useful as we thought. For example, 1 operator builds and operates 2 satellites for Nigeria- we have also included this for now.
+* There is a constraint about what we can do with the aggregated data for now but UKSA staff are looking into it.
+* In general the software has been developed relatively cheaply and should provide a unique selling point to the UK licensing authority.
 * Sharing data on satellite activeness and manoeuvrability raised some liability concerns (for example, would the UKSA be liable for operators moving satellites as a result of this information, which could be incorrect?) and so we consulted UKSA lawyers on the implications of sharing this data. Therefore a disclaimer is included in the terms and conditions for users stating that the UKSA is not responsible for any actions taken based on data shared.
-* Sharing Space-Track data via our service required a data sharing agreement with the 18th Space Squadron. This is complete, and we are working on data sharing agreements with a complimentary data source, ESA DISCOS.
-* Some users of the service require special accesses to enable them to access the website when in high-security environments. For example, in some locations, they cannot use their mobiles, so two factor authentication using mobiles could not exclusively be used. Therefore, magic link tokens were used to provide website access.
+* Sharing Space-Track data via our service required a data sharing agreement with the 18th Space Squadron. This is complete and we also have a permission agreement with ESA to use their DISCOS data.
+* Some users of the service require special access to enable them to access the website when in high-security environments. For example, in some locations, they cannot use their mobiles, so two factor authentication using mobiles could not exclusively be used. Therefore, we are currently using auth-0's credible and secure sign-up and log-in service with MFA disabled.
 
 ### Make sure services are [scoped according to how users think and what they need to do](https://www.gov.uk/service-manual/design/scoping-your-service)- not too narrow or too broad
 
-* The product is scoped to Owner Operators, Orbital Analysts, and UKSA staff for private and initial public beta
+* The product is scoped to Owner Operators, Orbital Analysts, and UKSA staff for private and initial public beta.
 * We held an MVP definition session at the start of the project with the UKSA SST team to discuss which features would be included in the MVP. We concluded which requirements were and were not in scope & defined the MVP. This discussion was informed by extensive user research at Alpha where user needs were recorded, evidence written against them and then they were categorised as must have or nice-to-have features. We used this data to define the MVP and prioritise backlog of features.
 * Functionality of the site developed during the beta was also tested against orbital analyst user needs and capabilities. For example, ephemeris data will be stored against satellites rather than events as orbital analysts will sometimes use the same ephemeris data to update calculations for multiple events.
 * There are further user groups not yet covered by the service who it can be expanded to, particularly Critical National Infrastructure staff members, Space Insurers, Ministers, Academics, and maybe international partners.
+* We are working with Cranfield University to develop our service and assess how MYS may aid universities, giving them access to the demo site (with anonymised data) during workshops in the Autumn of 2021. We plan to replicate this with workshops in January 2023.
 
 ### Be able to explain how the service the team is working on will join up with other things into a journey that solves a whole problem for users
 
@@ -34,60 +35,58 @@ Work towards creating a service that solves a whole problem for users, working w
 * It is important that this service links up with the wider user journey, therefore, we met with the CAA to discuss the licensing process & with the UKSpOC to discuss any crossovers with the commercial integration cell or Aurora. This ensures that our service is connected with or aligns with other services offered by the Government.
 * It was highlighted during the Alpha phase that conjunction event analysis is most useful when completed using the operator’s ephemeris data. Therefore, we can ingest ephemeris data and provide analysis on how their planned actions will affect Probability of Collision - this provides a link between the data provided by Space-Track and the effectiveness of an operators response (*completes user journey*).
 * Monitor your satellites is not really a transactional service: the key output is broadcasting analysis which is already being done to those who are paying for it but not receiving it.
-  * There is a small transactional element in operators uploading ephemeris data but this is not necessary to the service
-* We have aimed to make our private beta url similar to it’s aspired public one:
-  * Private beta: monitor-your-satellites.space
-  * Public beta: monitor-your-satellites.service.gov.uk
-* Our API allows us to integrate better with many of our users
-  * Orbital analysts will be able to upload analysis in bulk and more quickly
-  * Advanced operators will be able to incorporate UKSA analysis into their existing systems
-
+  * There is a small transactional element in operators uploading ephemeris data but this is not necessary to the service.
+* Our private beta url (monitor-your-satellites.space) now automatically redirects users to the public beta url (monitor-your-satellites.service.gov.uk).
+* Our API allows us to integrate better with many of our users.
+  * Orbital analysts will be able to upload analysis in bulk and more quickly.
+  * Advanced operators will be able to incorporate UKSA analysis into their existing systems.
 
 ### Take responsibility for agreeing how this user journey will work with organisations responsible for different parts of it - for example, with the GDS content team to join up GOV.UK content with the service you’re working on
 
 Several organisations are part of the journey in its current scope:
 
-* Space-Track - data sharing agreement
-* UKSA orbital analysis team - providing analysis for users
-* UKSA SST team - acting as admins for the service
-* GDS/BEIS team - ensure we meet service standards
+* Space-Track - data sharing agreement.
+* UKSA orbital analysis team - providing analysis for users.
+* UKSA SST team - acting as admins for the service.
+* GDS/BEIS team - ensure we meet service standards.
 
 The journey can be longer in future to include eg CNI users, academics, insurers and the other groups covered above.
 
 ### Consider alternatives to creating a service - for example publishing website content, running a campaign, partnering with a non-government organisation or making data or an Application Programming Interface (API) available to third parties
 
 * A highly imperfect service was already in place, whereby if UKSA orbital analysts calculated that there was a high likelihood of a collision event, they would typically ring up / email operators and UKSA staff and let them know. For the worst events, Ministers would be provided with pdf files attached to emails.
-  * Email trails would become unwieldy
+  * Email trails would become unwieldy.
   * Calls were difficult to audit.
   * Assets explaining risks were consistent but not heavily tested with users.
   * Most of all - this high quality analysis was not shared widely or consistently, even with the operators involved, if it didn’t reach particular thresholds.
-* User research throughout the discovery and alpha provided strong evidence for the need of a web service to provide high-quality and easy-to-understand data and notifications to operators about conjunction events which took advantage of the medium of the web
-* In addition to a website interface, we will be making an API available for operator users to access event information, and orbital analysts to upload JSON files.
-* This allows us to publish the already-existing high-quality analysis to operators who otherwise simply didn’t have it
+* User research throughout the discovery and alpha provided strong evidence for the need of a web service to provide high-quality and easy-to-understand data and notifications to operators about conjunction events which took advantage of the medium of the web.
+* In addition to a website interface, we have made an API available for operator users to access event information, and orbital analysts to upload JSON files. We frequently remind operators about API access, for example during onboarding webinars and through the MyS newsletter.
+* This allows us to publish the already-existing high-quality analysis to operators who otherwise simply didn’t have it.
 
 ### Work in the open so that people inside and outside the organisation know what the service team is doing - increasing the potential for collaboration and reducing duplication of effort (for example by publishing business cases, mission statements, research findings, user experience maps, maps of existing services and product [roadmaps](https://www.gov.uk/service-manual/agile-delivery/developing-a-roadmap) showing plans to develop new features)
 
 * We have set-up this live tech docs site that contains information on service design, key design decisions and architecture. All design documents are available and directly shared with the UKSA team.
 * In addition, the data catalogue/user research notes/service requirements are all shared on UKSA SharePoint.
 * By working in an agile way and as transparently as possible through inviting clients and stakeholders to daily and weekly agile ceremonies, we ensure that everyone is on-the-same-page and clear on our progress and decisions. We also schedule regular Show and Tells with wider stakeholders.
-* The work has been presented at conferences by UKSA staff and also covered in the Daily Express online
-* Emily Mills and Phil Buckley have podcasted on the subject
-* The system has been blogged about by UKSA and The PSC staff
+* The work has been presented at conferences by UKSA staff and also covered in the Daily Express online.
+* During 2022 the service was mentioned at the UK Space Summit and GNOSIS conference.
+* Emily Mills and Phil Buckley have podcasted on the subject.
+* The system has been blogged about by UKSA and The PSC staff.
 
 ### Work towards minimising the number of times users have to provide the same information to government (while respecting users’ privacy), for example by using a single sign-on
 
 * We have aimed at all times to have a single drop of information for all users.
-  * Operators may find themselves being asked to upload their ephemeris to both Space-Track and Mys- however, we will pick it up from Space-Track
-* Users will be able to create accounts and Mys will store their relevant information - this will prevent users having to repeatedly provide data to us
+  * Operators may find themselves being asked to upload their ephemeris to both Space-Track and Mys- however, we will pick it up from Space-Track.
+* Users will be able to create accounts and Mys will store their relevant information - this will prevent users having to repeatedly provide data to us.
 * Early in the project, users had to enter their email everytime they wanted to log-in in order to receive a magic link. We have now moved to using Auth0 where users enter a password they have set up to enter the site.
 
 ### [Work with other teams and organisations](https://www.gov.uk/service-manual/agile-delivery/working-across-organisational-boundaries) where that’s necessary to solve a whole problem for users
 
 * We have worked with UKSA, BEIS, CAA, MOJ, MOD
-  * E.g. BEIS assurance meetings
+  * E.g. BEIS assurance meetings.
   * E.g. Met with CAA colleagues several times to ensure the service would align with their processes and future needs.
 * Met with representatives from the UKSpOC to discuss the services they provide to operators and their future user needs.
-* Share data with Space-Track and ESA
-  * Currently users have a range of sources of information for different purposes, however, we aim to bring this all together into one place
+* Share data with Space-Track and ESA.
+  * Currently users have a range of sources of information for different purposes, however, we aim to bring this all together into one place.
 
 <%= partial "partials/links" %>
