@@ -3,8 +3,8 @@ title: Create a secure service which protects users' privacy
 weight: 12
 hide_in_navigation: true
 parent: /gdswiki
-last_reviewed_on: 2022-05-03
-review_in: 3 months
+last_reviewed_on: 2022-12-07
+review_in: 6 months
 ---
 
 # 09. Create a secure service which protects users' privacy
@@ -17,7 +17,7 @@ The team has held several meetings to identify the risks posed by bad actors. So
 
 * We completed a DPIA and concluded that our service will handle very little personal data (names, emails and phone numbers), however, we will be handling OFFICIAL data from the UKSA orbital analysts and ephemeris data from operators.
 * Our service has been designed to ensure it is secure:
-  * The use of Auth0 and two factor authentication makes the service secure for users.
+  * The use of Auth0 makes the service secure for users.
   * The logging of all information relating to log ins, set up of accounts, modifying of accounts, deletion of accounts and the upload and download of any information to and from the service.
   * An activity log will be available in the user interface for administrators and orbital analysts to see any information uploaded to the site, and any changes in user permissions.
 * We conducted a ‘bad actor’ tech spike at the start of the project to identify and plan a mitigation for any security threats to the service.
@@ -31,19 +31,20 @@ The team has held several meetings to identify the risks posed by bad actors. So
 
 ### Have a plan and budget that lets them manage security during the life of the service
 
-* This will be part of the ongoing responsibility of the maintenance team
-* We rely on well-respected products such as GOV.UK PaaS to ensure good practice of security patches
+* This will be part of the ongoing responsibility of the maintenance team.
+* We rely on well-respected products such as GOV.UK PaaS to ensure good practice of security patches.
 
 ### [Collect and process users' personal information](https://www.gov.uk/service-manual/design/collecting-personal-information-from-users) in a way that's secure and respects their privacy
 
 Monitor your satellites has Terms and Conditions that references the way in which user information will be used.
 
 * Users’ personal data will be used if:
-  * They choose to use the web-interface and hence need to log-in using their email addresses
+  * They choose to use the web-interface and hence need to log-in using their email addresses.
   * They opt-in to receive notifications in relation to conjunction events; notify them of any changes to the service or if a UKSA orbital analyst needs to contact them regarding a conjunction event.
   * We ask that any information from Monitor your satellites is not shared outside of your organisation without written permission. This, therefore, protects user’s data as some event data will be based upon their ephemeris.
-* Information will be classified as ‘official’
+* Information will be classified as ‘official’.
 * UKSA will not share any information submitted to Monitor your satellites outside of HM Government - this includes personal data, communications and ephemeris data.
+* While giving demos to potential new users, the 'demo' environment is used which has anonymised dummy data to maintain operator data privacy.
 
 Monitor your satellites have also completed a Data Protection Impact Assessment (DPIA) screening form. The service will collect individuals’ first name, surname, their work email address and work phone number. This data is already collected by the UKSA and CAA for key contacts at satellite operator organisations and used for comms when necessary. This service will likely involve collecting this data for more individuals at these organisations, if the organisations choose to use the service.
 
@@ -51,22 +52,22 @@ Initially, UKSA SST team (internal) will have access to this data in order to co
 
 As the service is developed further, this data will be shared with:
 
-* Civil Aviation Authority (external to UKSA)
-* Emergency response team (external to UKSA)
+* Civil Aviation Authority (external to UKSA).
+* Emergency response team (external to UKSA).
 * We will share operator contact details with other operators when they are involved in the same conjunction event, with the permission of the users, in order to enable them to communicate with one another about the event. Users will be able to opt-in or out of this functionality.
 
 ### Use an approach to identity assurance and authentication that balances the risks in a proportionate way (for services that need identity assurance or authentication)
 
-Monitor your satellites will use Auth0 for user authentication. Auth0 is an increasingly common authentication mechanism, as it provides:
+Monitor your satellites uses Auth0 for user authentication. Auth0 is an increasingly common authentication mechanism, as it provides:
 
-* A well established, secure system for two factor authentication
-* Streamlined external authentication, reducing cyber security risks
-* A solution to problems with magic links expiring before the user can access them
+* A well established, secure system for two factor authentication. Two factor authentication is currently disabled but we hope to enable it before going live.
+* Streamlined external authentication, reducing cyber security risks.
+* A solution to problems with magic links, which were previously used, expiring before the user can access them.
 
 Alternative methods of authentication were considered and some  may be used in future:
 
 * Simple passwords are the most common methods of authentication. However passwords are prone to phishing attacks and bad hygiene that weakens effectiveness. They are described as “low quality” security by the Government Design Service.
-* Multi-Factor Authentication (MFA) requires two or more independent ways to identify a user. MFA is good against most hacks, but comes with its own pitfalls such as lost phones, SIM cards etc. Orbital analysts will not have access to mobile phones while working so MFA involving smartphones cannot be the default for all user groups. However, we have had 1 request for this functionality and expect to offer MFA sign in post March.
+* Multi-Factor Authentication (MFA) requires two or more independent ways to identify a user. MFA is good against most hacks, but comes with its own pitfalls such as lost phones, SIM cards etc. Orbital analysts will not have access to mobile phones while working so MFA involving smartphones cannot be the default for all user groups. However, we have had 1 request for this functionality and expect to offer MFA through Auth0 when we go live in 2023.
 
 Role-based access control (RBAC) is also used in the service. An RBAC catalogue has been created to ensure that all users have access to the correct information, and that no users see information that they should not.
 
@@ -77,8 +78,8 @@ Role-based access control (RBAC) is also used in the service. An RBAC catalogue 
 
 ### Carry out appropriate [vulnerability and penetration testing](https://www.gov.uk/service-manual/technology/vulnerability-and-penetration-testing)
 
-* Penetration testing for Monitor your satellites took place in the w/c December 13th, February 7th and will be carried out again in late March/ early April.
+* Penetration testing for Monitor your satellites took place in the w/c December 13th, February 7th and in late March/ early April. We plan to carry out another Pen test in 2023 before the service goes live.
 * All issues from the first test are resolved.
-* All critical and high issues identified in the second test have been resolved. There are some outstanding medium and low issues which will be resolved by the refactor to B2C/ AuthO.
+* All critical and high issues identified in the second test have been resolved. Auth0 was implemented in response to the second test findings.
 
 <%= partial "partials/links" %>
