@@ -3,8 +3,8 @@ title: Choose the right tools and technology
 weight: 12
 hide_in_navigation: true
 parent: /gdswiki
-last_reviewed_on: 2022-05-03
-review_in: 3 months
+last_reviewed_on: 2022-12-07
+review_in: 6 months
 ---
 
 # 11. Choose the right tools and technology
@@ -13,29 +13,36 @@ Choose tools and technology that let you create a high quality service in a cost
 
 ### Use appropriate[ tools and technologies](https://www.gov.uk/service-manual/technology/choosing-technology-an-introduction) to create and operate a good service in a cost effective way - for example, by automating things where possible
 
-* We believe that there is no new or controversial architecture in our service
-* We have chosen technologies based on skills within the team & made decisions along with UKSA/CDDO team
-* To ensure the service is cost-effective, we have used open source tools and GOV.UK PaaS and Notify. Monitor your satellites uses GOV.UK Notify to automate email notifications sent out to users regarding events meeting notification thresholds, magic links to log in, user management updates, and any problems with the service.
+* We believe that there is no new or controversial architecture in our service.
+* We have chosen technologies based on skills within the team & made decisions along with UKSA/CDDO team.
+* To ensure the service is cost-effective, we have used open source tools and GOV.UK PaaS and Notify. Monitor your satellites uses GOV.UK Notify to automate email notifications sent out to users regarding events meeting notification thresholds, user management updates, and any problems with the service.
+* We are also using GOV.UK Notify for our contact an analyst feature which should be deployed by the end of 2022.
+* We plan to move all infrastructure provisioning under Terraform and are currently undertaking actions to do this.
+* As BEIS are moving away from GOV.UK PaaS, we are committed to migrating to a cloud host provider, most likely AWS, by the end of 2023. 
 
 ### Be able to show that they’ve made [good decisions](https://www.gov.uk/service-manual/technology/choosing-technology-an-introduction) about what technology to build and what to buy
 
 Monitor your satellites created a Tech Doc site to detail all design documents and technical architecture decisions. The documents in this tech doc site reflect the in-depth conversation the team has had regarding key technical decisions. In particular, the team has decided to buy several third-party logging services:
 
-* Logit is used to log and monitor errors or system crashes. It costs $203 (7 x $29) until March 2022.
+* Logit is used to log and monitor errors or system crashes which is a necessity for our service. It costs $269.75 a month.
 * PIWIK Pro is used to track front-end analytics. This was after rejecting Matomo Cloud which costs $9 a month for the same functionality.
-* Locize will be used to allow UKSA users to make small text changes themselves, at £5 pppm.
+* We use the free services of Nexus and Cosmic JS to allow operators to make small changes to static changes.
+* We use Sentry to help developers monitor and fix crashes in real time. We have continously assessed and changed our plan depending on our needs so we are only playing for what is necessary.
+* In the autumn of 2022 we also made the decision to move our prototype from Heroku to Render because Heroku was ending its free service.
+
 These relatively small costs combined with the ease of having pre-built logging services mean that it makes sense to buy these services.
 
 ### Understand total cost of ownership of the technology and preserve the ability to make different choices in future - for example, reducing the chances of getting locked into contracts for specific tools and suppliers by[ using open standards](https://www.gov.uk/service-manual/technology/working-with-open-standards)
 
 * UKSA have required from The PSC a full list of SaaS accounts used which allows them to maintain full ownership of the service by providing the required training and documentation.
 * We have used existing GOV.UK services to minimise reliance on third parties. For example - GOV.UK Notify and GOV.UK PaaS.
-* At private beta we will use getform.io for our feedback form, however, for public beta the official GOV.UK feedback form is used.
+* At private and public beta we use getform.io for our feedback form. However, we soon plan to migrate to the official GOV.UK feedback form.
 
 ### Have an effective approach to[ managing any legacy technology](https://gds.blog.gov.uk/2014/07/08/making-prison-visits-easier-to-book/) the service integrates with or depends on
 
 * The service relies on data from Space-Track
-  * The service and UKSA orbital analysis is reliant on Space-Track for data, however, there is no alternative. Therefore, we are in the process of securing a data sharing agreement with the 18th Space Squadron.
+  * The service and UKSA orbital analysis is reliant on Space-Track for data, however, there is no alternative. We have secured a formal bilateral data sharing agreement with the 18th Space Squadron.
+  * We also use DISCOS data from ESA and have obtained a formal bilateral agreement with them.
   * Mys is the first step to becoming less reliant on Space-Track in some ways as Mys provides an independent platform for sharing SST data with UK operators.
 
 <%= partial "partials/links" %>
