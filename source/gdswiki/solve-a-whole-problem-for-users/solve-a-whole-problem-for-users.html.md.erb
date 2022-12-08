@@ -19,7 +19,7 @@ Work towards creating a service that solves a whole problem for users, working w
 * In general the software has been developed relatively cheaply and should provide a unique selling point to the UK licensing authority.
 * Sharing data on satellite activeness and manoeuvrability raised some liability concerns (for example, would the UKSA be liable for operators moving satellites as a result of this information, which could be incorrect?) and so we consulted UKSA lawyers on the implications of sharing this data. Therefore a disclaimer is included in the terms and conditions for users stating that the UKSA is not responsible for any actions taken based on data shared.
 * Sharing Space-Track data via our service required a data sharing agreement with the 18th Space Squadron. This is complete and we also have a permission agreement with ESA to use their DISCOS data.
-* Some users of the service require special access to enable them to access the website when in high-security environments. For example, in some locations, they cannot use their mobiles, so two factor authentication using mobiles could not exclusively be used. Therefore, we are currently using auth-0's credible and secure sign-up and log-in service with MFA disabled.
+* Multi-factor authentication can create access barriers of needing multiple devices to log in. Therefore, we are currently using Auth0's credible and secure sign-up and log-in service with MFA disabled.
 
 ### Make sure services are [scoped according to how users think and what they need to do](https://www.gov.uk/service-manual/design/scoping-your-service)- not too narrow or too broad
 
@@ -27,7 +27,7 @@ Work towards creating a service that solves a whole problem for users, working w
 * We held an MVP definition session at the start of the project with the UKSA SST team to discuss which features would be included in the MVP. We concluded which requirements were and were not in scope & defined the MVP. This discussion was informed by extensive user research at Alpha where user needs were recorded, evidence written against them and then they were categorised as must have or nice-to-have features. We used this data to define the MVP and prioritise backlog of features.
 * Functionality of the site developed during the beta was also tested against orbital analyst user needs and capabilities. For example, ephemeris data will be stored against satellites rather than events as orbital analysts will sometimes use the same ephemeris data to update calculations for multiple events.
 * There are further user groups not yet covered by the service who it can be expanded to, particularly Critical National Infrastructure staff members, Space Insurers, Ministers, Academics, and maybe international partners.
-* We are working with Cranfield University to develop our service and assess how MYS may aid universities, giving them access to the demo site (with anonymised data) during workshops in the Autumn of 2021. We plan to replicate this with workshops in January 2023.
+* We are working with research and academia to develop our service and assess how MYS may aid universities, giving them access to the demo site (with anonymised data) during workshops in the Autumn of 2021. We plan to replicate this with workshops in January 2023.
 
 ### Be able to explain how the service the team is working on will join up with other things into a journey that solves a whole problem for users
 
