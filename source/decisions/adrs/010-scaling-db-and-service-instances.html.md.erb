@@ -1,0 +1,45 @@
+---
+title: 010. Scaling database and service instances
+weight: 10
+hide_in_navigation: true
+parent: /decisions
+last_reviewed_on: 2023-05-19
+review_in: 12 months
+---
+
+# 010. Scale the database and service instance on GOV.UK PaaS
+
+Date: 2022-10-19
+
+## Status
+
+Accepted
+
+## Context
+
+We are currently running single instances and non-highly available databases in production - this is not recommended practice on cloud platforms due to inevitable downtime when platform changes are made. There have been a number of incidents since we have been in production where platform issues have created downtime for us that may have been prevented by running multiple instances of applications and/or highly available databases.
+
+In addition, as the service scales and the data increases, we will need to upgrade our backing services anyway.
+
+This ‘vertical and horizontal’ scaling will have additional costs but it is recommended for the production environment by the underlying platform provider GOV.UK PaaS.
+
+## Decision
+
+We recommend upgrading from a small-13 Postgres plan to a medium-ha-high-ipos Postgres plan asap. The small plan is limited to a single instance of 100gb disk size. We are approaching 65% disk space usage so, on current run rate, would be exhausted by January and critical in the next couple of months. In addition, it is only a single instance meaning any platform upgrades or changes could cause the database to drop out. A high availability plan would mean that even if one availability zone of the platform is down/being upgraded there is a duplicate database that is used for resilience and so no downtime. Upgrading is relatively simple but there may be some downtime during the first upgrade. We can schedule this to a particular maintenance window.
+Full features and details available on the Postgres marketplace page.
+
+We recommend also running multiple instances of the applications themselves. Again, this means if an availability zone (AZ) is down, the other version of the application will be served and remove single points of failure. 
+
+GOV.UK PaaS automatically distributes applications so they don’t run in the same availability zone to prevent both applications being down if a single AZ drops out.
+
+We will look to split out the different worker applications into their own machines and the peak load on all of these applications and see if we can reduce the amount of compute available. This could be then reflected across DEMO and DEV for these apps.
+
+## Consequences
+
+Resource costs will increase as we scale.
+
+Resillience from GOV.UK PaaS multiple availability zones.
+
+Highly available database means dual running duplicates in different AZs too.
+
+<%= partial 'partials/links' %>
