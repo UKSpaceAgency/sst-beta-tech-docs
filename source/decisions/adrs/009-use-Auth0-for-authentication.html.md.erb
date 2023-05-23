@@ -1,0 +1,32 @@
+---
+title: 009. Use Auth0 as a secure authentication solution on Monitor your satellites
+weight: 9
+hide_in_navigation: true
+parent: /decisions
+last_reviewed_on: 2023-05-19
+review_in: 12 months
+---
+
+# 009. Use Auth0 as a secure authentication solution on Monitor your satellites
+
+Date: 2022-07-19
+
+## Status
+
+Accepted
+
+## Context
+
+Following the use of Magic Links to log into the service and subsequent PenTest, it was identified as a medium risk and recommended a more traditional authentication standard was used. 
+
+## Decision
+
+We decided to integrate with Auth0. Auth0 is a flexible, drop-in SaaS solution to add authentication and authorisation services to applications. It will save on cost, time, and risk that comes with building our own solution to authenticate and authorise users.
+
+From the web: Auth0 is an identity and access management platform that provides authentication and authorization solutions for web, mobile, and legacy applications. It offers features such as single sign-on, social login, multi-factor authentication, and user management.
+
+## Consequences
+
+We use a familiar OAuth standard for authorisation of users that is secure and scalable.  
+
+<%= partial 'partials/links' %> 
