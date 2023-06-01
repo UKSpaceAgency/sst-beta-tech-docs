@@ -3,7 +3,7 @@ title: Notifications
 weight: 12
 hide_in_navigation: true
 parent: /designdocs
-last_reviewed_on: 2022-04-25
+last_reviewed_on: 2023-06-01
 review_in: 3 months
 ---
 # Notifications
@@ -56,6 +56,7 @@ It is envisaged that Notify will be called primarily from the Python back-end, b
 Users will be able to adjust notification settings by amending the threshold for notifications in their account settings page. Default thresholds will be used before users first sign-in, however they will be asked to review/edit these the first time they log in. The default settings will be based on typical values but users will be informed that “It is your responsibility to set the thresholds so that you can operate your satellite successfully.” Users will be able to modify these once they have logged in for the first time.
 
 <b>Threshold logic:</b>
+
 1. PofC HIGHER than [x]
 2. AND total miss distance BELOW [x]
 3. AND radial miss distance BELOW [x]
@@ -121,11 +122,13 @@ Notifications are inherently a cross-cutting concern.
 If you repeatedly send text messages to the same number the phone networks will block them.
 
 There’s an hourly limit of:
+
 * 20 messages with the same content
 * 100 messages with any content
 
 
-## Document history:
+## Deprecated Content
+### Do not allow users to set threshold per satellites
 Update: we are no longer allowing users to set thresholds per satellite. User journey would have looked like:
 
 Subsequent uses of Monitor your satellites (to adjust individual satellite notification settings):

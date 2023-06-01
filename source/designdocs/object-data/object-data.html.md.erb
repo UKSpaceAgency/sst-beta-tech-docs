@@ -3,7 +3,7 @@ title: Object Data Ingestion
 weight: 12
 hide_in_navigation: true
 parent: /designdocs
-last_reviewed_on: 2022-04-25
+last_reviewed_on: 2023-06-01
 review_in: 3 months
 ---
 
@@ -53,6 +53,8 @@ review_in: 3 months
   * PDF report generation (POST POST MVP)
 
 ##The actual design
+
+_Note: Much of this content reflects the original design thinking and is kept for longevity - see the latest update below for current state of information used._
 
 ###Ingesting current satellites and objects
 1. Monitor your satellites’ Space Track permission is only to ingest UK objects, so there is no need to filter ingestion - all available CDMs and satellites can be ingested.
@@ -166,6 +168,47 @@ There will be three sources of object data required:Civil Aviation Authority (CA
 |  In-track miss distance|||
 | Cross-track miss distance |||
 | Data upload |||
+
+### Update (as at June 2023)
+Moving out of Public Beta, the table below reflects the actual sources used in the current production version of Mys:
+
+####Object data:
+
+| Data Point | Example Entry | Source |
+|-|-|-|
+| Common Name                | Starlink-182 | Space-Track SATCAT |
+| International designator   | 2020-088AD   | Space-Track SATCAT |
+| NORAD ID                   | 47149        | Space-Track SATCAT |
+| Object type | Payload | Space-Track SATCAT |
+| **Licence information** |
+|   Country |   UK |   Space-Track SATCAT |
+|   Launching site | TTMTR |  Space-Track SATCAT |
+|   Launch date | 2020 | Space-Track SATCAT |
+| **Orbital information** |
+| Apogee|  45 |  Space-Track SATCAT |
+|  Perigee |  179 |  Space-Track SATCAT |
+|  Inclination |  37 |  Space-Track SATCAT |
+| Period (minutes) |  119 | Space-Track SATCAT |
+| **Additional Object Data** |
+| Shape | Box | ESA DISCOS |
+| Mass (kg) | 17 | ESA DISCOS |
+| Size | _Multiple fields_ | ESA DISCOS |
+
+####Object data:
+####  Event summary
+
+| Data Point | Example Entry | Source |
+|-|-|-|
+| Probability of collision | 1.345e-4 | Space-Track CDM _or_ UKSA Analysis |
+| Probability of collision method | FOSTER-1992 | Space-Track CDM _or_ UKSA Analysis |
+| Time of closest approach (UTC)| 01/06/2023 14:16:52 | Space-Track CDM _or_ UKSA Analysis |
+| Total miss distance (m) |18735| Space-Track CDM _or_ UKSA Analysis |
+| Radial miss distance (m) |332.5| Space-Track CDM _or_ UKSA Analysis |
+| In-track miss distance (m) |4877.2| Space-Track CDM _or_ UKSA Analysis |
+| Cross-track miss distance (m) |18086.2| Space-Track CDM _or_ UKSA Analysis |
+| Time of update (UTC) | 01/06/2023 12:16:52 | Space-Track CDM _or_ UKSA Analysis |
+| Primary object size (m) | 5 | Space-Track CDM _or_ UKSA Analysis |
+| Secondary object size (m) | 5 | Space-Track CDM _or_ UKSA Analysis |
 
 ## Alternatives considered
 ### Alternative sources of data
