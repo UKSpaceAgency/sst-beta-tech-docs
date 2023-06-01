@@ -1,0 +1,43 @@
+---
+title: 011. Migration to AWS from GOV.UK PaaS
+weight: 11
+hide_in_navigation: true
+parent: /decisions
+last_reviewed_on: 2023-05-19
+review_in: 12 months
+---
+
+# 011. Migrate the service from GOV.UK PaaS to AWS
+
+Date: 2023-04-01
+
+## Status
+
+Accepted
+
+## Context
+
+The Agency is required to obtain a new cloud hosting service after being notified that their current hosting provider, GOV.UK PaaS, is being decommissioned at the end of December 2023
+
+
+
+## Decision
+
+The Agency is seeking a cloud-hosting platform to migrate the current technical architecture of MYS (based on Cloud Foundry on top of AWS) with minimal changes required to the code base and architecture.
+
+Within this there are several sub-objectives:
+
+1. Provide cost-effective hosting of current MYS technical architecture – the new cloud hosting service must be able to host the current configuration (including PostgreSQL, S3 buckets and Docker containers) with minimal reconfiguration
+
+2. Meet future service needs of MYS – the new cloud hosting service must be scalable in a cost-effective manner with global availability and should provide a large selection of cloud components to allow for upgrades and transformation of the current service (e.g. cron-lik events, logging/alerting services, serverless components)
+
+3. Allow for seamless migration of data from GOV.UK PaaS – the new hosting service must provide tools and components that allow for migration of data from the current production database in GOV.UK PaaS with no/minimal downtime
+
+4. Meet technical and data security requirements for OFFICIAL data – the new hosting service should be accredited to Cyber Essentials Plus, ISO27001 and permit penetration testing to CHECK standards by an external supplier
+
+The target architecture and phasing will look to achieve the following set up.
+
+![Target architecture](images/mys_aws_arch_v1.png)
+
+
+<%= partial 'partials/links' %>

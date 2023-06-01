@@ -3,7 +3,7 @@ title: Support and incident processes
 weight: 12
 hide_in_navigation: true
 parent: /ways-of-working
-last_reviewed_on: 2022-04-26
+last_reviewed_on: 2023-05-26
 review_in: 3 months
 ---
 
@@ -33,9 +33,10 @@ Any support requests that come into monitoryoursatellites@ukspaceagency.gov.uk w
 3. The on-call team member is tasked to always be alert to Slack channel inputs especially on: #uksa-sst-beta-alerts-prod on The PSC Slack workspace 
 4. They analyse the request and follow up as appropriate.
 5. Response time and action determined by classification of the issue identified.
-6. If appropriate, actions taken by on-call team members are determined by runbooks.
-7. If necessary, a Jira issue is created with the issue and actions taken and/or required.
-8. The user is notified of actions taken to address the issue.
+6. If required, a Super User can create an incident banner and deploy it to the website, alerting users that there is a situation impacting the service. If the site is down, then users can find out from the [Pingdom Status page](https://status.monitor-your-satellites.service.gov.uk/)
+7. If appropriate, actions taken by on-call team members are determined by runbooks.
+8. If necessary, a Jira issue is created with the issue and actions taken and/or required.
+9. The user(s) is notified of actions taken to address the issue.
 
 ### Support and response expectations and clarifications
 
@@ -59,13 +60,16 @@ We will use ukspaceagency.support@thepsc.co.uk as the primary tool for reporting
 4. The issue is investigated and classified and, if necessary, all stakeholders are notified of the issue.
 5. Response time and action determined by classification of the issue identified.
 6. If appropriate, actions taken by on-call team members are determined by runbooks.
-7. The components affected by the incident are updated on the service status page and progressed through:
-  * Investigating
-  * Identified
-  * Monitoring
-  * Resolved
-8. If necessary, a Jira issue is created with the issue and actions taken and/or required.
-9. Incident review is conducted by the team to establish the route cause and possible preventive actions explored.
+7. If user facing components are affected by the incident, the [Pingdom service status page](https://status.monitor-your-satellites.service.gov.uk/) will indicate this.
+8. If possible, then a Super User can login and create an incident banner to display on Monitor your satellites from the /Account page. The Super User can choose whether to schedule this message or activate it straight away and display until deactivated. There are four types of incident banner:
+  * Major Incident - for example, a collision that has impacted a number of objects and may be causing innacurate information
+  * Technical issue ingesting conjunction data messages - For instance Space-Track information is down
+  * Technical issue ingesting object data - For instance Space-Track or ESA information is down
+  * Technical issue ingesting orbital analyses - For instance there is an issue with the UK Sapce Agency Orbital Analysis systems  
+9. If necessary, a Jira issue is created with the issue and actions taken and/or required.
+10. Incident review is conducted by the team to establish the route cause and possible preventive actions explored.
+
+![Manage incident banner options and scheduler](images/incident-banner-options.png)
 
 ## Limits to support
 1. In all instances we will attempt to resolve P1 problems as soon as possible; but in the worst case scenario other solutions will be considered, including rolling back to the previous version; and in the worst case making the service inaccessible until appropriate development team members are available.
