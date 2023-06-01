@@ -3,7 +3,7 @@ title: Conjunction Event ID
 weight: 12
 hide_in_navigation: true
 parent: /designdocs
-last_reviewed_on: 2022-04-25
+last_reviewed_on: 2023-06-01
 review_in: 3 months
 ---
 
@@ -31,6 +31,9 @@ The goal of this design doc is to articulate a design for the structure of the C
 * A human readable form of ID or unique label is highly desired for interpersonal communication.
 
 ##The actual design
+### Original version (before April 2023)
+
+_Note: though many of the principles within this section still apply, the exact bit layout of the event IDs has changed (see new design)_
 
 The proposal is to adopt an approach like that used by [Instagram] (https://instagram-engineering.com/sharding-ids-at-instagram-1cf5a71e5a5c), which is in turn based on the Snowflake ID used at [Twitter] (https://blog.twitter.com/engineering/en_us/a/2010/announcing-snowflake). Indeed many big tech companies are using a similar approach since it works well for distributed systems.<br>
 
@@ -60,11 +63,30 @@ Well the hashid for this number is <span style="background-color: #FFA500">5p6G1
 
 <b>Note:</b> There is a requirement for time to synchronise across machines and systems generating event IDs, the NTP and associated services will solve this problem for us.
 
+###The new design (after April 2023)
+We discovered an edge case where collisions with multiple objects which are close together could end up with the same Event short ID for different events.
+
+Requirements:
+
+* The same or very close (<60 seconds) TCA_TIME
+* The same primary object name
+* The same secondary object name
+
+The cause is that we desperately wanted to shorten Event URLs and we spent too many bits on TCA time but not enough on object names. We also used object names, not the NORAD_IDs to distinguish different objects.
+
+To solve this we increased the number of bits used in the Event Short IDs to 77 bits and removed the generating system (as MYS is the only system generating such short IDs). This left us with the following design:
+
+* 33 bits for time in *seconds* (giving us 272 years)
+* 22 bits for primary object NORAD ID
+* 22 bits for secondary object NORAD ID
+
+This produces short IDs of the style `jbxleqg-ndrxvgb-gorpwg` (7-7-6) using lowercase a-z.
+
 ###APIs
-No public API for Conjunction Event IDs is to be exposed. Each generating system is expected to implement its own algorithm with an agreed upon generating system number.
+No public API for Conjunction Event IDs is to be exposed.
 
 ###Data Storage
-The Mys database will use a 64-bit integer to store the Conjunction Event ID. This will be inserted in the COMMENTS field for CDMs that are grouped as related to one Conjunction Event. The hashids can be decoded so it is debatable whether they need to be stored in the database, or just coded and decoded on the fly as needed.
+The Mys database uses a varchar to store the Conjunction Event ID. 
 
 ###Code and pseudocode
 This is untested but based on the Instagram implementation it is envisaged that something like the following PL/PGSQL will work:

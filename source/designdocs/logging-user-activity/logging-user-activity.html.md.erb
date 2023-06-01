@@ -3,7 +3,7 @@ title: Logging and Auditing User Activity
 weight: 12
 hide_in_navigation: true
 parent: /designdocs
-last_reviewed_on: 2022-04-25
+last_reviewed_on: 2023-06-01
 review_in: 3 months
 ---
 # Logging and Auditing User Activity
@@ -76,9 +76,11 @@ Time from API request to response - Pingdom
 Service availability (hours/day) - Pingdom
 
 <b>Piwik Pro</b> will be used to track front-end analytics.
+
 * It tracks and reports website traffic, and will track user-related metrics.
 
 <b>Notify</b> will track notifications sent to users.
+
 * The status of sent notifications can be checked through Notify’s free dashboard. For security, this information is only available for 7 days after a message has been sent. A report can be downloaded, including a list of sent messages, for Mys’s records, during this period. These will be stored in S3.
 * Notify cannot track if your users open an email or click on the links in an email. They do not track open rates and click-throughs because there are privacy issues. Tracking emails without asking permission from users could breach General Data Protection Regulations (GDPR).
 
