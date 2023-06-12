@@ -1,3 +1,57 @@
 @import "govuk_tech_docs";
 
-@import "https://unpkg.com/swagger-ui-dist@4.5.0/swagger-ui.css"
+@import "https://unpkg.com/swagger-ui-dist@4.5.0/swagger-ui.css";
+
+// badges
+.swagger-ui .info .title pre {
+    background: none;
+}
+.swagger-ui .info .title small {
+    background-color: #000000;
+}
+.swagger-ui .info .title small.version-stamp {
+    background-color: 	#00703c;
+}
+
+// auth button
+.swagger-ui .btn.authorize {
+    border-color: 	#00703c;
+    background-color: #00703c;
+    color: 	#ffffff
+}
+.swagger-ui .btn.authorize svg {
+    fill: 	#ffffff
+}
+
+// method blocks
+.swagger-ui .opblock.opblock-get {
+    background-color: #ffffff;
+    border: 2px solid #003078;
+}
+.swagger-ui .opblock.opblock-get .opblock-summary-method {
+    background-color: #003078;
+}
+
+.swagger-ui .opblock.opblock-patch {
+    background-color: 	#ffffff;
+    border: 2px solid #912b88;
+}
+.swagger-ui .opblock.opblock-patch .opblock-summary-method {
+    background-color: #912b88;
+}
+
+.swagger-ui .opblock.opblock-post {
+    background-color: 	#ffffff;
+    border: 2px solid 			#00703c;
+}
+.swagger-ui .opblock.opblock-post .opblock-summary-method {
+    background-color: 		#00703c;
+}
+
+.swagger-ui .opblock.opblock-delete {
+    background-color: 	#ffffff;
+    border: 2px solid 				#d4351c;
+}
+.swagger-ui .opblock.opblock-delete .opblock-summary-method {
+    background-color: 			#d4351c;
+}
