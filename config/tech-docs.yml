@@ -1,10 +1,10 @@
 # Host to use for canonical URL generation (without trailing slash)
-host: https://sst-tech-docs.london.cloudapps.digital
+host: https://mys-tech-docs.onrender.com/
 
 # Header-related options
 show_govuk_logo: true
 service_name: Monitor your Satellites - Tech Docs
-service_link: https://sst-tech-docs.london.cloudapps.digital/
+service_link: https://mys-tech-docs.onrender.com/
 phase: Beta
 
 # Links to show on right-hand-side of header
