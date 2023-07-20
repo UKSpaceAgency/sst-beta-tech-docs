@@ -17,18 +17,19 @@ Accepted
 
 ## Context
 
-We currently use a combination of Sentry and Logit.io for monitoring and alerts. At present our alerting service is not as reliable as we would like. Unfortunately, Lambda powertools for Python does not meet our needs. 
+We currently use a combination of Sentry and Logit.io for monitoring and alerts. At present our alerting service is not as reliable as we would like.
 
+As we are migrating to AWS, we could take advantage of Amazon's CloudWatch which monitors AWS resources and applications in real time. 
 
 ## Decision
 
-We will continue using Sentry.
+We will continue to use Sentry.
 
 We will look to move our alerts away from Logit.io / Grafana and instead set them up in CloudWatch.
 
 ## Consequences
 
-Moving to Cloudwatch should be more reliable for alerting and alarms. We will have increased control and AWS will give us better access to other options like alerting directly from the database. By continuing to use Sentry, we will avoid using additional developer time and incurring charges from CloudWatch for these metrics.  
+Moving to CloudWatch should be more reliable for alerting and alarms. We will have increased control, and AWS will give us better access to other options like alerting directly from the database. By continuing to use Sentry, we will avoid using additional developer time and incurring charges from CloudWatch for these metrics.  
 
 
 
