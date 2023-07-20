@@ -1,0 +1,35 @@
+---
+title: 012. Continued use of Sentry, use of CloudWatch Alerts
+weight: 12
+hide_in_navigation: true
+parent: /decisions
+last_reviewed_on: 2023-07-20
+review_in: 12 months
+---
+
+# 012. Continued use of Sentry, use of CloudWatch Alerts
+
+Date: 2023-07-20
+
+## Status
+
+Accepted
+
+## Context
+
+We currently use a combination of Sentry and Logit.io for monitoring and alerts. At present our alerting service is not as reliable as we would like. Unfortunately, Lambda powertools for Python does not meet our needs. 
+
+
+## Decision
+
+We will continue using Sentry.
+
+We will look to move our alerts away from Logit.io / Grafana and instead set them up in CloudWatch.
+
+## Consequences
+
+Moving to Cloudwatch should be more reliable for alerting and alarms. We will have increased control and AWS will give us better access to other options like alerting directly from the database. By continuing to use Sentry, we will avoid using additional developer time and incurring charges from CloudWatch for these metrics.  
+
+
+
+<%= partial 'partials/links' %>
