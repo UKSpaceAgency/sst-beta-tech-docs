@@ -15,7 +15,7 @@ Work towards creating a service that solves a whole problem for users, working w
 
 * An initial assumption was that monitoring every object in space forever was an insuperable constraint. This has turned out to be less than 100% true and for now we are keeping the history of any piece of debris which comes near a UK licensed object.
 * We further discovered that a constraint of UK-licenced satellites was not quite as useful as we thought. For example, 1 operator builds and operates 2 satellites for Nigeria- we have also included this for now.
-* There is a constraint about what we can do with the aggregated data for now but UKSA staff are looking into it.
+* There is a constraint about what we can do with the aggregated data for now but UKSA staff and cross-government stakeholders with interests in Space Domain Awareness are looking into it.
 * In general the software has been developed relatively cheaply and should provide a unique selling point to the UK licensing authority.
 * Sharing data on satellite activeness and manoeuvrability raised some liability concerns (for example, would the UKSA be liable for operators moving satellites as a result of this information, which could be incorrect?) and so we consulted UKSA lawyers on the implications of sharing this data. Therefore a disclaimer is included in the terms and conditions for users stating that the UKSA is not responsible for any actions taken based on data shared.
 * Sharing Space-Track data via our service required a data sharing agreement with the 18th Space Squadron. This is complete and we also have a permission agreement with ESA to use their DISCOS data.
@@ -23,16 +23,17 @@ Work towards creating a service that solves a whole problem for users, working w
 
 ### Make sure services are [scoped according to how users think and what they need to do](https://www.gov.uk/service-manual/design/scoping-your-service)- not too narrow or too broad
 
-* The product is scoped to Owner Operators, Orbital Analysts, and UKSA staff for private and initial public beta.
+* The product was scoped to Owner Operators, Orbital Analysts, and UKSA staff for private and initial public beta.
 * We held an MVP definition session at the start of the project with the UKSA SST team to discuss which features would be included in the MVP. We concluded which requirements were and were not in scope & defined the MVP. This discussion was informed by extensive user research at Alpha where user needs were recorded, evidence written against them and then they were categorised as must have or nice-to-have features. We used this data to define the MVP and prioritise backlog of features.
 * Functionality of the site developed during the beta was also tested against orbital analyst user needs and capabilities. For example, ephemeris data will be stored against satellites rather than events as orbital analysts will sometimes use the same ephemeris data to update calculations for multiple events.
-* There are further user groups not yet covered by the service who it can be expanded to, particularly Critical National Infrastructure staff members, Space Insurers, Ministers, Academics, and maybe international partners.
-* We are working with research and academia to develop our service and assess how MYS may aid universities, giving them access to the demo site (with anonymised data) during workshops in the Autumn of 2021. We plan to replicate this with workshops in January 2023.
+* There are further user groups not yet covered by the service who it can be expanded to, particularly Critical National Infrastructure staff members, Space Insurers, Ministers, Academics, and maybe international partners. These potential users have been engaged as part of a second round of user research within the public beta.
+* We are working with research and academia to develop our service and assess how MYS may aid universities, giving them access to the demo site (with anonymised data) during workshops in the Autumn of 2021 and January 2023.
 
 ### Be able to explain how the service the team is working on will join up with other things into a journey that solves a whole problem for users
 
 * As conjunction alerts become more frequent and the risk of a collision increases with time, our services will help operators to navigate this increasingly complex environment.
 * It is important that this service links up with the wider user journey, therefore, we met with the CAA to discuss the licensing process & with the UKSpOC to discuss any crossovers with the commercial integration cell or Aurora. This ensures that our service is connected with or aligns with other services offered by the Government.
+  * As part of the public beta, we are also considering alignment with other government services such as the space weather service provided by the Met Office Space Weather Operations Centre (MOSWOC).
 * It was highlighted during the Alpha phase that conjunction event analysis is most useful when completed using the operator’s ephemeris data. Therefore, we can ingest ephemeris data and provide analysis on how their planned actions will affect Probability of Collision - this provides a link between the data provided by Space-Track and the effectiveness of an operators response (*completes user journey*).
 * Monitor your satellites is not really a transactional service: the key output is broadcasting analysis which is already being done to those who are paying for it but not receiving it.
   * There is a small transactional element in operators uploading ephemeris data but this is not necessary to the service.
@@ -40,6 +41,7 @@ Work towards creating a service that solves a whole problem for users, working w
 * Our API allows us to integrate better with many of our users.
   * Orbital analysts will be able to upload analysis in bulk and more quickly.
   * Advanced operators will be able to incorporate UKSA analysis into their existing systems.
+* As part of an additional round of user research with other potential users (conducted during the public beta), we mapped the wider user journey for, e.g., cross-government users, for current services provided by the UKSA SST team. 
 
 ### Take responsibility for agreeing how this user journey will work with organisations responsible for different parts of it - for example, with the GDS content team to join up GOV.UK content with the service you’re working on
 
@@ -50,7 +52,7 @@ Several organisations are part of the journey in its current scope:
 * UKSA SST team - acting as admins for the service.
 * GDS/BEIS team - ensure we meet service standards.
 
-The journey can be longer in future to include eg CNI users, academics, insurers and the other groups covered above.
+The journey can be longer in future to include eg CNI users, academics, insurers and the other groups covered above. We have been proactive in identifying the interdependencies that future user journeys may incur and will work with them accordingly as any new use cases develop.
 
 ### Consider alternatives to creating a service - for example publishing website content, running a campaign, partnering with a non-government organisation or making data or an Application Programming Interface (API) available to third parties
 
@@ -62,6 +64,7 @@ The journey can be longer in future to include eg CNI users, academics, insurers
 * User research throughout the discovery and alpha provided strong evidence for the need of a web service to provide high-quality and easy-to-understand data and notifications to operators about conjunction events which took advantage of the medium of the web.
 * In addition to a website interface, we have made an API available for operator users to access event information, and orbital analysts to upload JSON files. We frequently remind operators about API access, for example during onboarding webinars and through the MyS newsletter.
 * This allows us to publish the already-existing high-quality analysis to operators who otherwise simply didn’t have it.
+* Further rounds of user research related to new use cases showed that the current emailing of other SST reports incurs similar difficulties mentioned above. By retaining this current, manual system, the UKSA would forego opportunities to save time, store data and reports more securely and create a data repository for future analysis. 
 
 ### Work in the open so that people inside and outside the organisation know what the service team is doing - increasing the potential for collaboration and reducing duplication of effort (for example by publishing business cases, mission statements, research findings, user experience maps, maps of existing services and product [roadmaps](https://www.gov.uk/service-manual/agile-delivery/developing-a-roadmap) showing plans to develop new features)
 
@@ -82,7 +85,7 @@ The journey can be longer in future to include eg CNI users, academics, insurers
 
 ### [Work with other teams and organisations](https://www.gov.uk/service-manual/agile-delivery/working-across-organisational-boundaries) where that’s necessary to solve a whole problem for users
 
-* We have worked with UKSA, BEIS, CAA, MOJ, MOD
+* We have worked with UKSA, BEIS, CAA, MOJ, MOD, DSIT, DfT, FCDO
   * E.g. BEIS assurance meetings.
   * E.g. Met with CAA colleagues several times to ensure the service would align with their processes and future needs.
 * Met with representatives from the UKSpOC to discuss the services they provide to operators and their future user needs.
