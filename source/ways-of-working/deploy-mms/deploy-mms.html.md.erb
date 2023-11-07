@@ -3,64 +3,50 @@ title: How to deploy Monitor your satellites
 weight: 20
 parent: /ways-of-working
 hide_in_navigation: true
-last_reviewed_on: 2022-08-31
-review_in: 3 months
+last_reviewed_on: 2023-11-03
+review_in: 12 months
 ---
 
 # How to deploy Monitor your satellites
 
-Monitor your satellites (Mys) manages most of its resources through Terraform, this is the repo
+Monitor your satellites (MYS) manages most of its resources through Terraform, this is the repo
 [UKSpaceAgency/sst-beta-infra](https://github.com/UKSpaceAgency/sst-beta-infra).
 
-Everything that is automated comes through executing the GitHub Workflow
-[Deploy to PaaS](https://github.com/UKSpaceAgency/sst-beta-infra/blob/main/.github/workflows/deploy-to-paas.yml).
+The release and deployment process for MYS on AWS is driven by TAG creation for the relevant git repository (Frontend or Backend). 
+The repos are available at the following:
+[Monitor your satellites beta Frontend repo](https://github.com/UKSpaceAgency/sst-beta) 
+[Monitor your satellites beta Backend repo](https://github.com/UKSpaceAgency/sst-beta-python-backend)
 
-The sequence for starting the deployment is to:
+Once a specific tag is created, then configured GitHub actions will build the code and invoke an infrastructure/terraform rollout.
 
-1. Navigate to the Actions tab
-2. Select the Deploy to GOV.UK PaaS workflow
-3. Run the workflow
+The release process is the same for Frontend and Backend. Here’s an example for the Backend
 
-![GitHub Action Image](deploy-to-paas-1.png)
+1. Go to **Releases** in the relevant repo, for example from here: https://github.com/UKSpaceAgency/sst-beta-python-backend/releases
+1. Select **Draft a new release**
+![GitHub Action Image](deploy-to-aws-1.png)
+1. Create a new tag using the **Choose a tag** dropdown
+1. Choose **Branch** or **Commit** under the **Target** dropdown
+1. You need to **follow the naming convention** when creating the tag:  
 
-The workflow accepts two inputs:
+> Tags started with `DEMO-x.y.z` will deploy code to the demo environment<P>
+Tags started with `PROD-x.y.z` will deploy code to the production environment
 
-1. Invoker - enter the command to execute, valid values are:
-  * `plan` - executes a `terraform plan`, which creates an execution plan and facilitates previewing of changes.
-  * `apply` - executes a `terraform apply`, which generates a new Terraform plan and executes it.
-  * In addition to apply there are targeted invokers, namely `front-end` and `back-end`. They execute a Terraform
-    `apply` but with the `-target` option set to `module.front-end` (i.e. the front-end application) or
-    `module.back-end` (i.e. the api application, spacetrack integration and database migration) respectively.
-2. Environment - enter the environment to execute against, valid values are:
-  * `dev` - Development
-  * `demo` - Demonstration / Staging / Test
-  * `prod` - Production
+1. Once you click **Publish release**, the tag will be created in the git repository and automated release process will start. It will first build the Docker image, then invoke an infrastructure project to rollout automatically
+![GitHub Action Image](deploy-to-aws-2.png)
+1. After **Publish release** is clicked the build will start which can be seen in github actions
+![GitHub Action Image](deploy-to-aws-3.png)
+1. If the build has successfully completed, it means the Docker image is ready and it’s pushed to AWS ECR (Container Registry), then an automated rollout happens inside the sst-beta-infra github actions. <P> You can monitor progress of the rollout at https://github.com/UKSpaceAgency/sst-beta-infra/actions
+![GitHub Action Image](deploy-to-aws-4.png)
+1. Once a deploy workflow completes successfully in sst-beta-infra actions, then the code is deployed to the relevant environment. Automated Slack messages will also notify you on the #uksa-sst-beta-backend-notifier channel.
+![GitHub Action Image](deploy-to-aws-5.png)
 
-**Note:** Don't forget to hit the "Run Workflow" button
-
-![Run Workflow](deploy-to-paas-2.png)
-
-This now brings you to the job summary page, where the job's execution and completion status are given. The image
-below shows a successfully completed job:
-
-![Successful job](deploy-to-paas-3.png)
-
-It is possible to click-through to the defined jobs.
-
-1. Objective - this is the first job and provides an output of the inputs for the workflow execution.
-![Objective job](deploy-to-paas-4.png)
-2. Deploy - this is the second job and outputs the log from the terraform execution.
-![Deploy job](deploy-to-paas-5.png)
-
-If all is successful then the following is seen:
-
-![Successful execution](deploy-to-paas-6.png)
-
-But if the job fails then this is seen:
-
-![Failed execution](deploy-to-paas-7.png)
-
-In this case, logs need to be read and the reason for failure fixed. It's probably time to contact the Service Team.
-
+<div class="govuk-warning-text">
+  <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+  <strong class="govuk-warning-text__text">
+    <span class="govuk-warning-text__assistive">Please note</span>
+    Warning. Be extra careful when binding new tag with a Commit or Branch. It’s recommended to use the Draft option for a Production deployment in order to make sure all the steps have been accurately followed.
+  </strong>
+</div>
+In the release fails, logs need to be read and the reason for failure fixed. It's probably time to contact the Service Team.
 
 <%= partial 'partials/_links' %>
