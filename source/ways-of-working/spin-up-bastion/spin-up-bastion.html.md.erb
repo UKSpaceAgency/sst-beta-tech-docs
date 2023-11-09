@@ -1,0 +1,56 @@
+---
+title: How to spin up bastion
+weight: 12
+hide_in_navigation: true
+parent: /ways-of-working
+last_reviewed_on: 2023-11-08
+review_in: 12 months
+---
+
+# How to spin up bastion
+
+### Introduction
+Bastion is a jump server (or gateway server) that gives access to Instances within a private network using the SSH protocol.
+
+Bastion is a secure intermediary server where Monitor your satellites system administrators login first via SSH before getting to access the different components. The purpose of having the SSH bastion host is to improve security and consolidate SSH user activities to a single point hence better security and accountability.
+
+### Spinning up bastion
+<div class="govuk-warning-text">
+  <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+  <strong class="govuk-warning-text__text">
+    <span class="govuk-warning-text__assistive">Please note</span>
+     AWS access will be provided to UKSA and/or suppliers offline as required on a principle of least privilege basis.
+  </strong>
+</div>
+
+1. Login to UKSA main AWS account:
+![GitHub Action Image](bastion-1.png)
+
+1. Select **EC2** in services
+![GitHub Action Image](bastion-2.png)
+
+1. Go to **Instances**, make sure the `bastion-host-for-prod` is checked and select **Start instance** under **Instance state**
+![GitHub Action Image](bastion-3.png)
+
+1. You will be notified at the top to let you know the bastion host has started successfully and the Public IP address will be displayed.
+![GitHub Action Image](bastion-4.png)
+
+1. You can then connect via SSH using ec2-user@<IP_ADRESS> to connect to the production database. An example command might be:<P>
+`psql -U mys -h aurora-cluster-for-prod.cluster-czgkvdogsvmn.eu-west-2.rds.amazonaws.com -p 5432 -d mys`<P>
+The password can be found in Secrets Manager. For the manual intervention on Database there is also a username `postgres`. The password for this is also in Secrets Manager.
+1. Once you have finished, shutdown the host by selecting **Stop instance** so unnecessary costs are not incurred.
+![GitHub Action Image](bastion-5.png)
+
+<div class="govuk-warning-text">
+  <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+  <strong class="govuk-warning-text__text">
+    <span class="govuk-warning-text__assistive">Please note</span>
+    Your SSH public key has to be first added into `.ssh/authorized_keys` by an Admin who can access the Bastion host. Once your public key is there you are ready to use the Bastion host.
+  </strong>
+</div>
+
+
+ 
+
+
+<%= partial "partials/links" %>
