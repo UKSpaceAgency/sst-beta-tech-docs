@@ -3,7 +3,7 @@ title: How to use the API
 weight: 20
 hide_in_navigation: true
 parent: /ways-of-working
-last_reviewed_on: 2022-07-18
+last_reviewed_on: 2023-06-12
 review_in: 6 months
 ---
 
@@ -43,114 +43,25 @@ This request will return a response in the following format:
 The `access_token` value should be used to authorise requests to protected endpoints. If using the Swagger/OpenAPI tool: [https://api.monitor-your-satellites.service.gov.uk/docs](https://api.monitor-your-satellites.service.gov.uk/docs) then you should insert the bearer token in the `APIKeyHeader (apiKey)` value field in the Authorize popup in the format `Bearer eyJ…qWZdPAc80Q`.
 
 ##API methods
+The API methods are documented using OpenAPI and can be seen and tried out using the interface below.
 
-The Monitore your satellites API was divided into the following actions:
+<div class="govuk-warning-text">
+  <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+  <strong class="govuk-warning-text__text">
+    <span class="govuk-warning-text__assistive">Please note</span>
+     Interacting with the API using the interface below will create real API calls.
+  </strong>
+</div>
 
-* Events
-* Satellites
-* CDMs
-* Analyses
-* Ephemeris
-* Users
-* Statistics
-
-###Events
-Provides information about Events created from SpaceTrack CDMs.
-
-`GET /v1/events/`
-
-Provides a list of events with metadata (userInterest column). Basically it’s presented in the frontend Events page. It’s useful when the user needs to look at the past events or tries to find events specific to a single satellite. It’s possible to search with LIKE pattern (ie. when looking for all satellites matching some pattern in their names). It’s also possible to find events with the biggest probability of collision or the lowest miss distance.
-
-`GET /v1/events/{event_id}/summary`
-
-Gets basic information about the event with provided short ID (in the format of bmqvgb-kkjod-pgnnc). It’s useful when a user searches for SpaceTrack’s CDM ID.
-
-`GET /v1/events/{event_id}/data-sources`
-
-Provides the newest SpaceTrack CDM and UKSA Analysis (if applicable) for a given event.
-
-`GET /v1/events/{cdm_external_id}`
-
-Gets series of events where one of these events was built upon a given SpaceTrack CDM. Events can be then sorted by CDM IDs to obtain other CDMs and check SpaceTrack source.
-
-###Satellites
-
-Gives access to satellite data
-
-`GET /v1/satellites/with-metadata`
-
-Returns a detailed list of satellites. Provides ability to search with simple text search to find groups of satellites matching the same pattern.
-
-`GET /v1/satellites/{norad_id}`
-
-Provides detailed information about a single satellite and its organization.
-
-`PATCH /v1/satellites/{satellite_id}`
-
-Allows to update satellite information. Internal database satellite ID is required to do so. Only available to ADMINs.
-
-###CDMs
-Provides some information about imported SpaceTrack CDMs. Currently only one method is available for users.
-
-`GET /v1/cdms/latest`
-
-Gives the CDM ID and date/time of the last ingested SpaceTrack CDM. Useful for checking if the ingestion process is alive and SpaceTrack is properly responding.
-
-###Analyses
-
-Allows Orbital Analysts to upload and delete their analyses, Operators to get analyses for their own satellites.
-
-`GET /v1/analyses/`
-
-Get a full list of uploaded analyses. The list may be sorted by users who uploaded, deleted or restored analyses. It’s also useful when sorted by collision probability or miss distances to check for erroneous uploads.
-
-`POST /v1/analyses/`
-
-Allows upload of a single or list of analyses. It’s possible to upload analyses matching the same event short ID.
-
-`GET /v1/analyses/{analysis_id}`
-
-Gets detailed information about a single analysis. Internal analysis database ID is required to fetch the data.
-
-`DELETE /v1/analyses/{analysis_id}`
-
-Gives ability to soft-delete the uploaded analysis. The data is not entirely deleted, it’s marked as inactive (not showing in frontend) but still accessible for monitoring and audit purposes. Soft deletion gives the possibility to restore the analysis in the future. Internal analysis database ID is required to fetch the data.
-
-###Ephemeris
-Operators can use this part to upload detailed satellite ephemeris data (the precise position of their satellites in space). This information can be used by Orbital Analysts or other Operators.
-
-`GET /v1/ephemeris/{ephemeris_id}`
-
-Gets the ephemeris file copy identical to the original upload. Internal database ID is required to get the file. The response is the text file in key-value .oem format. Filename is created after the CREATION_DATE from the ephemeris file to avoid accidental overwrites when similarly named files would be downloaded.
-
-`GET /v1/ephemeris/`
-
-Provides a list of uploaded ephemeris files. The list can be sorted by organizations that own satellites or by satellite name.
-
-`POST /v1/ephemeris/`
-
-Allows OPERATORs to upload their ephemeris files. Ephemeris files have to be named in a special way according to SpaceTrack standards, they have to include satellite NORAD ID. Otherwise they would be rejected. They also have to be in line with the .oem file format guidelines. More information can be found here:
-https://public.ccsds.org/Pubs/502x0b2c1e2.pdf - OEM file format definition
-https://www.space-track.org/documents/Spaceflight_Safety_Handbook_for_Operators.pdf - file naming convention from SpaceTrack Handbook for Operators (page 23)
-
-###Users
-Provides basic information about the current user.
-
-`GET /users/me`
-
-Gets full user information (notification settings and thresholds, personal information)
-
-`PATCH /users/me`
-
-Allows modifying user information (settings, personal information and password)
-
-###Statistics
-Summary statistics with the number of objects in database
-
-`GET /stats`
-
-Gives simple statistics: the number of CDMs, Events, Satellites, Analyses and Ephemeris files in the database.
-
-
+<div id="swagger-ui"></div>
+<script src="https://unpkg.com/swagger-ui-dist@4.5.0/swagger-ui-bundle.js" crossorigin></script>
+<script>
+  window.onload = () => {
+    window.ui = SwaggerUIBundle({
+      url: 'https://api.monitor-your-satellites.service.gov.uk/openapi.json',
+      dom_id: '#swagger-ui',
+    });
+  };
+</script>
 
 <%= partial 'partials/_links' %>

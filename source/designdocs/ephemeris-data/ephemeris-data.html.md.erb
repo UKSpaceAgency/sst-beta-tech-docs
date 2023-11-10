@@ -3,7 +3,7 @@ title: User Management
 weight: 12
 hide_in_navigation: true
 parent: /designdocs
-last_reviewed_on: 2022-04-25
+last_reviewed_on: 2023-06-01
 review_in: 3 months
 ---
 
@@ -40,6 +40,7 @@ The goal of this design doc is to articulate a design for the structure of the C
 There are two starting points in the user journey for this design.
 
 The proposal is for each ID to consist of:
+
 1. Firstly, there is the Satellite Operator wanting to upload an OEM against one of their satellites. In this scenario they will be presented with a file upload component as per the GDS Design System.
 2. Secondly, we will ingest CDMs based on ephemeris data from Space-Track. The data source will be shown in the data source table. Mys can also make an outbound request to Space Track for the latest ephemeris data it holds against satellites monitored in Mys if the operator permits us to do so.
 
@@ -51,7 +52,7 @@ Regardless of which route the ephemeris data comes via, the following will be en
 * Return an error if the file contains any binary data, it should only contain ASCII.
 * Ensure the message complies with the specification outline in section 5.2 of the orbit data messages specification, reject the message for any non-compliance
 
-"Is it safe to assume we are only accepting KVN (keyword = value notation) OEMs?"<br>
+### "Is it safe to assume we are only accepting KVN (keyword = value notation) OEMs?"
 
   Why no anti-virus check? If the above validations and hygiene checks have passed then the ability to upload a viral payload is mitigated, we are assured that the file is a well-formed OEM (in plain text ASCII) which will now be loaded into our service, and any downstream system will benefit from our validation and hygiene checks. The runtime environment of Mys will ensure no ephemeris data is executed in anything other than a controlled manner, e.g. we will not be allowing “.oem.exe” and allowing remote shell trojan like access.
 
@@ -72,30 +73,53 @@ Regardless of which route the ephemeris data comes via, the following will be en
 6. OA users receive an email informing them that an OEM file has been uploaded in relation to X satellite
 
 ###APIs
-As discussed above, initially no API will be offered, but one will be developed and implemented post MVP.
+We offer a public API for management of ephemeris - this is [documented in our OpenAPI specification under ephemeris](https://api.monitor-your-satellites.service.gov.uk/docs#/ephemeris)
 
 ###Data Storage
-The Mys database will use a 64-bit integer to store the Conjunction Event ID. This will be inserted in the COMMENTS field for CDMs that are grouped as related to one Conjunction Event. The hashids can be decoded so it is debatable whether they need to be stored in the database, or just coded and decoded on the fly as needed.
+We use the following table structure to store information about ephemeris:
+
+![Mys data schema](/designdocs/ephemeris-data/ephemeris-data-dbdiagram.png "Mys data schema")
+
+The definitions below were used in dbdiagram.io to generate the above diagram:
 
 ```
 Table ephemeris as E {
-  id integer [pk, unique]
-  ccsds_oem_vers float //from OEM header
-  comment string //from OEM header
-  creation_date datetime //UTC - from OEM header
-  originator string //from OEM header
-  satellite_id integer //from OEM metadata
-  file_location string //S3 file
-  file_checksum string //S3 file checksum
+  id uuid [pk, unique]
+  creation_date timestamp
+  originator varchar
+  object_name varchar
+  international_designator varchar
+  ref_frame varchar
+  time_system varchar
+  start_time timestamp
+  stop_time timestamp
+  center_name varchar
+  file_name varchar
+  satellite varchar
+  uploader uuid
+  uploader_organization uuid
+  is_active boolean
+  deleted_by_id uuid
+  restored_by_id uuid
 }
 
 Table satellite as S {
-  id integer [pk, unique] //NORAD_id
+  id uuid [pk, unique]
+  norad_id varchar // NORAD_id
   common_name string
-  cospar_id string [unique]
 }
 
-Ref: E.satellite_id - S.id
+Table organizations as O {
+  id uuid [pk, unique]
+}
+
+Table user as U {
+  id uuid
+}
+
+Ref: E.satellite - S.norad_id
+Ref: E.uploader - U.id
+Ref: E.uploader_organization - O.id
 ```
 
 ###Code and pseudocode
