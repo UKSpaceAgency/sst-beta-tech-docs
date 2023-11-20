@@ -1,0 +1,73 @@
+---
+title: How to generate the GitHub Personal Access Token for Infrastructure
+weight: 20
+parent: /ways-of-working
+hide_in_navigation: true
+last_reviewed_on: 2023-11-20
+review_in: 3 months
+---
+
+# How to generate the GitHub Personal Access Token for Infrastructure
+
+<%= partial 'partials/_links' %>
+
+Personal access tokens (PATs) are a secure way to grant third-party applications access to your GitHub account. They are an alternative to using your GitHub password, which can be more secure as they can be limited to specific scopes and can be revoked if they are compromised.
+
+<div class="govuk-warning-text">
+  <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+  <strong class="govuk-warning-text__text">
+    <span class="govuk-warning-text__assistive">Warning</span>
+    Classic PATs are the older version of PATs and are still supported by GitHub. They have been deprecated in favor of fine-grained PATs, which offer more granular control over permissions. However, classic PATs are still a viable option for many users and used here.
+  </strong>
+</div>
+
+
+In this document, we will describe how to generate a classic PAT in GitHub and add it as a secret to the three UKSA repositories.
+
+## Generating a Classic Personal Access Token
+
+1. __Navigate to your GitHub settings:__ Click on your profile picture in the top right corner of any GitHub page and select "Settings" from the dropdown menu.
+
+2. __Access Developer Settings:__ In the left sidebar, click on "Developer settings".
+
+3. __Generate a new token:__ Under the "Personal access tokens" section, click on "Generate new token".
+
+4. __Provide a descriptive name:__ In the "Note" field, give your token a descriptive name so you can easily identify it later, e.g. "Terraform PAT".
+
+5. __Set expiration:__ If you want your token to expire after a certain period, select "Expiration" and choose the desired expiration time. We expire after 30 days and regenerate.
+
+6. __Select permissions:__ Choose the permissions you want to grant to your token. We use the the token to access repositories, so select the "repo" scope.
+
+7. __Generate the token:__ Once you have selected the desired permissions, click on "Generate token".
+
+8. __Copy and save the token:__ Your newly generated token will be displayed on the screen. Copy and save this token securely, as it will be needed later.
+
+## Adding the Token as a Secret to Repositories
+
+<div class="govuk-warning-text">
+  <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+  <strong class="govuk-warning-text__text">
+    <span class="govuk-warning-text__assistive">Warning</span>
+    This will be done over three repositories.
+  </strong>
+</div>
+
+1. __Navigate to the repository settings:__ Go to the page of the repository where you want to add the token as a secret.
+
+2. __Access settings:__ Click on "Settings" in the top right corner of the repository page.
+
+3. __Open Secrets section:__ In the left sidebar, click on "Secrets".
+
+4. __Find the secret:__ Either `INFRA_REPO_TOKEN` or `TF_GITHUB_TOKEN`
+
+5. __Paste the token:__ In the "Value" field, paste the personal access token you generated earlier.
+
+6. __Save the secret:__ Click on "Update secret" to save the token as a secret for the repository.
+
+## Repeat for Additional Repositories
+Repeat the process of adding the token as a secret for each repository.
+
+* [Front-end](https://github.com/UKSpaceAgency/sst-beta/)
+* [Back-end](https://github.com/UKSpaceAgency/sst-beta-python-backend/)
+* [Infra](https://github.com/UKSpaceAgency/sst-beta-infra/)
+
