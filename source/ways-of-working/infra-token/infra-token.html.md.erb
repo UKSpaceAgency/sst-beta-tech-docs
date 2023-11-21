@@ -4,7 +4,7 @@ weight: 20
 parent: /ways-of-working
 hide_in_navigation: true
 last_reviewed_on: 2023-11-20
-review_in: 3 months
+review_in: 12 months
 ---
 
 # How to generate the GitHub Personal Access Token for Infrastructure
@@ -31,16 +31,19 @@ In this document, we will describe how to generate a classic PAT in GitHub and a
 2. __Access Developer Settings:__ In the left sidebar, click on "Developer settings".
 
 3. __Generate a new token:__ Under the "Personal access tokens" section, click on "Generate new token".
+![GitHub Action Image](pat-token-1.png)
 
 4. __Provide a descriptive name:__ In the "Note" field, give your token a descriptive name so you can easily identify it later, e.g. "Terraform PAT".
 
 5. __Set expiration:__ If you want your token to expire after a certain period, select "Expiration" and choose the desired expiration time. We expire after 30 days and regenerate.
 
 6. __Select permissions:__ Choose the permissions you want to grant to your token. We use the the token to access repositories, so select the "repo" scope.
+![GitHub Action Image](pat-token-2.png)
 
 7. __Generate the token:__ Once you have selected the desired permissions, click on "Generate token".
 
 8. __Copy and save the token:__ Your newly generated token will be displayed on the screen. Copy and save this token securely, as it will be needed later.
+![GitHub Action Image](pat-token-3.png)
 
 ## Adding the Token as a Secret to Repositories
 
@@ -56,9 +59,9 @@ In this document, we will describe how to generate a classic PAT in GitHub and a
 
 2. __Access settings:__ Click on "Settings" in the top right corner of the repository page.
 
-3. __Open Secrets section:__ In the left sidebar, click on "Secrets".
+3. __Open Secrets section:__ In the left sidebar, click on "Secrets and Variables" and select "Actions".
 
-4. __Find the secret:__ Either `INFRA_REPO_TOKEN` or `TF_GITHUB_TOKEN`
+4. __Find the secret for the respective repo:__ Either `INFRA_REPO_TOKEN` (for sst-beta and sst-beta-python-backend) or `TF_GITHUB_TOKEN` (for sst-beta-infra)
 
 5. __Paste the token:__ In the "Value" field, paste the personal access token you generated earlier.
 
