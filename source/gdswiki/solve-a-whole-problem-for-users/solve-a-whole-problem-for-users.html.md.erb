@@ -20,6 +20,7 @@ Work towards creating a service that solves a whole problem for users, working w
 * Sharing data on satellite activeness and manoeuvrability raised some liability concerns (for example, would the UKSA be liable for operators moving satellites as a result of this information, which could be incorrect?) and so we consulted UKSA lawyers on the implications of sharing this data. Therefore a disclaimer is included in the terms and conditions for users stating that the UKSA is not responsible for any actions taken based on data shared.
 * Sharing Space-Track data via our service required a data sharing agreement with the 18th Space Squadron. This is complete and we also have a permission agreement with ESA to use their DISCOS data.
 * Multi-factor authentication can create access barriers of needing multiple devices to log in. Therefore, we are currently using Auth0's credible and secure sign-up and log-in service with MFA disabled.
+* When digitising re-entry and conjunction services for government users, we discovered that many users were unsure how to action alerts they received. We have therefore fed these insights back to policy professionals to support the development of clear Standard Operating Procedures for responding to events across UK government.
 
 ### Make sure services are [scoped according to how users think and what they need to do](https://www.gov.uk/service-manual/design/scoping-your-service)- not too narrow or too broad
 
@@ -41,7 +42,7 @@ Work towards creating a service that solves a whole problem for users, working w
 * Our API allows us to integrate better with many of our users.
   * Orbital analysts will be able to upload analysis in bulk and more quickly.
   * Advanced operators will be able to incorporate UKSA analysis into their existing systems.
-* As part of an additional round of user research with other potential users (conducted during the public beta), we mapped the wider user journey for, e.g., cross-government users, for current services provided by the UKSA SST team. 
+* As part of an additional round of user research with other potential users, we mapped the wider user journey for cross-government users for all current services provided by the UKSA SST team. This will enable us to develop conjunction and re-entry alerts within one service for government users, allowing them to access a quick overview of all space hazards in one place.
 
 ### Take responsibility for agreeing how this user journey will work with organisations responsible for different parts of it - for example, with the GDS content team to join up GOV.UK content with the service you’re working on
 
@@ -56,15 +57,16 @@ The journey can be longer in future to include eg CNI users, academics, insurers
 
 ### Consider alternatives to creating a service - for example publishing website content, running a campaign, partnering with a non-government organisation or making data or an Application Programming Interface (API) available to third parties
 
-* A highly imperfect service was already in place, whereby if UKSA orbital analysts calculated that there was a high likelihood of a collision event, they would typically ring up / email operators and UKSA staff and let them know. For the worst events, Ministers would be provided with pdf files attached to emails.
+* A highly imperfect service was already in place, whereby if UKSA orbital analysts calculated that there was a high likelihood of a collision event or re-entry, they would typically ring up / email operators, UKSA staff and cross-government user to notify them. For the worst events, Ministers would be provided with pdf files attached to emails.
   * Email trails would become unwieldy.
   * Calls were difficult to audit.
   * Assets explaining risks were consistent but not heavily tested with users.
+  * There were single points of failure in the response procedure if certain individuals were unavailable.
   * Most of all - this high quality analysis was not shared widely or consistently, even with the operators involved, if it didn’t reach particular thresholds.
 * User research throughout the discovery and alpha provided strong evidence for the need of a web service to provide high-quality and easy-to-understand data and notifications to operators about conjunction events which took advantage of the medium of the web.
 * In addition to a website interface, we have made an API available for operator users to access event information, and orbital analysts to upload JSON files. We frequently remind operators about API access, for example during onboarding webinars and through the MyS newsletter.
 * This allows us to publish the already-existing high-quality analysis to operators who otherwise simply didn’t have it.
-* Further rounds of user research related to new use cases showed that the current emailing of other SST reports incurs similar difficulties mentioned above. By retaining this current, manual system, the UKSA would forego opportunities to save time, store data and reports more securely and create a data repository for future analysis. 
+* Further rounds of user research related to new use cases showed that the current emailing of other SST reports incurs similar difficulties mentioned above. By retaining this current manual system, UKSA would forego opportunities to save time, store data and reports more securely and create a data repository for future analysis. 
 
 ### Work in the open so that people inside and outside the organisation know what the service team is doing - increasing the potential for collaboration and reducing duplication of effort (for example by publishing business cases, mission statements, research findings, user experience maps, maps of existing services and product [roadmaps](https://www.gov.uk/service-manual/agile-delivery/developing-a-roadmap) showing plans to develop new features)
 
@@ -79,13 +81,14 @@ The journey can be longer in future to include eg CNI users, academics, insurers
 ### Work towards minimising the number of times users have to provide the same information to government (while respecting users’ privacy), for example by using a single sign-on
 
 * We have aimed at all times to have a single drop of information for all users.
-  * Operators may find themselves being asked to upload their ephemeris to both Space-Track and Mys- however, we will pick it up from Space-Track.
+  * Operators may find themselves being asked to upload their ephemeris to both Space-Track and Mys - however, we will pick it up from Space-Track.
 * Users will be able to create accounts and Mys will store their relevant information - this will prevent users having to repeatedly provide data to us.
+* Government users will be able to access information on both conjunction and re-entry services through one service with a single sign-on
 * Early in the project, users had to enter their email everytime they wanted to log-in in order to receive a magic link. We have now moved to using Auth0 where users enter a password they have set up to enter the site.
 
 ### [Work with other teams and organisations](https://www.gov.uk/service-manual/agile-delivery/working-across-organisational-boundaries) where that’s necessary to solve a whole problem for users
 
-* We have worked with UKSA, BEIS, CAA, MOJ, MOD, DSIT, DfT, FCDO
+* To develop this service, we have worked with organisations including UKSA, BEIS, CAA, MOJ, MOD, DSIT, DfT, FCDO, Cabinet Office, DLUHC and Home Office.
   * E.g. BEIS assurance meetings.
   * E.g. Met with CAA colleagues several times to ensure the service would align with their processes and future needs.
 * Met with representatives from the UKSpOC to discuss the services they provide to operators and their future user needs.
