@@ -38,12 +38,12 @@ Build a service that’s simple, intuitive and comprehensible. And test it with 
   * Operators can see how many alerts have affected each of their satellites.
   * Regulators can see how proactively operators are managing their satellites.
   * Everyone can have a perma-URL with the history of the alert available.
-  * Mys will log and record all communications about an event, including message sent between operators, analysts, regulators and the SST team.
+  * Mys will log and record all communications about an event, including messages sent between operators, analysts, regulators and the SST team.
 
 ### Design the service to work online [with a range of devices that reflects users' behaviour](https://www.gov.uk/service-manual/technology/designing-for-different-browsers-and-devices)
 
 * The service is being designed so that it works on laptops and mobile devices.
-* There is horizontal scrolling on all events page that seems frustrating. This is a specific request from our users and is a product of the large amounts of data necessary to make wise decisions.
+* There is horizontal scrolling on all events pages that seems frustrating. This is a specific request from our users and is a product of the large amounts of data necessary to make wise decisions.
 * Users can choose if notifications are sent by email and/or SMS, allowing users to access alerts on laptops or mobile devices depending on their preferences.
 
 ### Services should also provide users with a consistent experience from start to finish. For GOV.UK services, this means:
@@ -52,7 +52,7 @@ Build a service that’s simple, intuitive and comprehensible. And test it with 
 
 * We believe the design is entirely consistent with the GOV.UK style guide and have always tried to follow the prototype patterns and use the appropriate components and styles. We used the style guide to ensure we met the spelling and grammar conventions.
 * There are some requests for visualisations which are not fully covered in the design style guide. We have therefore built on patterns which are visible in, for example, the Performance Platform.
-* Similarly, our users have by and large all requested scientific notation for the numbers published, which we have therefore used. It might be that we need to offer ministerial users probabilities (ie 0.00003% rather than 3*e^-4).
-* On a few occasions, some non-GOV.UK styled text has made it onto the prototype, including a couple of ‘please’s or .pdf instead of PDF, for example. We think we have now addressed and corrected all of these.
+* Operators have by and large all requested scientific notation for the numbers published, while government users have expressed a strong preference for standard decimal places (ie 0.00003% rather than 3*e^-4). We have therefore provided different number formats for different users.
+* On a few occasions, some non-GOV.UK styled text has made it onto the prototype. We think we have now addressed and corrected all of these.
 
 <%= partial "partials/links" %>
