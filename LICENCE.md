@@ -1,6 +1,6 @@
 Copyright (C) 2021 Crown Copyright (UK Space Agency)
 
-![Open Government Licence for public sector information](LICENCE-ogl-logo.jpg)
+![Open Government Licence for public sector information](licence-images/LICENCE-ogl-logo.jpg)
 You are encouraged to use and re-use the Information that is available under this licence freely and flexibly, with only a few conditions.
 
 ## Using Information under this licence
@@ -72,4 +72,4 @@ These terms are compatible with the Creative Commons Attribution License 4.0 and
 
 Further context, best practice and guidance can be found in the [UK Government Licensing Framework section](https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/) on The National Archives website.
 
-![OGL symbol](LICENCE-ogl-symbol.png)
+![OGL symbol](licence-images/LICENCE-ogl-symbol.png)
