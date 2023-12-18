@@ -1,0 +1,45 @@
+---
+title: How to get API usage statistics from AWS Athena
+weight: 20
+parent: /ways-of-working
+hide_in_navigation: true
+last_reviewed_on: 2023-12-20
+review_in: 12 months
+---
+
+# How to get API usage statistics from AWS Athena
+
+<%= partial 'partials/_links' %>
+
+1. Go to Athena Dashboard in AWS 
+1. Select Explore Query Editor <p>
+![GitHub Action Image](athena-1.png)
+1. Copy this query into the query editor (change date ranges, example has November 2023):
+
+    ```
+    SELECT 
+    default.alb_logs.request_verb, 
+    url_extract_path(default.alb_logs.request_url) as "path",
+    default.alb_logs.target_status_code,
+    count(*) as "total_calls",
+    CAST(min(default.alb_logs.target_processing_time) AS DECIMAL(10, 4)) as "min_duration",
+    CAST(max(default.alb_logs.target_processing_time) AS DECIMAL(10, 4)) as "max_duration",
+    CAST(avg(default.alb_logs.target_processing_time) AS DECIMAL(10, 4)) as "avg_duration"
+    FROM default.alb_logs
+    WHERE 
+    from_iso8601_timestamp(time) 
+    BETWEEN from_iso8601_timestamp('2023-11-01T00:00:00.000Z') AND from_iso8601_timestamp('2023-11-30T23:59:59.999')
+    AND default.alb_logs.request_url LIKE 'http%://api.monitor-your-satellites.service.gov.uk%'
+    AND user_agent not like 'Pingdom.com%'
+    AND url_extract_path(default.alb_logs.request_url) != '/'
+    AND default.alb_logs.target_status_code < '400'
+    GROUP BY 
+    default.alb_logs.request_verb, 
+    url_extract_path(default.alb_logs.request_url),
+    default.alb_logs.target_status_code
+    ORDER BY 
+    "total_calls" desc;
+    ```
+
+1. Select Run query/Run again <p>
+![GitHub Action Image](athena-2.png)
