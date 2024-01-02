@@ -2,27 +2,31 @@
 title: Environments
 weight: 25
 parent: /environments
-last_reviewed_on: 2023-11-10
-review_in: 3 months
+last_reviewed_on: 2024-01-02
+review_in: 6 months
 ---
 
 # Environments
 
-The following environment have been defined for the needs of the service during Beta.
+The following environments have been defined for the needs of the service during Beta.
 
 ## Development
 
 The [Development environment](https://www.dev.monitor-your-satellites.service.gov.uk/) is where Monitor your Satellites is built.
 It is where the majority time is spent by our Developers.
+We have [Development API swagger docs](https://api.dev.monitor-your-satellites.service.gov.uk/docs) and [development environment deployment tracking](https://mys-deployment-history-dev-00b8a.s3.eu-west-2.amazonaws.com/index.html)
 
 ## Demo
 
 The [Demo environment](https://demo.monitor-your-satellites.service.gov.uk/) is used as a staging environment between
 Development and Production. It is used to Demonstrate upcoming functionality and during periods of intense development it
 provides a test environment, which isn't subject to the downtime with every merge to the main branch by developers.
+We have [Demo API swagger docs](https://api.demo.monitor-your-satellites.service.gov.uk/docs) and [demo environment deployment tracking](https://mys-deployment-history-demo-520d.s3.eu-west-2.amazonaws.com/index.html)
+
 
 ## Production
 
 The [Production environment](https://www.monitor-your-satellites.service.gov.uk/) is where the Monitor your Satellites users live.
+We have [Production API swagger docs](https://api.monitor-your-satellites.service.gov.uk/docs) and [production environment deployment tracking](https://mys-deployment-history-prod-257c.s3.eu-west-2.amazonaws.com/index.html)
 
 <%= partial "partials/links" %>
