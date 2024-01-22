@@ -1,0 +1,53 @@
+---
+title: 013 - Permissions model
+weight: 12
+hide_in_navigation: true
+parent: /designdocs
+last_reviewed_on: 2024-01-22
+review_in: 12 months
+---
+
+# 013 - Permissions model
+
+## Purpose
+This design document proposes a design for the permissions model for Monitor space hazards.
+
+##Context and scope
+Monitor space hazards provides conjunction and re-entry reports and alerts to a range of users, including satellite operators and government users. Different users require access to different reports and therefore we require a permissions model to manage this. A permissions model is also needed to enable (a) management of users within each organisation by organisation admins and (b) editing of reports by users at the UK Space Agency.
+
+## Goals and non-goals
+Through this Design doc, Monitor space hazards aims to meet the following goals:
+
+* Develop a permissions model which gives users access to the information and tasks they need</li>
+* Ensure the permissions model does not give users access to information or tasks they are not authorised for</li>
+* Ensure the permissions model is scalable, enabling new use cases and users to be added in future</li>
+
+
+##The actual design
+We have designed a permissions model which includes 6 different user types, each of which can access different content and complete different actions depending on the organisation they work for.  
+
+| Organisation type / role| Operator Organisation (e.g. Astroscale, OneWeb)| Government Organisation (e.g Cabinet Office, Defra, DFT, CAA)| Space Agency Organisation (e.g. UKSA, MOD, NSpOC)| 
+| ------------------------------------ | ------------------------------------ | ------------------------------------ | ------------------------------------ |
+| 1. Super User (MFA)|-|-|Super User| 
+| 2. Approver (MFA)|-|-|Agency Approvals| 
+| 3. Analyst|-|-|Analyst| 
+| 4. Admin|Operator Admin| Government Admin|Agency Admin| 
+| 5. Operator|Operator|-|-| 
+| 6. User|Operator User|Government User|Agency User| 
+
+
+The 6 user types would be able to do the following:
+
+* <b>Superuser:</b> Administrators of the service with access to all information and tasks</li>
+* <b>Approver:</b> Staff members at a Space Agency organisation with the ability to view, edit and manually escalate all reports</li>
+* <b>Analyst:</b> Staff members at a Space Agency organisation with the ability to view all reports but no admin privileges</li>
+* <b>Admin:</b> Can view reports relevant for their organisation, and are able to create, view, update and delete all accounts within their organisation</li>
+* <b>Operator:</b> Satellite operators who can view reports relevant for their organisation and perform additional actions such as uploading ephemeris data, but have no admin privileges</li>
+* <b>User:</b> Can view reports relevant for their organisation, but have no additional permissions within their organisation</li>
+    
+Importantly, both the Super User and Approver user types will require multi-factor authentication to access the service, recognising their ability to upload information to the service.     
+
+##Alternatives considered
+The permissions model passed through several iterations before being finalised. Discussions included: (1) whether to enable government users to view all reports, and (2) whether to enable all UK Space Agency staff members to edit and manually escalate reports or create a separate Approver user type.
+
+<%= partial "partials/links" %>
