@@ -1,34 +1,34 @@
 ---
-title: Conjunction Event ID
+title: 001 - Conjunction Event ID
 weight: 12
 hide_in_navigation: true
 parent: /designdocs
-last_reviewed_on: 2023-06-01
-review_in: 3 months
+last_reviewed_on: 2024-01-22
+review_in: 12 months
 ---
 
-# Conjunction Event ID
+# 001 - Conjunction Event ID
 
 ## Purpose
 This design document will propose a design for Conjunction Event Identifiers.
 
 ##Context and scope
-One of the key responsibilities identified for Monitor your satellites (Mys) is to take a feed of Conjunction Data Messages (CDMs). It will filter down to CDMs that relate to satellites that are the responsibility of the UK licensed Satellite Operators and therefore require the co-ordination of communication about Conjunction Events and associated Orbital Analysis. Therefore Mys will group together CDMs and raise a Conjunction Event ID based on the following formula:<br>
+One of the key responsibilities identified for Monitor space hazards is to take a feed of Conjunction Data Messages (CDMs). It will filter down to CDMs that relate to satellites that are the responsibility of the UK licensed Satellite Operators and therefore require the co-ordination of communication about Conjunction Events and associated Orbital Analysis. Therefore Monitor space hazards will group together CDMs and raise a Conjunction Event ID based on the following formula:
 
-Time of Closest Approach (TCA) +/- 1 sec with matching primary and secondary objects<br>
+    Time of Closest Approach (TCA) +/- 1 sec with matching primary and secondary objects
 
-The Conjunction Event ID will be inserted by Mys into the COMMENT field on the related CDMs and then make this available to the Orbital Analysts. After the Orbital Analysis has taken place off-system it will be posted back to Mys with the associated Conjunction Event ID for data matching.
+The Conjunction Event ID will be inserted by Monitor space hazards into the COMMENT field on the related CDMs and then make this available to the Orbital Analysts. After the Orbital Analysis has taken place off-system it will be posted back to Monitor space hazards with the associated Conjunction Event ID for data matching.
 
 ##Goals and non-goals
-The goal of this design doc is to articulate a design for the structure of the Conjunction Event Id, not the data flow.
+The goal of this design doc is to articulate a design for the structure of the Conjunction Event ID, not the data flow.
 
 ###Goals
 
-* Have a unique conjunction event identifier that can be independently generated from multiple systems (Mys, Aurora etc) without collision.
+* Have a unique conjunction event identifier that can be independently generated from multiple systems (Monitor space hazards, Aurora etc) without collision
 * Have the ID time sortable (so conjunction events naturally sort by most recent)
 * IDs should fit into 64-bits for smaller indexes and better storage
-* Generation of the IDs should be easily implemented without involving additional infrastructure or components.
-* A human readable form of ID or unique label is highly desired for interpersonal communication.
+* Generation of the IDs should be easily implemented without involving additional infrastructure or components
+* A human readable form of ID or unique label is highly desired for interpersonal communication
 
 ##The actual design
 ### Original version (before April 2023)
@@ -44,13 +44,13 @@ The proposal is for each ID to consist of:
 * 13 bits that represent an auto-incrementing sequence, modulus 8192 (this means 8192 IDs can be generated per generating system per millisecond, which means lots of scaling headroom).
 
 
-For human readable identifiers the generation of short unique ids from the integer generated is recommended. Something like [hashids] (https://hashids.org/) look like good candidate routines, and even has something to avoid generating the most common English swear words.
+For human readable identifiers the generation of short unique ids from the integer generated is recommended. Something like [sqids] (https://sqids.org/) look like good candidate routines, and even has something to avoid generating the most common English swear words.
 
 An example will help explain this, so here goes:<br>
 
 The first 41 bits as calculated from 12 January 2022 12:00:00.000 (UTC) with an epoch of 01 October 2021 00:00:00.000 (UTC) =  1641988800000 - 1633046400000 = 8942400000 (decimal) =<span style="background-color: #00FF00">1000010101000000100011001000000000</span>  (binary)
 
-The next 10 bits are fixed based on the generating system, e.g. Mys= 1, Aurora = 2 and so on until 1024, so <span style="background-color: #FFFF00">0000000001</span>  (binary)<br>
+The next 10 bits are fixed based on the generating system, e.g. Monitor space hazards= 1, Aurora = 2 and so on until 1024, so <span style="background-color: #FFFF00">0000000001</span>  (binary)<br>
 
 The final 13 bits are an auto-incrementing sequence, and for the sake of argument let’s say this is the 2345 event in that millisecond, i.e. <span style="background-color: #FF0000">00100100101001</span> (binary)
 
@@ -59,7 +59,7 @@ This gives a binary number of <span style="background-color: #00FF00">1000010101
 So far so good for a machine calculation, but how does a human read and disclose this?<br>
 
 
-Well the hashid for this number is <span style="background-color: #FFA500">5p6G1oyZd7ZE</span> as calculated by [this demo code](https://codesandbox.io/s/rmk16j6q8m?file=/src/index.ts:0-163) with salt “Mys” and encoding “150028576358418729”. We can vary the alphabet used, so it is only one case (upper or lower) and it returns with a hyphen every n-many characters along. Let’s research with users which works best.<br>
+Well the sqid for this number is <span style="background-color: #FFA500">5p6G1oyZd7ZE</span> as calculated by [this demo code](https://codesandbox.io/s/rmk16j6q8m?file=/src/index.ts:0-163) with salt “Msh” and encoding “150028576358418729”. We can vary the alphabet used, so it is only one case (upper or lower) and it returns with a hyphen every n-many characters along. Let’s research with users which works best.<br>
 
 <b>Note:</b> There is a requirement for time to synchronise across machines and systems generating event IDs, the NTP and associated services will solve this problem for us.
 
@@ -74,7 +74,7 @@ Requirements:
 
 The cause is that we desperately wanted to shorten Event URLs and we spent too many bits on TCA time but not enough on object names. We also used object names, not the NORAD_IDs to distinguish different objects.
 
-To solve this we increased the number of bits used in the Event Short IDs to 77 bits and removed the generating system (as MYS is the only system generating such short IDs). This left us with the following design:
+To solve this we increased the number of bits used in the Event Short IDs to 77 bits and removed the generating system (as Monitor space hazards is the only system generating such short IDs). This left us with the following design:
 
 * 33 bits for time in *seconds* (giving us 272 years)
 * 22 bits for primary object NORAD ID
@@ -86,7 +86,7 @@ This produces short IDs of the style `jbxleqg-ndrxvgb-gorpwg` (7-7-6) using lowe
 No public API for Conjunction Event IDs is to be exposed.
 
 ###Data Storage
-The Mys database uses a varchar to store the Conjunction Event ID. 
+The Monitor space hazards database uses a varchar to store the Conjunction Event ID. 
 
 ###Code and pseudocode
 This is untested but based on the Instagram implementation it is envisaged that something like the following PL/PGSQL will work:
@@ -124,7 +124,7 @@ The main constraint on this design is the ability to implement in multiple syste
 * UUIDs provide a good answer if all that was desired was uniqueness. An example UUID is “23042946-af93-4812-80e7-02a765082c95” (generated using this tool). Although it does a form of hashing to make it human readable, it is long at 128-bits, and doesn’t provide any natural sort order based on time. Which is an advantage for queries such as “give me the last 10 conjunction events”.
 
 ##Cross-cutting concerns
-The design will conform with the cross-cutting concerns, such as observability, privacy and security, decided and documented elsewhere for Mys.
+The design will conform with the cross-cutting concerns, such as observability, privacy and security, decided and documented elsewhere for Monitor space hazards.
 
 
 <%= partial "partials/links" %>

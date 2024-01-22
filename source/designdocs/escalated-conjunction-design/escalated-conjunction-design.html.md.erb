@@ -1,0 +1,69 @@
+---
+title: 003 - Escalated Conjunction Service Design
+weight: 12
+hide_in_navigation: true
+parent: /designdocs
+last_reviewed_on: 2024-01-22
+review_in: 12 months
+---
+
+# 003 - Escalated Conjunction Service Design
+
+## Purpose
+This design document proposes a design for an escalated conjunction service for government users.
+
+##Context and scope
+One of the key responsibilities for Monitor space hazards is to present and distribute reports on escalated conjunction events to users across the UK government and internationally. This is in addition to the standard automated reports on conjunction events provided to satellite operators.
+
+Previously, UKSA provided escalated conjunction reports to the UK government via email. These reports were produced manually and subsequently distributed to UK government users via email. These reports were time consuming to produce and distribute, prone to human error, and resulted in unnecessary delays to cross-government communication. 
+
+## Goals and non-goals
+The goal of this Design Doc is to articulate a design for the new escalated conjunction service for government users.
+
+### Goals
+* Develop an escalated conjunction service for government users which provides all the information users need in a user-friendly way</li>
+* Ensure the service enables automatic distribution of notifications to users to remove human error, reduce time delays and save time for UKSA staff</li>
+
+##The actual design
+
+### Developing escalated conjunction reports
+
+The escalated conjunction service takes the form of a series of reports on conjunction events which are escalated according to criteria defined by the UK Space Agency. These reports are different to the reports automatically produced for operators, meaning for each event the service will display two reports: a standard report (for operators) and an escalated report (for government users).
+
+The reports contain 9 separate sections:
+
+1. <b>Executive summary:</b> A brief introduction to conjunction events, followed by a table of key event details, such as risk level, predicted time of closest approach, probability of collisions, whether a manoeuvre is expected, and key details about the two objects in question.
+
+2. <b>Additional event details:</b> A table of event details which are not included in the Executive Summary, such as predicted miss distance, impact speed and altitude.
+
+3. <b>Potential impact of event:</b> A summary of the potential immediate, short term and long term impact of the event.
+
+4. <b>Guidance on response:</b> A summary of the UK government response to conjunction events and any press attention.
+
+5. <b>Additional risk to UK objects:</b> A table showing how the collision would increase the risk of further collisions for UK objects should it occur.  
+
+6. <b>Operator view:</b> A link to the report on the same event seen by operators.
+
+7. <b>Conjunction event history:</b> A summary of key event details across several report updates, including time of update, risk level, probability of collision, and predicted time of closest approach.
+
+8. <b>Risk thresholds:</b> A table outlining the thresholds used to determine risk levels for each event.
+
+9. <b>Further information:</b> A list of organisations which have received a notification for the event, and a link to more information about how the analysis is conducted.
+
+To maintain a simple user interface, all sections other than the Executive Summary are contained within accordions. The page also provides an option for users to download the event report as a PDF.
+
+These reports were tested with a wide range of potential users.
+
+### Developing escalated conjunction notifications
+Notifications for escalated conjunctions were designed to closely replicate UKSA’s existing Standard Operating Procedures for escalating conjunction reports. There are therefore two distribution lists: 
+
+* An early distribution list which receives notifications for all escalated conjunction events</li>
+
+* An extended distribution list which receives notifications for the highest priority escalated conjunction events only</li>
+
+Users will be able to select which distribution list they are one; however, the default settings for each user will reflect the distribution lists they were on prior to digitisation of the service. A set of pre-defined criteria determine whether notifications are sent to the extended distribution list. Those at UKSA of the ‘Approver’ type will also be able to manually send notifications to users - either selecting the extended distribution list or inputting selected email addresses to send notifications to. If meeting the criteria to receive notifications about an event, users will receive notifications when the event is first identified, an update is made to the event, and when the event is closed down.
+
+##Alternatives considered
+The escalated conjunction service was developed through a series of rounds of prototype development and user testing. Through this process a wide range of iterations of the design were considered until the final design was reached.
+
+<%= partial "partials/links" %>
