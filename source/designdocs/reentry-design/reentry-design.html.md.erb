@@ -1,0 +1,74 @@
+---
+title: 006 - Re-entry Service Design
+weight: 12
+hide_in_navigation: true
+parent: /designdocs
+last_reviewed_on: 2024-01-22
+review_in: 12 months
+---
+
+# 006 - Re-entry Service Design
+
+## Purpose
+This design document proposes a design for a re-entry service for government users.
+
+##Context and scope
+One of the key responsibilities for Monitor space hazards is to present and distribute reports on re-entry events to users across the UK government and internationally. 
+
+Previously, UKSA provided re-entry reports to the UK government via email. These reports were produced manually and subsequently distributed to UK government users via email. These reports were time consuming to produce and distribute, prone to human error, and resulted in unnecessary delays to cross-government communication. 
+
+## Goals and non-goals
+The goal of this Design Doc is to articulate a design for the new re-entry service for government users.
+
+### Goals
+* Develop a re-entry service for government users which provides all the information users need in a user-friendly way</li>
+* Ensure the service enables automatic distribution of notifications to users to remove human error, reduce time delays and save time for UKSA staff</li>
+
+##The actual design
+
+### Developing re-entry reports
+
+The re-entry service takes the form of a series of reports on re-entry events which are escalated according to criteria defined by the UK Space Agency. These escalated reports will sit alongside a feed of TIPs data from Space track. The re-entry service will therefore mirror the structure of the conjunction service, containing both standard reports with data from Space Track and escalated reports developed by UKSA’s Orbital Analysts.
+
+The reports contain 9 separate sections:
+
+1. <b>Executive summary:</b> A brief introduction to re-entry events, followed by a table of key event details, such as risk level, probability of re-entry over the UK, predicted re-entry times, object details, and regions potentially affected. 
+
+2. <b>Additional object and orbit details:</b> A table of event details which are not included in the Executive Summary, such as object ID codes, object dimensions, launching year and descriptions of the objects orbit.
+
+3. <b>Potential impact by UK nation:</b> A table containing the probability of re-entry and time of overflights for each of the four UK nations.
+
+4. <b>Potential impact by UK region:</b> Tables containing the probability of re-entry and time of overflights for 32 UK regions.
+
+5. <b>Potential impact by British Overseas Territory:</b> A table containing the probability of re-entry and time of overflights for 14 British Overseas Territories.
+
+6. <b>Guidance on response:</b> A summary of the UK government response to re-entry events, including immediate response, recovery and clean up, liability for damages and any press attention.
+
+7. <b>Re-entry event history:</b> A summary of key event details across several report updates, including time of update, risk level, probability of re-entry over the UK, and UK overflight time(s).
+
+8. <b>Risk thresholds:</b> A table outlining the thresholds used to determine risk levels for each event.
+
+9. <b>Further information:</b> A list of organisations which have received a notification for the event, and a link to more information about how the analysis is conducted.
+
+To maintain a simple user interface, all sections other than the Executive Summary are contained within accordions. The page also provides an option for users to download the event report as a PDF.
+
+These reports were tested with a wide range of potential users.
+
+### Building the re-entry homepage
+The re-entry homepage was developed to maintain consistency with the conjunction homepage. It therefore includes a table of all escalated re-entry reports at the top of the page. Below this, the page shows a table of all upcoming re-entry events pulled directly from TIPs from SpaceTrack, with no additional analysis provided by UKSA’s Orbital Analysts.
+
+At the bottom of the page, a button will enable users to view previous re-entry events. This page will take the same form as the re-entry homepage but only contain re-entry events which have been closed down.
+
+### Developing escalated conjunction notifications
+Notifications for re-entry events were designed to closely replicate UKSA’s existing Standard Operating Procedures for escalating re-entry reports. There are therefore two distribution lists: 
+
+* An early distribution list which receives notifications for all escalated re-entry events</li>
+
+* An extended distribution list which receives notifications for the highest priority re-entry events only</li>
+
+Users will be able to select which distribution list they are one; however, the default settings for each user will reflect the distribution lists they were on prior to digitisation of the service. A set of pre-defined criteria determine whether notifications are sent to the extended distribution list. Those at UKSA of the ‘Approver’ type will also be able to manually send notifications to users - either selecting the extended distribution list or inputting selected email addresses to send notifications to. If meeting the criteria to receive notifications about an event, users will receive notifications when the event is first identified, an update is made to the event, and when the event is closed down.
+
+##Alternatives considered
+The re-entry service was developed through a series of rounds of prototype development and user testing. Through this process a wide range of iterations of the design were considered until the final design was reached.
+
+<%= partial "partials/links" %>

@@ -1,35 +1,36 @@
 ---
-title: Notifications
+title: 009 - Notifications
 weight: 12
 hide_in_navigation: true
 parent: /designdocs
 last_reviewed_on: 2023-06-01
 review_in: 3 months
 ---
-# Notifications
+# 009 - Notifications
 
 ## Purpose
 
-This document describes the design for notifications in the Monitor your satellites service. It aims to be the central design artefact to coalesce thinking on notifications.
+This document describes the design for notifications in the Monitor space hazards service. It aims to be the central design artefact to coalesce thinking on notifications.
 
 ## Context and scope
 
-One of the key benefits of Monitor your satellites is that it provides a system of engagement between Satellite operators, Orbital Analysts, Emergency Response Teams, Regulators and the UK Space Agency on conjunction events, ephemeris data and so on. A key means of doing this is via notifications (mainly email, but also possibly SMS) and during Alpha it was decided to offload this to the central Gov.UK Notify service. The rationale behind this is that Notify has already done the heavy lifting in implementing a GDS compliant email and SMS service with several clients that make integration simple.
+One of the key benefits of Monitor space hazards is that it provides a system of engagement between Satellite operators, Orbital Analysts, Emergency Response Teams, Regulators, other UK government agencies, and the UK Space Agency on conjunction and re-entry events. A key means of doing this is via notifications (mainly email, but also possibly SMS) and during the original Alpha for the service it was decided to offload this to the central GOV.UK Notify service. The rationale behind this is that GOV.UK Notify has already done the heavy lifting in implementing a GDS compliant email and SMS service with several clients that make integration simple.
 
 ## Goals and Non-Goals
 
 ###Goals:
 
-* Ensure satellite operators, orbital analysts, emergency response team members, regulators and UKSA employees receive notifications about upcoming conjunction events (when they cross the threshold established in user settings).
-* Ensure orbital analysts receive notifications when ephemeris data is uploaded by satellite operators.
-* Ensure satellite operators receive notifications that new analysis for an event is available based on their uploaded ephemeris data.
+* Ensure satellite operators, orbital analysts, emergency response team members, regulators, other UK government agencies, and UKSA employees receive notifications about upcoming conjunction and re-entry events when they cross specified  thresholds
+* Ensure orbital analysts receive notifications when ephemeris data is uploaded by satellite operators
+* Ensure satellite operators receive notifications that new analysis for a conjunction event is available based on their uploaded ephemeris data
 * Ensure that satellite operators receive notifications when no new events meet their thresholds daily (if they select this in their settings)
-* Ensure that organisation admins receive notifications when a new member is added/removed or when a user’s permissions are changed. Ensure members receive notifications when they are added/removed.
-* Ensure all users could be notified if Space-Track or Mys goes down for a certain length of time [time TBD based on user research].
+* Ensure that organisation admins receive notifications when a new member is added/removed or when a user’s permissions are changed
+* Ensure members receive notifications when they are added/removed
+* Ensure all users could be notified if Space-Track or Monitor space hazards goes down for a certain length of time [time TBD based on user research]
 * Ensure UKSA admins receive notifications when a new organisation is added
-* Ensure notifications sent comply with the Notify guidance.
-* Provide magic links for user authentication.
-* Notifications should have a preference that allows users to turn off notifications entirely if desired.
+* Ensure notifications sent comply with the GOV.UK Notify guidance
+* Provide user authentication through Auth0
+* Enable users to turn off notifications entirely if desired
 
 ###Non-goals:
 
@@ -37,70 +38,67 @@ One of the key benefits of Monitor your satellites is that it provides a system 
 
 ##The actual design
 
-The architecture for sending an email or SMS via Notify is near identical:
+The architecture for sending an email or SMS via GOV.UK Notify is near identical:
 
 ![Notifications architecture](/designdocs/notifications/notifications.png "Notifications architecture").
 
-1. The service sends an email, or text message, notification to Notify.
-2. Notify sends the email, or text message, to the provider.
-3. The provider delivers the email, or text message, to the recipient.
-4. The recipient receives the email, or text message, and sends a delivery receipt to the provider.
-5. The provider sends the delivery receipt to Notify.
-6. Notify receives the delivery receipt and sends an API response to the service.
-7. The service receives the API response.
+1. The service sends an email, or text message, notification to GOV.UK Notify
+2. GOV.UK Notify sends the email, or text message, to the provider
+3. The provider delivers the email, or text message, to the recipient
+4. The recipient receives the email, or text message, and sends a delivery receipt to the provider
+5. The provider sends the delivery receipt to GOV.UK Notify
+6. GOV.UK Notify receives the delivery receipt and sends an API response to the service
+7. The service receives the API response
 
-It is envisaged that Notify will be called primarily from the Python back-end, but on an exception basis (where it makes sense) from the Node front-end also. The only scenario for considering sending notifications from the front-end right now is for magic links. All other notification events should be triggered from the back-end.
+It is envisaged that GOV.UK Notify will be called primarily from the Python back-end, but on an exception basis (where it makes sense) from the Node front-end also. The only scenario for considering sending notifications from the front-end right now is for magic links. All other notification events should be triggered from the back-end.
 
 ###User defined thresholds for notifications for events
 
-Users will be able to adjust notification settings by amending the threshold for notifications in their account settings page. Default thresholds will be used before users first sign-in, however they will be asked to review/edit these the first time they log in. The default settings will be based on typical values but users will be informed that “It is your responsibility to set the thresholds so that you can operate your satellite successfully.” Users will be able to modify these once they have logged in for the first time.
+Users will be able to adjust notification settings by amending the threshold for notifications in their account settings page. Default thresholds will be used before users first sign-in; however, they will be asked to review/edit these the first time they log in. 
 
-<b>Threshold logic:</b>
+For satellite operators accessing the conjunction service, the default settings will be based on typical values but users will be able to edit all of the thresholds used to determine the sending of notifications: Probability of collision, Total miss distance, Radial miss distance, and Time to event. They will be informed that “It is your responsibility to set the thresholds so that you can operate your satellite successfully.”  
 
-1. PofC HIGHER than [x]
-2. AND total miss distance BELOW [x]
-3. AND radial miss distance BELOW [x]
-4. AND time to event is BELOW [x]
+For government users accessing the conjunction and re-entry services, they will be able to adjust the notifications they receive by joining different distribution lists on their account settings page. For both re-entry and conjunction services, an ‘early distribution list’ will receive notifications for all escalated events, whilst an ‘extended distribution list’ will only receive notifications for the highest priority events. The criteria for sending notifications to the extended distribution list will remain unchanged from UKSA’s Standard Operating Procedures prior to the digitisation of these services.
+
+For re-entry notifications, government users will also be able to select geographical areas of interest, meaning they will only receive notifications about re-entry events if their selected areas of interest might be impacted.
 
 ###How will users be notified?
 
 The notifications will be sent to the registered email accounts of the users and as text messages to their phone numbers (if they choose to receive these).
 
-The email notifications will be sent using GOV.UK Notify. The service includes unlimited free emails and the ability to track how many messages are sent and find out which ones are not being delivered. There is also a performance SLA for 95% of emails and text messages to be sent within 10 seconds. It is supported by the Government Digital Service 24 hours a day, 7 days a week. This gives us confidence that email notifications will not go down suddenly for an extended period of time, which could increase the risk of a collision.
+The email notifications will be sent using GOV.UK Notify. The service includes unlimited free emails and the ability to track how many messages are sent and find out which ones are not being delivered. There is also a performance SLA for 95% of emails and text messages to be sent within 10 seconds. It is supported by the Government Digital Service 24 hours a day, 7 days a week. This gives us confidence that email notifications will not go down suddenly for an extended period of time, which could increase the risk of a collision or a re-entry event going unnoticed.
 
 ### Types of notifications
-An important mechanism that Notify uses is templates and the Mys service team have produced a template for each event that triggers a notification. The current list of events to trigger a notification is:
+An important mechanism that GOV.UK Notify uses is templates and the Monitor space hazards service team have produced a template for each event that triggers a notification. The current list of events to trigger a notification is:
 
 * Notifications relating to events:
-  * A conjunction event is created or updated which crosses the notification thresholds for a user.
   * New events that cross user thresholds
   * Updated events that cross user thresholds
   * New UKSA analysis for an event
   * Updated event that no longer crosses user thresholds (post MVP)
   * No events have met thresholds (in the last 24 hours) (post MVP)
-
-Emails to users warning of upcoming conjunction events passing user thresholds will include a list of all event URLs and their TCA in an email. <b>These emails will bundle together all events that have met the notification criteria since the last notification was sent.</b> Event notifications will be sent every 12 hours and at start and end of day e.g. 8am / 8pm. This pattern will be tested with users at private beta.
-
 * Notifications relating to user management
   * New member added/suspended/removed from your organisation
   * Organisation admin has changed
-  * New UK satellite has been added to Mys
-* User authentication via magic link
-* Ephemeris data is created or updated for a particular satellite of interest.
-* SpaceTrack has been unreachable for a configurable period of time.
+  * New UK satellite has been added to Monitor space hazards
+* User authentication via Auth0
+* Ephemeris data is created or updated for a particular satellite of interest
+* SpaceTrack has been unreachable for a configurable period of time
+
+Emails to operators warning of upcoming conjunction events passing user thresholds will include a list of all event URLs and their TCA in an email. These emails will bundle together all events that have met the notification criteria since the last notification was sent. Event notifications will be sent every 12 hours and at start and end of day e.g. 8am / 8pm. This pattern will be tested with users at private beta.
 
 ### User journey for setting notification thresholds and choices
-For operators, the journey differs between the first time they log in and subsequent times.
+The journey for users to set their notification thresholds and choices differs between the first time they log in and subsequent times.
 
-First time logging in to Monitor your satellites:
+First time logging in to Monitor space hazards:
 
-  * Sign in via magic link</li>
+  * Sign in via Auth0</li>
   * Page where users choose whether to receive email or text notifications for various communications
   * Page where users view/update their default notification thresholds
 
-Subsequent uses of Monitor your satellites (to adjust <b>default</b> notification settings):
+Subsequent uses of Monitor space hazards (to adjust <b>default</b> notification settings):
 
-  * Log in via magic link
+  * Log in via Auth0
   * Homepage
   * Account settings
   * Adjust notification type settings
@@ -109,14 +107,10 @@ Subsequent uses of Monitor your satellites (to adjust <b>default</b> notificatio
 ### What will the notifications say?
 Templates can be found in GOV.UK Notify.
 
-Notify’s guidance says: “You cannot convert text into a link. Research shows that people like to check a URL looks genuine before clicking the link in an email. This is hard to do if the URL is hidden behind clickable link text.”
+GOV.UK Notify’s guidance says: “You cannot convert text into a link. Research shows that people like to check a URL looks genuine before clicking the link in an email. This is hard to do if the URL is hidden behind clickable link text.”
 
 ## Alternatives considered
-Given the eligibility of the Mys service to use Notify, and its default position for eligible services, no alternatives were considered. If the choice of Notify proves to be a problem, then the exit-costs of leaving are considered low given the low investment in initial integration (via the clients available) and ongoing billing (all emails are free and SMS upto 150k annually.
-
-IE no native app
-## Cross-cutting concerns
-Notifications are inherently a cross-cutting concern.
+Given the eligibility of the Monitor space hazards service to use GOV.UK Notify, and its default position for eligible services, no alternatives were considered. If the choice of GOV.UK Notify proves to be a problem, then the exit-costs of leaving are considered low given the low investment in initial integration (via the clients available) and ongoing billing (all emails are free and SMS up to 150,000 messages annually).
 
 ##Limits
 If you repeatedly send text messages to the same number the phone networks will block them.
@@ -125,43 +119,5 @@ There’s an hourly limit of:
 
 * 20 messages with the same content
 * 100 messages with any content
-
-
-## Deprecated Content
-### Do not allow users to set threshold per satellites
-Update: we are no longer allowing users to set thresholds per satellite. User journey would have looked like:
-
-Subsequent uses of Monitor your satellites (to adjust individual satellite notification settings):
-
-  1. Log in via magic link
-  2. Homepage
-
-And then either:
-
-  a) Account settings
-
-  b) Click “edit” function next to individual satellites
-
-OR
-
-  a) Click satellite name on homepage table
-
-  b) Scroll to bottom of page to table, click “edit”
-
-  c) Taken to edit page
-
-OR
-
-  a) Click “view all satellites”
-
-  b) Click satellite name
-
-  c) Scroll to bottom of page, click “ edit”
-
-  d) Taken to edit page
-
-Each of these three methods takes users to the same page, just via different routes.
-
-
 
 <%= partial "partials/links" %>

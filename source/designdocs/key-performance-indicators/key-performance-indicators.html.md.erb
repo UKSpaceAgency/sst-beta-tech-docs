@@ -1,5 +1,5 @@
 ---
-title: Key performance indicators
+title: 018 - Key performance indicators
 weight: 12
 hide_in_navigation: true
 parent: /designdocs
@@ -7,23 +7,23 @@ last_reviewed_on: 2023-06-01
 review_in: 3 months
 ---
 
-# Key performance indicators
+# 018 - Key performance indicators
 
 ## Purpose
 In order to assess the performance of the service and user satisfaction, we must measure and assess a range of Key Performance Indicators (KPIs).
 
 ## Context and scope
-This aligns with the requirements of GDS Service standard 10:"Work out what success looks like for your service and identify metrics which will tell you what’s working and what can be improved, combined with user research."
+This aligns with the requirements of GDS Service standard 10: "Work out what success looks like for your service and identify metrics which will tell you what’s working and what can be improved, combined with user research."
 
 ### Goals of this design documentation include:
-* To briefly outline what success looks like for Monitor your satellites
-* To document the KPIs that Mys has chosen to focus on and how these will be measured
+* To briefly outline what success looks like for Monitor space hazards
+* To document the KPIs that Monitor space hazards has chosen to focus on and how these will be measured
 * To assess the benefits of the service to users, linking back to user needs
 * To consider the addition of new KPIs as the service develops (post-MVP KPIs)
 
-## What does success look like for Monitor your satellites?
+## What does success look like for Monitor space hazards?
 
-Through the creation of Monitor your satellites, the UKSA hopes to develop a central UK system that will notify users about upcoming high probability collision events, collating information into one place and sharing additional analysis conducted by UK orbital analysts. The UKSA aims to create an easy-to-understand but high quality service.
+Through the creation of Monitor space hazards, the UKSA hopes to develop a central UK system that will notify users about upcoming high probability collision events, collating information into one place and sharing additional analysis conducted by UK orbital analysts. The UKSA aims to create an easy-to-understand but high quality service.
 
 We have identified a number of metrics that will help us determine the performance of the service and what can be improved, that will be outlined below.
 
@@ -31,12 +31,12 @@ We have identified a number of metrics that will help us determine the performan
 
 According to the GDS, it is mandatory to publish data on 4 main key performance indicators; cost per transaction, completion rate, user satisfaction and digital take up.
 
-As Mys is not a transactional service, we will not report on [Cost per transaction](https://www.gov.uk/service-manual/measuring-success/measuring-cost-per-transaction) and [Completion rate](https://www.gov.uk/service-manual/measuring-success/measuring-completion-rate).
+As Monitor space hazards is not a transactional service, we will not report on [Cost per transaction](https://www.gov.uk/service-manual/measuring-success/measuring-cost-per-transaction) and [Completion rate](https://www.gov.uk/service-manual/measuring-success/measuring-completion-rate).
 
 #### [User satisfaction](https://www.gov.uk/service-manual/measuring-success/measuring-user-satisfaction):
   * Whilst being an essential performance metric to all services, user satisfaction is a more challenging metric to quantify and largely relies on interacting with our users (through the feedback banner on site, users being invited to stand-ups after releases or incidents, and surveys throughout private beta) and asking them to explain:
     * Satisfaction levels with the service
-    * How Mys changed user behaviour/ informed decision making
+    * How Monitor space hazards changed user behaviour/ informed decision making
     * Whether the information was easy to understand and use
     * How long it took to study and understand the information provided by the service
 
@@ -45,11 +45,11 @@ Here is a screenshot of the current feedback form for all users, based on GDS ex
 ![Screenshot of feedback form](designdocs/key-performance-indicators/feedbackform.png "Screenshot of feedback form")
 
 #### [Digital take-up](https://www.gov.uk/service-manual/measuring-success/measuring-digital-take-up)
-* As Monitor your satellites is not replacing an existing service/non-digital channel and we have selected a user base at private beta, digital take up will be monitored by measuring:
+* As Monitor space hazards is not replacing an existing service/non-digital channel and we have selected a user base at private beta, digital take up will be monitored by measuring:
   * The ratio of number of notifications sent to the number of log-ins and event information views per user (will be monitored through Notify and piwik pro). The correlation between these variables can also be monitored graphically over the course of private beta.
   * This metric will enable us to understand how often the operators use the service when there is an event that meets their thresholds and hence they are interested in.
 
-## Additional KPIs specific to monitoring the success of Mys
+## Additional KPIs specific to monitoring the success of Monitor space hazards
 
 During the private beta, key outputs to be assessed have been split into 3 categories; user satisfaction (already discussed above), service performance and user activity.
 
@@ -95,7 +95,7 @@ Below are some of the key user needs with the most evidence & how we will measur
 | User need | UID 254: As a Satellite Operator (All) I need event information including probability of collision, miss distances (total, radial, cross-track and in-track), TCA and objects involved in order to understand the risk of collision and decide on my response                                                                                                                                                                                                             |
 | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Benefit   | Operators are able to access more comprehensive and reliable data on conjunction events and in turn make better decisions on how to respond                                                                                                                                                                                                                                                                                                                               |
-| KPIs      | Number of times event pages are visited<br><br>Number of collisions over time<br><br>Number of times analysis is completed by UKSA<br><br>Questions in feedback form following key events<br><br>1. Have you used the information to help inform your decision?<br><br>2. Did you find the information easy to understand?<br><br>3. What other services did you use to help inform your decision?<br><br>4. Time taken to study and understand the data on Mys          |
+| KPIs      | Number of times event pages are visited<br><br>Number of collisions over time<br><br>Number of times analysis is completed by UKSA<br><br>Questions in feedback form following key events<br><br>1. Have you used the information to help inform your decision?<br><br>2. Did you find the information easy to understand?<br><br>3. What other services did you use to help inform your decision?<br><br>4. Time taken to study and understand the data on Monitor space hazards          |
 
 | User need | UID 255: As a Satellite Operator (All) I need additional event information including relative velocity, altitude, longitude, latitude, estimated combined mass and number of fragments that could be generated in order to understand the risk of collision and decide on my response |
 | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -112,7 +112,7 @@ Below are some of the key user needs with the most evidence & how we will measur
 | Benefit   | Users can easily understand the data when visualised                                                                                                                                                                                                                                                 |
 | KPIs      | Number of times the visualisation pages are visited (vs. event page visited)<br><br>Questions on feedback form:<br><br>Did you find the visualisations of events easy to understand?                                                                                                                 |
 
-## The future of capturing and publishing KPIs for Mys
+## The future of capturing and publishing KPIs for Monitor space hazards
 As mentioned previously, we will need to monitor and track a range of KPIs during the private beta. However, we also should prepare for what metrics we should track in later stages of the project.
 
 #### Post-MVP KPIs will include:

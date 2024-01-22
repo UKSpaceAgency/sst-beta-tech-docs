@@ -1,30 +1,30 @@
 ---
-title: UKSA Orbital Analyst analysis ingestion
+title: 014 - Ingesting Additional Conjunction Analysis from UKSA Orbital Analysts
 weight: 12
 hide_in_navigation: true
 parent: /designdocs
 last_reviewed_on: 2023-06-01
 review_in: 3 months
 ---
-# UKSA Orbital Analyst analysis ingestion
+# 014 - Ingesting Additional Conjunction Analysis from UKSA Orbital Analysts
 
 ## Purpose
-This design document will propose a design for UKSA OA (orbital analyst) analysis ingestion.
+This design document will propose a design for ingesting additional conjunction analysis from UKSA Orbital Analysts.
 
 ##Context and scope
-UKSA orbital analysts complete event analysis on conjunction events that crossed certain predefined thresholds (set by UKSA). OAs will need to submit their analysis when an event crosses these thresholds and/or if they receive ephemeris files from operators and decide to conduct additional analysis.
+UKSA orbital analysts complete additional analysis on conjunction events that cross certain predefined thresholds (set by UKSA) for the benefit of satellite operators. This analysis differs from the additional analysis conducted by OAs for escalated conjunction reports for government users. Orbital Analysts (OAs) will need to submit their analysis when an event crosses these thresholds and/or if they receive ephemeris files from operators and decide to conduct additional analysis.
 
 ##Goals and non-goals
 
-The goal of this design doc is to articulate a design for the ingestion of UKSA OA analysis into Mys.
+The goal of this design doc is to articulate a design for the ingestion of additional conjunction analysis from UKSA Orbital Analysts into Monitor space hazards.
 
 ### Goals
 
-* OAs need to be able to share their analysis with users of Mys
+* OAs need to be able to share their analysis with users of Monitor space hazards
 * OA analysis must be uploaded and stored securely
-* Validation mechanisms must be in place to ensure file is safe & valid
+* Validation mechanisms must be in place to ensure file is safe and valid
 * OA analysis must be stored in a way that allows it to be monitored and audited
-* Users of Mys need to know when the data that they are seeing is from OA analysis (and how and when this analysis was conducted - at MVP, Mys will provide standard text & at post-MVP OAs can add comments or operators can contact an analyst for more information)
+* Users of Monitor space hazards need to know when the data that they are seeing is from OA analysis (and how and when this analysis was conducted - at MVP, Monitor space hazards will provide standard text and at post-MVP OAs can add comments or operators can contact an analyst for more information)
 
 ### Non-Goals
 
@@ -70,7 +70,7 @@ The table below contains the data required from the OAs:
 - Ability to add sources of activeness and manoeuvrability data
 
 ###File upload
-1. <b>OA will be able to upload a JSON file into Mys</b>
+1. <b>OA will be able to upload a JSON file into Monitor space hazards</b>
 Via manual log-in or API (post-MVP)
 
 * At MVP, this will involve a manual file upload via the web interface
@@ -138,12 +138,12 @@ The data schema for JSON files is as follows:
 }
 ```
 
-2.<b> OA receives instant validation that the file has been accepted & saved to database</b>
+2.<b> OA receives instant validation that the file has been accepted and saved to database</b>
 Operator and Government users receive an email from GOV.UK Notify saying the event has been updated.
 
 Note, users will receive notifications for any analysis that is submitted by the UKSA OAs irrelevant of their thresholds.
 
-3.<b> Contents of the file are extracted and integrated into Mys database event table.</b>
+3.<b> Contents of the file are extracted and integrated into Monitor space hazards database event table.</b>
 
 Analysis is input into the UKSA columns in the event summary table, the additional event information table & data sources table, for example:
 
@@ -173,7 +173,7 @@ OA analysis will be stored indefinitely against an event. Each update will be st
 * API - direct API integration with OA workbench
   * Too difficult to implement in this time-frame
   * Integration with OA workbench is not future-proof as these tools may change in time
-* Email - allow OAs to attach file to an email to Mys
+* Email - allow OAs to attach file to an email to Monitor space hazards
 
 
 ##Cross-cutting concerns
