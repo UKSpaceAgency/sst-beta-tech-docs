@@ -3,8 +3,8 @@ title: 014 - Ingesting Additional Conjunction Analysis from UKSA Orbital Analyst
 weight: 12
 hide_in_navigation: true
 parent: /designdocs
-last_reviewed_on: 2023-06-01
-review_in: 3 months
+last_reviewed_on: 2024-01-23
+review_in: 12 months
 ---
 # 014 - Ingesting Additional Conjunction Analysis from UKSA Orbital Analysts
 
@@ -22,7 +22,7 @@ The goal of this design doc is to articulate a design for the ingestion of addit
 
 * OAs need to be able to share their analysis with users of Monitor space hazards
 * OA analysis must be uploaded and stored securely
-* Validation mechanisms must be in place to ensure file is safe and valid
+* Validation mechanisms must be in place to ensure data is safe and valid
 * OA analysis must be stored in a way that allows it to be monitored and audited
 * Users of Monitor space hazards need to know when the data that they are seeing is from OA analysis (and how and when this analysis was conducted - at MVP, Monitor space hazards will provide standard text and at post-MVP OAs can add comments or operators can contact an analyst for more information)
 
@@ -70,114 +70,33 @@ The table below contains the data required from the OAs:
 - Ability to add sources of activeness and manoeuvrability data
 
 ###File upload
-1. <b>OA will be able to upload a JSON file into Monitor space hazards</b>
-Via manual log-in or API (post-MVP)
 
-* At MVP, this will involve a manual file upload via the web interface
-* Post-MVP, we will integrate with the OA workbench tools via API
+Initially, ingestion of OA analysis required manual upload of a JSON file via the web interface. However, the service has now been integrated with the OA workbench tools via API to enable automatic uploading of additional analysis. Following this API integration, there are limits on the number of uploads per day.
 
-Constraints on file upload:
-* File size
-* Meets the defined schema
-* Post MVP: when API integration, limit number of uploads per day
-
-The file must have the following to be accepted:
-* The file must have a JSON extension.
-* The file must not exceed 12 MB.
-* The file must match the defined schema for analysis.
-
-The data schema for JSON files is as follows:
-
-```
-{
-"event_id": " ",
-"cdm_id": " ",
-"collision_probability": ,
-"tca": " ",
-"miss_distance":
-{
-"total_value":,
-"total_uncertainty":,
-"mean_radial_value":,
-"mean_radial_uncertainty":,
-"in_track_value":,
-"in_track_uncertainty": ,
-"cross_track_value": ,
-"cross_track_uncertainty":
-},
-"update_time": " ",
-"altitude": ,
-"latitude":,
-"longitude":,
-"relative_velocity": ,
-"estimated_combined_mass": ,
-"estimated_fragments": ,
-"primary_object":
-{
-"norad_id": " ",
-"data_received": " ",
-"data_source": " ",
-"HBR": ,
-"observations_number": ,
-"observations_available": ,
-"observations_timespan": ,
-"OD_Quality":
-},
-"secondary_object":
-{
-"norad_id": " ",
-"data_received": " ",
-"data_source": " ",
-"HBR": ,
-"observations_number": ,
-"observations_available": ,
-"observations_timespan": ,
-"OD_Quality":
-},
-"collision_probability_method": " "
-}
-```
-
-2.<b> OA receives instant validation that the file has been accepted and saved to database</b>
-Operator and Government users receive an email from GOV.UK Notify saying the event has been updated.
-
-Note, users will receive notifications for any analysis that is submitted by the UKSA OAs irrelevant of their thresholds.
-
-3.<b> Contents of the file are extracted and integrated into Monitor space hazards database event table.</b>
-
-Analysis is input into the UKSA columns in the event summary table, the additional event information table & data sources table, for example:
+Once this data is ingested via API, the analysis is input into the UKSA columns in the event summary table, the additional event information table and data sources table. For example:
 
 ![OA analysis ingestion](/designdocs/oa-analysis-ingestion/oa-analysis-ingestion.png "")
 
-The generic sources of each table and field will be explained in the ‘data sources information’ page.
-
-<b>Post-MVP:</b> users will be able to generate a .pdf report from the event information page or download the event data as a .csv file.<br>
-<b>POST MVP:</b> A table of historic JSON file uploads will be shown. OAs will have the ability to delete a file using this table.
+Operator and Government users then receive an email from GOV.UK Notify saying the event has been updated. Users will receive notifications for any analysis that is submitted by the UKSA OAs irrelevant of their thresholds.
 
 ###Data Storage
 
 OA analysis will be stored indefinitely against an event. Each update will be stored and shown in the event history table.
-###Security considerations
-1. Ensuring analysis file does not contain any viruses
-  a. Virus checks
-2. Ensuring analysis is valid
-  a. File structure and schema is as expected/defined
-3. Monitoring and logging OA activity
-  a. OA activity will be logged to provide an audit trail
-4. Analysis is classified as OFFICIAL
-  a. User will see a warning message saying “do not share outside of your organisation”
 
-###Degrees of constraint
+###Security considerations
+
+1. Monitoring and logging OA activity
+  * OA activity will be logged to provide an audit trail
+2. Analysis is classified as OFFICIAL
+  * User will see a warning message saying “do not share outside of your organisation”
 
 ##Alternatives considered
-* API - direct API integration with OA workbench
-  * Too difficult to implement in this time-frame
-  * Integration with OA workbench is not future-proof as these tools may change in time
-* Email - allow OAs to attach file to an email to Monitor space hazards
+
+It was also considered whether to allow OAs to attach a file to an email to Monitor space hazards, but this was deemed a less efficient means of uploading analysis in comparison to an API.
 
 
 ##Cross-cutting concerns
 
-* Bad actor concerns - a record needs to be kept of all JSON uploads.
+* Bad actor concerns - a record needs to be kept of all analysis uploads.
 
 <%= partial "partials/links" %>
