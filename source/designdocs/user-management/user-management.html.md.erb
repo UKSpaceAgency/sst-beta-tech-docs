@@ -3,8 +3,8 @@ title: 008 - User Management
 weight: 12
 hide_in_navigation: true
 parent: /designdocs
-last_reviewed_on: 2023-06-01
-review_in: 3 months
+last_reviewed_on: 2024-01-23
+review_in: 12 months
 ---
 
 # 008 - User Management
@@ -15,15 +15,15 @@ Taking a lead from Google’s engineering culture this is a [design doc] (https:
 This document tackles the problem of user management in the Monitor space hazards service. It is an experiment in the potential use of these artefacts.
 
 ##Context and scope
-Monitor space hazards  ties together common needs of Satellite Operators, Orbital Analysts, the UK Space Regulator (the Civil Aviation Authority) and the UK Space Agency (UKSA). The shared needs centre around Conjunction Events and the sharing of refined UK-based Orbital Analysis on them.
+Monitor space hazards  ties together common needs of Satellite Operators, Orbital Analysts, the UK Space Regulator (the Civil Aviation Authority), other government departments and the UK Space Agency (UKSA). The shared needs centre around notifications regarding conjunction and re-entry events and the sharing of refined UK-based Orbital Analysis on them.
 
 The high-level workflow for Monitor space hazards is:
 
-* Ingest a data feed for Conjunction Data Messages (CDM) from SpaceTrack. Monitor space hazards' SpaceTrack permissions only allows it to ingest CDMs for UK objects, so no filtering of these is needed at an ingestion level.
-* Group together CDMs and raise Conjunction Events for further Orbital Analysis.
-* Share the further Orbital Analysis with Satellite Operators.
+* Ingest a data feed for Conjunction Data Messages (CDM) or Trajectory and Impact Predictions (TIPs) from SpaceTrack. Monitor space hazards' SpaceTrack permissions only allows it to ingest CDMs and TIPs for UK objects, so no filtering of these is needed at an ingestion level
+* Group together CDMs and TIPs and raise conjunction and re-entry events for further Orbital Analysis
+* Share the further Orbital Analysis with users
 
-So the context for user management is that multiple organisations will be using the Monitor space hazards service. It is considered that each organisation will be best placed to understand their own joiners, leavers and movers within their organisation.
+Therefore, multiple organisations will be using the Monitor space hazards service and viewing different information about each event. It is considered that each organisation will be best placed to understand their own joiners, leavers and movers within their organisation.
 
 ##Goal and non-goals
 The goal of this design doc is to articulate a User Management design sufficient for the beta phase of Monitor space hazards.
@@ -44,49 +44,43 @@ And the following non-goals:
 The design for user management in the beta phase of Monitor space hazards follows.
 
 ###System context diagram
-The following diagram shows the system context for Monitor space hazards:
+It is important to note that from a user management perspective there are multiple organisations, each with their own users, that are interacting with each other and Monitor space hazards. This includes:
 
-![Mys system context diagram](/designdocs/user-management/mys-system-context.png "Mys system context diagram").
+* <b>Orbital Analysts at the UK Space Agency,</b> who need to be able to ingest data from and upload data to the service</li>
+* <b>Other staff at the UK Space Agency,</b> who need to be able to view all information on the service and make some additions to escalated event reports</li>
+* <b>UK satellite operators,</b> who need access to data for their own satellites</li>
+* <b>Other UK government departments,</b> such as the Civil Aviation Authority, Ministry of Defence and Cabinet Office, who need to understand about threats and hazards in space</li>
+* <b>International partners,</b> who benefit from the UK's re-entry preedictions</li>
 
-With the following key:
-![Mys system context diagram key](/designdocs/user-management/mys-system-context-key.png "Mys system context diagram key").
-
-It is important to note that from a user management perspective there are multiple organisations, each with their own users, that are interacting with each other and Monitor space hazards.
-
-Given the system context above and the goals for user management the following use cases are proposed.
+Given the system context above and the goals for user management, the following user management use cases are proposed. See Design Doc 013 - Permissions Model for more detail on different user types.
 
 
 | Use Case 1                           | Onboarding a new organisation                                                  |
 | ------------------------------------ | --------------------------------------------------------------------------------|
-| Actor                                | Monitor space hazards Administrator (see use case 2)                                              |
-| Overview                             | The UKSA is responsible for onboarding new organisations. This will involve off-system assurance of the domain associated with the organisation, and the creation of a single user with a “org administrator” role.<br><br>The trigger for this use case is an “Monitor space hazards Administrator” clicking a GOV.UK Design System button stating “Invite a new organisation”. <br><br> At MVP, users and organisations will be on boarded by manually adding emails to the database of users and setting account permissions in this database manually.|
+| Actor                                | Superuser                                           |
+| Overview                             | The UKSA is responsible for onboarding new organisations. This will involve off-system assurance of the domain associated with the organisation, and the creation of a single user at that organisation with an “Admin” role.<br><br>The trigger for this use case is an “Superuser” clicking a GOV.UK Design System button stating “Invite a new organisation”. <br><br> At MVP, users and organisations will be on boarded by manually adding emails to the database of users and setting account permissions in this database manually.|
 
 | Use Case 2                           | Onboarding a user                                                              |
 | ------------------------------------ | -------------------------------------------------------------------------------|
-| Actor                                | Org Administrator                                                              |
-| Overview                             | Each organisation has at least one “org administrator”. This “org administrator” then bears responsibility for creating, updating and deleting users within the organisation and domain they are responsible for. <br><br>The trigger for this use case is an “org administrator” clicking a GOV.UK Design System button stating “Invite a new team member”<br><br>Monitor space hazards validates the new user’s email address domain matches the “org administrators” and sends an email to validate the entire address. <br><br>This implies user accounts have a state model, proposed states are:<ul><li>Unvalidated - created but not validated their email address</li><li>Active - validated and has logged in during the last x days</li><li>Inactive - access is removed due to inactivity, but the account is not deleted, rather it is retained for audit purposes and can be reinstated via a validation email in the future</li></ul><br><br>The other implication is that each user has a role, or roles, associated with it. The proposed roles are:<ol><li>UKSA admin with full access to the highest level of privilege on Monitor space hazards, it allows all data to be viewed and mutated (UKSA key staff and whoever they choose to maintain the system)</li><li>Orbital analysts admin only with full access to data and the ability to upload conjunction event analysis (at the moment NORSS)</li><li>CAA user admin / member has read only rights to see all data, plus the opportunity to onboard operators.</li><li>ERT user admin/ member (read access to all satellites) has read only rights to see all data, this role is envisaged for regulators, UKSA users and so on.</li><li>Operator user admin/ member (read access to operator satellites), ability to upload ephemeris data.</li></ol>.|
+| Actor                                | Organisation Admin                                                             |
+| Overview                             | Each organisation has at least one “Admin”. This “Admin” then bears responsibility for creating, updating and deleting users within the organisation and domain they are responsible for. <br><br>The trigger for this use case is an “Admin” clicking a GOV.UK Design System button stating “Invite a new team member”<br><br>Monitor space hazards validates the new user’s email address domain matches the “Admin's” email address and sends an email to validate the entire address. <br><br>This implies user accounts have a state model, proposed states are:<ul><li><b>Unvalidated</b> - created but not validated their email address</li><li><b>Active</b> - validated and has logged in during the last x days</li><li><b>Inactive</b> - access is removed due to inactivity, but the account is retained for audit purposes and can be reinstated via a validation email in the future</li></ul>|
 
 | Use Case 3                           | Inactivating a user                                                            |
-| ------------------------------------ | -------------------------------------------------------------------------------|
-| Actor                                | Monitor space hazards                                                                           |
-| Overview                             | Due to either a period of x days inactivity (meaning the time of last log-in is tracked for each user) or an off-system event such as someone leaving an organisation.<br><br>This is a state model change on the user account. The user can reactivate themselves by reverifying their email address.|
+| ------------------------------------ | Organisation Admin/Superuser                                                                       |
+| Overview                             | Organisation Admins may inactivate users in their organisation due to an off-system event such as someone leaving an organisation. Superusers may do so for all users, regardless of organisation.<br><br>At MVP, this would require the Organisation Admin or Superuser to manually remove the user from an organisation.|
 
 | Use Case 4                           | Inactivating an organisation                                                   |
 | ------------------------------------ | -------------------------------------------------------------------------------|
-| Actor                                | Monitor space hazards Administrator                                                              |
-| Overview                             | Due to an off-system event such as an organisation leaving Monitor space hazards.<br><br> At MVP, this would require an Monitor space hazards database administrator to manually remove all users from an orgnaisation from the system.|
+| Actor                                | Superuser                                                              |
+| Overview                             | Superusers may inactivate an organisation due to an off-system event such as an organisation leaving Monitor space hazards.<br><br> At MVP, this would require the Superuser to manually remove all users from an organisation from the system.|
 
 | Use Case 5                           | User Management Audit                                                          |
 | ------------------------------------ | -------------------------------------------------------------------------------|
 | Actor                                | Monitor space hazards                                                                           |
-| Overview                             |All user management events, including all of the above use cases, will be audited. There will be a design decision on whether to implement [event sourcing] (https://docs.microsoft.com/en-us/azure/architecture/patterns/event-sourcing) in Monitor space hazards, in which case auditing will come as part of that decision.|
+| Overview                             | All user management events, including all of the above use cases, will be audited. There will be a design decision on whether to implement [event sourcing] (https://docs.microsoft.com/en-us/azure/architecture/patterns/event-sourcing) in Monitor space hazards, in which case auditing will come as part of that decision.|
 
-#### Discontinued Use Cases
+Importantly, Superusers who have the ability to make many of these user management changes will require Multi-Factor Authentication (MFA) to access their accounts.
 
-| Use Case 6                           | Magic link emails - <i>Subseqently discontinued with the implementation of Auth0</i>|
-| ------------------------------------ | -------------------------------------------------------------------------------|
-| Actor                                | Monitor space hazards                                                                           |
-| Overview                             | Magic Link Emails are an increasingly common authentication mechanism, since they provide:<ul><li>A low friction sign-in mechanism</li><li>Lower the risk of password reuse across applications</li><li>Authentication for a user whilst also validating the legitimacy of their email address</li></ul><br>Magic Link Emails should be sent when a new user is registered or when an existing user wants to login. To prevent users needing to request a new link for every log in, tokens will be valid for sessions of up to 24 hours. This balances both security and ease of use. Magic links will work as follows:<ol><li>Users will enter their email address at the login page. They will be told that an email has been sent with a magic link and to follow the email’s instructions. </li><li>If the user is known, they will receive an email with a magic link. </li><li>If a user is not known, no email is sent.</li><li>When a user successfully receives a magic link, they will be redirected to a “proceed to my homepage” page. They will click this to gain access to the site.</li></ol><br>As GDS suggests that any errors based on users’ lack of eligibility must be explained with instructions on what to do next, this process may be too opaque. This method will therefore need to be user tested to balance between ease and security.<br><br>It is expected the authentication implementation will be offloaded to an external service, such as Firebase or Auth0. Whilst authorisation will be stored in the Monitor space hazards database.<br><br>It is important to note that Magic Link Emails are a form of token based authentication.<br><br>It is expected that Multi-Factor Authentication will be explored post-MVP (as while Orbital Analysts will not have access to a smartphone while working, they will have access to an authentication device).|
 ### APIs
 
 We have made available a public API for user management - this is [documented in our OpenAPI specification in the users section](https://api.monitor-your-satellites.service.gov.uk/docs#/users).
@@ -139,11 +133,10 @@ Monitor space hazards is a greenfield development so is relatively free of const
 
 ## Alternatives considered
 
-The main area for alternative considerations is authentication. The following were considered:
-<ul>
-<li>Multi-Factor Authentication (MFA) requires two or more independent ways to identify a user. Examples include codes generated from smartphones, captcha tests, fingerprints, voice biometrics, facial recognition and so on. MFA is good against most hacks, but comes with its own pitfalls such as lost phones, SIM cards etc. Orbital analysts will not have access to mobile phones while working so MFA involving smartphones cannot be the default for all user groups. However, orbital analysts will have access to a hardware authentication device. </li>
-<li>While MFA can be explored post-MVP, magic links will be secure and accessible for all user groups and therefore will be the MVP authentication. Problems with magic links expiring before the user can access them will be addressed via longer session times.</li>
-</ul>
+The main area for alternative considerations is authentication, where we considered introducing Multi-Factor Authentication (MFA) for all users. MFA requires two or more independent ways to identify a user. Examples include codes generated from smartphones, captcha tests, fingerprints, voice biometrics, facial recognition and so on. MFA is good against most hacks, but comes with its own pitfalls such as lost phones, SIM cards etc. 
+
+It was decided that information presented on Monitor Space Hazards is not sufficiently sensitive to require MFA for all users. However, MFA is required for most users, including Superusers, with the ability to make changes to the service. However, Orbital analysts will not have access to mobile phones while working so MFA involving smartphones cannot be the default for all user groups.
+
 
 ## Cross-cutting concerns
 The design will conform with the cross-cutting concerns, such as observability, privacy and security, decided and documented elsewhere for Monitor space hazards.
