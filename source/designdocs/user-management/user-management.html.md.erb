@@ -41,10 +41,8 @@ And the following non-goals:
 * Building a custom user management solution for Monitor space hazards
 
 ##The actual design
-The design for user management in the beta phase of Monitor space hazards follows.
 
-###System context diagram
-It is important to note that from a user management perspective there are multiple organisations, each with their own users, that are interacting with each other and Monitor space hazards. This includes:
+There are multiple organisations, each with their own users, that are interacting with each other and Monitor space hazards. This includes:
 
 * <b>Orbital Analysts at the UK Space Agency,</b> who need to be able to ingest data from and upload data to the service</li>
 * <b>Other staff at the UK Space Agency,</b> who need to be able to view all information on the service and make some additions to escalated event reports</li>
@@ -66,7 +64,8 @@ Given the system context above and the goals for user management, the following 
 | Overview                             | Each organisation has at least one “Admin”. This “Admin” then bears responsibility for creating, updating and deleting users within the organisation and domain they are responsible for. <br><br>The trigger for this use case is an “Admin” clicking a GOV.UK Design System button stating “Invite a new team member”<br><br>Monitor space hazards validates the new user’s email address domain matches the “Admin's” email address and sends an email to validate the entire address. <br><br>This implies user accounts have a state model, proposed states are:<ul><li><b>Unvalidated</b> - created but not validated their email address</li><li><b>Active</b> - validated and has logged in during the last x days</li><li><b>Inactive</b> - access is removed due to inactivity, but the account is retained for audit purposes and can be reinstated via a validation email in the future</li></ul>|
 
 | Use Case 3                           | Inactivating a user                                                            |
-| ------------------------------------ | Organisation Admin/Superuser                                                                       |
+| ------------------------------------ | ------------------------------------                                                                              |
+| Actor                                |Organisation Admin/Superuser                                                    |
 | Overview                             | Organisation Admins may inactivate users in their organisation due to an off-system event such as someone leaving an organisation. Superusers may do so for all users, regardless of organisation.<br><br>At MVP, this would require the Organisation Admin or Superuser to manually remove the user from an organisation.|
 
 | Use Case 4                           | Inactivating an organisation                                                   |
