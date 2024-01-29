@@ -3,8 +3,8 @@ title: 017 - Cookies policy
 weight: 12
 hide_in_navigation: true
 parent: /designdocs
-last_reviewed_on: 2023-06-01
-review_in: 3 months
+last_reviewed_on: 2024-02-01
+review_in: 12 months
 ---
 
 # 017 - Cookies policy
@@ -25,8 +25,7 @@ These cookies are required to make the service work.We do not need to ask permis
 
 | Name                         | Purpose                            | Category  | Time to expiry          | Set (server or client)                        |
 | ---------------------------- | ---------------------------------- | --------- | ----------------------- | --------------------------------------------- |
-| mys_session                 | Used to keep you signed in         | Essential | 12 hours after activity | Client but with httponly attribute and secure |
-| mys_cookie_policy_consent | Saves your cookie consent settings | Essential | 1 year                  | Client without httponly                       |
+| __Secure-next-auth.session-token                 | Used to keep you signed in         | Essential | 12 hours after activity | Client but with httponly attribute and secure |
 
 ## Non-essential cookies
 
@@ -36,46 +35,43 @@ The service will work without them, but the user will not be able to take advant
 
 ### Analytics cookies
 
-With the user’s permission, we will use Piwik Pro to collect data about how they use the service. This information will enable us to improve our service and assess our KPIs. All the data will be stored and processed on Piwik Pro’s servers.
+With the user’s permission, we will use Google Analytics to collect data about how they use the service. This information will enable us to improve our service and assess our KPIs. All the data will be stored and processed on Google’s servers.
 
-| Name                           | Purpose                                                                                                                    | Expires        |
-| ------------------------------ | -------------------------------------------------------------------------------------------------------------------------- | -------------- |
-| _pk_ses.appID.domainHash     | Session activity                                                                                                           | 30 minutes     |
-| _pk_id.appID.domainHash      | Used to recognise users                                                                                                    | 13 months      |
-| app_id                        | Used to pass a site or app ID between Piwik PRO’s modules                                                                  | 1 year         |
-| ppms_privacy_appID           | Stores visitor’s consent to data collection and usage                                                                      | 1 year         |
-| _stg_debug                   | Determines if the Tag Manager’s debugger should be displayed. A cookie is removed after you close the debugger.            | 14 days        |
-| stg_traffic_source_priority | Stores the type of traffic source that explains how the visitor reached your website.                                      | 30 minutes     |
-| stg_last_interaction         | Determines whether the last visitor’s session is still in progress or a new session has started.                           | 1 year         |
-| stg_returning_visitor        | Determines if the visitor has already been to your website — they are returning visitors.                                  | 1 year         |
-| stg_fired__appID            | Determines if the combination of a tag and trigger was fired during the current visitor’s session.                         | End of session |
-| stg_utm_campaign             | Stores a name of the campaign that directed the visitor to your website.                                                   | End of session |
-| stg_pk_campaign              | Stores a name of the campaign that directed the visitor to your website.                                                   | End of session |
-| stg_externalReferrer          | Stores an URL of a website that referred a visitor to your website.                                                        | End of session |
-| _stg_opt_out_simulate      | Used to simulate the behavior of the opt-out snippet in the debugger. It turns off all tracking tags in the tested domain. | 1 year         |
-| _stg_optout                  | Used to turn off all tracking tags in the tested domain.                                                                   | 1 year         |
-| csrftoken                      | This cookie is set only for Piwik PRO’s users. It stores a CSRF token for securing Piwik PRO’s forms.                      | 8 hours        |
-| sessionid                      | This cookie is set only for Piwik PRO’s users. It stores the session ID of the currently logged-in user.                   | 8 hours        |
+|Name|Purpose|Expires|
+|:----|:----|:----|
+|_ga|Used to distinguish users|2 years|
+|_ga_container-id|Used to persist session state|2 years|
+|_stg_debug|Determines if the Tag Manager’s debugger should be displayed. A cookie is removed after you close the debugger.|14 days|
+|stg_traffic_source_priority|Stores the type of traffic source that explains how the visitor reached your website.|30 minutes|
+|stg_last_interaction|Determines whether the last visitor’s session is still in progress or a new session has started.|1 year|
+|stg_returning_visitor|Determines if the visitor has already been to your website — they are returning visitors.|1 year|
+|stg_fired__appID|Determines if the combination of a tag and trigger was fired during the current visitor’s session.|End of session|
+|stg_utm_campaign|Stores a name of the campaign that directed the visitor to your website.|End of session|
+|stg_pk_campaign|Stores a name of the campaign that directed the visitor to your website.|End of session|
+|stg_externalReferrer|Stores an URL of a website that referred a visitor to your website.|End of session|
+|_stg_opt_out_simulate|Used to simulate the behavior of the opt-out snippet in the debugger. It turns off all tracking tags in the tested domain.|1 year|
+|_stg_optout|Used to turn off all tracking tags in the tested domain.|1 year|
 
-### Using piwik pro
-Piwik Pro will be used to track front-end analytics. It tracks and reports website traffic. It will track user-related metrics.
+
+### Using Google Analytics
+Google Analytics will be used to track front-end analytics. It tracks and reports website traffic. It will track user-related metrics.
 
 #### Things to consider to meet GDS standards:
 * What you need to do - for example, whether you need to do A/B or multivariate testing
 * How much it will cost
-  * Piwik Pro is free up to 100k actions a month.
+  * Google Analytics is free.
 * Where the data is stored and how you’ll access it
-  * Piwik Pro allows Monitor space hazards to have full ownership of its data, stored either on our servers or Piwik Pro’s private cloud
-  * Piwik Pro uses mechanisms that help you respect the privacy of your visitors and stay compliant with the GDPR regulations.
+  * Google Analytics operates data centers globally, including in the United States, to maximize service speed and reliability. Before data is transferred to any servers in the United States, it is collected in local servers, where users’ IP addresses are anonymised (when the feature is enabled by customers).
+  * The GDPR and European Court of Justice say that data can be transferred outside of the European Union for just this sort of reason, provided conditions are met.
 * What the quality of the data is
-  * Piwik Pro has a range of functionality to choose from including: reports, activity log, users flow, heatmap & session recording, A/B testing
+  * Google Analytics has a range of functionality to choose from including: reports, activity log, users flow, location data & session recording
 * What you can do with the data
   * Data will be used to generate service KPIs & understand how our users are interacting with the website. This knowledge will enable us to iterate and improve the service.
 * What support is available to help you use the tool
-  * Support subscription is available if required
+  * Support is available if required
 
-### Logit.io
-We will also use logit.io to log and monitor the system’s performance metrics and databases.
+### CloudWatch
+We will also use AWS CloudWatch to log and monitor the system’s performance metrics and databases.
 
 ## Setting user preferences for cookies
 
