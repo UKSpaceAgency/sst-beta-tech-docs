@@ -1,5 +1,5 @@
 ---
-title: 016 - User Editing of Reports
+title: 016 - User Editing of Alerts
 weight: 12
 hide_in_navigation: true
 parent: /designdocs
@@ -7,19 +7,19 @@ last_reviewed_on: 2024-01-22
 review_in: 12 months
 ---
 
-# 016 - User Editing of Reports
+# 016 - User Editing of Alerts
 
 ## Purpose
-Upon moving to a digital format for all re-entry and conjunction reports, members of the UKSA team must have the ability to edit automatically generated reports after they are published. This document details the design of this editing process and its importance in ensuring accurate reporting. 
+Upon moving to a digital format for all re-entry and conjunction alerts, members of the UKSA team must have the ability to edit automatically generated alerts after they are published. This document details the design of this editing process and its importance in ensuring accurate reporting. 
 
 ##Context and scope
-Monitor space hazards provides escalated conjunction and re-entry reports and alerts to a range of users across the UK government. As the reports were previously written and sent manually by UKSA’s orbital analysts, this represents a significant time saving and improvement in user experience. However, to ensure that reports are adaptable to changing circumstances and information, it is important that UKSA employees are able to retrospectively edit reports and inform relevant parties of such updates. 
+Monitor space hazards provides conjunction and re-entry alerts to a range of users across the UK government. As the alerts were previously written and sent manually by UKSA’s orbital analysts, this represents a significant time saving and improvement in user experience. However, to ensure that alerts are adaptable to changing circumstances and information, it is important that UKSA employees are able to retrospectively edit alerts and inform relevant parties of such updates. 
 
 ## Goals and non-goals
 
 ###Goals:
 
-* Ensure that UKSA employees are able to edit relevant sections of automatically uploaded re-entry and conjunction reports</li>
+* Ensure that UKSA employees are able to edit relevant sections of automatically uploaded re-entry and conjunction alerts</li>
 * Ensure that the appropriate government and non-government users are informed of any edits</li>
 * Ensure edits can be made iteratively as necessary</li>
 
@@ -28,59 +28,59 @@ Monitor space hazards provides escalated conjunction and re-entry reports and al
 * Allow manual editing of automatically populated data fields</li>
 
 ##The actual design
-Approver users (see 013 Permissions Model) who wish to make edits to existing automatically generated reports are able to do so through the use of free text additions which contextualise the data in the dynamic data fields. These edits would be in addition to generic passages which are auto populated on each report.  For re-entry and conjunction there are different fields that can be edited, but it is not possible to do any text formatting or include images.
+Approver users (see 013 Permissions Model) who wish to make edits to existing automatically generated alerts are able to do so through the use of free text additions which contextualise the data in the dynamic data fields. These edits would be in addition to generic passages which are auto populated on each alert.  For re-entry and conjunction there are different fields that can be edited, but it is not possible to do any text formatting or include images.
 
-###Edit re-entry reports
-For re-entry, the editing functionality allows users to make edits to five different sections of the automatically generated re-entry report. Edits for each section are not required, and if they are not relevant, users are advised not to make them. These include:
+###Edit re-entry alerts
+For re-entry, the editing functionality allows users to make edits to five different sections of the automatically generated re-entry alert. Edits for each section are not required, and if they are not relevant, users are advised not to make them. These include:
 
 <b>1. Executive summary:</b> While the majority of the executive summary is formed of auto-populated dynamic data fields, this editing functionality allows users to communicate updated headline messages regarding the re-entry event. 
 
-<b>2. Immediate response:</b> Additional detail regarding immediate response to the event can be provided here. The default production of the report includes the standard operating procedure for responding to events, but this field enables bespoke guidance based on the event in question.
+<b>2. Immediate response:</b> Additional detail regarding immediate response to the event can be provided here. The default production of the alert includes the standard operating procedure for responding to events, but this field enables bespoke guidance based on the event in question.
 
-<b>3. Recovery and clean up:</b> Additional detail regarding recovery and clean up following the event can be provided here. The default production of the report includes the standard operating procedure for recovery and clean up after events, but this field enables bespoke guidance based on the event in question.
+<b>3. Recovery and clean up:</b> Additional detail regarding recovery and clean up following the event can be provided here. The default production of the alert includes the standard operating procedure for recovery and clean up after events, but this field enables bespoke guidance based on the event in question.
 
-<b>4. Liability for damages:</b> Additional detail regarding liability for damages can be provided here. The default production of the report notes that the licensing country is liable for any damages and associated costs, but this field enables any nuances regarding liability to be communicated.
+<b>4. Liability for damages:</b> Additional detail regarding liability for damages can be provided here. The default production of the alert notes that the licensing country is liable for any damages and associated costs, but this field enables any nuances regarding liability to be communicated.
 
 <b>5. Press attention:</b> Additional detail regarding any change in UK press attention can be provided here. 
 
-![User interface for editing re-entry reports](/designdocs/user-editing/edit-reentry-report.png "User interface for editing re-entry reports").
+![User interface for editing re-entry alerts](/designdocs/user-editing/edit-reentry-report.png "User interface for editing re-entry alerts").
 
-### Edit conjunction reports
-For conjunction, the editing functionality allows users to make edits to seven different sections of the automatically generated conjunction report. Edits for each section are not required, and if they are not relevant, users are advised not to make them. These include:
+### Edit conjunction alerts
+For conjunction, the editing functionality allows users to make edits to seven different sections of the automatically generated conjunction alert. Edits for each section are not required, and if they are not relevant, users are advised not to make them. These include:
 
 <b>1. Executive summary:</b> While the majority of the executive summary is formed of auto-populated dynamic data fields, this editing functionality allows users to communicate updated headline messages regarding the conjunction event.
 
-<b>2. Manoeuvre expected?:</b> Upon initial publication, the report will give a statement as to whether a manoeuvre is expected or not, or whether the intention to manoeuvre is currently unknown. This editing section allows the user to change this section, based on new information regarding manoeuvre intentions. 
+<b>2. Manoeuvre expected?:</b> Upon initial publication, the alert will give a statement as to whether a manoeuvre is expected or not, or whether the intention to manoeuvre is currently unknown. This editing section allows the user to change this section, based on new information regarding manoeuvre intentions. 
 
-<b>3. Immediate impact:</b> Additional detail regarding the immediate impact of the conjunction event can be provided here. The default production of the report initially includes only default information regarding fragmentation. 
+<b>3. Immediate impact:</b> Additional detail regarding the immediate impact of the conjunction event can be provided here. The default production of the alert initially includes only default information regarding fragmentation. 
 
-<b>4. Short term impact:</b> Additional detail regarding the short-term impact of the conjunction event can be provided here. The default production of the report initially includes only default information regarding dangers to other objects in the same orbit and the resulting increase in potential collisions. 
+<b>4. Short term impact:</b> Additional detail regarding the short-term impact of the conjunction event can be provided here. The default production of the alert initially includes only default information regarding dangers to other objects in the same orbit and the resulting increase in potential collisions. 
 
-<b>5. Long term impact:</b> Additional detail regarding the long-term impact of the conjunction event can be provided here. The default production of the report initially includes only default information regarding duration of time of danger to other satellites
+<b>5. Long term impact:</b> Additional detail regarding the long-term impact of the conjunction event can be provided here. The default production of the alert initially includes only default information regarding duration of time of danger to other satellites
 
 <b>6. UK response:</b> Additional detail regarding the relevant operator’s and/or UK government’s response can be provided here. 
 
 <b>7. Press attention:</b> Additional detail regarding any change in UK press attention can be provided here. 
 
-![User interface for editing conjunction reports](/designdocs/user-editing/edit-conjunction-report.png "User interface for editing conjunction reports").
+![User interface for editing conjunction alerts](/designdocs/user-editing/edit-conjunction-report.png "User interface for editing conjunction alerts").
 
 ### Review edits (for re-entry and conjunction)
-Prior to publication, users are given the opportunity to review their edits, both independently and in the context of a full preview of the edited report. This is true for both re-entry and conjunction. 
+Prior to publication, users are given the opportunity to review their edits, both independently and in the context of a full preview of the edited alert. This is true for both re-entry and conjunction. 
 
-The first review step prior to publication of the rewritten report is a review of the free text edits themselves, with the ability to make further changes if deemed necessary. Any edits made in the ‘edit report’ section are automatically filled into a review table. Users are reminded to appropriately review any changes prior to publication, in line with GDS digital standards.
+The first review step prior to publication of the rewritten alert is a review of the free text edits themselves, with the ability to make further changes if deemed necessary. Any edits made in the ‘edit alert’ section are automatically filled into a review table. Users are reminded to appropriately review any changes prior to publication, in line with GDS digital standards.
 
-![User interface for reviewing edits to reports](/designdocs/user-editing/review-edits.png "User interface for reviewing edits to reports").
+![User interface for reviewing edits to alerts](/designdocs/user-editing/review-edits.png "User interface for reviewing edits to alerts").
 
-The second and final review step prior to the publication of the rewritten report is a final preview page, showing the original report, with the inclusion of the newly edited sections. Users are warned to ensure that all edits are correct and appropriate, and then are able to publish the page exactly as it is shown in the preview. At the base of the page, users are able to publish the edited report back to the main report page.
+The second and final review step prior to the publication of the rewritten alert is a final preview page, showing the original alert, with the inclusion of the newly edited sections. Users are warned to ensure that all edits are correct and appropriate, and then are able to publish the page exactly as it is shown in the preview. At the base of the page, users are able to publish the edited alert back to the main alert page.
 
-Upon publication, the report page is updated with the completed edits, and the relevant users of the service are informed of the change by email or text message.
+Upon publication, the alert page is updated with the completed edits, and the relevant users of the service are informed of the change by email or text message.
 
-![User interface for final preview of edits to reports](/designdocs/user-editing/final-preview.png "User interface for final preview of edits to reports").
+![User interface for final preview of edits to alerts](/designdocs/user-editing/final-preview.png "User interface for final preview of edits to alerts").
 
 ## Alternatives considered
 We also considered:
 
-* Not providing any editing capabilities to maintain simplicity; however, this was discounted as in some instances it was decided edits to reports could offer significant value to users</li>
+* Not providing any editing capabilities to maintain simplicity; however, this was discounted as in some instances it was decided edits to alerts could offer significant value to users</li>
 * Developing a full Content Management System with extensive editing capability; however, this was discounted as it would not offer value for money for a small group of users</li>
 
 

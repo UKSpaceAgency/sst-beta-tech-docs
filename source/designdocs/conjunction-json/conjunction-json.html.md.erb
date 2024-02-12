@@ -1,5 +1,5 @@
 ---
-title: 004 - Escalated Conjunction Report JSON File
+title: 004 - Conjunction Alert JSON File
 weight: 12
 hide_in_navigation: true
 parent: /designdocs
@@ -7,34 +7,34 @@ last_reviewed_on: 2024-01-22
 review_in: 12 months
 ---
 
-# 004 - Escalated Conjunction Report JSON File
+# 004 - Conjunction Alert JSON File
 
 ## Purpose
-This design document proposes a design for Escalated Conjunction Report JSON files.
+This design document proposes a design for Conjunction Alert JSON files.
 
 ##Context and scope
-One of the key responsibilities for Monitor space hazards is to present reports on conjunction events to users across the UK government and internationally. Each report will include data provided in JSON files by the UK Space Agency’s (UKSA) Orbital Analysis team about the event in question.
+One of the key responsibilities for Monitor space hazards is to present alerts on conjunction events to users across the UK government and internationally. Each alert will include data provided in JSON files by the UK Space Agency’s (UKSA) Orbital Analysis team about the event in question.
 
 A JSON file stores data in key-value pairs and arrays; the software it was made for then accesses the data. JSON allows developers to store various data types as human-readable code, with the keys serving as names and the values containing related data.
 
 ## Goals and non-goals
-The goal of this Design Doc is to articulate a design for the structure of the Escalated Conjunction Report JSON files.
+The goal of this Design Doc is to articulate a design for the structure of the Conjunction Alert JSON files.
 
 ### Goals
-* Develop a JSON file which includes all the data fields required for re-entry event reports</li>
+* Develop a JSON file which includes all the data fields required for conjunction alerts</li>
 * Ensure the JSON file is simple to produce for the UKSA Orbital Analysis team</li>
 * Ensure the JSON file is well structured and easily digestible for those reviewing it</li>
 
 
 ##The actual design
 
-The Escalated Conjunction Report JSON files underpinning re-entry event reports largely follow a simple structure of a list of key-value pairs, with values taking the form of a string, number or null. The key-value pairs appear in the same order that they appear in the re-entry reports. For example:
+The Conjunction Alert JSON files underpinning conjunction alerts largely follow a simple structure of a list of key-value pairs, with values taking the form of a string, number or null. The key-value pairs appear in the same order that they appear in the conjunction alerts. For example:
 
     "eventCode":"asdf-asdas-asdf",
-    "reportNumber":1,
-    "reportTime":"2024-10-03T02:22:35"
+    "Number":1,
+    "Time":"2024-10-03T02:22:35"
 
-This is the case for most of the event information found throughout the report. However, there are two instances of more complex data structures in the form of nested objects and editable value fields.
+This is the case for most of the event information found throughout the alert. However, there are two instances of more complex data structures in the form of nested objects and editable value fields.
 
 ### Nested objects
 Nested objects are used to present the additional risk to UK objects posed by a potential collision in a tabular format as in the below example:
@@ -46,7 +46,7 @@ Nested objects are used to present the additional risk to UK objects posed by a 
     ]
 
 ### Editable value fields 
-The escalated conjunction reports have been designed to enable UKSA staff members to edit reports after they have been published (see Design Doc 016). Therefore, the JSON file includes a number of key-value pairs where the value field can be edited via a user editing interface. These fields are identified by the use of the word ‘Addition’ within the key, as in the example below:
+The conjunction alerts have been designed to enable UKSA staff members to edit alerts after they have been published (see Design Doc 016). Therefore, the JSON file includes a number of key-value pairs where the value field can be edited via a user editing interface. These fields are identified by the use of the word ‘Addition’ within the key, as in the example below:
 
     "pressAttentionAddition":"We have not seen any press attention on this event.",
 
