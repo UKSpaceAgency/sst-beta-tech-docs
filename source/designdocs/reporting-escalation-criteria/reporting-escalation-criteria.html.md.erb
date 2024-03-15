@@ -83,6 +83,15 @@ However, if an event meets additional criteria, notifications will also be sent 
     * More than 0.1% chance of impact in the UK</li>
     * OR UK licensed-object</li>
 
+### Convention for Conjunctions and Re-entry events
+| Event level      | Author                                 | Permissions to view                 | Conjunction Events<br>/conjunctions/xxxxxx-xxxxxx-xxxxxx    |                |                       | Re-entry Events<br>/re-entries/re-yyyymmdd-norad            |                |                       |
+| ---------------- | -------------------------------------- | ----------------------------------- | ----------------------------------------------------------- | -------------- | --------------------- | ---------------------------------------------------- | -------------- | --------------------- |
+|                  |                                        |                                     | Input File type                                             | Alert language | Alert recipients      | Input File type                                      | Alert language | Alert recipients      |
+| 1 Basic event    | Space-Track/Orbital Analysts           | All                                 | CDM                                                         | Notification   | Operators             | TIP (real or fake)                                   | Notification   | N/A                   |
+| 2 Enhanced event | Orbital Analysts                       | All                                 | Orbital Analysts Analysis & Manoeuvre Trade-Space Plot JSON | Notification   | Operators             | N/A                                                  | N/A            | N/A                   |
+| 3 Alert          | Orbital Analysts (+ Approver comments) | Government Organisations and Agency | Conjunction Report JSON (CR) + Conjunction event DB edits   | Alert          | Some Government Users | Re-entry report JSON (RER) + Re-entry event DB edits | Alert          | Some Government Users |
+| 4 Priority alert | Orbital Analysts (+ Approver comments) | Government Organisations and Agency | Conjunction Report JSON (CR) + Conjunction event DB edits   | Alert          | All Government Users  | Re-entry report JSON (RER) + Re-entry event DB edits | Alert          | All Government Users  |
+
 ###Manual sending of notifications
 The UKSA SST team, as an Approver user type (see 013 Permissions Model), may also manually send notifications about events to government users in cases where there is significant political or press interest. A user has the option to either send to a distribution list and/or send to selected email addresses that they input into a free text box. Once reviewed, this will send an email to the selected users informing them about the re-entry or conjunction alert. 
 
