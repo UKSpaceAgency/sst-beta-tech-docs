@@ -17,18 +17,18 @@ review_in: 12 months
   </strong>
 </div>
 
-In the next few weeks, we are hoping to introduce self-serving processes in which admins are able to add users to Mys, which will automatically create a user in Auth0. Admins will also be able to change user details and delete users from their Mys account.
+In the next few weeks, we are hoping to introduce self-serving processes in which admins are able to add users to Monitor space hazards (MSH), which will automatically create a user in Auth0. Admins will also be able to change user details and delete users from their MSH account.
 
 ### Purpose
-With Monitor your satellites (Mys) moving into the public beta phase, this will involve the addition of new users and user groups. Therefore, it is essential to have a clear process outlined for the creation of new user accounts and for how users’ details can be amended or deleted.
+With Monitor space hazards moving into the public beta phase, this will involve the addition of new users and user groups. Therefore, it is essential to have a clear process outlined for the creation of new user accounts and for how users’ details can be amended or deleted.
 
 ## Processes
 
 ### Adding a new user
 1.  Access the database using GOV.UK PaaS and your GOV.UK PaaS credentials
-1.  Run `cf env mys-db-dev`​ (change app name as appropriate) to output the environment variables
+1.  Run `cf env msh-db-dev`​ (change app name as appropriate) to output the environment variables
 1.  From `VCAP_SERVICES` read the Postgres​ section for `"credentials"`​and use to access the database
-1. Navigate to Monitor your satellites database users table, where you are able to see all users on the application
+1. Navigate to Monitor space hazards database users table, where you are able to see all users on the application
 1. Add row to the bottom of the table and fill in required columns
   * Terms and conditions, gdpr and `account_details_confirmed_at` columns are left empty (as user needs to accept these when they first access the site)
   * Enter true into the active column: true is for active users, false is for inactive
@@ -56,8 +56,8 @@ With Monitor your satellites (Mys) moving into the public beta phase, this will 
 * Go to database and either create an update query or use GUI to change the user
 
 ### Deleting a user
-* Deleting a user on Auth0 would be enough to stop a user having access to the Mys site (make them inactive on the user database)
-* But should also delete the user from the Mys database
+* Deleting a user on Auth0 would be enough to stop a user having access to the MSH site (make them inactive on the user database)
+* But should also delete the user from the MSH database
 
 ### User permissions
 * The different user types will have the following permissions granted (to interact with the API)

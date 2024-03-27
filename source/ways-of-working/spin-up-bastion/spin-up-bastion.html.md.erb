@@ -12,7 +12,7 @@ review_in: 12 months
 ### Introduction
 Bastion is a jump server (or gateway server) that gives access to Instances within a private network using the SSH protocol.
 
-Bastion is a secure intermediary server where Monitor your satellites system administrators login first via SSH before getting to access the different components. The purpose of having the SSH bastion host is to improve security and consolidate SSH user activities to a single point hence better security and accountability.
+Bastion is a secure intermediary server where Monitor space hazards system administrators login first via SSH before getting to access the different components. The purpose of having the SSH bastion host is to improve security and consolidate SSH user activities to a single point hence better security and accountability.
 
 ### Spinning up bastion
 <div class="govuk-warning-text">
@@ -36,7 +36,7 @@ Bastion is a secure intermediary server where Monitor your satellites system adm
 ![GitHub Action Image](bastion-4.png)
 
 1. You can then connect via SSH using ec2-user@<IP_ADRESS> to connect to the production database. An example command might be:<P>
-`psql -U mys -h aurora-cluster-for-prod.cluster-czgkvdogsvmn.eu-west-2.rds.amazonaws.com -p 5432 -d mys`<P>
+`psql -U msh -h aurora-cluster-for-prod.cluster-czgkvdogsvmn.eu-west-2.rds.amazonaws.com -p 5432 -d msh`<P>
 The password can be found in Secrets Manager. For the manual intervention on Database there is also a username `postgres`. The password for this is also in Secrets Manager.
 1. Once you have finished, shutdown the host by selecting **Stop instance** so unnecessary costs are not incurred.
 ![GitHub Action Image](bastion-5.png)
