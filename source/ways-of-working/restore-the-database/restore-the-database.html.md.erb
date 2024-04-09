@@ -28,7 +28,7 @@ It may be necessary on occasion to restore the database, for example if the data
 ### Restore a database using RDS instance snapshot
 It's also possible to use a different method to restore a copy of the database without need of creating a dump. This is more convienient way to restore after an incident. The detailed description is covered in [GOV.UK PaaS Documentation](https://docs.cloud.service.gov.uk/deploying_services/postgresql/#restoring-a-postgresql-service-from-a-point-in-time).
 
-It's been tested on Monitor space hazards database/environment and the whole restore process takes about 15 minutes instead of hours, when dumping the database using `pg_dump`. Restoring the database using snapshots has some limitations (cited from GOV.UK PaaS documentation):
+It's been tested on Monitor Space Hazards database/environment and the whole restore process takes about 15 minutes instead of hours, when dumping the database using `pg_dump`. Restoring the database using snapshots has some limitations (cited from GOV.UK PaaS documentation):
 
 * Can only restore the most recent snapshot from the latest nightly backup
 * Cannot restore from a service instance that has been deleted
@@ -41,7 +41,7 @@ It's been tested on Monitor space hazards database/environment and the whole res
 * Access to pg_restore tool
 * Access to command line tool
 * Python 3.x installed
-* Copy of Monitor space hazards Python backend from Github (needed for alembic command and for restoring the database schema)
+* Copy of Monitor Space Hazards Python backend from Github (needed for alembic command and for restoring the database schema)
 * Installed all the Python `requirements.txt` tools (needed for alembic command)
 * Optional: virtual environment created and set via `source venv/bin/activate`
 

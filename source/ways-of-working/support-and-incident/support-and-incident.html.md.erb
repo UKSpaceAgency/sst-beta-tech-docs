@@ -10,12 +10,12 @@ review_in: 3 months
 # Support and Incident Processes
 
 ### Purpose
-This documents the process of how Monitor space hazards (MSH) users raise a support query or incident with the service and how it will be resolved.
+This documents the process of how Monitor Space Hazards (MSH) users raise a support query or incident with the service and how it will be resolved.
 
 ### Context and Scope
-Monitor space hazards is expected to run reliably at all times and available 24/7. However, like all web services, bugs can be introduced and unexpected downtime can occur, at which point support will be necessary.
+Monitor Space Hazards is expected to run reliably at all times and available 24/7. However, like all web services, bugs can be introduced and unexpected downtime can occur, at which point support will be necessary.
 
-UKSA requires technical support for Monitor space hazards 9-5, Monday to Friday. This is on the understanding that all events so far have had around 7 days notice and therefore full support 24/7/365 is not necessary.
+UKSA requires technical support for Monitor Space Hazards 9-5, Monday to Friday. This is on the understanding that all events so far have had around 7 days notice and therefore full support 24/7/365 is not necessary.
 
 Note: this means that UKSA and operators will carry risks against unexpected occurrences. This is something which can be monitored throughout public beta and see if more coverage is necessary.
 
@@ -25,15 +25,15 @@ Note: this means that UKSA and operators will carry risks against unexpected occ
 
 We will use the email address ukspaceagency.support@thepsc.co.uk as the primary support tool. As such, we will communicate to users to use this email address when they are onboarded.
 
-Any support requests that come into monitoryoursatellites@ukspaceagency.gov.uk will be triaged by the UK Space Agency team and forwarded on if necessary to ukspaceagency.support@thepsc.co.uk.
+Any support requests that come into monitorspacehazards@ukspaceagency.gov.uk will be triaged by the UK Space Agency team and forwarded on if necessary to ukspaceagency.support@thepsc.co.uk.
 
 #### The proposed support process is that:
-1. The email is sent to the ukspaceagency.support@thepsc.co.uk mailbox accessible to all support team members (or forwarded from monitoryoursatellites@ukspaceagency.gov.uk).
+1. The email is sent to the ukspaceagency.support@thepsc.co.uk mailbox accessible to all support team members (or forwarded from monitorspacehazards@ukspaceagency.gov.uk).
 2. This provokes a workflow which includes updating the #uksa-sst-beta-alerts-prod Slack channel and acknowledging the user’s report via email.
 3. The on-call team member is tasked to always be alert to Slack channel inputs especially on: #uksa-sst-beta-alerts-prod on The PSC Slack workspace 
 4. They analyse the request and follow up as appropriate.
 5. Response time and action determined by classification of the issue identified.
-6. If required, a Super User can create an incident banner and deploy it to the website, alerting users that there is a situation impacting the service. If the site is down, then users can find out from the [Pingdom Status page](https://status.monitor-your-satellites.service.gov.uk/)
+6. If required, a Super User can create an incident banner and deploy it to the website, alerting users that there is a situation impacting the service. If the site is down, then users can find out from the [Pingdom Status page](https://status.monitor-space-hazards.service.gov.uk/)
 7. If appropriate, actions taken by on-call team members are determined by runbooks.
 8. If necessary, a Jira issue is created with the issue and actions taken and/or required.
 9. The user(s) is notified of actions taken to address the issue.
@@ -51,7 +51,7 @@ In the event of an incident or problem with the service, we will support and res
 
 Incidents or problems with the service may be detected from a number of different sources, for example, a problem may be raised by a user or we may be alerted to an issue via Sentry or Logit.io.
 
-We will use ukspaceagency.support@thepsc.co.uk as the primary tool for reporting problems. As such, this must be made clear to all users when they register. Please note: monitoryoursatellites@ukspaceagency.gov.uk will also be monitored for any support requests, which will be forwarded on.
+We will use ukspaceagency.support@thepsc.co.uk as the primary tool for reporting problems. As such, this must be made clear to all users when they register. Please note: monitorspacehazards@ukspaceagency.gov.uk will also be monitored for any support requests, which will be forwarded on.
 
 #### Upon detection of a problem the following process should be followed:
 1. Email is sent (or forwarded) to ukspaceagency.support@thepsc.co.uk by on support team member or user (whichever is first).
@@ -60,8 +60,8 @@ We will use ukspaceagency.support@thepsc.co.uk as the primary tool for reporting
 4. The issue is investigated and classified and, if necessary, all stakeholders are notified of the issue.
 5. Response time and action determined by classification of the issue identified.
 6. If appropriate, actions taken by on-call team members are determined by runbooks.
-7. If user facing components are affected by the incident, the [Pingdom service status page](https://status.monitor-your-satellites.service.gov.uk/) will indicate this.
-8. If possible, then a Super User can login and create an incident banner to display on Monitor space hazards from the /Account page. The Super User can choose whether to schedule this message or activate it straight away and display until deactivated. There are four types of incident banner:
+7. If user facing components are affected by the incident, the [Pingdom service status page](https://status.monitor-space-hazards.service.gov.uk/) will indicate this.
+8. If possible, then a Super User can login and create an incident banner to display on Monitor Space Hazards from the /Account page. The Super User can choose whether to schedule this message or activate it straight away and display until deactivated. There are four types of incident banner:
   * Major Incident - for example, a collision that has impacted a number of objects and may be causing innacurate information
   * Technical issue ingesting conjunction data messages - For instance Space-Track information is down
   * Technical issue ingesting object data - For instance Space-Track or ESA information is down

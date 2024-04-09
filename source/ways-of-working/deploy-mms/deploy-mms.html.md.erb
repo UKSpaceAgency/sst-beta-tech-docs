@@ -1,5 +1,5 @@
 ---
-title: How to deploy Monitor space hazards
+title: How to deploy Monitor Space Hazards
 weight: 20
 parent: /ways-of-working
 hide_in_navigation: true
@@ -7,15 +7,15 @@ last_reviewed_on: 2023-11-03
 review_in: 12 months
 ---
 
-# How to deploy Monitor space hazards
+# How to deploy Monitor Space Hazards
 
-Monitor space hazards (MSH) manages most of its resources through Terraform, this is the repo
+Monitor Space Hazards (MSH) manages most of its resources through Terraform, this is the repo
 [UKSpaceAgency/sst-beta-infra](https://github.com/UKSpaceAgency/sst-beta-infra).
 
 The release and deployment process for MSH on AWS is driven by TAG creation for the relevant git repository (Frontend or Backend). 
 The repos are available at the following:
-[Monitor space hazards beta Frontend repo](https://github.com/UKSpaceAgency/sst-beta) 
-[Monitor space hazards beta Backend repo](https://github.com/UKSpaceAgency/sst-beta-python-backend)
+[Monitor Space Hazards beta Frontend repo](https://github.com/UKSpaceAgency/sst-beta) 
+[Monitor Space Hazards beta Backend repo](https://github.com/UKSpaceAgency/sst-beta-python-backend)
 
 Once a specific tag is created, then configured GitHub actions will build the code and invoke an infrastructure/terraform rollout.
 
