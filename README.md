@@ -1,5 +1,5 @@
-# Monitor your satellites (technical documentation)
-`sst-beta-tech-docs` is the technical documentation website for the Monitor your satellites service, written in Markdown. It makes use of the [GOV.UK Tech Docs template](https://tdt-documentation.london.cloudapps.digital/#technical-documentation-template).
+# Monitor Space Hazards (technical documentation)
+`sst-beta-tech-docs` is the technical documentation website for the Monitor Space Hazards service, written in Markdown. It makes use of the [GOV.UK Tech Docs template](https://tdt-documentation.london.cloudapps.digital/#technical-documentation-template).
 
 It is hosted at: [https://mys-tech-docs.onrender.com/](https://mys-tech-docs.onrender.com/)
 
