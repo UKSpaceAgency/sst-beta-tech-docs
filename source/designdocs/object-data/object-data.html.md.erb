@@ -10,14 +10,14 @@ review_in: 3 months
 # 010 - Object Data Ingestion
 
 ## Purpose
-Monitor space hazards needs to ingest object data to meet the user's needs. Monitor space hazards requires data on both UK and non-UK objects involved in events. There are a range of sources available to retrieve data from and, therefore, we must evaluate how best to ingest object data to ensure we provide accurate and up-to-date information to our users.
+Monitor Space Hazards needs to ingest object data to meet the user's needs. Monitor Space Hazards requires data on both UK and non-UK objects involved in events. There are a range of sources available to retrieve data from and, therefore, we must evaluate how best to ingest object data to ensure we provide accurate and up-to-date information to our users.
 
 ##Context and scope
 
 ##Goals and non-goals
 
 ###Goals
-*  To accurately, efficiently and securely provide satellite information to Monitor space hazards users
+*  To accurately, efficiently and securely provide satellite information to Monitor Space Hazards users
 * Data fields required include:
   * Common Name
   * NORAD ID
@@ -44,7 +44,7 @@ Monitor space hazards needs to ingest object data to meet the user's needs. Moni
   * Period
   * Comment field for Orbital Analysts (post-MVP)
 * UK satellite data will need to be ingested when a satellite is licensed, and stored indefinitely
-* All objects in US catalogue will be retrieved from SATCAT as often as possible and stored in Monitor space hazards database indefinitely
+* All objects in US catalogue will be retrieved from SATCAT as often as possible and stored in Monitor Space Hazards database indefinitely
 * Post-MVP goals include:
   * Add comments fields in object data for OAs (POST MVP)
   * Allowing operators to edit their own object data (POST MVP)
@@ -64,17 +64,17 @@ _Note: Much of this content reflects the original design thinking and is kept fo
 
 ###Adding new satellites
 
-As we only receive CDMs for satellites that are a) registered in Space-Track and b) linked to UKSpOC, there is no value in adding satellites to Monitor space hazards before this happens. Therefore, we will retrieve satellite information every 2 hours. If there is a new satellite added, super admin users will see this straight away, without delay. However, a manual process will be required for operators to see this:
+As we only receive CDMs for satellites that are a) registered in Space-Track and b) linked to UKSpOC, there is no value in adding satellites to Monitor Space Hazards before this happens. Therefore, we will retrieve satellite information every 2 hours. If there is a new satellite added, super admin users will see this straight away, without delay. However, a manual process will be required for operators to see this:
 
-1. New satellite in Monitor space hazards database from Space-Track
+1. New satellite in Monitor Space Hazards database from Space-Track
 2. Super users see all CDMs for any satellite linked to UKSPoC’s Space-Track account
 3. Use CAA’s spreadsheet to:
   1. Confirm this is a satellite that the UKSA monitors
   2. Associate the new satellite to the correct organisation
-4. Once satellite record exists in Monitor space hazards database, retrieve size and mass data from ESA DISCOS API & store this object data indefinitely
+4. Once satellite record exists in Monitor Space Hazards database, retrieve size and mass data from ESA DISCOS API & store this object data indefinitely
 5. POST MVP enable operator admin or OA to edit/update data fields
 
-Note, to keep our Monitor space hazards database up-to-date, we are updating our satellite database every two hours. If we need to further check for updates we can query SATCAT for changes to their records.
+Note, to keep our Monitor Space Hazards database up-to-date, we are updating our satellite database every two hours. If we need to further check for updates we can query SATCAT for changes to their records.
 
 1. Request class: satcat_change
   1. This enables you to retrieve ~60 days of history showing changes for objects with changes in one of these values: INTLDES, NORAD_CAT_ID, SATNAME, COUNTRY, LAUNCH, or DECAY
@@ -85,7 +85,7 @@ Note, to keep our Monitor space hazards database up-to-date, we are updating our
 To confirm and validate which satellites are connected to our Space-Track account we can use the CAR API. This will inform us for which satellites, we are getting CDMs. Current list of UK satellites in use is [CAA’s spreadsheet from Dec 2021] (https://docs.google.com/spreadsheets/d/1INpkHA8cWPJukoAhq6lKhf5V-Qt9E8h3/edit?usp=sharing&ouid=109540726810959790990&rtpof=true&sd=true).
 
 ##Sourcing data for object information:
-|Ingest satellite data into Monitor space hazards database|                        |
+|Ingest satellite data into Monitor Space Hazards database|                        |
 | ------------------------ |------------------------------------ |
 | Common Name              | SATCAT: SATNAME                     |
 | NORAD ID (primary key)   | SATCAT: NORAD_CAT_ID                |
@@ -106,7 +106,7 @@ To confirm and validate which satellites are connected to our Space-Track accoun
 | Period                   | SATCAT: PERIOD                      |
 | Comment field            | [OA free text]                      |
 
-The Monitor space hazards database will contain input from Space-Track and ESA DISCOS. OAs will also be able to update/overwrite object data further down the line. We should display the source of the data when multiple data sources are integrated. In fact, terms and conditions of use of ESA DISCOS data means that the data source must be displayed. Information on where object and event data is sourced should be contained in the standard text pages at the bottom of the event information page too.
+The Monitor Space Hazards database will contain input from Space-Track and ESA DISCOS. OAs will also be able to update/overwrite object data further down the line. We should display the source of the data when multiple data sources are integrated. In fact, terms and conditions of use of ESA DISCOS data means that the data source must be displayed. Information on where object and event data is sourced should be contained in the standard text pages at the bottom of the event information page too.
 ###Launching site
 
 See data catalogue. Convert abbreviation from SATCAT to full name and country.
@@ -132,7 +132,7 @@ There will be three sources of object data required:Civil Aviation Authority (CA
 1. <b> Space-Track </b> - API
 2. <b>  CAA Excel file </b> - manual handling
 3. <b> ESA DISCOS </b> - Object size (l*W*H), mass and operator; API integration
-4. <b> Orbital Analyst comment </b> - Adam White has advised that certain data fields in CDMs are incredibly useful when accurate, but are often out of date. We will ensure that active/inactive data and manoeuvrability data is displayed next to their source, and when orbital analysts conduct their own analysis they will be able to overwrite Space Track data in these fields. This information will be uploaded to Monitor space hazards via manual uploads (JSON files) by OAs.OA will be able to add comments in the JSON files - this is free text but may include size/mass data if they have used different values.
+4. <b> Orbital Analyst comment </b> - Adam White has advised that certain data fields in CDMs are incredibly useful when accurate, but are often out of date. We will ensure that active/inactive data and manoeuvrability data is displayed next to their source, and when orbital analysts conduct their own analysis they will be able to overwrite Space Track data in these fields. This information will be uploaded to Monitor Space Hazards via manual uploads (JSON files) by OAs.OA will be able to add comments in the JSON files - this is free text but may include size/mass data if they have used different values.
 
 ###What the Satellite Information table will look like to the user:
 
@@ -170,7 +170,7 @@ There will be three sources of object data required:Civil Aviation Authority (CA
 | Data upload |||
 
 ### Update (as at June 2023)
-Moving out of Public Beta, the table below reflects the actual sources used in the current production version of Monitor space hazards:
+Moving out of Public Beta, the table below reflects the actual sources used in the current production version of Monitor Space Hazards:
 
 ####Object data:
 
@@ -213,7 +213,7 @@ Moving out of Public Beta, the table below reflects the actual sources used in t
 ## Alternatives considered
 ### Alternative sources of data
 
-The Orbital Analyst workbench was considered as an alternative source of data. However, AW informed us that most workbench data is taken from Space-Track and SatCat anyway, so Monitor space hazards should just take data straight from the source, and to try and pull from a single source as much as possible.
+The Orbital Analyst workbench was considered as an alternative source of data. However, AW informed us that most workbench data is taken from Space-Track and SatCat anyway, so Monitor Space Hazards should just take data straight from the source, and to try and pull from a single source as much as possible.
 
 ###Alternative data fields
 
