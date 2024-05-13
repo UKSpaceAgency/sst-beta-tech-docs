@@ -49,21 +49,21 @@ Alert URLs will be in the format
 
 #### Example conjunction event URLs
 
-| Page                                                 | URL stage 1         | URL stage 2                   | URL stage 3                                | Note                                         |
-| ---------------------------------------------------- | -------------------- | ----------------------------- | ------------------------------------------ | ----                                         |
-| Service homepage                                     | `/ `                 |                               |                                            | The vast majority of users will start here   |
-| Conjunction homepage                                 | `/conjunctions`      |                               |                                            |                                              |
-| Conjunction event                                    | `/conjunctions`      | `/xxxx-yyyyy-zzzz`            |                                            |                                              |
-| Conjunction alert                                    | `/conjunctions`      | `/xxxx-yyyyy-zzzz`            | `/alert`                                   |                                              |
+| Page                                                 | URL stage 1         | URL stage 2                   | URL stage 3                                |  
+| ---------------------------------------------------- | -------------------- | ----------------------------- | ------------------------------------------ |
+| Service homepage                                     | `/ `                 |                               |                                            |
+| Conjunction homepage                                 | `/conjunctions`      |                               |                                            |
+| Conjunction event                                    | `/conjunctions`      | `/xxxx-yyyyy-zzzz`            |                                            |
+| Conjunction alert                                    | `/conjunctions`      | `/xxxx-yyyyy-zzzz`            | `/alert`                                   |
 
 #### Example re-entry event URLs
 
-| Page                                                 | URL stage 1         | URL stage 2                   | URL stage 3                                | Note                                         |
-| ---------------------------------------------------- | -------------------- | ----------------------------- | ------------------------------------------ | ----                                         |
-| Service homepage                                     | `/ `                 |                               |                                            | The vast majority of users will start here   |
-| Re-entries homepage                                  | `/re-entries`        |                               |                                            |                                              |
-| Re-entry event                                       | `/re-entries`        | `/re-11111111-1111`           |                                            |                                              |
-| Re-entry alert                                       | `/conjunctions`      | `/re-11111111-1111`           | `/alert`                                   |                                              |
+| Page                                                 | URL stage 1         | URL stage 2                   | URL stage 3                                |
+| ---------------------------------------------------- | -------------------- | ----------------------------- | ------------------------------------------ |
+| Service homepage                                     | `/ `                 |                               |                                            |
+| Re-entries homepage                                  | `/re-entries`        |                               |                                            |
+| Re-entry event                                       | `/re-entries`        | `/re-11111111-1111`           |                                            |
+| Re-entry alert                                       | `/conjunctions`      | `/re-11111111-1111`           | `/alert`                                   |
 
 
 ###Satellite URLs
@@ -81,12 +81,12 @@ Satellite URLs will therefore be in the format
 
 ###Example satellite URLs
 
-| Page                         | URL stage 1   | URL stage 2   | URL stage 3        |Note                                                      |
-| ---------------------------- | ------------- | ------------- | ------------------ |--------------------------------------------------------- |
-| Organisation satellites page | `/satellites` |               |                    |                                                          |
-| Satellite page|`/satellites` | `/1234567890` |               |                    |                                                          |
-| Satellite page               | `/satellites` | `/1234567890` | `/ephemeris-upload`|                                                          |
-| Download data as a csv       | `/satellites` | `/1234567890` | `.csv`             |                                                          |
+| Page                         | URL stage 1   | URL stage 2   | URL stage 3        |
+| ---------------------------- | ------------- | ------------- | ------------------ |
+| Organisation satellites page | `/satellites` |               |                    |
+| Satellite page|`/satellites` | `/1234567890` |               |                    |
+| Satellite page               | `/satellites` | `/1234567890` | `/ephemeris-upload`|
+| Download data as a csv       | `/satellites` | `/1234567890` | `.csv`             |
 
 ###Account URLs
 
@@ -100,14 +100,14 @@ Admin URLs will therefore be in the format
 
 ####Example admin URLs
 
-| Page                                  | URL stage 1    | URL stage 2                               | URL stage 3 | Note                                                                |
-| ------------------------------------- | -------------- | ----------------------------------------- | ----------- | ------------------------------------------------------------------- |
-| Terms and conditions                  | `/account`     | `/terms-and-conditions`                   |             |                                                                     |
-| View contact details                  | `/account`     | `/contact-and-organisation-information`   |             |                                                                     |
-| View and edit notification settings   | `/account`     | `/notification-settings`                  |             |                                                                     |
-| View and edit notification thresholds | `/account`     | `/event-notification-thresholds-settings` |             |                                                                     |
-| Organisation information              | `/account`     | `/organisation`                           |             |                                                                     |
-| Add new user                          | `/account`     | `/add-new-user`                           |             |                                                                     |
+| Page                                  | URL stage 1    | URL stage 2                               | URL stage 3 |
+| ------------------------------------- | -------------- | ----------------------------------------- | ----------- |
+| Terms and conditions                  | `/account`     | `/terms-and-conditions`                   |             |
+| View contact details                  | `/account`     | `/contact-and-organisation-information`   |             |
+| View and edit notification settings   | `/account`     | `/notification-settings`                  |             |
+| View and edit notification thresholds | `/account`     | `/event-notification-thresholds-settings` |             |
+| Organisation information              | `/account`     | `/organisation`                           |             |
+| Add new user                          | `/account`     | `/add-new-user`                           |             |
 
 ##Sign in URLs
 
@@ -117,10 +117,10 @@ The generic <b>sign in</b> structure should be in the format:
 
 ###Example log in URLs
 
-| Page                                                  | URL stage 1   | URL stage 2      | URL stage 3 | Note |
-| ----------------------------------------------------- | ------------- | ---------------- | ----------- | ---- |
-| Email sign in page                                    | `/sign-in`    |                  |             |      |
-| Magic link takes you to “Proceed to my homepage” page | `/sign-in`    | `?token={token}` |             |      |
+| Page                                                  | URL stage 1   | URL stage 2      | URL stage 3 |
+| ----------------------------------------------------- | ------------- | ---------------- | ----------- |
+| Email sign in page                                    | `/sign-in`    |                  |             |
+| Magic link takes you to “Proceed to my homepage” page | `/sign-in`    | `?token={token}` |             |
 
 ##Alternatives considered
 
