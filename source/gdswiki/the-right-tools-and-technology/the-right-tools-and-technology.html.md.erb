@@ -15,13 +15,13 @@ Choose tools and technology that let you create a high quality service in a cost
 
 * We believe that there is no new or controversial architecture in our service.
 * We have chosen technologies based on skills within the team & made decisions along with UKSA/CDDO team.
-* To ensure the service is cost-effective, we have used open source tools and GOV.UK Notify. Monitor your satellites uses GOV.UK Notify to automate email notifications sent out to users regarding events meeting notification thresholds, user management updates, and any problems with the service. We also use GOV.UK Notify for our contact an analyst feature.
+* To ensure the service is cost-effective, we have used open source tools and GOV.UK Notify. Monitor space hazards uses GOV.UK Notify to automate email notifications sent out to users regarding events meeting notification thresholds, user management updates, and any problems with the service. We also use GOV.UK Notify for our contact an analyst feature.
 * We plan to move all infrastructure provisioning under Terraform and are currently undertaking actions to do this.
 * As BEIS have decommissioned GOV.UK PaaS, we migrated the service to AWS as our cloud host provider in November 2023.
 
 ### Be able to show that they’ve made [good decisions](https://www.gov.uk/service-manual/technology/choosing-technology-an-introduction) about what technology to build and what to buy
 
-Monitor your satellites created a Tech Doc site to detail all design documents and technical architecture decisions. The documents in this tech doc site reflect the in-depth conversation the team has had regarding key technical decisions. In particular, the team has decided to buy several third-party logging services:
+Monitor Space Hazards created a Tech Doc site to detail all design documents and technical architecture decisions. The documents in this tech doc site reflect the in-depth conversation the team has had regarding key technical decisions. In particular, the team has decided to buy several third-party logging services:
 
 * Logit is used to log and monitor errors or system crashes which is a necessity for our service. It costs $269.75 a month.
 * PIWIK Pro is used to track front-end analytics. This was after rejecting Matomo Cloud which costs $9 a month for the same functionality.
@@ -42,6 +42,6 @@ These relatively small costs combined with the ease of having pre-built logging 
 * The service relies on data from Space-Track
   * The service and UKSA orbital analysis is reliant on Space-Track for data, however, there is no alternative. We have secured a formal bilateral data sharing agreement with the 18th Space Squadron in the United States.
   * We also use DISCOS data from ESA and have obtained a formal bilateral agreement with them.
-  * Mys is the first step to becoming less reliant on Space-Track in some ways as Mys provides an independent platform for sharing SST data with UK operators.
+  * Monitor Space Hazards is the first step to becoming less reliant on Space-Track in some ways as Monitor Space Hazards provides an independent platform for sharing SST data with UK operators.
 
 <%= partial "partials/links" %>

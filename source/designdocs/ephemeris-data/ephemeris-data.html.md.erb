@@ -42,7 +42,8 @@ There are two starting points in the user journey for this design.
 The proposal is for each ID to consist of:
 
 1. Firstly, there is the Satellite Operator wanting to upload an OEM against one of their satellites. In this scenario they will be presented with a file upload component as per the GDS Design System.
-2. Secondly, we will ingest CDMs based on ephemeris data from Space-Track. The data source will be shown in the data source table. Monitor Space Hazards can also make an outbound request to Space Track for the latest ephemeris data it holds against satellites monitored in Monitor space hazards if the operator permits us to do so.
+2. Secondly, we will ingest CDMs based on ephemeris data from Space-Track. The data source will be shown in the data source table. Monitor Space Hazards can also make an outbound request to Space Track for the latest ephemeris data it holds against satellites monitored in Monitor Space Hazards if the operator permits us to do so.
+
 
 Regardless of which route the ephemeris data comes via, the following will be enforced:
 
@@ -73,7 +74,7 @@ Regardless of which route the ephemeris data comes via, the following will be en
 6. OA users receive an email informing them that an OEM file has been uploaded in relation to X satellite
 
 ###APIs
-We offer a public API for management of ephemeris - this is [documented in our OpenAPI specification under ephemeris](https://api.monitor-your-satellites.service.gov.uk/docs#/ephemeris)
+We offer a public API for management of ephemeris - this is [documented in our OpenAPI specification under ephemeris](https://api.monitor-space-hazards.service.gov.uk/docs#/ephemeris)
 
 ###Data Storage
 We use the following table structure to store information about ephemeris:

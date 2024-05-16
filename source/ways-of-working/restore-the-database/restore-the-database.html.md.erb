@@ -22,13 +22,13 @@ It may be necessary on occasion to restore the database, for example if the data
 </div>
 
 * Access the database using GOV.UK PaaS and your GOV.UK PaaS credentials
-* Run `cf env mys-spacetrack-dev`​ (change app name as appropriate) to output the environment variables
+* Run `cf env msh-spacetrack-dev`​ (change app name as appropriate) to output the environment variables
 * From `VCAP_SERVICES` read the Postgres​ section for `"credentials"`​and use to access the database
 
 ### Restore a database using RDS instance snapshot
 It's also possible to use a different method to restore a copy of the database without need of creating a dump. This is more convienient way to restore after an incident. The detailed description is covered in [GOV.UK PaaS Documentation](https://docs.cloud.service.gov.uk/deploying_services/postgresql/#restoring-a-postgresql-service-from-a-point-in-time).
 
-It's been tested on Mys database/environment and the whole restore process takes about 15 minutes instead of hours, when dumping the database using `pg_dump`. Restoring the database using snapshots has some limitations (cited from GOV.UK PaaS documentation):
+It's been tested on Monitor Space Hazards database/environment and the whole restore process takes about 15 minutes instead of hours, when dumping the database using `pg_dump`. Restoring the database using snapshots has some limitations (cited from GOV.UK PaaS documentation):
 
 * Can only restore the most recent snapshot from the latest nightly backup
 * Cannot restore from a service instance that has been deleted
@@ -41,7 +41,7 @@ It's been tested on Mys database/environment and the whole restore process takes
 * Access to pg_restore tool
 * Access to command line tool
 * Python 3.x installed
-* Copy of Monitor your satellites Python backend from Github (needed for alembic command and for restoring the database schema)
+* Copy of Monitor Space Hazards Python backend from Github (needed for alembic command and for restoring the database schema)
 * Installed all the Python `requirements.txt` tools (needed for alembic command)
 * Optional: virtual environment created and set via `source venv/bin/activate`
 

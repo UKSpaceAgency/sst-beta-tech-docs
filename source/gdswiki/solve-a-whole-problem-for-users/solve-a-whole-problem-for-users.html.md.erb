@@ -28,7 +28,7 @@ Work towards creating a service that solves a whole problem for users, working w
 * We held an MVP definition session at the start of the project with the UKSA SST team to discuss which features would be included in the MVP. We concluded which requirements were and were not in scope & defined the MVP. This discussion was informed by extensive user research at Alpha where user needs were recorded, evidence written against them and then they were categorised as must have or nice-to-have features. We used this data to define the MVP and prioritise backlog of features.
 * Functionality of the site developed during the beta was also tested against orbital analyst user needs and capabilities. For example, ephemeris data will be stored against satellites rather than events as orbital analysts will sometimes use the same ephemeris data to update calculations for multiple events.
 * There are further user groups not yet covered by the service who it can be expanded to, particularly Critical National Infrastructure staff members, Space Insurers, Ministers, Academics, and maybe international partners. These potential users have been engaged as part of a second round of user research within the public beta.
-* We are working with research and academia to develop our service and assess how MYS may aid universities, giving them access to the demo site (with anonymised data) during workshops in the Autumn of 2021 and January 2023.
+* We are working with research and academia to develop our service and assess how MSH may aid universities, giving them access to the demo site (with anonymised data) during workshops in the Autumn of 2021 and January 2023.
 
 ### Be able to explain how the service the team is working on will join up with other things into a journey that solves a whole problem for users
 
@@ -36,9 +36,9 @@ Work towards creating a service that solves a whole problem for users, working w
 * It is important that this service links up with the wider user journey, therefore, we met with the CAA to discuss the licensing process & with the UKSpOC to discuss any crossovers with the commercial integration cell or Aurora. This ensures that our service is connected with or aligns with other services offered by the Government.
   * As part of the public beta, we are also considering alignment with other government services such as the space weather service provided by the Met Office Space Weather Operations Centre (MOSWOC).
 * It was highlighted during the Alpha phase that conjunction event analysis is most useful when completed using the operator’s ephemeris data. Therefore, we can ingest ephemeris data and provide analysis on how their planned actions will affect Probability of Collision - this provides a link between the data provided by Space-Track and the effectiveness of an operators response (*completes user journey*).
-* Monitor your satellites is not really a transactional service: the key output is broadcasting analysis which is already being done to those who are paying for it but not receiving it.
+* Monitor Space Hazards is not really a transactional service: the key output is broadcasting analysis which is already being done to those who are paying for it but not receiving it.
   * There is a small transactional element in operators uploading ephemeris data but this is not necessary to the service.
-* Our private beta url (monitor-your-satellites.space) now automatically redirects users to the public beta url (monitor-your-satellites.service.gov.uk).
+* Our private beta url (monitor-your-satellites.space) now automatically redirects users to the public beta url (monitor-space-hazards.service.gov.uk).
 * Our API allows us to integrate better with many of our users.
   * Orbital analysts will be able to upload analysis in bulk and more quickly.
   * Advanced operators will be able to incorporate UKSA analysis into their existing systems.
@@ -64,7 +64,7 @@ The journey can be longer in future to include eg CNI users, academics, insurers
   * There were single points of failure in the response procedure if certain individuals were unavailable.
   * Most of all - this high quality analysis was not shared widely or consistently, even with the operators involved, if it didn’t reach particular thresholds.
 * User research throughout the discovery and alpha provided strong evidence for the need of a web service to provide high-quality and easy-to-understand data and notifications to operators about conjunction events which took advantage of the medium of the web.
-* In addition to a website interface, we have made an API available for operator users to access event information, and orbital analysts to upload JSON files. We frequently remind operators about API access, for example during onboarding webinars and through the MyS newsletter.
+* In addition to a website interface, we have made an API available for operator users to access event information, and orbital analysts to upload JSON files. We frequently remind operators about API access, for example during onboarding webinars and through the MSH newsletter.
 * This allows us to publish the already-existing high-quality analysis to operators who otherwise simply didn’t have it.
 * Further rounds of user research related to new use cases showed that the current emailing of other SST reports incurs similar difficulties mentioned above. By retaining this current manual system, UKSA would forego opportunities to save time, store data and reports more securely and create a data repository for future analysis. 
 
@@ -81,8 +81,8 @@ The journey can be longer in future to include eg CNI users, academics, insurers
 ### Work towards minimising the number of times users have to provide the same information to government (while respecting users’ privacy), for example by using a single sign-on
 
 * We have aimed at all times to have a single drop of information for all users.
-  * Operators may find themselves being asked to upload their ephemeris to both Space-Track and Mys - however, we will pick it up from Space-Track.
-* Users will be able to create accounts and Mys will store their relevant information - this will prevent users having to repeatedly provide data to us.
+  * Operators may find themselves being asked to upload their ephemeris to both Space-Track and MSH - however, we will pick it up from Space-Track.
+* Users will be able to create accounts and MSH will store their relevant information - this will prevent users having to repeatedly provide data to us.
 * Government users will be able to access information on both conjunction and re-entry services through one service with a single sign-on
 * Early in the project, users had to enter their email everytime they wanted to log-in in order to receive a magic link. We have now moved to using Auth0 where users enter a password they have set up to enter the site.
 

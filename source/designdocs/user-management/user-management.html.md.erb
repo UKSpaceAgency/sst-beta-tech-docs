@@ -12,37 +12,37 @@ review_in: 12 months
 ## Purpose
 Taking a lead from Google’s engineering culture this is a [design doc] (https://www.industrialempathy.com/posts/design-docs-at-google/). It is a relatively informal document that details a high-level implementation strategy and key design decisions, with particular emphasis on the trade-offs considered in those decisions.
 
-This document tackles the problem of user management in the Monitor space hazards service. It is an experiment in the potential use of these artefacts.
+This document tackles the problem of user management in the Monitor Space Hazards service. It is an experiment in the potential use of these artefacts.
 
 ##Context and scope
-Monitor space hazards  ties together common needs of Satellite Operators, Orbital Analysts, the UK Space Regulator (the Civil Aviation Authority), other government departments and the UK Space Agency (UKSA). The shared needs centre around notifications regarding conjunction and re-entry events and the sharing of refined UK-based Orbital Analysis on them.
+Monitor Space Hazards  ties together common needs of Satellite Operators, Orbital Analysts, the UK Space Regulator (the Civil Aviation Authority), other government departments and the UK Space Agency (UKSA). The shared needs centre around notifications regarding conjunction and re-entry events and the sharing of refined UK-based Orbital Analysis on them.
 
-The high-level workflow for Monitor space hazards is:
+The high-level workflow for Monitor Space Hazards is:
 
-* Ingest a data feed for Conjunction Data Messages (CDM) or Trajectory and Impact Predictions (TIPs) from SpaceTrack. Monitor space hazards' SpaceTrack permissions only allows it to ingest CDMs and TIPs for UK objects, so no filtering of these is needed at an ingestion level
+* Ingest a data feed for Conjunction Data Messages (CDM) or Trajectory and Impact Predictions (TIPs) from SpaceTrack. Monitor Space Hazards' SpaceTrack permissions only allows it to ingest CDMs and TIPs for UK objects, so no filtering of these is needed at an ingestion level
 * Group together CDMs and TIPs and raise conjunction and re-entry events for further Orbital Analysis
 * Share the further Orbital Analysis with users
 
-Therefore, multiple organisations will be using the Monitor space hazards service and viewing different information about each event. It is considered that each organisation will be best placed to understand their own joiners, leavers and movers within their organisation.
+Therefore, multiple organisations will be using the Monitor Space Hazards service and viewing different information about each event. It is considered that each organisation will be best placed to understand their own joiners, leavers and movers within their organisation.
 
 ##Goal and non-goals
-The goal of this design doc is to articulate a User Management design sufficient for the beta phase of Monitor space hazards.
+The goal of this design doc is to articulate a User Management design sufficient for the beta phase of Monitor Space Hazards.
 
 Unpacking this a little gives the following goals:
 
-* Focus on delivery of core high-value Monitor space hazards features over ancillary processes
+* Focus on delivery of core high-value Monitor Space Hazards features over ancillary processes
 * Minimise the user management overhead placed on the UKSA
-* Streamline the user experience for accessing Monitor space hazards as much as possible
+* Streamline the user experience for accessing Monitor Space Hazards as much as possible
 * Enforce the principle of least privilege for users
 * Keep user management abstracted away from core features so that its implementation can be swapped out in the future
 
 And the following non-goals:
 
-* Building a custom user management solution for Monitor space hazards
+* Building a custom user management solution for Monitor Space Hazards
 
 ##The actual design
 
-There are multiple organisations, each with their own users, that are interacting with each other and Monitor space hazards. This includes:
+There are multiple organisations, each with their own users, that are interacting with each other and Monitor Space Hazards. This includes:
 
 * <b>Orbital Analysts at the UK Space Agency,</b> who need to be able to ingest data from and upload data to the service</li>
 * <b>Other staff at the UK Space Agency,</b> who need to be able to view all information on the service and make some additions to alerts</li>
@@ -61,7 +61,7 @@ Given the system context above and the goals for user management, the following 
 | Use Case 2                           | Onboarding a user                                                              |
 | ------------------------------------ | -------------------------------------------------------------------------------|
 | Actor                                | Organisation Admin                                                             |
-| Overview                             | Each organisation has at least one “Admin”. This “Admin” then bears responsibility for creating, updating and deleting users within the organisation and domain they are responsible for. <br><br>The trigger for this use case is an “Admin” clicking a GOV.UK Design System button stating “Invite a new team member”<br><br>Monitor space hazards validates the new user’s email address domain matches the “Admin's” email address and sends an email to validate the entire address. <br><br>This implies user accounts have a state model, proposed states are:<ul><li><b>Unvalidated</b> - created but not validated their email address</li><li><b>Active</b> - validated and has logged in during the last x days</li><li><b>Inactive</b> - access is removed due to inactivity, but the account is retained for audit purposes and can be reinstated via a validation email in the future</li></ul>|
+| Overview                             | Each organisation has at least one “Admin”. This “Admin” then bears responsibility for creating, updating and deleting users within the organisation and domain they are responsible for. <br><br>The trigger for this use case is an “Admin” clicking a GOV.UK Design System button stating “Invite a new team member”<br><br>Monitor Space Hazards validates the new user’s email address domain matches the “Admin's” email address and sends an email to validate the entire address. <br><br>This implies user accounts have a state model, proposed states are:<ul><li><b>Unvalidated</b> - created but not validated their email address</li><li><b>Active</b> - validated and has logged in during the last x days</li><li><b>Inactive</b> - access is removed due to inactivity, but the account is retained for audit purposes and can be reinstated via a validation email in the future</li></ul>|
 
 | Use Case 3                           | Inactivating a user                                                            |
 | ------------------------------------ | ------------------------------------                                                                              |
@@ -71,21 +71,21 @@ Given the system context above and the goals for user management, the following 
 | Use Case 4                           | Inactivating an organisation                                                   |
 | ------------------------------------ | -------------------------------------------------------------------------------|
 | Actor                                | Superuser                                                              |
-| Overview                             | Superusers may inactivate an organisation due to an off-system event such as an organisation leaving Monitor space hazards.<br><br> At MVP, this would require the Superuser to manually remove all users from an organisation from the system.|
+| Overview                             | Superusers may inactivate an organisation due to an off-system event such as an organisation leaving Monitor Space Hazards.<br><br> At MVP, this would require the Superuser to manually remove all users from an organisation from the system.|
 
 | Use Case 5                           | User Management Audit                                                          |
 | ------------------------------------ | -------------------------------------------------------------------------------|
-| Actor                                | Monitor space hazards                                                                           |
-| Overview                             | All user management events, including all of the above use cases, will be audited. There will be a design decision on whether to implement [event sourcing] (https://docs.microsoft.com/en-us/azure/architecture/patterns/event-sourcing) in Monitor space hazards, in which case auditing will come as part of that decision.|
+| Actor                                | Monitor Space Hazards                                                                           |
+| Overview                             | All user management events, including all of the above use cases, will be audited. There will be a design decision on whether to implement [event sourcing] (https://docs.microsoft.com/en-us/azure/architecture/patterns/event-sourcing) in Monitor Space Hazards, in which case auditing will come as part of that decision.|
 
 Importantly, Superusers who have the ability to make many of these user management changes will require Multi-Factor Authentication (MFA) to access their accounts.
 
 ### APIs
 
-We have made available a public API for user management - this is [documented in our OpenAPI specification in the users section](https://api.monitor-your-satellites.service.gov.uk/docs#/users).
+We have made available a public API for user management - this is [documented in our OpenAPI specification in the users section](https://api.monitor-space-hazards.service.gov.uk/docs#/users).
 
 ### Data storage
-The Monitor space hazards database stores user records in the following data schema:
+The Monitor Space Hazards database stores user records in the following data schema:
 
 ![Mys data schema](/designdocs/user-management/dbdiagram.io.png "Mys data schema").
 
