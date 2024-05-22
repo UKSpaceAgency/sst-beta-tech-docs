@@ -10,12 +10,12 @@ review_in: 3 months
 # 012 - URL structure
 
 ## Purpose
-This design document proposed a design for URLs for Monitor Space Hazards. The actual design is mostly similar, but not all levels were used.
+This design document proposed a design for URLs for Monitor Space Hazards. The actual design is similar, but not all levels have been used to date.
 
 ##Context and scope
 URLs will be visible to the users in their address bar and in the notifications they are sent out.
 
-We can expect most users to come in at their homepage in most instances. All notifications will point people to the homepage.
+We can expect most users to come in at the homepage in most instances.
 
 The top level domain is out of scope for this document but is assumed to be GDS-compliant and along the lines of
 
@@ -41,18 +41,18 @@ The generic event structure should be in the format:
 
 Event URLs will be in the format
 
-* `/[event type]/[event ID]` - event homepage
+* `/[event type]/[event ID]` - event landing page
 
 Alert URLs will be in the format
 
-* `/[event type]/[event ID]/[alert]` - alert homepage
+* `/[event type]/[event ID]/[alert]` - individual alert page
 
 #### Example conjunction event URLs
 
 | Page                                                 | URL stage 1         | URL stage 2                   | URL stage 3                                |  
 | ---------------------------------------------------- | -------------------- | ----------------------------- | ------------------------------------------ |
-| Service homepage                                     | `/ `                 |                               |                                            |
-| Conjunction homepage                                 | `/conjunctions`      |                               |                                            |
+| Homepage                                     | `/ `                 |                               |                                            |
+| Conjunction landing page                                 | `/conjunctions`      |                               |                                            |
 | Conjunction event                                    | `/conjunctions`      | `/xxxx-yyyyy-zzzz`            |                                            |
 | Conjunction alert                                    | `/conjunctions`      | `/xxxx-yyyyy-zzzz`            | `/alert`                                   |
 
@@ -60,8 +60,8 @@ Alert URLs will be in the format
 
 | Page                                                 | URL stage 1         | URL stage 2                   | URL stage 3                                |
 | ---------------------------------------------------- | -------------------- | ----------------------------- | ------------------------------------------ |
-| Service homepage                                     | `/ `                 |                               |                                            |
-| Re-entries homepage                                  | `/re-entries`        |                               |                                            |
+| Homepage                                     | `/ `                 |                               |                                            |
+| Re-entries landing page                                  | `/re-entries`        |                               |                                            |
 | Re-entry event                                       | `/re-entries`        | `/re-11111111-1111`           |                                            |
 | Re-entry alert                                       | `/re-entries`        | `/re-11111111-1111`           | `/alert`                                   |
 
@@ -70,57 +70,52 @@ Alert URLs will be in the format
 
 The generic satellite structure should be in the format:
 
-`/satellites/[satellite ID].[file extension]`
+`/satellites/[satellite ID]`
 
-
+Where the `satellite ID` is the NORAD ID (North American Aerospace Defense catalogue number) assigned to the object. 
 Satellite URLs will therefore be in the format
 
 * `/satellites` - all satellites visible to the user
-* `/satellites/[satellite ID]` - satellite homepage
-* `/satellites/[satellite ID].ext` - downloadable satellite information
+* `/satellites/[satellite ID]` - individual satellite page
+
 
 ###Example satellite URLs
 
 | Page                         | URL stage 1   | URL stage 2   | URL stage 3        |
 | ---------------------------- | ------------- | ------------- | ------------------ |
 | Organisation satellites page | `/satellites` |               |                    |
-| Satellite page|`/satellites` | `/1234567890` |               |                    |
-| Satellite page               | `/satellites` | `/1234567890` | `/ephemeris-upload`|
-| Download data as a csv       | `/satellites` | `/1234567890` | `.csv`             |
+| Satellite page|`/satellites` | `/12345` |               |                    |
+| Satellite page               | `/satellites` | `/12345` | `/ephemeris-upload`|
 
 ###Account URLs
 
-The generic account structure should be in the format:
-
-`/[task]-item`
-
-Admin URLs will therefore be in the format
-* `/view-notifications` - view notifications for all satellites
-* `/edit-notifications` - set notifications for all satellites (with the option to clock through to in
+Settings and management is available from the `/account` section for the service.
 
 ####Example admin URLs
 
 | Page                                  | URL stage 1    | URL stage 2                               | URL stage 3 |
 | ------------------------------------- | -------------- | ----------------------------------------- | ----------- |
-| Terms and conditions                  | `/account`     | `/terms-and-conditions`                   |             |
 | View contact details                  | `/account`     | `/contact-and-organisation-information`   |             |
 | View and edit notification settings   | `/account`     | `/notification-settings`                  |             |
 | View and edit notification thresholds | `/account`     | `/event-notification-thresholds-settings` |             |
 | Organisation information              | `/account`     | `/organisation`                           |             |
 | Add new user                          | `/account`     | `/add-new-user`                           |             |
 
-##Sign in URLs
+###Example static page URLs
 
-The generic <b>sign in</b> structure should be in the format:
+There are a number of static pages and sundry information that is served from a headless CMS [CosmicJS](https://app.cosmicjs.com/). 
+Generally these will be available from the footer of the service and other linked locations. 
 
-`/sign-in`
+| Page                                  | URL stage 1    | URL stage 2                               | URL stage 3 |
+| ------------------------------------- | -------------- | ----------------------------------------- | ----------- |
+| Definitions                           | `/page`        | `/definitions`                            |             |
+| Support and guidance                  | `/page`        | `/support-and-guidance`                   |             |
+| Conjunction event analysis process and data sources | `/page` | `/conjunction-analysis-information`|             |
 
-###Example log in URLs
+###Sign in URLs
 
-| Page                                                  | URL stage 1   | URL stage 2      | URL stage 3 |
-| ----------------------------------------------------- | ------------- | ---------------- | ----------- |
-| Email sign in page                                    | `/sign-in`    |                  |             |
-| Magic link takes you to “Proceed to my homepage” page | `/sign-in`    | `?token={token}` |             |
+The sign in service uses an external authentication provider [Auth0](https://auth0.com) and is available from the start page `/`
+
 
 ##Alternatives considered
 
