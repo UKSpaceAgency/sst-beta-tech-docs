@@ -3,7 +3,7 @@ host: https://mys-tech-docs.onrender.com/
 
 # Header-related options
 show_govuk_logo: true
-service_name: Monitor your Satellites - Tech Docs
+service_name: Monitor Space Hazards - Tech Docs
 service_link: https://mys-tech-docs.onrender.com/
 phase: Beta
 
