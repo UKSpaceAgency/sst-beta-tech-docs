@@ -1,0 +1,30 @@
+---
+title: 016. Move to SES Email notifications
+weight: 4
+hide_in_navigation: true
+parent: /decisions
+last_reviewed_on: 2024-10-07
+review_in: 12 months
+---
+
+# 016. Move to SES Email notications
+
+Date: 2024-10-07
+
+## Status
+
+Accepted
+
+## Context
+
+Re-entry and conjunction alerts are sent to government users via GOV.UK Notify, collating relevant information for new or updated events. As UKSA and The PSC seek to develop and roll out additional capabilities such as fragmentation reports, the email notifications will require additional visualisations and information that are difficult to collate in the simple text format allowed by GOV.UK Notify. 
+
+## Decision
+
+Automated email notifications will move from GOV.UK Notify to <a href="https://aws.amazon.com/ses/"> AWS Simple Email Service (SES) </a> with the intention to create and use new email templates for all current and planned services on Monitor Space Hazards. SES will allow for bespoke email formats and additional branding to help users recognise and distinguish MSH related emails they receive. 
+
+## Consequences
+
+SES emails will allow users to see relevant information presented more clearly and with appropriate UKSA and NSPOC branding to improve recognition.
+
+<%= partial 'partials/links' %>
