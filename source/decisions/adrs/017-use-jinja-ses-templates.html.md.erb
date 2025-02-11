@@ -1,0 +1,35 @@
+---
+title: 017. Use jinja to generate SES email templates
+weight: 4
+hide_in_navigation: true
+parent: /decisions
+last_reviewed_on: 2025-02-11
+review_in: 12 months
+---
+
+# 017. Use jinja to generate SES email templates
+
+Date: 2025-02-11
+
+## Status
+
+Accepted
+
+## Context
+
+Our system requires generating dynamic, styled HTML email notifications to be sent through AWS Simple Email Service (SES). These notifications need to integrate event-specific data. The solution must provide:
+
+* Support for appropriate UKSA and NSpOC branding
+* Dynamic content logic
+* Simplicity for business analysts or developers maintaining templates
+* Compatibility with existing Python-based services
+
+## Decision
+
+We will use Jinja, a robust and widely-used templating engine for Python, to generate the HTML content. 
+
+## Consequences
+
+Email notification templates written in Jinja will support dynamic content and logic, including conditionals and loops. We can also take advantage of template inheritance to improve scalability and ensure consistency across templates.
+
+<%= partial 'partials/links' %>
