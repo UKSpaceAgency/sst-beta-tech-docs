@@ -1,0 +1,124 @@
+---
+title: How to use Crowdin String Management
+weight: 20
+parent: /ways-of-working
+hide_in_navigation: true
+last_reviewed_on: 2025-02-12
+review_in: 12 months
+---
+
+# How to use Crowdin String Management
+
+##What is Crowdin?
+
+Crowdin is an application which stores the strings used in a website in one place, allowing them to be viewed centrally and edited without making direct changes to the source code. 
+
+A string is a sequence of characters that represents text. Strings can contain letters, numbers, symbols and spaces. 
+
+A basic website typically has all of its strings written directly in its code. To change text, one would have to locate the correct file and make edits to the code directly.
+
+##Logging in
+
+You can log in to the platform here: [https://accounts.crowdin.com/login](https://accounts.crowdin.com/login)
+
+##Viewing all strings
+
+Navigate to [https://crowdin.com/project/monitor-space-hazards/sources/strings](https://crowdin.com/project/monitor-space-hazards/sources/strings). This view shows you all strings controlled by Crowdin in use on the site. 
+
+![Crowdin strings page](crowdin-strings-page.png)
+
+You should see 5 columns: Source string, Key, Context, Info, Actions.
+If you don’t see all five of these columns, you can decrease the zoom in your browser until all are visible.
+
+###The Source string column
+
+This column contains the string displayed on the site. 
+
+###The context column
+
+The context column of a row tells you which part of the site the string is displayed on. 
+
+For example, the context Reentry > Event summary > Title tells us that the entry is the title of the event summary section of a reentry event page. 
+
+Some notable contexts which may not be immediately clear are
+
+* Template, which refers to the base template which is visible on every page, including the navbar. 
+* Dashboard, which refers to the /home section of the site a user sees when they log in.
+
+##Editing a string
+
+###Understanding tags
+
+You may notice that some strings contain words in between less-than and greater-than signs. These “tags” are a markup used to style and structure text. They apply styling to text contained within an open tag and close tag. 
+
+For example
+
+```
+<bold>Hello</bold> world 
+```
+
+
+Would look like 
+
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code><b>Hello</b> world
+</code></pre></div>
+
+Tags can also be stacked within each other. 
+
+Here are some examples of useful tags
+
+| Tag    | Purpose |
+| -------- | ------- |
+| &lt;bold&gt; &lt;/bold&gt; | Bold text  |
+| &lt;p> &lt;/p&gt; | Paragraph of text    |
+| &lt;list&gt;&lt;item&gt;item 1&lt;/item&gt;&lt;item&gt;item 2&lt;/item&gt;&lt;/list&gt; | Bullet point list  |
+| &lt;h3&gt; &lt;/h3&gt; | Sub-heading   |
+
+###How to edit a string (and reflect your changes) 
+To edit a string, you must first sync with Github by navigating to [https://crowdin.com/project/monitor-space-hazards/integrations/system/github](https://crowdin.com/project/monitor-space-hazards/integrations/system/github) and clicking “Sync Now”. 
+
+![Crowdin sync](crowdin-sync.png)
+
+Once you’ve done this, return to the [strings page](https://crowdin.com/project/monitor-space-hazards/sources/strings) and click on the Edit button under actions in the row of the string you’d like to modify. Change the text in the “String” section and hit Save.
+
+When you’re happy with your changes, follow the steps above to sync with Github again.
+
+This will create a request on Github for the change to be made to the site. To accept the change, navigate to [https://github.com/UKSpaceAgency/monitor-space-hazards/pulls](https://github.com/UKSpaceAgency/monitor-space-hazards/pulls) and look for the pull request that matches the changes you made. Click on it, double check you’re happy with the changes being made, and if you are, click “Merge pull request”. 
+
+Once you’ve done this, check to see if the changes you made are visible on MSH! 
+
+##Appendix: using the editor page
+As of 02/2025, the strings page provides a simple way to view and edit strings with Crowdin. However, technically, Crowdin has deprecated this page in favour of the more powerful editor view. If the strings page no longer works for you, this section provides a guide on how to use the editor page instead. 
+
+Navigate to [https://crowdin.com/editor/monitor-space-hazards/all?view=multilingual&filter=basic&value=3](https://crowdin.com/editor/monitor-space-hazards/all?view=multilingual&filter=basic&value=3)
+
+This page provides a view of all the strings of text being used by the site. 
+You should see 5 columns: Identifier (Key), Context, Screenshots, Labels, English (source). If you don’t see all five of these columns, you can decrease the zoom in your browser until all are visible.
+
+###The context column
+
+The context column of a row tells you which part of the site the string is displayed on. 
+
+For example, the context Reentry > Event summary > Title tells us that the entry is the title of the event summary section of a reentry event page. 
+
+Some notable contexts which may not be immediately clear are
+
+* Template, which refers to the base template which is visible on every page, including the navbar. 
+* Dashboard, which refers to the /home section of the site a user sees when they log in.
+
+###The English (source) column 
+This column contains the string displayed on the site.
+ 
+###How to edit a string
+To edit a string, you must first sync with Github by navigating to [https://crowdin.com/project/monitor-space-hazards/integrations/system/github](https://crowdin.com/project/monitor-space-hazards/integrations/system/github) and clicking “Sync Now”. 
+
+Then navigate back to the editor page and click on the relevant cell in the English (source) column. Update it to your desired new string, then click Save.
+
+When you’re happy with your changes, follow the steps above to sync with Github again.
+
+This will create a request on Github for the change to be made to the site. To accept the change, navigate to [https://github.com/UKSpaceAgency/monitor-space-hazards/pulls](https://github.com/UKSpaceAgency/monitor-space-hazards/pulls) and look for the pull request that matches the changes you made. Click on it, double check you’re happy with the changes being made, and if you are, click “Merge pull request”. 
+
+Once you’ve done this, check to see if the changes you made are visible on MSH! 
+
+
+<%= partial 'partials/_links' %>
