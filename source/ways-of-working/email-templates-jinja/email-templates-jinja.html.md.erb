@@ -158,9 +158,15 @@ This section details guidelines you should follow when designing templates on MS
 
 1. Each email template should extend base.jinja. This will ensure consistency of header and footer formatting while allowing for customisation of both, as well as complete flexibility in central content. 
 
-2. Variable names should be written in snake case. 
+2. Each email template should contain the subject line in a Jinja comment at the top of the template. For example
 
-3. The variables used in each email template should be included in a Jinja comment at the top of the template.  When a variable’s contents are not immediately clear from its name, a description should be provided. For example
+    ```
+    {# Subject: Your Subject Line Text Here #}
+    ```
+    
+3. Variable names should be written in snake case. 
+
+4. The variables used in each email template should be included in a Jinja comment at the top of the template.  When a variable’s contents are not immediately clear from its name, a description should be provided. For example
  
     ```
     {#
@@ -169,6 +175,6 @@ This section details guidelines you should follow when designing templates on MS
     application_url - MSH url
     #}
     ```
-4. CSS should be written inline rather than in style tags as this implementation is widely supported by email providers. 
+5. CSS should be written inline rather than in style tags as this implementation is widely supported by email providers. 
 
 <%= partial 'partials/_links' %>
