@@ -74,6 +74,25 @@ Here are some examples of useful tags
 | &lt;list&gt;&lt;item&gt;item 1&lt;/item&gt;&lt;item&gt;item 2&lt;/item&gt;&lt;/list&gt; | Bullet point list  |
 | &lt;h3&gt; &lt;/h3&gt; | Sub-heading   |
 
+###Understanding Variables
+In some email strings, you may notice words or phrases inside curly brackets {}. These are variables, which act as placeholders for values sent from our [API](https://api.monitor-space-hazards.service.gov.uk/docs#/).
+
+![Crowdin variables page](crowdin-variables.png)
+
+When the email is sent, the variable is replaced with real information. For example, {noradId} will be replaced with the actual NORAD ID of the object.
+Here are some examples of variables you might see in email strings:
+| Variable            | Purpose                                        |
+|---------------------|------------------------------------------------|
+| {objectType}        | The type of Object i.e. Satellite, Rocket Body |
+| {commonName}        | The name of the Object                         |
+| {licensingCountry}  | Country licensing the object                   |
+
+When editing email strings, keep variables exactly as they are in the API, including the curly brackets.
+
+###Pulling API information
+To include variables in the template, you can either reference any endpoint in the API or, ask developers to pass a variable through to the template from the backend.
+![Example variable in template page](examples-variable-in-template.png)
+
 ###How to edit a string (and reflect your changes) 
 To edit a string, you must first sync with Github by navigating to [https://crowdin.com/project/monitor-space-hazards/integrations/system/github](https://crowdin.com/project/monitor-space-hazards/integrations/system/github) and clicking “Sync Now”. 
 
@@ -87,10 +106,28 @@ This will create a request on Github for the change to be made to the site. To a
 
 Once you’ve done this, check to see if the changes you made are visible on MSH! 
 
+##Testing your email template
+
+Once you have pulled and merged the changes to GitHub, you can test the emails by navigating to the alert you want to test(conjunction/Re-entry/event summary) and click on send alert to additional recipients. 
+Under choose who to alert, select Individually selected recipients and enter your email address.
+![Choose who to alert page](choose-who-to-alert.png)
+
+###Testing emails sent from dev
+If you’ve created a new template, it will need to be set up in the backend before it can be sent out by the service. However, if you’d edited an existing template, your changes will automatically be seen in new emails sent by the development environment once you’ve pushed them to Github.
+
+###Testing across email clients
+Different email clients will interpret and render your code differently, leading to potential visual issues with the way your email is displayed. You should check how your email renders in popular clients so you can correct for any issues.
+
+You can do this by forwarding an email to an account in that client and checking how it renders. [testi.at](https://testi.at/) is a useful resource for checking yahoo and AOL without needing an account with either. For testing apple mail on a mac, check if the development team have an appropriate email address you can send to that they’ll return a screenshot of.
+
+Use the [MSH website and email feedback tracker spreadsheet](https://docs.google.com/spreadsheets/d/1N-ejy_qEQaFY1i2tJmj80msBeGUIhtb66GpfxcSFejw/edit?gid=0#gid=0) to keep track of each email client you have tested.
+
 ##Appendix: using the editor page
 As of 02/2025, the strings page provides a simple way to view and edit strings with Crowdin. However, technically, Crowdin has deprecated this page in favour of the more powerful editor view. If the strings page no longer works for you, this section provides a guide on how to use the editor page instead. 
 
 Navigate to [https://crowdin.com/editor/monitor-space-hazards/all?view=multilingual&filter=basic&value=3](https://crowdin.com/editor/monitor-space-hazards/all?view=multilingual&filter=basic&value=3)
+
+![Crodwin strings editor page](crowdin-string-editor-page.png)
 
 This page provides a view of all the strings of text being used by the site. 
 You should see 5 columns: Identifier (Key), Context, Screenshots, Labels, English (source). If you don’t see all five of these columns, you can decrease the zoom in your browser until all are visible.
