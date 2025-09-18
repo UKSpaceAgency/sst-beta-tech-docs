@@ -1,0 +1,38 @@
+---
+title: 018. Use Mapbox to create interactive maps
+weight: 4
+hide_in_navigation: true
+parent: /decisions
+last_reviewed_on: 2025-09-18
+review_in: 12 months
+---
+
+# 018. Use Mapbox to create interactive maps
+
+Date: 2025-09-03
+
+## Status
+
+Accepted
+
+## Context
+
+Users of the Track Re-entry Events service require interactive and filterable map views of re-entry paths to understand the spatial awareness of objects. 
+
+The solution must be able to:
+* Integrate with existing backend services to display re-entry data.
+* Adopt custom styles to align with UKSA and NSpOC branding and accessibility requirements.
+* Display multiple flight paths, overlays and event annotations.
+* Be interactive and filterable.
+
+## Decision
+
+We agreed to adopt Mapbox as the mapping framework for visualisations of re-entry events.
+
+Mapbox was chosen over alternatives (e.g., Google Maps) based on considerations of licensing costs and the ability to customise the map.
+
+## Consequences
+
+Users will be able to explore re-entry data in the form of interactive map visualisations, improving spatial awareness and decision-making. Development work is expected to manage Mapbox licensing and integration with backend data.
+
+<%= partial 'partials/links' %>

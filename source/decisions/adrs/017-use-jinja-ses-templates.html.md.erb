@@ -1,15 +1,15 @@
 ---
-title: 017. Use jinja to generate SES email templates
+title: 017. Use front end and Crowdin to generate SES email templates
 weight: 4
 hide_in_navigation: true
 parent: /decisions
-last_reviewed_on: 2025-02-11
+last_reviewed_on: 2025-09-18
 review_in: 12 months
 ---
 
-# 017. Use jinja to generate SES email templates
+# 017. Use front end and Crowdin to generate SES email templates
 
-Date: 2025-02-11
+Date: 2025-09-18
 
 ## Status
 
@@ -17,19 +17,20 @@ Accepted
 
 ## Context
 
-Our system requires generating dynamic, styled HTML email notifications to be sent through AWS Simple Email Service (SES). These notifications need to integrate event-specific data. The solution must provide:
+Our initial approach used Jinja to generate dynamic, styled HTML email notifications to be sent through AWS Simple Email Service (SES). While Jinja met the technical requirements for templating and logic, it limited the ability of non-developers to update content efficiently.
 
+As our communication needs expanded we needed a solution to provide:
 * Support for appropriate UKSA and NSpOC branding
 * Dynamic content logic
-* Simplicity for business analysts or developers maintaining templates
+* Accessibility for business analysts or developers maintaining templates
 * Compatibility with existing Python-based services
 
 ## Decision
 
-We will use Jinja, a robust and widely-used templating engine for Python, to generate the HTML content. 
+We will use Crowdin, a string management platform that centralises text used across emails, to manage email templates. This method will decouple text editing from code and reduce the deployment overhead as content changes no longer require code releases. The templates themselves will be created using type script and managed in the front-end repository - keeping consistency with the rest of the service. 
 
 ## Consequences
 
-Email notification templates written in Jinja will support dynamic content and logic, including conditionals and loops. We can also take advantage of template inheritance to improve scalability and ensure consistency across templates.
+Email notification templates written in React like the front-end application and with keys translated in Crowdin will support dynamic content and logic. Business analysts can edit the copy in email templates without developer involvement. A centralised repository for all strings ensures consistency across emails and platforms.
 
 <%= partial 'partials/links' %>
