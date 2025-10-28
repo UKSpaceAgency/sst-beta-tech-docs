@@ -1,0 +1,68 @@
+---
+title: 018. Create a Monitor Space Hazards data cache
+weight: 4
+hide_in_navigation: true
+parent: /decisions
+last_reviewed_on: 2025-10-30
+review_in: never
+---
+
+# 019. Create a Monitor Space Hazards data cache
+
+Date: 2025-10-28
+
+## Status
+
+Accepted
+
+## Context
+
+SpaceTrack provides an API with strict rate limits, particularly when duplicate requests are counted. These limitations caused outages in MSH’s access to the SpaceTrack API.  
+
+To address this, the team developed a workaround to reduce API load by introducing a **centralised data cache**. The cache downloads data from the SpaceTrack API to **Amazon S3**, from which our servers—and any number of duplicated environments—can retrieve the data.  
+
+This approach allows us to completely bypass SpaceTrack’s rate limits for internal usage, provided the data cache itself adheres to those limits.
+
+## Decision
+
+We chose **Amazon S3** as the primary storage solution for the data cache, supported by **AWS SNS**, **SQS**, and **DynamoDB** for orchestration and configuration.
+
+### Reasons for Choosing S3
+- **Performance:** S3 is fast and highly reliable.  
+- **Scalability:** It offers virtually unlimited storage.  
+- **Cost-efficiency:** Storage costs remain low, even at scale.  
+- **Event-driven architecture:** File uploads can trigger **SNS notifications**, eliminating the need for polling.  
+- **Ease of management:** Files can be viewed, copied, or deleted manually through the AWS Console.  
+
+**AWS DynamoDB** is used to store configuration data and simple statistics.  
+
+### Alternatives Considered
+- **Aurora/RDS:** Comparable performance but significantly more expensive.  
+- **RabbitMQ / Kafka stack:** Rejected due to higher complexity and cost, which were unjustified for this use case.  
+
+## Implementation Overview
+
+The data cache is produced by a **FastAPI** application that integrates four different data types from two API providers (SpaceTrack and ESA DISCOS).  
+
+Key features include:
+- A custom **cron-like scheduler** that defines when data retrieval from SpaceTrack and DISCOS is permitted.  
+- Strict enforcement of **API rate limits** (per minute, hour, and day).  
+- A global **“kill switch”** implemented via DynamoDB and AWS Console, allowing the fetching process to be paused or resumed per data source and data type (e.g., pausing only SpaceTrack TIPs).  
+
+Once data is stored in **S3**, an **SNS notification** is sent, triggering messages in an **SQS queue**.  
+Each environment subscribes to the queue and runs its own lightweight FastAPI consumer application that:
+- Waits for new SQS messages,  
+- Retrieves the corresponding file from S3, and  
+- Processes it into a local database.  
+
+This consumer replaces the previous cron-controlled worker with a **persistent, event-driven** one.  
+
+## Consequences
+
+- **Scalability:** We can deploy an unlimited number of test environments without impacting SpaceTrack’s API.  
+- **Centralisation:** All data fetching is centralised, allowing for easier integration of additional data sources in the future.  
+- **Data ownership:** We maintain local copies of all relevant data (e.g., CDMs) and can provide it directly to UKSA without external limitations.  
+- **Efficiency:** The ingestion process is now faster and more reliable—data can be available in MSH within as little as **two hours** after appearing on the SpaceTrack website.  
+- **Resilience:** The system is more robust to API outages and rate limit constraints.  
+
+<%= partial 'partials/links' %>
