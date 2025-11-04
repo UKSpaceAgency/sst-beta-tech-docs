@@ -1,0 +1,123 @@
+---
+title: 020 - MSH Event ID Design
+weight: 12
+hide_in_navigation: true
+parent: /designdocs
+last_reviewed_on: 2025-11-04
+review_in: 24 months
+---
+
+# 020 - MSH Event ID Design
+
+# Design Document: Event ID Scheme
+
+## Purpose
+
+The purpose of this design is to define a consistent, human-readable Event ID format for all Monitor Space Hazards (MSH) mission set events except Conjunctions. The Event ID serves as the primary public identifier for each event report and will be used in URLs, API responses, website pages, and documentation. The format is designed to be short, intuitive, and accessible for general audiences, providing a stable reference for external citation.
+
+## Requirements
+
+| Category | Requirement |
+| --- | --- |
+| Uniqueness | Each Event ID must be unique within its mission set and year of occurrence. Once assigned, it must never be reused. |
+| Human readability | IDs must be easy to read, remember, and communicate verbally or in writing. |
+| Consistency | A single, predictable pattern across all applicable mission sets. |
+| Persistence | Event IDs must remain immutable and permanently associated with a given event once published. |
+| API and website compatibility | The format must be safe for use in URLs, database keys, and JSON fields. |
+| Sequential numbering | Numbers must increment sequentially within each mission set and reset annually. |
+| Public visibility | The ID will be shown in public reports, so it must be concise and non-technical. |
+| Accessibility | The format must be compatible with assistive technologies and readable on-screen. |
+| Source of truth | IDs are generated automatically by the API/database layer at record creation. |
+
+## Design
+
+Each Event ID follows the format: <Prefix><YY>-<NNNN>
+
+*   Prefix identifies the mission set: RE = Re-entry, FG = Fragmentation, UK = Compliance/Manoeuvre. 
+*   YY is the two-digit event occurrence year (UTC). 
+*   NNNN is a sequential four-digit number starting at 0001 each year per mission set.
+*   Sequential numbers increment by one and reset annually.
+*   Once assigned, IDs must not be modified or reused.
+    
+
+Examples:
+
+*   RE25-0001 – first re-entry event in 2025
+*   FG25-0025 – twenty-fifth fragmentation event in 2025
+*   UK25-0004 – fourth compliance/manoeuvre event in 2025
+    
+
+### Alternatives considered
+
+We had already designed Event ID’s for Re-entries and Fragmentations based on date and NORAD ID e.g. re-20251104-12345. These were rejected as being too long, not intuitive enough and aesthetically challenging. 
+
+While making conjunction events consistent with this approach would be cleaner, it was abandoned due to the complexity of accommodating millions of events per year while keeping things synchronised. In addition, Track Conjunction Events have been in existence since 2022 and are used by more than 100 Operators.
+
+### Future Considerations
+
+*   If additional mission sets are introduced, new prefixes can be added without affecting the existing format.   
+*   For backward compatibility, conjunction events will retain their legacy ID scheme as defined in [Conjunction Event ID Design](https://mys-tech-docs.onrender.com/designdocs/conjunction-event-ID/conjunction-event-ID.html).  
+*   An internal mapping table could support cross-referencing between legacy and new ID schemes if required for analytics.
+
+## Implementation Notes
+
+### Database and API integration
+
+Event IDs are generated and persisted by the API layer at the point of record creation.
+
+### Recommended structure
+
+| Field | Type | Description |
+| --- | --- | --- |
+| event_id | VARCHAR(10) | Public identifier (e.g. RE25-0001) |
+| mission_set | VARCHAR(2) | Mission set prefix (RE, FG, UK) |
+| event_year | SMALLINT | Four-digit occurrence year (e.g. 2025) |
+| event_number | INTEGER | Sequential number, zero-padded to four digits |
+
+### Sequence or counter model
+
+Each mission set and year requires an isolated sequence to ensure non-colliding ID assignment. Either database sequences (e.g. seq\_re\_2025) or a central counter table may be used to allocate numbers atomically.
+
+### Generation algorithm
+
+Pseudocode:
+
+def generate\_event\_id(mission\_set, occurrence\_date):  
+    year = occurrence\_date.year  
+    year\_suffix = str(year)\[2:\]  
+    seq = get\_next\_sequence\_value(mission\_set, year)  
+    return f"{mission\_set}{year\_suffix}-{seq:04d}"
+
+### API behaviour
+
+Event IDs are automatically included in POST responses when a new record is created. They are immutable and cannot be manually set.
+
+### Display and formatting
+
+Display IDs exactly as stored, preserving case and hyphens. No localisation or translation is required.
+
+### Logging and auditing
+
+All issued IDs should be logged with associated record IDs and timestamps for traceability. IDs must never be recycled.
+
+### Operational rollover
+
+At the start of each year, new sequences for each mission set are created (e.g. seq\_re\_2026), and numbering resets to 0001.
+
+### Error handling and edge cases
+
+| Scenario | Expected behaviour |
+| --- | --- |
+| Occurrence date missing | Reject with 400 Bad Request – Event occurrence date required for ID generation. |
+| Occurrence date in the future | Allowed; ID based on year of occurrence. |
+| Duplicate ID attempt | Rejected by unique index; return 409 Conflict. |
+| Occurrence >9999 | Allowed; ID based on numbers of occurrences and so can go beyond four digits |
+
+### Testing
+
+*   Unit tests for ID format and sequence increment logic.
+*   Integration tests for concurrent creation.
+*   Boundary tests for year changeover.    
+*   API contract tests for immutability and format compliance.
+
+<%= partial "partials/links" %>
