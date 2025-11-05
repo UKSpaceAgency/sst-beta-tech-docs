@@ -171,7 +171,6 @@ GEM
       tzinfo (>= 1.0.0)
     uglifier (3.2.0)
       execjs (>= 0.3.0, < 3)
-    wdm (0.1.1)
     webrick (1.8.1)
 
 PLATFORMS
@@ -185,7 +184,6 @@ DEPENDENCIES
   govuk_tech_docs
   middleman-livereload
   tzinfo-data
-  wdm (~> 0.1.0)
 
 BUNDLED WITH
    2.4.7
