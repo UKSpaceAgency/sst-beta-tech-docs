@@ -22,3 +22,6 @@ Staticfile.auth
 # Ignore .idea folder
 /.idea
 /source/architecture/.structurizr/
+
+# Ignore Dockerfile
+Dockerfile
