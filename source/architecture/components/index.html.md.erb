@@ -2,8 +2,8 @@
 title: Components
 weight: 3
 parent: /architecture
-last_reviewed_on: 2023-06-01
-review_in: 3 months
+last_reviewed_on: 2025-11-12
+review_in: 24 months
 ---
 
 # Components
@@ -14,23 +14,22 @@ SpaceTrack Application are a subset.
 
 [OpenAPI](https://swagger.io/specification/) documentation is available directly on the [API server](https://api.monitor-space-hazards.service.gov.uk/docs/).
 
-![Components](images/Components.png)
+![Components](images/ApiComponents.png)
 
 The components for Monitor Space Hazards (MSH) are:
 
-* **Satellite** - this component allows the retrieval of Satellites information from Monitor Space Hazards. It can also trigger data
-import from SpaceTrack and ESA Discos.
-* **Satellite Conjunction Event** - this component allows the retrieval of conjunctions events raised by Monitor Space Hazards for Satellites
-that it is monitoring. Additional details of data sources for the event and the associated SpaceTrack CDM ID are also
-available.
-* **CDMS** - this component manages the SpaceTrack integration. It can trigger a new synchronisation and return the latest
-CDM ID imported.
-* **Analyses** - this component can retrieve analyses from Orbital Analysis, and allows them to be uploaded (if the user has
-appropriate permissions).
-* **Users** - this component manages the users of the service. It allows for their creation, updates and deletion.
-* **Ephemeris** - this component allows the upload and download of ephemeris data by Orbital Analysts and Satellite Operators.
-* **Health-Check** - this component provides a health-check function for the application.
-* **Statistics** - this component returns key statistical information on data within Monitor Space Hazards.
-* **External Data Performance** - this component returns performance data for external datasources.
+* **Satellite** - this component allows the retrieval of satellite information from Monitor Space Hazards. It can also trigger data import from SpaceTrack and ESA Discos.
+* **Satellite Conjunction Event** - this component allows the retrieval of conjunction events raised by Monitor Space Hazards for satellites that it is monitoring. Additional details of data sources for the event and the associated SpaceTrack CDM ID are also available.
+* **CDMS** - this component manages the SpaceTrack integration. It can trigger a new synchronisation and return the latest CDM ID imported.
+* **Analyses** - this component can retrieve orbital analyses and allows them to be uploaded (if the user has appropriate permissions).
+* **Users** - this component manages the users of the service. It allows for their creation, updates, and deletion, as well as handling authentication and alert preferences.
+* **Ephemeris** - this component allows the upload, download, and management of ephemeris data by orbital analysts and satellite operators.
+* **Health Check** - this component provides a health-check function for the application, verifying operational uptime.
+* **Statistics** - this component returns key statistical information on data within Monitor Space Hazards, including counts, trends, and summaries.
+* **External Data Performance** - this component returns performance metrics for external data sources such as SpaceTrack and ESA, including latency, throughput, and reliability.
+* **Organization** - this component manages organisation-level data, relationships, and access control mappings.
+* **Message & Alerts** - this component handles outbound notifications via email and SMS, and facilitates communication with analysts.
+* **Banner** - this component schedules and displays in-app banner messages to inform users about updates or maintenance.
+* **Tracking Impact Prediction (TIP)** - this component manages tracking and impact prediction message uploads and retrievals for analysis.
 
 <%= partial 'partials/links' %>

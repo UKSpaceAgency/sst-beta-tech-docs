@@ -2,25 +2,26 @@
 title: Containers
 weight: 2
 parent: /architecture
-last_reviewed_on: 2023-06-01
-review_in: 3 months
+last_reviewed_on: 2025-11-12
+review_in: 24 months
 ---
 
 # Containers
 
 Once the fit of the system in the overall landscape is understood it is useful to zoom in to the system boundary.
 
-![Containers](images/Containers.png)
+![Containers](images/MysContainers.png)
 
 This diagram highlights a clear separation of concerns.
 
-Some things to note are:
+The responsibilities and environment setup of each container:
 
-* The API and SpaceTrack Applications are the only ones that write to the persistence tier (database and filesystem).
-
-* The Web Application is an API client written for Monitor Space Hazards users to browse, but they can directly integrate with the API with
-their own client if preferred.
-* The SpaceTrack Application's sole concern is to synchronize data in Monitor Space Hazards with SpaceTrack.
-* Only the Web and API applications are routed and available over the Internet.
+* The API Application and ECS Consumers exist in Dev, Demo, and Prod environments and are the only containers that write to the persistence tier (Aurora Serverless PostgreSQL 15 and S3 filestore).
+* The Web Application exists in Dev, Demo, and Prod and serves as the primary client for Monitor Space Hazards users. Users can also integrate directly with the API if preferred.
+* The Producer service handles ingestion and synchronization of external data sources such as SpaceTrack and writes raw data to S3. It supports all environments.
+* SQS queues exist in each environment (Dev, Demo, Prod) to decouple processing between the producer, ECS consumers, and downstream systems.
+* Only the Web Application and API Application are externally accessible to users.
+* All other containers (ECS Consumers, queues, filestore, etc.) operate internally to support data ingestion, processing, and storage.
+* The Application's sole concern is to synchronize data in Monitor Space Hazards with SpaceTrack.
 
 <%= partial 'partials/links' %>

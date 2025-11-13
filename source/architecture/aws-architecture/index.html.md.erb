@@ -1,0 +1,28 @@
+---
+title: AWS Architecture
+weight: 5
+parent: /architecture
+last_reviewed_on: 2025-11-13
+review_in: 24 months
+---
+
+# AWS Architecture
+
+This diagram provides a comprehensive overview of the AWS infrastructure for the Monitor Space Hazards system, highlighting key services, deployment environments, and data flows.
+
+![Components](images/awsArchitecture.png)
+
+- **Users** access the system via the internet, routed through **AWS WAF** and **Amazon CloudFront** for security, caching, and distribution.
+- **Application Load Balancer** distributes traffic to the **Web Application Service** and **API Service** running in **ECS Fargate** across dev, demo, and prod environments.
+- **Web Application Service** provides the frontend interface, consuming data from the **API Service**, while users can also interact directly with the API if preferred.
+- **Data Cache Solution**: comprises a **Producer Service** (prod only, connects to **SpaceTrack** to avoid throttling) and **Consumer Service** (dev, demo, prod), orchestrating ingestion and processing of external data.
+- **Amazon Aurora** hosts the primary relational database across dev, demo, and prod, with all write operations coming from the API and data cache consumer.
+- **Amazon S3** stores raw and processed data; **SNS** and **SQS** manage asynchronous notifications and queueing for event-driven workflows.
+- **AWS Secrets Manager** securely stores application secrets and credentials, accessible by services running in Fargate.
+- **Amazon EventBridge** orchestrates event-driven triggers across the system.
+- **Amazon ECR** stores container images for Fargate deployments.
+- **Amazon CloudWatch** monitors application and infrastructure metrics, logs, and alerts.
+- **AWS Certificate Manager (ACM)** and **Route 53** manage TLS certificates and DNS routing.
+- **Auth0** handles user authentication and identity management.
+
+<%= partial "partials/links" %>
