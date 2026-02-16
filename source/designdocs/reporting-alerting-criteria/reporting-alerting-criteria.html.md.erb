@@ -3,7 +3,7 @@ title: 015 - Alert Criteria for Government
 weight: 12
 hide_in_navigation: true
 parent: /designdocs
-last_reviewed_on: 2024-01-22
+last_reviewed_on: 2026-02-16
 review_in: 12 months
 ---
 
@@ -35,62 +35,62 @@ Automatic sharing of alerts with government users according to pre-defined distr
 
 ##The actual design
 
-###Criteria for developing an alert
-Monitor Space Hazards will ingest CDMs and TIPs from Space Track, meaning it will include data on all observed events worldwide. However, only a small proportion of these events will be escalated to produce an alert. The criteria for developing an alert are as follows:
+###Criteria for escalating an event to an alert
+Monitor Space Hazards will ingest CDMs and TIPs from Space Track, meaning it will include data on all observed events worldwide. However, only a small proportion of these events will be escalated to an alert. 
+Events can be escalated to either a Level 1 (Standard) alert, or a Level 2 (Priority) alert. Level 1 and Level 2 alerts are sent to separate distribution lists of government users, but an event may be escalated to both levels simultaneously.
+The criteria for escalating events to either a Level 1 (Standard) or Level 2 (Priority) alert are as follows:
 
-<b>Conjunction:</b>
-
-* Less than 5 days until Time of Closest Approach</li>
-* AND for UK-licensed objects:</li>
-    * More than 0.1% probability of collision</li>
-    * OR press interest</li>
-* AND for non-UK objects:</li>
-    * Low risk or higher (based on probability of collisions and potential additional conjunction events for UK objects)</li>
-    * AND no manoeuvre expected</li>
-* OR nominated for escalation by the National Space Operations Centre</li>
+<b>Conjunctions</b>
+For Level 1 (Standard) alerts:
+* For UK-licensed objects:
+    * Less than 5 days until Time of Closest Approach, and 
+    * More than 0.1% probability of collision, and
+    * Press interest 
+* For non-UK objects:
+    * Less than 5 days until Time of Closest Approach, and
+    * Classified as Low Risk or higher, and
+    * No manoeuvre expected, and
+* For all objects:
+    * Nominated for escalation by the National Space Operations Centre
+For Level 2 (Priority) alerts:
+* For UK-licensed objects:
+    * More than 1% probability of collision, and
+    * No manoeuvre expected
+* For non-UK objects:
+    * More than 5% probability of collision, and
+    * No manoeuvre expected, and
+    * Significant press interest
  
-<b>Re-entry:</b>
+<b>Re-entries:</b>
+For Level 1 (Standard) alerts:
+        - Less than 36 hours until re-entry, and
+        - One or more of the following:
+                ○ Any “large” object in US SATCAT (except designed for demise) with overflights of the UK mainland, and/or
+                ○ Any “large” object in US SATCAT (except designed for demise) with more than 0.1% chance of impact in overseas territories, and/or
+                ○ Press interest, and/or
+                ○ Nominated for escalation by the National Space Operations Centre
+For Level 2 (Priority) alerts:
+        - Debris likely to survive to the ground, and
+        - One or more of the following:
+                ○ More than 0.1% chance of impact in the UK (and overseas territories on case by case basis), and/or
+                ○ UK-licensed object, and/or
+                ○ Significant press interest
 
-* Less than 36 hours until re-entry</li>
-* AND one of the following:</li>
-    * Any “large” object in US SATCAT (except designed for demise) with overflights of the UK mainland</li>
-    * OR any “large” object in US SATCAT (except designed for demise) with more than 0.1% chance of impact in overseas territories</li>
-    * OR any UK-licensed object (except designed for demise)</li>
-    * OR (anticipated) press interest</li>
-    * OR nominated by National Space Operations Centre</li>
+<b>Fragmentations:</b>
+For Level 1 (Standard) alerts:
+        - More than 5% increase in potential collisions with UK satellites and/or Human Spaceflight missions, or
+        - Significant press interest
+For Level 2 (Priority) alerts: the criteria for Level 2 (Priority) alerts will be displayed here once confirmed by NSpOC. 
 
-###Criteria for automatic notifications to government users
-
-Upon the uploading of an conjunction or re-entry alert to Monitor Space Hazards, users who have chosen to receive all alerts for both event types will automatically receive a notification about the alert. 
-
-However, if an event meets additional criteria, notifications will also be sent automatically to those who have chosen only to receive priority alerts. The criteria for priority alerts are as follows:
-
-<b>Conjunction:</b>
-
-* More than 5% probability of collision</li>
-* OR significant press interest</li>
-* OR for UK licensed objects</li>
-    * More than 1% probability of collision</li>
-    * AND no manoeuvre expected</li>
-* OR for non-UK objects:</li>
-    * Medium risk or higher (based on probability of collisions and potential additional conjunction events for UK objects)</li>
-    * AND no manoeuvre expected</li>
- 
-<b>Re-entry:</b>
-
-* Debris likely to survive to the ground</li>
-* AND one of the following:</li>
-    * More than 0.1% chance of impact in the UK</li>
-    * OR UK licensed-object</li>
 
 ### Convention for Conjunctions and Re-entry events
-| Event level      | Author                                 | Permissions to view                 | Conjunction Events<br>/conjunctions/xxxxxx-xxxxxx-xxxxxx    |                |                       | Re-entry Events<br>/re-entries/re-yyyymmdd-norad            |                |                       |
-| ---------------- | -------------------------------------- | ----------------------------------- | ----------------------------------------------------------- | -------------- | --------------------- | ---------------------------------------------------- | -------------- | --------------------- |
-|                  |                                        |                                     | Input File type                                             | Alert language | Alert recipients      | Input File type                                      | Alert language | Alert recipients      |
-| 1 Basic event    | Space-Track/Orbital Analysts           | All                                 | CDM                                                         | Notification   | Operators             | TIP (real or fake)                                   | Notification   | N/A                   |
-| 2 Enhanced event | Orbital Analysts                       | All                                 | Orbital Analysts Analysis & Manoeuvre Trade-Space Plot JSON | Notification   | Operators             | N/A                                                  | N/A            | N/A                   |
-| 3 Alert          | Orbital Analysts (+ Approver comments) | Government Organisations and Agency | Conjunction Report JSON (CR) + Conjunction event DB edits   | Alert          | Some Government Users | Re-entry report JSON (RER) + Re-entry event DB edits | Alert          | Some Government Users |
-| 4 Priority alert | Orbital Analysts (+ Approver comments) | Government Organisations and Agency | Conjunction Report JSON (CR) + Conjunction event DB edits   | Alert          | All Government Users  | Re-entry report JSON (RER) + Re-entry event DB edits | Alert          | All Government Users  |
+| Event level              | Author                                 | Permissions to view                 | Conjunction Events                                         |                |                       | Re-entry Events                                      |                |                       | Fragmentation Events                                          |                |                       |
+| ------------------------ | -------------------------------------- | ----------------------------------- | ---------------------------------------------------------- | -------------- | --------------------- | ---------------------------------------------------- | -------------- | --------------------- | ------------------------------------------------------------- | -------------- | --------------------- |
+|                          |                                        |                                     | Input File type                                            | Language       | Recipients            | Input File type                                      | Language       | Recipients            | Input File type                                               | Language       | Recipients            |
+| Basic event              | Space-Track/Orbital Analysts           | All                                 | CDM                                                        | Notification   | Operators             | TIP (real or fake)                                   | Notification   | N/A                   |                                                               | Notification   | N/A                   |
+| Enhanced event           | Orbital Analysts                       | All                                 | Orbital Analyst Analysis & Manoeuvre Trade-Space Plot JSON | Notification   | Operators             | N/A                                                  | N/A            | N/A                   | N/A                                                           | N/A            | N/A                   |
+| Level 1 (Standard) alert | Orbital Analysts (+ Approver comments) | Government Organisations and Agency | Conjunction Report JSON (CR) + Conjunction event DB edits  | Alert          | Some Government Users | Re-entry report JSON (RER) + Re-entry event DB edits | Alert          | Some Government Users | Fragmentation report JSON (FR) + Fragmentation event DB edits | Alert          | Some Government Users |
+| Level 2 (Priority) alert | Orbital Analysts (+ Approver comments) | Government Organisations and Agency | Conjunction Report JSON (CR) + Conjunction event DB edits  | Alert          | Some Government Users | Re-entry report JSON (RER) + Re-entry event DB edits | Alert          | Some Government Users | Fragmentation report JSON (FR) + Fragmentation event DB edits | Alert          | Some Government Users |
 
 ###Manual sending of notifications
 The UKSA SST team, as an Approver user type (see 013 Permissions Model), may also manually send notifications about events to government users in cases where there is significant political or press interest. A user has the option to either send to a distribution list and/or send to selected email addresses that they input into a free text box. Once reviewed, this will send an email to the selected users informing them about the re-entry or conjunction alert. 
