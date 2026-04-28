@@ -1,56 +1,104 @@
 ---
-title: How to send a re-entry or conjunction alert to additional recipients
+title: How to send an alert to distribution lists and additional recipients
 weight: 12
 hide_in_navigation: true
 parent: /ways-of-working
-last_reviewed_on: 2024-05-16
+last_reviewed_on: 2026-04-28
 review_in: 12 months
 ---
 
-# How to send a re-entry or conjunction alert to additional recipients
+# How to send an alert to distribution lists and additional recipients
 
-As an ‘Agency Approver’, you are able to send re-entry and conjunction alerts to additional recipients. Most alerts will only be sent to users on the distribution list for all re-entry alerts. Users on the priority alert distribution list will only receive a notification if specific risk thresholds are exceeded to make an alert 'high priority'.
+This defines the process for sending alerts about events on Monitor Space Hazards. It establishes who is notified, and through which channels, ensuring consistent, accurate, and timely communication to relevant stakeholders.
 
-However, if you wish to distribute an alert to users on the 'high priority' distribution list before the alert has met the high priority threshold, or individuals not on any distribution list, you are able to do so using the page shown below. 
+## 2. Scope
 
-### Page layout 
+This applies to alerts concerning:
 
-The example below shows the re-entry user journey, but the functionality is the same for conjunctions. The priority alert criteria for re-entries is visible below. 
+- **Track Conjunction Events** — predicted close approaches between two on-orbit objects, including UK-licensed operator-owned assets and third-party objects of interest.
+- **Track Re-entry Events** — uncontrolled or controlled atmospheric re-entries of resident space objects, with particular focus on objects posing risk to UK interests.
+- **Track Fragmentation Events** — confirmed or suspected breakup, anomalous debris release, or destructive event involving an on-orbit object nthat may impact UK-licesed assets.
+
+This does not cover routine conjunction notifications, which are governed by separate procedures.
+
+## 3. Alert types and lists
+
+All notifications are classified into one of two tiers.
+
+### 3.1 Level 1 (Standard)
+
+A **Level 1 (Standard)** alert applies when the event meets the criteria described on the relevant mission set (i.e. Track Conjunction/Re-entry/Fragmentation Events)
+
+### 3.2 Level 2 (Priority)
+
+A **Level 2 (Priority)** alert applies when the event meets the criteria described on the relevant mission set (i.e. Track Conjunction/Re-entry/Fragmentation Events)
+
+### 3.3 UK Satellites 
+
+Additionally, Track Re-entry Events has an additional distribution type for when the re-entry alert involves a UK-licensed asset called **UK Satellites**
+
+### 3.4 Closedown
+
+A **Closedown** alert is sent when the event has passed and tracking has ended
+
+## 4. Alert Workflow
+
+### 4.1 Trigger and intake
+
+An alert is triggered when a relevant JSON report is uploaded to Monitos Space Hazards. New reports that change tier (Level 1 → Level 2 or vice versa) are treated as amendments to the same event.
+
+### 4.2 Classification
+
+The Orbital Analyst assigns the `alert_type` within the JSON report with one or more of the following labels:
+
+* `standard` (Level 1)
+* `priroity` (Level 2)
+* `uk-licensed` (Involving UK-licensed assets)
+* `closedown` (Event tracking has finished)
+
+### 4.3 Automatic distribution 
+
+When a report is uploaded to the service it will automatically sent to any distribution list that has been tagged with an `alert_type`
+
+### 4.4 Manual distribution
+ 
+In addition to the standard automated dispatch, alerts can be sent manually from the Monitor Space Hazards web application. This is used to extend distribution to additional lists or individually selected recipients after an alert has been issued.
+ 
+**Who can send manually**
+ 
+Manual distribution is restricted to users holding the **Agency Approver** or **Agency Super User** role.
+ 
+**How to send**
+ 
+1. Open the relevant Alert page.
+2. Navigate to **Send alert to additional recipients**. This page shows the current distribution status of the alert — which lists and recipients have already been notified.
 
 ![GitHub Action Image](distribution-page.png)
 
-### 1. Current alert distribution:
-
-You will first be able to see the current status of alert distribution. This includes which distribution lists the alert has been sent to, and which individually selected recipients the alert has been set to
+3. Select the additional distribution lists, individual recipients, or both, then **Review and Send**.
 
 ![GitHub Action Image](current-distribution.png)
 
-### 2. Make this a priority re-entry alert:
 
-If the alert has not crossed the risk threshold to be considered a priority alert, you are able to automatically make it one by ticking the box ‘Priority re-entry alerts only’. Upon confirmation, this will send alert notification emails to government users only interested in priority alerts. 
-
-If the alert is already a priority alert, the box on this page will be already ticked. 
-
-![GitHub Action Image](priority-alert.png)
-
-### 3. Send alerts to additional users:
-
-You are also able to manually select the individuals you wish to send an alert to. This can be either when only specific individuals on the priority alert list need to know about an alert or when individuals not on any alert list require information. 
-
-In order to send the alert to selected individuals, you need to input their email addresses in the free text box in this section. 
-
-![GitHub Action Image](selected-users.png)
-
-### 4. Reviewing selection:
-
-Once you have selected which individuals you want to further distribute an alert to, you are able to review your selection. This will show you the changes you have made, and you have the option to either change your selection, or send the alert to the selected recipients.
+**Resending to a list that has already received the alert**
+ 
+The system will not re-send to a list that is already marked as distributed. To resend:
+ 
+1. Open **Send alert to additional recipients**.
+2. Deselect every list so that no lists are selected.
+3. **Review and Send** with no lists selected. This resets the distribution state.
 
 ![GitHub Action Image](review-alert-distro.png)
 
-### 5. Alert sent:
-
-Once you have chosen to further distribute an alert you will get a confirmation message, and the additional recipients will get an automatic email notification regarding the alert. If you wish to further distribute at a subsequent time, this is possible by following the same process as above. 
+4. Return to the page and select the lists you want to notify then **Review and Send**.
 
 ![GitHub Action Image](alert-sent.png)
+
+
+## 5. Channels
+
+- **Email** — primary channel for all notifications
+- **SMS** — secondary channel only used if selected by user
+
 
 <%= partial "partials/links" %>
