@@ -11,7 +11,7 @@ review_in: 12 months
 
 This defines the process for sending alerts about events on Monitor Space Hazards. It establishes who is notified, and through which channels, ensuring consistent, accurate, and timely communication to relevant stakeholders.
 
-## 2. Scope
+## 1. Scope
 
 This applies to alerts concerning:
 
@@ -21,33 +21,33 @@ This applies to alerts concerning:
 
 This does not cover routine conjunction notifications, which are governed by separate procedures.
 
-## 3. Alert types and lists
+## 2. Alert types and lists
 
 All notifications are classified into one of two tiers.
 
-### 3.1 Level 1 (Standard)
+### 2.1 Level 1 (Standard)
 
 A **Level 1 (Standard)** alert applies when the event meets the criteria described on the relevant mission set (i.e. Track Conjunction/Re-entry/Fragmentation Events)
 
-### 3.2 Level 2 (Priority)
+### 2.2 Level 2 (Priority)
 
 A **Level 2 (Priority)** alert applies when the event meets the criteria described on the relevant mission set (i.e. Track Conjunction/Re-entry/Fragmentation Events)
 
-### 3.3 UK Satellites 
+### 2.3 UK Satellites 
 
 Additionally, Track Re-entry Events has an additional distribution type for when the re-entry alert involves a UK-licensed asset called **UK Satellites**
 
-### 3.4 Closedown
+### 2.4 Closedown
 
 A **Closedown** alert is sent when the event has passed and tracking has ended
 
-## 4. Alert Workflow
+## 3. Alert Workflow
 
-### 4.1 Trigger and intake
+### 3.1 Trigger and intake
 
 An alert is triggered when a relevant JSON report is uploaded to Monitos Space Hazards. New reports that change tier (Level 1 → Level 2 or vice versa) are treated as amendments to the same event.
 
-### 4.2 Classification
+### 3.2 Classification
 
 The Orbital Analyst assigns the `alert_type` within the JSON report with one or more of the following labels:
 
@@ -56,11 +56,11 @@ The Orbital Analyst assigns the `alert_type` within the JSON report with one or 
 * `uk-licensed` (Involving UK-licensed assets)
 * `closedown` (Event tracking has finished)
 
-### 4.3 Automatic distribution 
+### 3.3 Automatic distribution 
 
 When a report is uploaded to the service it will automatically sent to any distribution list that has been tagged with an `alert_type`
 
-### 4.4 Manual distribution
+### 3.4 Manual distribution
  
 In addition to the standard automated dispatch, alerts can be sent manually from the Monitor Space Hazards web application. This is used to extend distribution to additional lists or individually selected recipients after an alert has been issued.
  
@@ -95,7 +95,7 @@ The system will not re-send to a list that is already marked as distributed. To 
 ![GitHub Action Image](alert-sent.png)
 
 
-## 5. Channels
+## 4. Channels
 
 - **Email** — primary channel for all notifications
 - **SMS** — secondary channel only used if selected by user
