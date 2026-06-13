@@ -13,21 +13,24 @@ review_in: 3 months
 
 # Uploading/submitting OEM Ephemeris data
 
-**Definition**
+## How to upload your ephemeris
 
-*An OEM specifies the position and velocity of a single object at multiple epochs contained within a specified time range. The OEM is suited to exchanges that (1) involve automated interaction (e.g., computer-to-computer communication where frequent, fast automated time interpretation and processing is required), and (2) require higher fidelity or higher precision dynamic modeling than is possible with the OPM.*
+Satellite operators may submit ephemeris data to NSpOC orbital analysts by uploading Orbital Ephemeris Message (OEM) files.
 
-Monitor Space Hazards uses Ephemeris files in .oem format to exchange data from satellite operators to UKSA orbital analysts. 
+Satellite operators may upload OEM files via:
 
-The format of .oem file can be found here: https://public.ccsds.org/Pubs/502x0b2c1e2.pdf
+- The ‘Upload your ephemeris data’ link on the relevant satellite page on the MSH site
+- Via API using the POST/v1/ephemeris endpoint
 
-Because of some differences between the .oem format and the way Monitor Space Hazards handles satellite data, Ephemeris files have to be constructed with one thing in mind: the proper file name. Due to the fact that .oem files have different satellite names than SpaceTrack can provide, the satellite descriptor - NORAD ID has to be encoded in the .oem file. This is aligned with the SpaceTrack requirements on naming Ephemeris files and described in SpaceTrack Handbook for Operators (page 23):
+### How to upload your ephemeris
 
-https://www.space-track.org/documents/Spaceflight_Safety_Handbook_for_Operators.pdf
+The OEM file must meet MSH naming conventions in order to allow MSH to process the data.
 
 The format of a filename is as follows:
 
-`<DataType>_<SatelliteNumber#>_<CommonName>_<DayTimeGroup>_<Operational/Special>_<MetaData>_<Classification>.<FileExtension>`
+<DataType>_<SatelliteNumber#>_<CommonName>_<DayTimeGroup>_<Operational/Special>_<MetaData>_<Classification>.<FileExtension>
+
+‘SatelliteNumber#’ (referred to in other Space-Track publications as ‘Catalog#’) refers to the satellite’s NORAD ID. If this is not included, the file will be rejected. 
 
 Examples:
 
@@ -37,27 +40,35 @@ Examples:
 - MEME_UCN01_SPACESAT1_1651200_special_burn01_Unclassified.txt
 - MEME_799500234_Sat1_1651200_special_separation_unclassified.txt
 
-**Monitor Space Hazards** expects the filename to contain the NORAD ID and when it’s not found either in filename or in the **Monitor Space Hazards** database, the file cannot be uploaded.
+This is aligned with Space-Track requirements for ephemeris uploads to Space-Track. Further information is available here: 
 
-**Monitor Space Hazards** also checks the contents of the .oem file which has to be in line with the .oem file specification. Fields that are validated against the specification are:
+Space-Track (2023). Spaceflight Safety Handbook for Satellite Operators. Version 1.7. https://www.space-track.org/documents/SFS_Handbook_For_Operators_V1.7.pdf. See pp.25-26. 
 
-- NORAD ID must be provided in filename (as above explained)
-- NORAD ID must match the current page satellite NORAD ID 
-- Satellite with provided NORAD ID must be in **Monitor Space Hazards** database
-- META_START/META_STOP tags must be in ephemeris file in header section in proper order (START before STOP)
+### File format and content
 
-**Following fields must be present in ephemeris file:**
+The file uploaded must not exceed 20MB. 
 
+MSH conducts additional data validation against uploaded files, and will reject files in which the following fields are not present: 
+
+- CCSDS_OEM_VERS
+- CREATION_DATE
 - ORIGINATOR
 - OBJECT_NAME
 - OBJECT_ID
+- CENTER_NAME
 - REF_FRAME
 - TIME_SYSTEM
 - START_TIME
 - STOP_TIME
-- CENTER_NAME
-- CCSDS_OEM_VERS
-- CREATION_DATE
 
-Ephemeris files can be uploaded directly in **Monitor Space Hazards** application in the Satellites section or via API using POST /ephemeris endpoint (when object_id and .oem file must be provided).
+MSH will also reject files which do not meet the following additional requirements:
 
+- NORAD ID in file name must match the NORAD ID of: the satellite page on which ephemeris is uploaded, or the object_id provided if ephemeris is uploaded via API.
+- Satellite with provided NORAD ID must be in Monitor Space Hazards database
+- META_START/META_STOP tags must be in ephemeris file in header section in proper order (START before STOP)
+
+Beyond these MSH-specific requirements, it is strongly recommended that the format of the OEM file be aligned with Consultative Committee for Space Data Systems (CCSDS) Recommended Standards. Further information is available here:
+
+CCSDS (2023). CCSDS 502.0-B-3 Orbit Data Messages Recommended Standard (Blue Book). Issue 3. https://ccsds.org/publications/bluebooks/entry/3073/. See Section 5.
+
+MSH aims to align with the most up-to-date guidance on OEMs, so this page will be updated if CCSDS or Space-Track publish version updates to their guidance.
