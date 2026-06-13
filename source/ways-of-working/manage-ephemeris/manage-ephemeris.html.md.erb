@@ -72,3 +72,15 @@ Beyond these MSH-specific requirements, it is strongly recommended that the form
 CCSDS (2023). CCSDS 502.0-B-3 Orbit Data Messages Recommended Standard (Blue Book). Issue 3. https://ccsds.org/publications/bluebooks/entry/3073/. See Section 5.
 
 MSH aims to align with the most up-to-date guidance on OEMs, so this page will be updated if CCSDS or Space-Track publish version updates to their guidance.
+
+### Decisions
+
+A range of orbital data message (ODM) file types are available. MSH uses the OEM file type for the following reasons:
+
+- The OEM is appropriate for data exchanges that involve automated interaction (e.g., computer-to-computer communication when frequent, fast automated time interpretation and processing is required)
+- The OEM is appropriate for data exchanges that require higher fidelity or higher precision dynamic modeling than is possible with other ODM file types. 
+
+This aligns with CCSDS guidance. Further information is available here: 
+
+CCSDS (2023). CCSDS 502.0-B-3 Orbit Data Messages Recommended Standard (Blue Book). Issue 3. https://ccsds.org/publications/bluebooks/entry/3073/. See Section 2.
+
