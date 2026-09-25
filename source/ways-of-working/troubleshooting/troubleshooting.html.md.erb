@@ -38,22 +38,27 @@ review_in: 3 months
 
 ## Common problems with JSON files
 A required field is left empty
+
     * Check which fields are required using the appropriate GET/v1/…/schema endpoint. Required fields are listed at the bottom of the schema response: see the below example from GET/v1/reentry-event-reports/schema. 
 
 A string value is not in the format required by the enum - usually, incorrect capitalisation
+
     * Enum requirements are case-sensitive. 
     * Check the exact enum format requirements using the appropriate GET/v1/…/schema endpoint.
 
  A non-ASCII character is incorrectly encoded
+
     * non-ASCII characters (e..g, the é in México) may break if not properly encoded in UTF-8. 
 
 You may be able to use an online JSON validation tool (e.g. https://jsonlint.com/) to check for other problems. 
 
 ## Alerts aren’t sending when you try to “Send to additional recipients” or a distribution list
 If sending to individual recipients:
+
     * Make sure you have added semicolons between email addresses
 
 If sending to a distribution list:
+
 1. Check whether the message has already been sent to that distribution list
  * If so, the relevant status will be highlighted and the check box(es) will be selected.
 2. Deselect all checkboxes, click ‘Review’, and click ‘Send’.
@@ -65,6 +70,7 @@ If sending to a distribution list:
 
 ## Further resources
 The Ways of Working tech docs contain several useful how-to guides for key processes:
+
     * Editing alerts directly from the webpage: [How to edit a re-entry or conjunction report](./how-to-edit-reports/)
     * Sending alerts to new recipients: [How to send a re-entry or conjunction alert to additional recipients](./mys-tech-docs.onrender.com/ways-of-working/how-to-distribute-reports/how-to-distribute-reports/)
     * Adding or editing users: [How to create and amend user details](./user-details/)
