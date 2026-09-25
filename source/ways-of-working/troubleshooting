@@ -60,13 +60,15 @@ If sending to a distribution list:
  * This will not send to any distribution lists - but it will reset the configuration
  * By default Monitor Space Hazards will not send an alert to distribution lists who have already been notified, which is why you need to reset the configuration of who has already been notified. 
 3. The “Send alert” page should now look like the below image, with no lists selected. You can now repeat the “Send alert” process, this time selecting the desired distribution list(s).
+![Distribution lists](images/distribution_lists_none_selected.png)
+
 
 ## Further resources
 The Ways of Working tech docs contain several useful how-to guides for key processes:
- * Editing alerts directly from the webpage: https://mys-tech-docs.onrender.com/ways-of-working/how-to-edit-reports/how-to-edit-reports.html
- * Sending alerts to new recipients: https://mys-tech-docs.onrender.com/ways-of-working/how-to-distribute-reports/how-to-distribute-reports.html#2-alert-types-and-lists 
- * Adding or editing users: https://mys-tech-docs.onrender.com/ways-of-working/user-details/user-details.html
- * Using the API: https://mys-tech-docs.onrender.com/ways-of-working/use-the-api/use-the-api.html 
+ * Editing alerts directly from the webpage: [How to edit a re-entry or conjunction report](./how-to-edit-reports/)
+ * Sending alerts to new recipients: [How to send a re-entry or conjunction alert to additional recipients](./mys-tech-docs.onrender.com/ways-of-working/how-to-distribute-reports/how-to-distribute-reports/)
+ * Adding or editing users: [How to create and amend user details](./user-details/)
+ * Using the API: [How to use the API](./use-the-api.)
 
 
 <%= partial "partials/links" %>
