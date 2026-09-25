@@ -3,8 +3,8 @@ title: How to manage ephemeris
 weight: 20
 parent: /ways-of-working
 hide_in_navigation: true
-last_reviewed_on: 2022-05-06
-review_in: 3 months
+last_reviewed_on: 2026-06-15
+review_in: 6 months
 ---
 
 # How to manage ephemeris
@@ -28,7 +28,7 @@ The OEM file must meet MSH naming conventions in order to allow MSH to process t
 
 The format of a filename is as follows:
 
-<DataType>_<SatelliteNumber#>_<CommonName>_<DayTimeGroup>_<Operational/Special>_<MetaData>_<Classification>.<FileExtension>
+`<DataType>_<SatelliteNumber#>_<CommonName>_<DayTimeGroup>_<Operational/Special>_<MetaData>_<Classification>.<FileExtension>`
 
 ‘SatelliteNumber#’ (referred to in other Space-Track publications as ‘Catalog#’) refers to the satellite’s NORAD ID. If this is not included, the file will be rejected. 
 
@@ -72,3 +72,15 @@ Beyond these MSH-specific requirements, it is strongly recommended that the form
 CCSDS (2023). CCSDS 502.0-B-3 Orbit Data Messages Recommended Standard (Blue Book). Issue 3. https://ccsds.org/publications/bluebooks/entry/3073/. See Section 5.
 
 MSH aims to align with the most up-to-date guidance on OEMs, so this page will be updated if CCSDS or Space-Track publish version updates to their guidance.
+
+### Decisions
+
+A range of orbital data message (ODM) file types are available. MSH uses the OEM file type for the following reasons:
+
+- The OEM is appropriate for data exchanges that involve automated interaction (e.g., computer-to-computer communication when frequent, fast automated time interpretation and processing is required)
+- The OEM is appropriate for data exchanges that require higher fidelity or higher precision dynamic modeling than is possible with other ODM file types. 
+
+This aligns with CCSDS guidance. Further information is available here: 
+
+CCSDS (2023). CCSDS 502.0-B-3 Orbit Data Messages Recommended Standard (Blue Book). Issue 3. https://ccsds.org/publications/bluebooks/entry/3073/. See Section 2.
+

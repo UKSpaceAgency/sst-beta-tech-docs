@@ -3,7 +3,7 @@ title: 013 - Permissions model
 weight: 12
 hide_in_navigation: true
 parent: /designdocs
-last_reviewed_on: 2024-01-22
+last_reviewed_on: 2026-02-17
 review_in: 12 months
 ---
 
@@ -26,26 +26,28 @@ Through this Design doc, Monitor Space Hazards aims to meet the following goals:
 ##The actual design
 We have designed a permissions model which includes 6 different user types, each of which can access different content and complete different actions depending on the organisation they work for.  
 
-| Organisation type / role| Operator Organisation (e.g. Astroscale, OneWeb)| Government Organisation (e.g Cabinet Office, Defra, DFT, CAA)| Space Agency Organisation (e.g. UKSA, MOD, NSpOC)| 
-| ------------------------------------ | ------------------------------------ | ------------------------------------ | ------------------------------------ |
-| 1. Super User (MFA)|-|-|Super User| 
-| 2. Approver (MFA)|-|-|Agency Approvals| 
-| 3. Analyst|-|-|Analyst| 
-| 4. Admin|Operator Admin| Government Admin|Agency Admin| 
-| 5. Operator|Operator|-|-| 
-| 6. User|Operator User|Government User|Agency User| 
+| Organisation type / role| Operator Organisation (e.g. Astroscale, OneWeb)| Government Organisation (e.g Cabinet Office, Defra, DFT)| Space Agency Organisation (e.g. UKSA, MOD, NSpOC)| Regulator Organisation (e.g. CAA)
+| ------------------------------------ | ------------------------------------ | ------------------------------------ | ------------------------------------ | ---------------------------------------|
+| 1. Super User (MFA)|-|-|Super User|-|
+| 2. Approver (MFA)|-|-|Agency Approver|-|
+| 3. Analyst|-|-|Agency Analyst|-| 
+| 4. Admin|Operator Admin| Government Admin|Agency Admin|Regulator Admin| 
+| 5. Operator|Satellite Operator|-|-|-|
+| 6. User|Operator User|Government User|Agency User|Regulator User|
 
 
 The 6 user types would be able to do the following:
 
 * <b>Superuser:</b> Administrators of the service with access to all information and tasks</li>
-* <b>Approver:</b> Staff members at a Space Agency organisation with the ability to view, edit and manually send notifications for all alerts</li>
-* <b>Analyst:</b> Staff members at a Space Agency organisation with the ability to view all reports/alerts but no admin privileges</li>
-* <b>Admin:</b> Can view reports/alerts relevant for their organisation, and are able to create, view, update and delete all accounts within their organisation</li>
-* <b>Operator:</b> Satellite operators who can view reports/alerts relevant for their organisation and perform additional actions such as uploading ephemeris data, but have no admin privileges</li>
+* <b>Approver:</b> Staff members at a Space Agency organisation with the ability to view, edit and manually send notifications for all alerts + all lower priviledge permissions</li>
+* <b>Analyst:</b> Staff members at a Space Agency organisation with the ability to view/edit all reports/alerts + all lower priviledge permissions</li>
+* <b>Admin:</b> Can view reports/alerts relevant for their organisation, and are able to create, view, update and delete all accounts within their organisation + all lower priviledge permissions</li>
+* <b>Operator:</b> Satellite operators who can view reports/alerts relevant for their organisation and perform additional actions such as uploading ephemeris data, but have no admin privileges + all lower priviledge permissions</li>
 * <b>User:</b> Can view reports/alerts relevant for their organisation, but have no additional permissions within their organisation</li>
-    
-Importantly, both the Super User and Approver user types will require multi-factor authentication to access the service, recognising their ability to upload information to the service.     
+
+Note: users in public sector organisations (e.g. government and regulator organisations) will be able to see all UK-licensed objects and relevant events. Operator Organisations will be restricted to only viewing information relevant to their assets.
+
+Note: both the Super User and Approver user types will require multi-factor authentication to access the service, recognising their ability to upload information to the service.     
 
 ##Alternatives considered
 The permissions model passed through several iterations before being finalised. Discussions included: (1) whether to enable government users to view all reports/alerts, and (2) whether to enable all UK Space Agency staff members to edit and manually send notifications for all alerts or create a separate Approver user type.
