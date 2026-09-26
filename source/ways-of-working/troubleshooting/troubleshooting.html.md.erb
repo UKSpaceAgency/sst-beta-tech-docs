@@ -9,81 +9,6 @@ review_in: 3 months
 
 # Troubleshooting Common Orbital Analyst Issues
 
-## Missing an expected functionality:
-1. Visit the Account Details page to check which account type you are using.
- * Different account types have different permissions, meaning different functionalities may be available:
- * Only Agency Approvers and Agency Superusers can edit alerts or send alerts to additional recipients
- * Only Admins (any organisation type), Analysts, Agency Approvers and Agency Superusers can view or edit users from their organisation (only to the lower permissions). 
-2. If possible, sign into an account with higher permissions.
- * Orbital analyst group mailbox accounts are Agency Analysts; individual accounts (firstname.surname@...) are Agency Approvers.
- * You may be able to access more permissions if you sign in using your individual accounts. 
-
-### All or part of the MSH portal not available e.g. “Something went wrong”:
-1. Sign out then sign back in again.
- * If you have had the MSH tab open for a while, your user session may have timed out and the browser has not redirected you to the homepage. 
-2. Delete the last file uploaded, then force refresh the page. 
- * The error may be due to a problem in the file which was not automatically flagged during upload.
- * If the error has occurred since the latest uploaded file, then: 
- * You can delete any file type using the appropriate /delete endpoint:
-     * Re-entry reports: DELETE/v1/reentry-event-reports/{reentry_event_report_id}
-     * Fragmentation reports: DELETE/v1/fragmentation-reports/{fragmentation_report_id}
-     * Conjunction reports: DELETE/v1/conjunction-reports/{conjunction_report_id}
-     * Satellite activity reports (flags): DELETE/v1/activity-reports/{activity_report_id}
-     * UKSA TIPs: DELETE/v1/tips/{tip_id}
-     * Ephemeris: DELETE/v1/ephemeris/{ephemeris_id}
-     * Manoeuvre trade space plots: DELETE/v1/manoeuvre_plots/{manoeuvre_plot_id}
-     * Conjunction analysis: DELETE/v1/analyses/{analysis_id
- * If deleting the file restores MSH functionality, then check the file for invalid formats/data before re-uploading.
- * You may need to re-number the file (i.e., for reports, update report_number and file name) before re-uploading. This is especially important when promoting from Dev to Prod as the event short_id or report_number maybe be out of sync between environments. 
-
-## Common problems with JSON files
-A required field is left empty
-
-    * Check which fields are required using the appropriate GET/v1/…/schema endpoint. Required fields are listed at the bottom of the schema response: see the below example from GET/v1/reentry-event-reports/schema. 
-
-A string value is not in the format required by the enum - usually, incorrect capitalisation
-
-    * Enum requirements are case-sensitive. 
-    * Check the exact enum format requirements using the appropriate GET/v1/…/schema endpoint.
-
- A non-ASCII character is incorrectly encoded
-
-    * non-ASCII characters (e.g., the é in Mxico) may break if not properly encoded in UTF-8. 
-
-the <%= "\u00E9" %> in M<%= "\u00E9" %>xico
-the &eacute; in M&eacute;xico
-the &#233; in M&#233;xico
-the &#xE9; in M&#xE9;xico
-the e&#769; in Me&#769;xico
-
-You may be able to use an online JSON validation tool (e.g. https://jsonlint.com/) to check for other problems. 
-
-## Alerts aren’t sending when you try to “Send to additional recipients” or a distribution list
-If sending to individual recipients:
-
-    * Make sure you have added semicolons between email addresses
-
-If sending to a distribution list:
-
-1. Check whether the message has already been sent to that distribution list
- * If so, the relevant status will be highlighted and the check box(es) will be selected.
-2. Deselect all checkboxes, click ‘Review’, and click ‘Send’.
- * This will not send to any distribution lists - but it will reset the configuration
- * By default Monitor Space Hazards will not send an alert to distribution lists who have already been notified, which is why you need to reset the configuration of who has already been notified. 
-3. The “Send alert” page should now look like the below image, with no lists selected. You can now repeat the “Send alert” process, this time selecting the desired distribution list(s).
-![Distribution lists](images/distribution_lists_none_selected.png)
-
-
-## Further resources
-The Ways of Working tech docs contain several useful how-to guides for key processes:
-
-    * Editing alerts directly from the webpage: [How to edit a re-entry or conjunction report](./how-to-edit-reports/)
-    * Sending alerts to new recipients: [How to send a re-entry or conjunction alert to additional recipients](./mys-tech-docs.onrender.com/ways-of-working/how-to-distribute-reports/how-to-distribute-reports/)
-    * Adding or editing users: [How to create and amend user details](./user-details/)
- * Using the API: [How to use the API](./use-the-api.)
-
-# Common orbital analyst issues: troubleshooting
-
 ## Missing an expected functionality
 
 1. Visit the Account Details page to check which account type you are using.
@@ -126,7 +51,7 @@ A string value is not in the format required by the enum (usually incorrect capi
 
 A non-ASCII character is incorrectly encoded
 
-* Non-ASCII characters (for example, the Ã© in MÃ©xico) may break if not properly encoded in UTF-8.
+* Non-ASCII characters (for example, the &#233; in M&#233;xico) may break if not properly encoded in UTF-8.
 
 You may be able to use an online JSON validation tool, such as [JSONLint](https://jsonlint.com/), to check for other problems.
 
