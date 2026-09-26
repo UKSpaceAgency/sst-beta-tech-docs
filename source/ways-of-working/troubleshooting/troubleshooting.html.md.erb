@@ -48,7 +48,13 @@ A string value is not in the format required by the enum - usually, incorrect ca
 
  A non-ASCII character is incorrectly encoded
 
-    * non-ASCII characters (e..g, the é in México) may break if not properly encoded in UTF-8. 
+    * non-ASCII characters (e.g., the é in Mxico) may break if not properly encoded in UTF-8. 
+
+the <%= "\u00E9" %> in M<%= "\u00E9" %>xico
+the &eacute; in M&eacute;xico
+the &#233; in M&#233;xico
+the &#xE9; in M&#xE9;xico
+the e&#769; in Me&#769;xico
 
 You may be able to use an online JSON validation tool (e.g. https://jsonlint.com/) to check for other problems. 
 
@@ -143,17 +149,11 @@ You may be able to use an online JSON validation tool, such as [JSONLint](https:
 
 ## Further resources
 
-The Ways of Working tech docs contain several useful how-to guides for key processes: DIRECT GITHUB LINKS
+The Ways of Working tech docs contain several useful how-to guides for key processes:
+
 * [Editing alerts directly from the webpage](https://mys-tech-docs.onrender.com/ways-of-working/how-to-edit-reports/how-to-edit-reports.html)
 * [Sending alerts to new recipients](https://mys-tech-docs.onrender.com/ways-of-working/how-to-distribute-reports/how-to-distribute-reports.html#2-alert-types-and-lists)
 * [Adding or editing users](https://mys-tech-docs.onrender.com/ways-of-working/user-details/user-details.html)
 * [Using the API](https://mys-tech-docs.onrender.com/ways-of-working/use-the-api/use-the-api.html)
-
-
-The Ways of Working tech docs contain several useful how-to guides for key processes: HTML
- * Editing alerts directly from the webpage: [How to edit a re-entry or conjunction report](https://mys-tech-docs.onrender.com/ways-of-working/how-to-edit-reports/how-to-edit-reports.html)
- * Sending alerts to new recipients: [How to send a re-entry or conjunction alert to additional recipients](https://mys-tech-docs.onrender.com/ways-of-working/how-to-distribute-reports/how-to-distribute-reports.html#2-alert-types-and-lists)
- * Adding or editing users: [How to create and amend user details](https://mys-tech-docs.onrender.com/ways-of-working/user-details/user-details.html)
- * Using the API: [How to use the API](https://mys-tech-docs.onrender.com/ways-of-working/use-the-api/use-the-api.html)
 
 <%= partial "partials/links" %>
