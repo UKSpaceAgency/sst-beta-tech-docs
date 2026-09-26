@@ -3,7 +3,7 @@ title: Troubleshooting
 weight: 12
 hide_in_navigation: true
 parent: /ways-of-working
-last_reviewed_on: 2022-04-25
+last_reviewed_on: 2026-09-26
 review_in: 3 months
 ---
 
@@ -27,14 +27,14 @@ review_in: 3 months
     * The error may be due to a problem in the file which was not automatically flagged during upload.
     * If the error has occurred since the latest uploaded file, then:
     * You can delete any file type using the appropriate /delete endpoint:
-        * Re-entry reports: [`DELETE /v1/reentry-event-reports/{reentry_event_report_id}`](https://api.dev.monitor-space-hazards.service.gov.uk/docs#/reentry-event-reports/delete_reentry_event_reports_reentry_event_report_id)
-        * Fragmentation reports: [`DELETE /v1/fragmentation-reports/{fragmentation_report_id}`](https://api.dev.monitor-space-hazards.service.gov.uk/docs#/fragmentation-reports/delete_fragmentation_reports_fragmentation_report_id)
-        * Conjunction reports: [`DELETE /v1/conjunction-reports/{conjunction_report_id}`](https://api.dev.monitor-space-hazards.service.gov.uk/docs#/conjunction-reports/delete_conjunction_reports_conjunction_report_id)
-        * Satellite activity reports (flags): [`DELETE /v1/activity-reports/{activity_report_id}`](https://api.dev.monitor-space-hazards.service.gov.uk/docs#/activity-reports/delete_activity_reports_activity_report_id)
-        * UKSA TIPs: [`DELETE /v1/tips/{tip_id}`](https://api.dev.monitor-space-hazards.service.gov.uk/docs#/tracking-impact-prediction/delete_tips_tip_id)
-        * Ephemeris: [`DELETE /v1/ephemeris/{ephemeris_id}`](https://api.dev.monitor-space-hazards.service.gov.uk/docs#/ephemeris/delete_ephemeris_ephemeris_id)
-        * Manoeuvre trade space plots: [`DELETE /v1/manoeuvre_plots/{manoeuvre_plot_id}`](https://api.dev.monitor-space-hazards.service.gov.uk/docs#/manoeuvre_plots/delete_manoeuvre_plots_manoeuvre_plot_id)
-        * Conjunction analysis: [`DELETE /v1/analyses/{analysis_id}`](https://api.dev.monitor-space-hazards.service.gov.uk/docs#/analyses/delete_analyses_analysis_id)
+        * Re-entry reports: `DELETE /v1/reentry-event-reports/{reentry_event_report_id}`
+        * Fragmentation reports: `DELETE /v1/fragmentation-reports/{fragmentation_report_id}`
+        * Conjunction reports: `DELETE /v1/conjunction-reports/{conjunction_report_id}`
+        * Satellite activity reports (flags): `DELETE /v1/activity-reports/{activity_report_id}`
+        * UKSA TIPs: `DELETE /v1/tips/{tip_id}`
+        * Ephemeris: `DELETE /v1/ephemeris/{ephemeris_id}`
+        * Manoeuvre trade space plots: `DELETE /v1/manoeuvre_plots/{manoeuvre_plot_id}`
+        * Conjunction analysis: `DELETE /v1/analyses/{analysis_id}`
     * If deleting the file restores MSH functionality, then check the file for invalid formats or data before re-uploading.
     * You may need to re-number the file (for example, `report_number` for reports) before re-uploading. This is especially important when promoting from Dev to Prod, as the event `short_id` or `report_number` may be out of sync between environments.
 
