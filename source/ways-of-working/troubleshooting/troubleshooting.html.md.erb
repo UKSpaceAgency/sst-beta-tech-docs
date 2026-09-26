@@ -40,16 +40,16 @@ review_in: 3 months
 
 ## Common problems with JSON files
 
-A required field is left empty
+A required field is left empty:
 
 * Check which fields are required using the appropriate `GET /v1/.../schema` endpoint. Required fields are listed at the bottom of the schema response.
 
-A string value is not in the format required by the enum (usually incorrect capitalisation)
+A string value is not in the format required by the enum (usually incorrect capitalisation):
 
 * Enum requirements are case-sensitive.
 * Check the exact enum format requirements using the appropriate `GET /v1/.../schema` endpoint.
 
-A non-ASCII character is incorrectly encoded
+A non-ASCII character is incorrectly encoded:
 
 * Non-ASCII characters (for example, the &#233; in M&#233;xico) may break if not properly encoded in UTF-8.
 
