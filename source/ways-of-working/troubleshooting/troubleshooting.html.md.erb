@@ -80,47 +80,45 @@ The Ways of Working tech docs contain several useful how-to guides for key proce
 
 ## Missing an expected functionality
 
-1. **Visit the Account Details page to check which account type you are using.**
+1. Visit the Account Details page to check which account type you are using.
     * Different account types have different permissions, meaning different functionalities may be available:
         * Only Agency Approvers and Agency Superusers can **edit alerts** or **send alerts to additional recipients**.
         * Only Admins (any organisation type), Analysts, Agency Approvers and Agency Superusers can **view or edit users** from their organisation (only to the lower permissions).
-2. **If possible, sign into an account with higher permissions.**
+2. If possible, sign into an account with higher permissions.
     * Orbital analyst **group mailbox** accounts are Agency Analysts; **individual** accounts (firstname.surname@...) are Agency Approvers.
     * You may be able to access more permissions if you sign in using your individual account.
 
 ## All or part of the MSH portal not available, for example "Something went wrong"
 
-1. **Sign out, then sign back in again.**
+1. Sign out, then sign back in again.
     * If you have had the MSH tab open for a while, your user session may have timed out and the browser has not redirected you to the homepage.
-2. **Delete the last file uploaded, then force refresh the page.**
+2. Delete the last file uploaded, then force refresh the page.
     * The error may be due to a problem in the file which was not automatically flagged during upload.
     * If the error has occurred since the latest uploaded file, then:
     * You can delete any file type using the appropriate /delete endpoint:
-        * **Re-entry reports:** [`DELETE /v1/reentry-event-reports/{reentry_event_report_id}`](https://api.dev.monitor-space-hazards.service.gov.uk/docs#/reentry-event-reports/delete_reentry_event_reports_reentry_event_report_id)
-        * **Fragmentation reports:** [`DELETE /v1/fragmentation-reports/{fragmentation_report_id}`](https://api.dev.monitor-space-hazards.service.gov.uk/docs#/fragmentation-reports/delete_fragmentation_reports_fragmentation_report_id)
-        * **Conjunction reports:** [`DELETE /v1/conjunction-reports/{conjunction_report_id}`](https://api.dev.monitor-space-hazards.service.gov.uk/docs#/conjunction-reports/delete_conjunction_reports_conjunction_report_id)
-        * **Satellite activity reports (flags):** [`DELETE /v1/activity-reports/{activity_report_id}`](https://api.dev.monitor-space-hazards.service.gov.uk/docs#/activity-reports/delete_activity_reports_activity_report_id)
-        * **UKSA TIPs:** [`DELETE /v1/tips/{tip_id}`](https://api.dev.monitor-space-hazards.service.gov.uk/docs#/tracking-impact-prediction/delete_tips_tip_id)
-        * **Ephemeris:** [`DELETE /v1/ephemeris/{ephemeris_id}`](https://api.dev.monitor-space-hazards.service.gov.uk/docs#/ephemeris/delete_ephemeris_ephemeris_id)
-        * **Manoeuvre trade space plots:** [`DELETE /v1/manoeuvre_plots/{manoeuvre_plot_id}`](https://api.dev.monitor-space-hazards.service.gov.uk/docs#/manoeuvre_plots/delete_manoeuvre_plots_manoeuvre_plot_id)
-        * **Conjunction analysis:** [`DELETE /v1/analyses/{analysis_id}`](https://api.dev.monitor-space-hazards.service.gov.uk/docs#/analyses/delete_analyses_analysis_id)
+        * Re-entry reports: [`DELETE /v1/reentry-event-reports/{reentry_event_report_id}`](https://api.dev.monitor-space-hazards.service.gov.uk/docs#/reentry-event-reports/delete_reentry_event_reports_reentry_event_report_id)
+        * Fragmentation reports: [`DELETE /v1/fragmentation-reports/{fragmentation_report_id}`](https://api.dev.monitor-space-hazards.service.gov.uk/docs#/fragmentation-reports/delete_fragmentation_reports_fragmentation_report_id)
+        * Conjunction reports: [`DELETE /v1/conjunction-reports/{conjunction_report_id}`](https://api.dev.monitor-space-hazards.service.gov.uk/docs#/conjunction-reports/delete_conjunction_reports_conjunction_report_id)
+        * Satellite activity reports (flags): [`DELETE /v1/activity-reports/{activity_report_id}`](https://api.dev.monitor-space-hazards.service.gov.uk/docs#/activity-reports/delete_activity_reports_activity_report_id)
+        * UKSA TIPs: [`DELETE /v1/tips/{tip_id}`](https://api.dev.monitor-space-hazards.service.gov.uk/docs#/tracking-impact-prediction/delete_tips_tip_id)
+        * Ephemeris: [`DELETE /v1/ephemeris/{ephemeris_id}`](https://api.dev.monitor-space-hazards.service.gov.uk/docs#/ephemeris/delete_ephemeris_ephemeris_id)
+        * Manoeuvre trade space plots: [`DELETE /v1/manoeuvre_plots/{manoeuvre_plot_id}`](https://api.dev.monitor-space-hazards.service.gov.uk/docs#/manoeuvre_plots/delete_manoeuvre_plots_manoeuvre_plot_id)
+        * Conjunction analysis: [`DELETE /v1/analyses/{analysis_id}`](https://api.dev.monitor-space-hazards.service.gov.uk/docs#/analyses/delete_analyses_analysis_id)
     * If deleting the file restores MSH functionality, then check the file for invalid formats or data before re-uploading.
     * You may need to re-number the file (for example, `report_number` for reports) before re-uploading. This is especially important when promoting from Dev to Prod, as the event `short_id` or `report_number` may be out of sync between environments.
 
 ## Common problems with JSON files
 
-### A required field is left empty
+A required field is left empty
 
-* Check which fields are required using the appropriate `GET /v1/â€¦/schema` endpoint. Required fields are listed at the bottom of the schema response: see the example below from `GET /v1/reentry-event-reports/schema`.
+* Check which fields are required using the appropriate `GET /v1/.../schema` endpoint. Required fields are listed at the bottom of the schema response.
 
-![Example schema response showing the list of required fields](images/schema-required-fields.png)
-
-### A string value is not in the format required by the enum (usually incorrect capitalisation)
+A string value is not in the format required by the enum (usually incorrect capitalisation)
 
 * Enum requirements are case-sensitive.
-* Check the exact enum format requirements using the appropriate `GET /v1/â€¦/schema` endpoint.
+* Check the exact enum format requirements using the appropriate `GET /v1/.../schema` endpoint.
 
-### A non-ASCII character is incorrectly encoded
+A non-ASCII character is incorrectly encoded
 
 * Non-ASCII characters (for example, the Ã© in MÃ©xico) may break if not properly encoded in UTF-8.
 
@@ -141,17 +139,21 @@ You may be able to use an online JSON validation tool, such as [JSONLint](https:
     * By default, Monitor Space Hazards will not send an alert to distribution lists that have already been notified, which is why you need to reset the configuration of who has already been notified.
 3. The "Send alert" page should now look like the image below, with no lists selected. You can now repeat the "Send alert" process, this time selecting the distribution list(s) you need.
 
-![The Send alert page with no distribution lists selected and every status showing "Not sent to distribution list"](images/send-alert-reset.png)
+![The Send alert page with no distribution lists selected and every status showing "Not sent to distribution list"](images/distribution_lists_none_selected.png)
 
 ## Further resources
 
-The Ways of Working tech docs contain several useful how-to guides for key processes:
-
+The Ways of Working tech docs contain several useful how-to guides for key processes: DIRECT GITHUB LINKS
 * [Editing alerts directly from the webpage](https://mys-tech-docs.onrender.com/ways-of-working/how-to-edit-reports/how-to-edit-reports.html)
 * [Sending alerts to new recipients](https://mys-tech-docs.onrender.com/ways-of-working/how-to-distribute-reports/how-to-distribute-reports.html#2-alert-types-and-lists)
 * [Adding or editing users](https://mys-tech-docs.onrender.com/ways-of-working/user-details/user-details.html)
 * [Using the API](https://mys-tech-docs.onrender.com/ways-of-working/use-the-api/use-the-api.html)
 
 
+The Ways of Working tech docs contain several useful how-to guides for key processes: HTML
+ * Editing alerts directly from the webpage: [How to edit a re-entry or conjunction report](https://mys-tech-docs.onrender.com/ways-of-working/how-to-edit-reports/how-to-edit-reports.html)
+ * Sending alerts to new recipients: [How to send a re-entry or conjunction alert to additional recipients](https://mys-tech-docs.onrender.com/ways-of-working/how-to-distribute-reports/how-to-distribute-reports.html#2-alert-types-and-lists)
+ * Adding or editing users: [How to create and amend user details](https://mys-tech-docs.onrender.com/ways-of-working/user-details/user-details.html)
+ * Using the API: [How to use the API](https://mys-tech-docs.onrender.com/ways-of-working/use-the-api/use-the-api.html)
 
 <%= partial "partials/links" %>
